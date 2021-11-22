@@ -104,7 +104,8 @@
                            <span class="badge badge-info">Rien à sauver</span>
                          @endif
 
-                    <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a><a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
+                    <a id="{{$shopProducts->shop->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn"><i class="lni lni-heart"></i></a>
+                             <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
                   <div class="product-description"><a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                     @if($qty != 0)
                     <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small style="display:none;"> ({{ $proximite->unit_price*1000 }} YummyCoin)</small></p>@endif
@@ -138,3 +139,27 @@
   <!-- Featured Products Wrapper-->
 </div>
 @endsection
+@section('footer-js')
+    <script type="text/javascript">
+        function addtofav(elem){
+            let id = $(elem).attr("id");
+            let c_id = $(elem).attr("c_id");
+            let _token   = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "{{route('addtowishlist')}}",
+                type:"POST",
+                data:{
+                    id:id,
+                    _token: _token
+                },
+                success:function(response){
+                    if(response) {
+                        var x = document.getElementById("snackbar");
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    }
+                },
+            });
+        }
+    </script>
+    @endsection

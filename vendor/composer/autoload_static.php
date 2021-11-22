@@ -728,6 +728,7 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'App\\Enums\\UserRole' => __DIR__ . '/../..' . '/app/Enums/UserRole.php',
         'App\\Enums\\UserStatus' => __DIR__ . '/../..' . '/app/Enums/UserStatus.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Favourite' => __DIR__ . '/../..' . '/app/Favourite.php',
         'App\\Helpers\\Curl' => __DIR__ . '/../..' . '/app/Helpers/Curl.php',
         'App\\Helpers\\Ip' => __DIR__ . '/../..' . '/app/Helpers/Ip.php',
         'App\\Http\\Composers\\BackendMenuComposer' => __DIR__ . '/../..' . '/app/Http/Composers/BackendMenuComposer.php',

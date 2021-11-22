@@ -48,6 +48,7 @@ return array(
     'App\\Enums\\UserRole' => $baseDir . '/app/Enums/UserRole.php',
     'App\\Enums\\UserStatus' => $baseDir . '/app/Enums/UserStatus.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Favourite' => $baseDir . '/app/Favourite.php',
     'App\\Helpers\\Curl' => $baseDir . '/app/Helpers/Curl.php',
     'App\\Helpers\\Ip' => $baseDir . '/app/Helpers/Ip.php',
     'App\\Http\\Composers\\BackendMenuComposer' => $baseDir . '/app/Http/Composers/BackendMenuComposer.php',

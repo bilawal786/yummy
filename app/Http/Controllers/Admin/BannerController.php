@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
+use App\Models\Location;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Enums\Status;
@@ -43,6 +44,7 @@ class BannerController extends BackendController
     public function create()
     {
         $this->data['status'] = Shop::where(['status' => Status::ACTIVE])->get();
+        $this->data['location'] = Location::all();
         return view('admin.banner.create', $this->data);
     }
 
@@ -59,6 +61,7 @@ class BannerController extends BackendController
         $banner->short_description = $request->description;
         $banner->link              = $request->url;
         $banner->status            = $request->status;
+        $banner->country_id            = $request->location;
         $banner->save();
 
         //Store Image Media Libraty Spati

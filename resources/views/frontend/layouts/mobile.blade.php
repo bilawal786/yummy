@@ -116,5 +116,6 @@
       <script src="{{ asset('v2/js/default/no-internet.js') }}"></script>
       <script src="{{ asset('v2/js/default/active.js') }}"></script>
       @yield('footer-js')
+
    </body>
 </html>

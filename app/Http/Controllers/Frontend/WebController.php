@@ -13,6 +13,8 @@ use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class WebController extends FrontendController
@@ -25,7 +27,7 @@ class WebController extends FrontendController
 
     public function index()
     {
-        $this->data['banners']   = Banner::where(['status' => Status::ACTIVE])->orderBy('sort', 'asc')->get();
+        $this->data['banners']   = Banner::where(['status' => Status::ACTIVE])->orderBy('sort', 'asc')->where('country_id', Auth::user()->address)->get();
         $this->data['locations'] = Location::orderBy('name', 'desc')->get();
         $this->data['products']     = Product::with('categories')->inRandomOrder()->get();
         $this->data['proxim']    = Shop::where('vip', '=', '1')->inRandomOrder()->limit(3)->get();
@@ -39,6 +41,10 @@ class WebController extends FrontendController
         $this->data['BestSellingCategories'] = BestSellingCategory::orderBy('counter', 'desc')->get()->take(5);
         $this->data['BestSellingProducts']   = ShopProduct::where('counter', '!=', 0)->orderBy('counter', 'desc')->get()->take(10);
         return view('frontend.home-mobile', $this->data);
+    }
+
+    public function addtowishlist(Request $request){
+        dd($request->all());
     }
 
     public function mapshow(){

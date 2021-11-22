@@ -31,6 +31,7 @@ Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' 
 });
 
 Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], function () {
+    Route::post('/addtowishlist', 'WebController@addtowishlist')->name('addtowishlist');
     Route::get('/home', 'WebController@index')->name('home')->middleware('auth');
     Route::view('/setup', 'frontend.account-setup');
     Route::get('/coin', 'YummyCoinController@index')->name('yummycoin')->middleware('auth');
