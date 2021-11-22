@@ -1,0 +1,29 @@
+{
+    "dir": "ltr",
+    "lang": "French",
+    "name": "YummyBox",
+    "short_name": "YummyBox",
+    "scope": "/",
+    "display": "fullscreen",
+    "start_url": "https://yummybox.iconia.dev/setup",
+    "background_color": "transparent",
+    "theme_color": "transparent",
+    "orientation": "display",
+    "icons": [
+    {
+      "src": "android/android-launchericon-48-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "android/android-launchericon-96-96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "android/android-launchericon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}

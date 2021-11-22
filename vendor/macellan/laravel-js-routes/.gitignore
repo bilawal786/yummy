@@ -1,0 +1,8 @@
+/vendor/
+/node_modules/
+/.grunt/
+build
+.idea
+.phpunit.result.cache
+composer.lock
+.DS_Store
