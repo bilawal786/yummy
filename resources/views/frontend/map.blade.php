@@ -23,7 +23,7 @@ $.ajaxSetup({
     cache: true
 });
 
-var mymap = L.map('map').fitWorld();
+var mymap = L.map('map').setView([16.1922065, -61.272382499999], 10);
 
 const api_url = '/map-data';
 $.getJSON(api_url,
