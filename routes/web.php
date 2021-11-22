@@ -74,6 +74,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/search', 'SearchController@filter')->name('search');
     Route::get('/{shop}/products/search', 'SearchController@filterProduct')->name('search-product');
     Route::get('categorie/{slug}', 'CategorieController@index')->name('categories');
+    Route::get('/favourites', 'CategorieController@favourites')->name('favourites');
     Route::get('/privacy', 'PrivacyController')->name('privacy');
     Route::get('/terms', 'TermController')->name('terms');
     Route::get('/contact', 'ContactController')->name('contact');

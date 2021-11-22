@@ -104,8 +104,9 @@
                            <span class="badge badge-info">Rien à sauver</span>
                          @endif
 
-                    <a id="{{$shopProducts->shop->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn"><i class="lni lni-heart"></i></a>
-                             <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
+                    <a id="{{$proximite->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn"><i class="lni lni-heart"></i></a>
+                             <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
+                                 <img style="width: 100%; height: 100px" src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
                   <div class="product-description"><a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                     @if($qty != 0)
                     <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small style="display:none;"> ({{ $proximite->unit_price*1000 }} YummyCoin)</small></p>@endif
@@ -150,11 +151,16 @@
                 type:"POST",
                 data:{
                     id:id,
+                    c_id:c_id,
                     _token: _token
                 },
                 success:function(response){
-                    if(response) {
+                    if(response.success === "Successfully Added") {
                         var x = document.getElementById("snackbar");
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    }else {
+                        var x = document.getElementById("snackbar1");
                         x.className = "show";
                         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Enums\Status;
+use App\Favourite;
 use App\Http\Controllers\FrontendController;
 use App\Models\Banner;
 use App\Models\BestSellingCategory;
@@ -44,7 +45,18 @@ class WebController extends FrontendController
     }
 
     public function addtowishlist(Request $request){
-        dd($request->all());
+        $check_fave = Favourite::where('product_id', $request->id)->where('user_id', Auth::user()->id)->first();
+        if ($check_fave){
+            return response()->json(['error' => 'Already Added']);
+        }else{
+            $fav = new Favourite();
+            $fav->product_id = $request->id;
+            $fav->product_creator = $request->c_id;
+            $fav->user_id = Auth::user()->id;
+            $fav->save();
+            return response()->json(['success' => 'Successfully Added']);
+        }
+
     }
 
     public function mapshow(){
