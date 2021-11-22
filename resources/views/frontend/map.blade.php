@@ -23,7 +23,7 @@ $.ajaxSetup({
     cache: true
 });
 
-var mymap = L.map('map', {scrollWheelZoom: true, dragging: true}).setView([16.1922065, -61.272382499999], 10);
+var mymap = L.map('map').fitWorld();
 
 const api_url = '/map-data';
 $.getJSON(api_url,
@@ -45,8 +45,8 @@ var customOptions =
         return L.marker(latlng, {
           icon: L.icon({
                 iconUrl: '//yummybox.fr/assets/images/Yummy-box-picto.png',
-                iconSize: [34, 34],
-                iconAnchor: [22, 22],
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
 
             })
         }).bindPopup(customPopup_d,customOptions);
