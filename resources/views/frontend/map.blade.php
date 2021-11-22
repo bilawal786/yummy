@@ -23,16 +23,8 @@ $.ajaxSetup({
     cache: true
 });
 
-var mymap = L.map('map', {dragging: true}).setView([16.1922065, -61.272382499999], 10);
-mymap.once('focus', function() { map.scrollWheelZoom.enable(); });
-mymap.on('click', function() {
-    if (mymap.scrollWheelZoom.enabled()) {
-        mymap.scrollWheelZoom.disable();
-    }
-    else {
-        mymap.scrollWheelZoom.enable();
-    }
-});
+var mymap = L.map('map', {scrollWheelZoom: true, dragging: true}).setView([16.1922065, -61.272382499999], 10);
+
 const api_url = '/map-data';
 $.getJSON(api_url,
 
