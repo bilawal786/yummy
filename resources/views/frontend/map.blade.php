@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="{{ asset('v2/css/leaflet.css')}}"/>
 <style type="text/css">
-  #map { height: 100vh; }
+  #map { height: 100vh; width: 100vw; }
 </style>
 @endsection
 @section('main-content')
