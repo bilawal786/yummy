@@ -71,6 +71,42 @@
         <p>{!! $shopProduct->product->description !!}</p>
       </div>
     </div>
+    <div class="p-specification bg-white mb-3 py-3">
+      <div class="container">
+        <h6>Favourite</h6>
+          <div class="row">
+              <div class="col">
+                  <div class="card">
+                      <div class="card-body" style="text-align: center">
+
+
+                          @if($check_fav)
+                              <a id="{{$shopProduct->product->id}}" class="dislike" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" >
+                                  <img style="height: 40px; margin-bottom: 5px" src="{{asset('dislike.png')}}" alt="">
+                              </a>
+                          @else
+                              <a id="{{$shopProduct->product->id}}" class="like" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" >
+                                  <img style="height: 40px; margin-bottom: 5px" src="{{asset('like.png')}}" alt="">
+                              </a>
+                              <a id="{{$shopProduct->product->id}}" style="display: none" class="temporary" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" >
+                                  <img style="height: 40px; margin-bottom: 5px" src="{{asset('dislike.png')}}" alt="">
+                              </a>
+                          @endif
+                          <p>Favori</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <div class="card-body" style="text-align: center">
+                          <h2 class="fav_count">{{$favourites->count()}}</h2>
+                          <p>Favoris</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
 
     <!-- Add To Cart-->
     <div class="cart-form-wrapper bg-white mb-3 py-3">

@@ -140,32 +140,3 @@
   <!-- Featured Products Wrapper-->
 </div>
 @endsection
-@section('footer-js')
-    <script type="text/javascript">
-        function addtofav(elem){
-            let id = $(elem).attr("id");
-            let c_id = $(elem).attr("c_id");
-            let _token   = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: "{{route('addtowishlist')}}",
-                type:"POST",
-                data:{
-                    id:id,
-                    c_id:c_id,
-                    _token: _token
-                },
-                success:function(response){
-                    if(response.success === "Successfully Added") {
-                        var x = document.getElementById("snackbar");
-                        x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-                    }else {
-                        var x = document.getElementById("snackbar1");
-                        x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-                    }
-                },
-            });
-        }
-    </script>
-    @endsection

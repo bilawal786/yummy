@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Favourite;
 use App\Http\Controllers\FrontendController;
 use App\Http\Services\RatingsService;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
+use Illuminate\Support\Facades\Auth;
 
 class ShopProductController extends FrontendController
 {
@@ -37,6 +39,8 @@ class ShopProductController extends FrontendController
                 $this->data['shopRelatedProduct'] = $shop->shopproducts->where('product_id', '!=', $product->id);
             }
             $this->data['namepage']  = $product->name;
+            $this->data['favourites']  = Favourite::where('product_id', $product->id)->get();
+            $this->data['check_fav']  = Favourite::where('product_id', $product->id)->where('user_id', Auth::user()->id)->first();
             return view('frontend.shop_product-mobile', $this->data);
         }
 

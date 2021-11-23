@@ -1,5 +1,7 @@
 @if(!isset($check))
 <!-- Footer Nav-->
+<div id="snackbar">Ajouter aux favoris</div>
+<div id="snackbar1">Déjà ajouté</div>
 <div class="footer-nav-area" id="footerNav">
   <div class="container h-100 px-0">
     <div class="suha-footer-nav h-100">

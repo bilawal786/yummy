@@ -98,11 +98,10 @@
 
       </style>
       @yield('style')
-      <div id="snackbar">Ajouter aux favoris</div>
-      <div id="snackbar1">Déjà ajouté</div>
 
    </head>
    <body>
+
      <!-- Preloader-->
      <div class="preloader" id="preloader">
        <div class="spinner-grow text-secondary" role="status">
@@ -185,6 +184,36 @@
       <script src="{{ asset('v2/js/default/no-internet.js') }}"></script>
       <script src="{{ asset('v2/js/default/active.js') }}"></script>
       @yield('footer-js')
-
+     <script type="text/javascript">
+         function addtofav(elem){
+             let id = $(elem).attr("id");
+             let c_id = $(elem).attr("c_id");
+             let _token   = $('meta[name="csrf-token"]').attr('content');
+             $.ajax({
+                 url: "{{route('addtowishlist')}}",
+                 type:"POST",
+                 data:{
+                     id:id,
+                     c_id:c_id,
+                     _token: _token
+                 },
+                 success:function(response){
+                     if(response.success === "Successfully Added") {
+                         $(".like").hide();
+                         $(".temporary").show();
+                         var fav_count = $(".fav_count").html();
+                         $(".fav_count").html(+fav_count + +1);
+                         var x = document.getElementById("snackbar");
+                         x.className = "show";
+                         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                     }else {
+                         var x = document.getElementById("snackbar1");
+                         x.className = "show";
+                         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                     }
+                 },
+             });
+         }
+     </script>
    </body>
 </html>
