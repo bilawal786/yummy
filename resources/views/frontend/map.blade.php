@@ -7,6 +7,9 @@
       crossorigin=""/>
 <style type="text/css">
   #map { height: 100vh; width: 100vw; }
+  .geo-location-wrapper{
+      display: none;
+  }
 </style>
 @endsection
 @section('main-content')
