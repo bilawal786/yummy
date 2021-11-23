@@ -1,7 +1,10 @@
 @extends('frontend.layouts.mobile')
 @section('style')
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="{{ asset('v2/css/leaflet.css')}}"/>
+{{--<link rel="stylesheet" href="{{ asset('v2/css/leaflet.css')}}"/>--}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
 <style type="text/css">
   #map { height: 100vh; width: 100vw; }
 </style>
