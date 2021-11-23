@@ -51,8 +51,8 @@ var customOptions =
         return L.marker(latlng, {
           icon: L.icon({
                 iconUrl: '//yummybox.fr/assets/images/Yummy-box-picto.png',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12],
+                iconSize: [34, 34],
+                iconAnchor: [22, 22],
 
             })
         }).bindPopup(customPopup_d,customOptions);
