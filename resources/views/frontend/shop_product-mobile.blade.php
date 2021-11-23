@@ -81,14 +81,14 @@
 
 
                           @if($check_fav)
-                              <a id="{{$shopProduct->product->id}}" class="dislike" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" >
+                              <a id="{{$shopProduct->product->id}}" class="dislike" c_id="{{$shopProduct->shop->user->id}}" onClick="addtofav(this)" >
                                   <img style="height: 40px; margin-bottom: 5px" src="{{asset('dislike.png')}}" alt="">
                               </a>
                           @else
-                              <a id="{{$shopProduct->product->id}}" class="like" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" >
+                              <a id="{{$shopProduct->product->id}}" class="like" c_id="{{$shopProduct->shop->user->id}}" onClick="addtofav(this)" >
                                   <img style="height: 40px; margin-bottom: 5px" src="{{asset('like.png')}}" alt="">
                               </a>
-                              <a id="{{$shopProduct->product->id}}" style="display: none" class="temporary" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" >
+                              <a id="{{$shopProduct->product->id}}" style="display: none" class="temporary" c_id="{{$shopProduct->shop->user->id}}" onClick="addtofav(this)" >
                                   <img style="height: 40px; margin-bottom: 5px" src="{{asset('dislike.png')}}" alt="">
                               </a>
                           @endif
