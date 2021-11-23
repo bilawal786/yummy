@@ -23,7 +23,7 @@ $.ajaxSetup({
     cache: true
 });
 
-var mymap = L.map('map').setView([0, 0], 18);
+var mymap = L.map('map', { gestureHandling: true,  dragging: !L.Browser.mobile, tap: !L.Browser.mobile }).setView([16.1922065, -61.272382499999], 10);
 
 const api_url = '/map-data';
 $.getJSON(api_url,
