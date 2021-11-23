@@ -29,7 +29,7 @@ $.ajaxSetup({
     cache: true
 });
 
-var mymap = L.map('map', { gestureHandling: true,  dragging: true, tap: true }).setView([16.1922065, -61.272382499999], 10);
+// var mymap = L.map('map', { gestureHandling: true,  dragging: true, tap: true }).setView([16.1922065, -61.272382499999], 10);
 
 const api_url = '/map-data';
 $.getJSON(api_url,
@@ -46,7 +46,7 @@ var customOptions =
     var maa = L.geoJSON(data, {
       pointToLayer: function(feature, latlng) {
         /*Custom popup design*/
-        var customPopup_d = "<div class='card' style='width: 18rem;'><div id='carouselExampleControls' class='carousel slide' data-ride='carousel'><div class='carousel-inner'><div class='carousel-item active'><a href='partenaire/"+ feature.properties.slug + "'/><img class='d-block w-100' src='"+ feature.image +"' alt='First slide'></a></div></div></div><div class='card-body'><h5 class='card-title text-center'> "+ feature.properties.name +" </h5></div></div>";
+        var customPopup_d = "<div class='card' style='width: 100%;'><div id='carouselExampleControls' class='carousel slide' data-ride='carousel'><div class='carousel-inner'><div class='carousel-item active'><a href='partenaire/"+ feature.properties.slug + "'/><img class='d-block w-100' src='"+ feature.image +"' alt='First slide'></a></div></div></div><div class='card-body'><h5 class='card-title text-center'> "+ feature.properties.name +" </h5></div></div>";
 
         return L.marker(latlng, {
           icon: L.icon({
