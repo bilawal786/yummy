@@ -82,10 +82,11 @@ function onLocationError(e) {
     alert(e.message);
 }
 mymap.on('locationerror', onLocationError);
+
 function onLocationFound(e) {
     var radius = e.accuracy;
 
-    L.marker(e.latlng).addTo(map)
+    L.marker(e.latlng).addTo(mymap)
         .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
     L.circle(e.latlng, radius).addTo(mymap);
