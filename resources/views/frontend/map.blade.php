@@ -7,9 +7,7 @@
       crossorigin=""/>
 <style type="text/css">
   #map { height: 100vh; width: 100vw; }
-  .geo-location-wrapper{
-      display: none;
-  }
+
 </style>
 @endsection
 @section('main-content')
@@ -61,8 +59,8 @@ var customOptions =
 });
 mymap.locate({setView: true, maxZoom: 16});
 function locateUser() {
-    $('#map').addClass('fade-map');
-    mymap.locate({setView : true})
+    // $('#map').addClass('fade-map');
+    mymap.locate({setView : true,  maxZoom: 16})
 }
 
 function onLocationFound(){
@@ -79,7 +77,11 @@ $('.geo-location').on("click", function() {
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(mymap);
+function onLocationError(e) {
+    alert(e.message);
+}
 
+mymap.on('locationerror', onLocationError);
 
 </script>
 @endsection

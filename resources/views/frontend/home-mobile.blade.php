@@ -103,8 +103,14 @@
                          @else
                            <span class="badge badge-info">Rien à sauver</span>
                          @endif
-
-                    <a id="{{$proximite->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn"><i class="lni lni-heart"></i></a>
+                      <?php
+                           $check_fav =  \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
+                      ?>
+                             @if($check_fav)
+                        <a id="{{$proximite->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn">
+                            <img style="height: 25px;" src="{{asset('Yummy-box-picto.png')}}" alt="">
+                        </a>
+                             @endif
                              <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
                                  <img style="width: 100%; height: 100px" src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
                   <div class="product-description"><a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
