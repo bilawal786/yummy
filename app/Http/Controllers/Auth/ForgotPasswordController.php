@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
             ]);
 
           Mail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
-              $message->from(env('MAIL_FROM_ADDRESS'),env('MAIL_FROM_NAME'));
+              $message->from('info@ikaedigital.com','YUMMY BOX');
               $message->to($request->email);
               $message->subject('Réinitialisation de votre mot de passe');
           });

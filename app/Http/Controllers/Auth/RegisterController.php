@@ -78,6 +78,7 @@ class RegisterController extends Controller {
             'address'    => $data['address'],
             'email'      => $data['email'],
             'password'   => Hash::make($data['password']),
+            'refferal'   => 'RF-'.rand(1111, 9999).'-YUMMY',
         ]);
 
         $role = Role::find($data['roles']);
