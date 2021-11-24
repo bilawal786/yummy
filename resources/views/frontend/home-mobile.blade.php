@@ -107,8 +107,13 @@
                            $check_fav =  \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
                       ?>
                              @if($check_fav)
-                        <a id="{{$proximite->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn">
+                        <a style="left: 0.5rem" id="{{$proximite->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn">
                             <img style="height: 25px;" src="{{asset('Yummy-box-picto.png')}}" alt="">
+                        </a>
+                             @endif
+                             @if($check_fav)
+                        <a style="right: 1.5rem;"  class="wishlist-btn1">
+                            <img style="height: 25px; border-radius: 50px" src="{{asset($shopProducts->shop->user->images)}}" alt="">
                         </a>
                              @endif
                              <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">

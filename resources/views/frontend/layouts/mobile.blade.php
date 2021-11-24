@@ -95,7 +95,14 @@
               to {bottom: 0; opacity: 0;}
           }
           /*endsnackbar*/
-
+          .weekly-product-card .product-thumbnail-side .wishlist-btn1 {
+              position: absolute;
+              bottom: 0.5rem;
+              color: #ea4c62;
+              line-height: 1;
+              z-index: 11;
+              font-size: 1.25rem;
+          }
       </style>
       @yield('style')
 
