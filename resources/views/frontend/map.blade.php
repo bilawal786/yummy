@@ -63,9 +63,9 @@ function locateUser() {
     mymap.locate({setView : true,  maxZoom: 16})
 }
 
-function onLocationFound(){
+/*function onLocationFound(){
     $('#map').removeClass('fade-map');
-}
+}*/
 $('.geo-location').on("click", function() {
     locateUser();
 });
@@ -77,11 +77,20 @@ $('.geo-location').on("click", function() {
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(mymap);
+
 function onLocationError(e) {
     alert(e.message);
 }
-
 mymap.on('locationerror', onLocationError);
+function onLocationFound(e) {
+    var radius = e.accuracy;
 
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(mymap);
+}
+
+mymap.on('locationfound', onLocationFound);
 </script>
 @endsection
