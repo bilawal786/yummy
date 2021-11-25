@@ -162,6 +162,7 @@
          <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>Mon Profil</a></li>
          <li><a href="{{ route('account.order') }}"><i class="lni lni-package"></i>Réservations</a></li>
          <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>Recharger mon compte</a></li>
+         <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>Centre d'assistance</a></li>
          <li><a href="{{ route('logout') }}"
               onclick="event.preventDefault();document.getElementById('logout-form-sidebar').submit();"><i class="lni lni-power-switch"></i>Déconnexion</a>
            <form class="d-none" id="logout-form-sidebar" action="{{ route('logout') }}" method="POST">

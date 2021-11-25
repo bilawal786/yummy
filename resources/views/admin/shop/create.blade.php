@@ -336,11 +336,19 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="address">Adresse du propriétaire</label><span
+                                <label for="address">Choisissez une région</label><span
                                     class="text-danger">*</span>
-                                <textarea name="address"
-                                    class="form-control small-textarea-height @error('address') is-invalid @enderror"
-                                    id="address">{{ old('address') }}</textarea>
+                                <select name="address"
+                                        class="select2 form-control @error('address') is-invalid red-border @enderror"
+                                        data-url="{{ route('admin.shop.get-area') }}">
+                                    @if(!blank($locations))
+                                        @foreach($locations as $location)
+                                            <option value="{{ $location->id }}"
+                                                {{ (old('address') == $location->id) ? 'selected' : '' }}>
+                                                {{ $location->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
                                 @error('address')
                                 <div class="invalid-feedback">
                                     {{ $message }}

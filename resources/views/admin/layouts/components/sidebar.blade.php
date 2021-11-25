@@ -11,6 +11,7 @@
 
         <ul class="sidebar-menu">
             {!! $backendMenus !!}
+            <li class=""><a class="nav-link " href="{{route('home')}}" ><i class="fas fa-mobile"></i> <span>Retour à l'application</span></a></li>
         </ul>
     </aside>
 </div>

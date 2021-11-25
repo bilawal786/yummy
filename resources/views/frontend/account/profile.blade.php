@@ -11,7 +11,7 @@
 
             <figure class="icontext">
                 <div class="icon">
-                    <img class="rounded-circle img-sm border" src="{{ $user->images }}">
+                    <img width="100px" height="100px" class="rounded-circle img-sm border" src="{{ $user->images }}">
                 </div>
                 <div class="text">
                     <strong> {{ __('Name') }} : {{ $user->name}} </strong> <br>

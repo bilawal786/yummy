@@ -92,7 +92,8 @@ class WebController extends FrontendController
                 ]
             ],
             'properties'  => $thise,
-            'image' => $thise->images
+            'image' => $thise->images,
+            'logo' => $thise->logo
             );
         }
         $geojson = array(

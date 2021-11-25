@@ -43,8 +43,9 @@ var customOptions =
         }
     var maa = L.geoJSON(data, {
       pointToLayer: function(feature, latlng) {
+          console.log(feature);
         /*Custom popup design*/
-        var customPopup_d = "<div class='card' style='width: 100%;'><div id='carouselExampleControls' class='carousel slide' data-ride='carousel'><div class='carousel-inner'><div class='carousel-item active'><a href='partenaire/"+ feature.properties.slug + "'/><img class='d-block w-100' src='"+ feature.image +"' alt='First slide'></a></div></div></div><div class='card-body'><h5 class='card-title text-center'> "+ feature.properties.name +" </h5></div></div>";
+        var customPopup_d = "<div class='card' style='width: 100%;'><div id='carouselExampleControls' class='carousel slide' data-ride='carousel'><div class='carousel-inner'><div class='carousel-item active'><a href='partenaire/"+ feature.properties.slug + "'/><img class='d-block w-100' src='"+ feature.image +"' alt='First slide'></a></div></div></div><div class='card-body'><h5 class='card-title text-center'> "+ feature.properties.name +" </h5><div style='text-align: center'><h5 class='card-title text-center'> <img class='center' style='height: 40px; width: 40px; border-radius: 50px' src='"+ feature.logo +"' alt='First slide'> </h5></div></div></div>";
 
         return L.marker(latlng, {
           icon: L.icon({

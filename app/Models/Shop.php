@@ -66,6 +66,13 @@ class Shop extends BaseModel implements HasMedia
         }
         return asset('assets/img/default/shop.png');
     }
+    public function getLogoAttribute()
+    {
+        if (!empty($this->getFirstMediaUrl('shops_logo'))) {
+            return asset($this->getFirstMediaUrl('shops_logo'));
+        }
+        return asset('assets/img/default/shop.png');
+    }
 
     public function getSlugOptions(): SlugOptions
     {

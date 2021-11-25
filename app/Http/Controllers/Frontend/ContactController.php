@@ -44,4 +44,11 @@ class ContactController extends FrontendController
 
         return back()->with('success', 'Thanks for contacting us!');
     }
+    public function faq(){
+        $this->data['user'] = auth()->user();
+
+        $this->data['namepage']  = 'FAQ';
+
+        return view('frontend.faq',  $this->data);
+    }
 }
