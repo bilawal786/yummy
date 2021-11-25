@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Balance;
 use App\Models\DeliveryBoyAccount;
 use App\Providers\RouteServiceProvider;
+use App\Refferal;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -78,14 +80,28 @@ class RegisterController extends Controller {
             'address'    => $data['address'],
             'email'      => $data['email'],
             'password'   => Hash::make($data['password']),
-            'refferal'   => 'RF-'.rand(1111, 9999).'-YUMMY',
+            'refferal'   => 'RF-'.rand(111111, 999999).'-YUMMY',
         ]);
 
         $role = Role::find($data['roles']);
         if ( !blank($user) && !blank($role) ) {
             $user->assignRole($role->name);
         }
+        $refferal_user = User::where('refferal', $data['refferal'])->first();
+        if ($refferal_user){
+            $refferal = new Refferal();
+            $refferal->user_id = $user->id;
+            $refferal->refferal_user = $refferal_user->id;
+            $refferal->save();
 
+            $user_balance = Balance::where('id', $user->balance_id)->first();
+            $user_balance->balance = $user_balance->balance + 2000;
+            $user_balance->save();
+            $user_balance1 = Balance::where('id', $refferal_user->balance_id)->first();
+            $user_balance1->balance = $user_balance1->balance + 2000;
+            $user_balance1->save();
+
+        }
         /*if ( !blank($role) && ($role->id == 4) ) {
             $deliveryBoyAccount                  = new DeliveryBoyAccount();
             $deliveryBoyAccount->user_id         = $user->id;

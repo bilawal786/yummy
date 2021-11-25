@@ -129,6 +129,12 @@
             @endif
          </div>
          <div class="form-group">
+            <label>{{ __('Code de parrainage (facultatif)') }}</label>
+            <input name="refferal"
+                class="form-control @if($errors->has('refferal')) is-invalid @endif"
+                type="text" placeholder="Code de parrainage (facultatif)">
+         </div>
+         <div class="form-group">
            <label  class="custom-control custom-checkbox">
                <input name="terms_and_conditions" class="custom-control-input @if($errors->has('terms_and_conditions')) is-invalid @endif" type="checkbox" {{  (old('terms_and_conditions') == 1 ? ' checked' : '') }} value="1">
                <span class="custom-control-label" id="terms_and_condition_color"> {{ __('J\'accepte les') }}</span> <a target="_blank" href="{{ route('page', 'terms-and-condition') }}">{{ __('termes et conditions') }}</a> <span class="text-danger">*</span>

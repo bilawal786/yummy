@@ -51,4 +51,11 @@ class ContactController extends FrontendController
 
         return view('frontend.faq',  $this->data);
     }
+    public function sponsership(){
+        $this->data['user'] = auth()->user();
+
+        $this->data['namepage']  = 'Parrainage';
+
+        return view('frontend.sponsership',  $this->data);
+    }
 }

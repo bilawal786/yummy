@@ -83,6 +83,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/privacy', 'PrivacyController')->name('privacy');
     Route::get('/terms', 'TermController')->name('terms');
     Route::get('/faq', 'ContactController@faq')->name('faq');
+    Route::get('/sponsership', 'ContactController@sponsership')->name('sponsership');
     Route::get('/contact', 'ContactController')->name('contact');
     Route::post('/contact', 'ContactController@store')->name('contact.store');
 

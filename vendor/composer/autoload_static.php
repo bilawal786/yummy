@@ -968,6 +968,7 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Refferal' => __DIR__ . '/../..' . '/app/Refferal.php',
         'App\\Rules\\IniAmount' => __DIR__ . '/../..' . '/app/Rules/IniAmount.php',
         'App\\Transformers\\UserTransformer' => __DIR__ . '/../..' . '/app/Transformers/UserTransformer.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
