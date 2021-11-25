@@ -304,9 +304,10 @@ class ShopController extends BackendController
                 $shop->save();
                 $shop->categories()->sync($request->get('categories'));
                 if ($request->hasFile('image') && $request->file('image')->isValid() && $request->hasFile('logo')) {
-                    $shop->media()->delete($shop->id);
+                    $shop->clearMediaCollection('shops');
                     $shop->addMediaFromRequest('image')->toMediaCollection('shops');
                   if($request->hasFile('logo')){
+                      $shop->clearMediaCollection('shops_logo');
                     $shop->addMediaFromRequest('logo')->toMediaCollection('shops_logo');
                   }
                 }

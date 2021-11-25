@@ -171,7 +171,7 @@
                                     </div>
                                     @endif
                                     <img class="img-thumbnail image-width mt-4 mb-3" id="previewImage"
-                                        src="{{ asset($shop->getFirstMediaUrl('shops_logo')) }}" alt="your image" />
+                                        src="{{ $shop->logo }}" alt="your image" />
                                 </div>
                                 <div class="form-group">
                                     <label for="customFile">{{ __('levels.shop_image') }}</label>
