@@ -215,9 +215,11 @@ class ShopController extends BackendController
         $shop->save();
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $shop->clearMediaCollection('shops');
             $shop->addMediaFromRequest('image')->toMediaCollection('shops');
         }
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
+            $shop->clearMediaCollection('shops_logo');
             $shop->addMediaFromRequest('logo')->toMediaCollection('shops_logo');
         }
         return back()->withSuccess('Boutique mis à jour avec succès.');
