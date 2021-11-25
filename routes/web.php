@@ -6,7 +6,12 @@ use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\FaceBookController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::get('/', function (){
-    return view('frontend.intro.1');
+    $check =  preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+    if($check){
+        return view('frontend.intro.1');
+    }else{
+        return  redirect('/login');
+    }
 });
 
 Route::group(['middleware' => ['installed']], function () {
