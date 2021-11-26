@@ -6,7 +6,7 @@
     <div class="page-content-wrapper">
         <div class="container" style="height: 100vh; padding-top: 500px; background-image:url('{{asset('par1.png')}}'); background-repeat: no-repeat; background-size: 100% 100%;">
 {{--            <img style="width: 100%" src="{{asset('par.png')}}" alt="">--}}
-           <div class="">
+           <div class="" style="margin-top: 30px">
                 <div class="card-body">
                    <b> <h5 style="background-color: white; border-radius: 10px" id="copycontent" class="text-center">{{$user->refferal}} </h5></b>
                    <p class="text-center">
