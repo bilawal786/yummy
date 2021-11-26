@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Suggest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,6 +49,10 @@ class ProfileController extends BackendController
     private function username($email) {
         $emails = explode('@', $email);
         return $emails[0].mt_rand();
+    }
+    public function suggestions(){
+        $suggestions = Suggest::latest()->get();
+        return view('admin.suggestions.index', compact('suggestions'));
     }
 
 }

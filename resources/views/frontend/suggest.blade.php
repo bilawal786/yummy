@@ -23,6 +23,12 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
+                                    <label for="">Quel est votre numéro de téléphone?</label>
+                                    <input required type="text" class="form-control" name="phone">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
                                     <label for="">Quelle est votre type activite?</label>
                                     <select required name="type" class="form-control" id="">
                                         <option value="Epicerie/Super Marché">Epicerie/Super Marché</option>

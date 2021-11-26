@@ -112,6 +112,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::post('day-wise-income-order', 'DashboardController@dayWiseIncomeOrder')->name('dashboard.day-wise-income-order');
 
     Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::get('suggestions', 'ProfileController@suggestions')->name('suggestions');
     Route::put('profile/update/{profile}', 'ProfileController@update')->name('profile.update');
     Route::put('profile/change', 'ProfileController@change')->name('profile.change');
 

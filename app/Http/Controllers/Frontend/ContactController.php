@@ -72,6 +72,7 @@ class ContactController extends FrontendController
         $suggest->type = $request->type;
         $suggest->postal = $request->postal;
         $suggest->address = $request->address;
+        $suggest->phone = $request->phone;
         $suggest->save();
         Session::flash('message', 'Vos coordonnées ont été soumises avec succès');
         return redirect()->back();
