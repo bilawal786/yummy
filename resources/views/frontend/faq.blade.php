@@ -65,7 +65,7 @@
                     <button class="accordion">Pourquoi il n’y a pas de commerce près de chez moi ?</button>
                     <div class="panel">
                         <p>Nous travaillons pour convaincre le maximum de commerçants ! La lutte contre le gaspillage alimentaire n’a pas de limite, n’hésitez pas à revenir sur l’application dans quelque temps. Par ailleurs, vous pouvez nous aider en suggérant des commerces près de chez vous.
-                            (Lien pour suggérer un commerce)
+                            (<a href="{{route('suggest.business')}}">Suggérer un commerce</a>)
                             Suivez-nous sur les réseaux sociaux pour être au courant des nouveaux commerçants et des nouvelles villes partenaires.
                             (<a href="https://www.facebook.com/YummyBox.fr/">Facebook</a> et <a href="https://instagram.com/yummybox.fr?utm_medium=copy_link">Instagram</a>)</p>
                     </div>

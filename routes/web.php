@@ -84,6 +84,8 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/terms', 'TermController')->name('terms');
     Route::get('/faq', 'ContactController@faq')->name('faq');
     Route::get('/sponsership', 'ContactController@sponsership')->name('sponsership');
+    Route::get('/suggest/business', 'ContactController@suggest')->name('suggest.business');
+    Route::post('/suggest/store', 'ContactController@suggeststore')->name('suggest.store');
     Route::get('/contact', 'ContactController')->name('contact');
     Route::post('/contact', 'ContactController@store')->name('contact.store');
 

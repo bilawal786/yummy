@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\FrontendController;
+use App\Suggest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
+use Session;
 class ContactController extends FrontendController
 {
     public function __construct()
@@ -57,5 +58,22 @@ class ContactController extends FrontendController
         $this->data['namepage']  = 'Parrainage';
 
         return view('frontend.sponsership',  $this->data);
+    }
+    public function suggest(){
+        $this->data['user'] = auth()->user();
+
+        $this->data['namepage']  = 'Suggérer un commerce';
+
+        return view('frontend.suggest',  $this->data);
+    }
+    public function suggeststore(Request $request){
+        $suggest = new Suggest();
+        $suggest->name = $request->name;
+        $suggest->type = $request->type;
+        $suggest->postal = $request->postal;
+        $suggest->address = $request->address;
+        $suggest->save();
+        Session::flash('message', 'Vos coordonnées ont été soumises avec succès');
+        return redirect()->back();
     }
 }

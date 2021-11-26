@@ -290,6 +290,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Refferal' => $baseDir . '/app/Refferal.php',
     'App\\Rules\\IniAmount' => $baseDir . '/app/Rules/IniAmount.php',
+    'App\\Suggest' => $baseDir . '/app/Suggest.php',
     'App\\Transformers\\UserTransformer' => $baseDir . '/app/Transformers/UserTransformer.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\View\\Components\\Category' => $baseDir . '/app/View/Components/Category.php',
