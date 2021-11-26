@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\FrontendController;
 use App\Suggest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Session;
 class ContactController extends FrontendController
@@ -73,6 +74,7 @@ class ContactController extends FrontendController
         $suggest->postal = $request->postal;
         $suggest->address = $request->address;
         $suggest->phone = $request->phone;
+        $suggest->user_id = Auth::user()->id;
         $suggest->save();
         Session::flash('message', 'Vos coordonnées ont été soumises avec succès');
         return redirect()->back();

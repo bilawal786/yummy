@@ -365,9 +365,10 @@ class OrderService
     {
         $check_is_refferal = Refferal::where('user_id', $data['user_id'])->first();
         if ($check_is_refferal){
+            $ref_user = User::where('id', $check_is_refferal->refferal_user)->first();
             $check_order = Order::where('user_id', $data['user_id'])->first();
             if (!$check_order){
-                $user_balance1 = Balance::where('id', Auth::user()->balance_id)->first();
+                $user_balance1 = Balance::where('id', $ref_user->balance_id)->first();
                 $user_balance1->balance = $user_balance1->balance + 2000;
                 $user_balance1->save();
             }

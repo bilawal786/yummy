@@ -17,9 +17,10 @@
                                 <table class="table table-striped" id="maintable">
                                     <thead>
                                     <tr>
+                                        <th>Suggérer</th>
                                         <th>Nom</th>
                                         <th>Téléphone</th>
-                                        <th>Taper</th>
+                                        <th>Catégorie</th>
                                         <th>Adresse</th>
                                         <th>Postal</th>
                                     </tr>
@@ -27,6 +28,7 @@
                                     <tbody>
                                     @foreach($suggestions as $row)
                                     <tr>
+                                        <td>{{$row->user->name??''}}</td>
                                         <td>{{$row->name}}</td>
                                         <td>{{$row->phone}}</td>
                                         <td>{{$row->type}}</td>
