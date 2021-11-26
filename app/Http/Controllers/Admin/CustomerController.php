@@ -71,7 +71,7 @@ class CustomerController extends BackendController
     {
         $role = Role::find(2);
         $user = User::role($role->name)->findOrFail($id);
-        $balance = Balance::where('name', $user->username)->first();
+        $balance = Balance::where('id', $user->balance_id)->first();
 
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;

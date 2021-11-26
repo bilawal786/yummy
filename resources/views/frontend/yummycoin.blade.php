@@ -141,6 +141,11 @@
             </div>
           </div>
         </div>
+       <div class="card">
+           <div class="card-body">
+               <p><b>1€ = 1000 YC.                      Rechargez votre compte pour gagner en temps et en simplicité lors de l'achat de vos paniers.  Économisez des euros en profitant de nos offres !</b></p>
+           </div>
+       </div>
    </div>
 </div>
 @endsection

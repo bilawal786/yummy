@@ -26,8 +26,13 @@ class FaceBookController extends Controller
        $saveUser = User::updateOrCreate([
            'fb_id' => $user->getId(),
          ],[
-           'name' => $user->getName(),
+           'first_name' => $user->getName(),
+           'last_name' => '',
+           'username'   => $this->username($user->getEmail()),
+           'phone' => '',
+           'address' => '1',
            'email' => $user->getEmail(),
+           'refferal'   => 'RF-'.rand(111111, 999999).'-YUMMY',
            'password' => Hash::make($user->getName().'@'.$user->getId())
             ]);
 
@@ -38,4 +43,8 @@ class FaceBookController extends Controller
           throw $th;
        }
    }
+    private function username($email) {
+        $emails = explode('@', $email);
+        return $emails[0].mt_rand();
+    }
 }

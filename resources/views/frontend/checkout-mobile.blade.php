@@ -151,7 +151,7 @@
                         <div class="card weekly-product-card">
                           <div class="card-body d-flex align-items-center">
                             <div class="product-thumbnail-side">
-                              <a class="product-thumbnail d-block"><img src="{{ $shop->shop->images }}" alt=""></a>
+                              <a class="product-thumbnail d-block"><img style="width: 100%" src="{{ $shop->shop->images }}" alt=""></a>
                             </div>
                             <div class="product-description"><a class="product-title d-block">Panier {{$shop->product->name}}</a>
                               <p class="sale-price">Total {{ $shop->product->unit_price }}€  <small> ({{ $shop->product->unit_price*1000 }} YummyCoin)</small></p>
@@ -168,6 +168,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 @endsection

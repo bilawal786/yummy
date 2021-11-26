@@ -67,7 +67,7 @@
                         <p>Nous travaillons pour convaincre le maximum de commerçants ! La lutte contre le gaspillage alimentaire n’a pas de limite, n’hésitez pas à revenir sur l’application dans quelque temps. Par ailleurs, vous pouvez nous aider en suggérant des commerces près de chez vous.
                             (Lien pour suggérer un commerce)
                             Suivez-nous sur les réseaux sociaux pour être au courant des nouveaux commerçants et des nouvelles villes partenaires.
-                            (Lien Facebook et Instagram)</p>
+                            (<a href="https://www.facebook.com/YummyBox.fr/">Facebook</a> et <a href="https://instagram.com/yummybox.fr?utm_medium=copy_link">Instagram</a>)</p>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     <div class="panel">
                         <p>Non, tout paiement se fait sur l’application. Ainsi, la collecte est plus facile et plus rapide !
                             Par ailleurs, vous pouvez gagner du temps et de l’argent en rechargeant vos YummyCoin !
-                            (Lien Recharger mon compte YC)</p>
+                            (<a href="{{route('yummycoin')}}">Recharger mon compte YC</a>)</p>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,7 @@
                     <div class="panel">
                         <p>C’est la monnaie interne de l’application. Soit 1€ = 1000 YC
                             Bénéficiez de nos offres, plus vous rechargez votre compte YummyCoin et moins ils vous coûtent.
-                            Exemple : si vous rechargez votre compte de 50€, vous recevrez 55000 YC soit 5€ gagnés !
+                            Exemple : si vous rechargez votre compte de 50€, vous recevrez 56000YC soit 6€ gagnés !
                             Aussi, vous avez la possibilité de gagner des YummyCoin en participant aux actions anti-gaspi menées par nos équipes, en parrainant un ami, en suggérant un commerce ou en suivant notre actualité sur les réseaux sociaux.</p>
                     </div>
                 </div>

@@ -4,13 +4,13 @@
 @endsection
 @section('main-content')
     <div class="page-content-wrapper py-3">
-        <div class="container">
-            <div class="card">
+        <div class="container" style="padding-top: 500px; background-image:url('{{asset('par1.png')}}'); background-repeat: no-repeat; background-size: 100% 100%;">
+{{--            <img style="width: 100%" src="{{asset('par.png')}}" alt="">--}}
+           <div class="">
                 <div class="card-body">
-                    <p class="text-center">Votre code de parrainage</p>
-                    <p class="text-center">Invitez votre ami sur "YUMMY BOX" en utilisant ce code de parrainage. Vous obtiendrez 2000 "pièces YUMMY". Vous pouvez utiliser ces pièces pour passer une commande.</p>
-                   <b> <h5 id="copycontent" class="text-center">{{$user->refferal}} </h5></b>
-                   <p class="text-center"> <a onclick="mycopyFunction()" class="btn btn-sm btn-danger">
+                   <b> <h5 style="background-color: white; border-radius: 10px" id="copycontent" class="text-center">{{$user->refferal}} </h5></b>
+                   <p class="text-center">
+                       <a onclick="mycopyFunction()" style="background-color: #fab332" class="btn btn-sm">
                            Copie
                     </a></p>
                 </div>

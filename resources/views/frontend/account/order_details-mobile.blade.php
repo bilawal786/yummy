@@ -8,7 +8,7 @@
 
   <div class="product-slides">
     <!-- Single Hero Slide-->
-      <div class="single-product-slide" style="background-image: url('{{ $order->shop->images }}')"></div>
+      <div class="single-product-slide" style="background-image: url('{{ $order->shop->images??'' }}')"></div>
   </div>
   <div class="product-description">
     <!-- Product Title & Meta Data-->
