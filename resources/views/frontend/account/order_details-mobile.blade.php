@@ -15,16 +15,16 @@
     <div class="product-title-meta-data bg-white py-3">
       <div class="container d-flex justify-content-between">
         <div class="p-title-price">
-          <h6 class="mb-1">{{ $order->shop->name }}</h6>
+          <h6 class="mb-1">{{ $order->shop->name??'' }}</h6>
           <p><span>{{ \Carbon\Carbon::parse($order->created_at)->translatedformat('d M')}} </span></p>
             <p class="badge @if($order->status == 20) bg-success @elseif($order->status == 10) bg-danger @else bg-warning @endif ms-1">{{trans('order_status.' . $order->status)}}</p>
         </div>
       </div>
     </div>
     <ul class="page-nav ps-0 p-specification mb-3">
-      <li><a href="http://maps.google.com/maps?q={{ $order->shop->address }}" id="address" target="_blank"><div class="coupon-text-wrap d-flex align-items-center">
+      <li><a href="http://maps.google.com/maps?q={{ $order->shop->address??'' }}" id="address" target="_blank"><div class="coupon-text-wrap d-flex align-items-center">
         <h5 class="pe-3 mb-0"><i class="lni lni-map-marker"></i></h5>
-        <p class="ps-2 mb-0"><address style="margin-bottom: unset;">{{ $order->shop->address }}</address></p>
+        <p class="ps-2 mb-0"><address style="margin-bottom: unset;">{{ $order->shop->address??'' }}</address></p>
       </div><i class="lni lni-chevron-right"></i></a></li>
     </ul>
     <!-- Flash Sale Slide-->
