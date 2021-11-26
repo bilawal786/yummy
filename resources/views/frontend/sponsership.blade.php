@@ -3,8 +3,8 @@
 
 @endsection
 @section('main-content')
-    <div class="page-content-wrapper py-3">
-        <div class="container" style="padding-top: 500px; background-image:url('{{asset('par1.png')}}'); background-repeat: no-repeat; background-size: 100% 100%;">
+    <div class="page-content-wrapper">
+        <div class="container" style="height: 100vh; padding-top: 500px; background-image:url('{{asset('par1.png')}}'); background-repeat: no-repeat; background-size: 100% 100%;">
 {{--            <img style="width: 100%" src="{{asset('par.png')}}" alt="">--}}
            <div class="">
                 <div class="card-body">

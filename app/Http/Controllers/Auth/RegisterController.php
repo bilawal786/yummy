@@ -94,9 +94,6 @@ class RegisterController extends Controller {
             $refferal->refferal_user = $refferal_user->id;
             $refferal->save();
 
-            $user_balance = Balance::where('id', $user->balance_id)->first();
-            $user_balance->balance = $user_balance->balance + 2000;
-            $user_balance->save();
             $user_balance1 = Balance::where('id', $refferal_user->balance_id)->first();
             $user_balance1->balance = $user_balance1->balance + 2000;
             $user_balance1->save();

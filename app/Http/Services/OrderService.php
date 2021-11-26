@@ -15,7 +15,9 @@ use App\Models\OrderHistory;
 use App\Models\OrderLineItem;
 use App\Models\Shop;
 use App\Models\ShopProduct;
+use App\Refferal;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
@@ -361,6 +363,15 @@ class OrderService
 
     public function order($data): object// done
     {
+        $check_is_refferal = Refferal::where('user_id', $data['user_id'])->first();
+        if ($check_is_refferal){
+            $check_order = Order::where('user_id', $data['user_id'])->first();
+            if (!$check_order){
+                $user_balance1 = Balance::where('id', Auth::user()->balance_id)->first();
+                $user_balance1->balance = $user_balance1->balance + 2000;
+                $user_balance1->save();
+            }
+        }
         $order = [
             'user_id'         => $data['user_id'],
             'shop_id'         => $data['shop_id'],
