@@ -18,9 +18,9 @@
                                     <thead>
                                     <tr>
                                         <th>Nom</th>
-                                        <th>Phone</th>
-                                        <th>Type</th>
-                                        <th>Address</th>
+                                        <th>Téléphone</th>
+                                        <th>Taper</th>
+                                        <th>Adresse</th>
                                         <th>Postal</th>
                                     </tr>
                                     </thead>
