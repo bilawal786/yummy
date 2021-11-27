@@ -105,7 +105,6 @@
                   </div>
               </div>
           </div>
-          <button id="shareBtn">Share</button>
       </div>
     </div>
 
@@ -134,25 +133,5 @@
 </div>
 @endsection
 @section('footer-js')
-    <script>
-        const shareBtnRef = document.querySelector('#shareBtn');
-        shareBtnRef.onclick = async () => {
-            //check if native sharing is available
-            if(navigator.share) {
-                try {
-                    const shareData = {
-                        title: 'Web Share Demo',
-                        text: 'Wanted to share this with you',
-                        url: 'https://josephkhan.me',
-                    }
-                    await navigator.share(shareData);
-                    console.log('Share successfull');
-                } catch(err) {
-                    console.log('Error: ', err);
-                }
-            } else {
-                console.warn('Native Web Sharing not supported');
-            }
-        }
-    </script>
+
 @endsection
