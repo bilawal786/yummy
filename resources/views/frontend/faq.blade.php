@@ -115,6 +115,28 @@
             <br>
             <div class="card">
                 <div class="card-body">
+                    <button class="accordion">Comment gagner des YummyCoin avec le parrainage ?</button>
+                    <div class="panel">
+                        <p>Grâce à votre code de parrainage, vos proches pourront bénéficier de 2000 YC à leur inscription. Pour cela, copiez le code disponible dans le menu « Parrainage » et transférez-le à qui vous le souhaitez.
+                            De plus, pour chacun de vos parrainages, vous recevrez également 2000 YC quand votre filleul aura utilisé ses YC gagnés ! </p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <button class="accordion">Comment gagner des YummyCoin avec la recommandation de commerçant près de chez vous ?</button>
+                    <div class="panel">
+                        <p>
+                            La recommandation de commerçant est simple et vous rapporte 10000 YC !
+                            Pour cela, cliquez sur le menu « suggérer un commerce » et entrez les informations du commerçant. Notre service commercial rentrera en contact avec ce commerçant pour présenter l’application et dès qu’il devient Partenaire Affilié Yummy Box, vous recevez 10000 YC.
+                            Par ailleurs, si vous êtes plusieurs à recommander le même commerçant, c’est le premier à avoir envoyé la recommandation qui gagne la mise.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
                     <button class="accordion">Comment annuler ma réservation ?</button>
                     <div class="panel">
                         <p>Vous pouvez annuler une réservation jusqu’à 2 heures avant le début de la collecte en vous rendant directement sur le reçu et en cliquant sur « Annuler la réservation ». Cela laisse suffisamment de temps au panier pour être sauvé par un autre utilisateur.</p>
