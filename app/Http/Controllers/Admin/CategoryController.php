@@ -6,6 +6,7 @@ use App\Enums\Status;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
@@ -44,7 +45,9 @@ class CategoryController extends BackendController
      */
     public function create()
     {
-        return view('admin.category.create');
+        $this->data['location'] = Location::all();
+
+        return view('admin.category.create', $this->data);
     }
 
     /**
@@ -62,6 +65,8 @@ class CategoryController extends BackendController
         $category->right       = 0;
         $category->parent_id   = 0;
         $category->status      = $request->status;
+        $category->country_id      = $request->location;
+        $category->is_vip      = $request->is_vip;
         $category->save();
 
         //Store Image Media Libraty Spati
@@ -90,6 +95,7 @@ class CategoryController extends BackendController
      */
     public function edit($id)
     {
+        $this->data['location'] = Location::all();
         $this->data['category'] = Category::findOrFail($id);
         return view('admin.category.edit', $this->data);
     }
@@ -112,6 +118,8 @@ class CategoryController extends BackendController
         $category->right       = 0;
         $category->parent_id   = 0;
         $category->status      = $request->status;
+        $category->country_id      = $request->location;
+        $category->is_vip      = $request->is_vip;
         $category->save();
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {

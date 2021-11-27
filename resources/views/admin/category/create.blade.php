@@ -30,7 +30,21 @@
 										</div>
 										@enderror
 									</div>
-
+                                    <div class="form-group col">
+                                        <label>Sélectionnez l'emplacement</label>
+                                        <select name="location" class="form-control">
+                                            @foreach($location as $loc)
+                                                <option value="{{ $loc->id }}">{{$loc->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col">
+                                        <label>Est-ce que cette catégorie est VIP?</label>
+                                        <select name="is_vip" class="form-control">
+                                            <option value="Non">Non</option>
+                                            <option value="Oui">Oui</option>
+                                        </select>
+                                    </div>
 									<div class="form-group col">
 										<label>{{ __('levels.status') }}</label> <span class="text-danger">*</span>
 										<select name="status" class="form-control @error('status') is-invalid @enderror">

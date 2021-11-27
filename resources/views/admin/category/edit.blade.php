@@ -51,6 +51,26 @@
                                     </div>
                                     @enderror
                                 </div>
+                                <div class="form-group col">
+                                    <label>Sélectionnez l'emplacement</label>
+                                    <select name="location" class="form-control">
+                                        @foreach($location as $loc)
+                                            <option  {{ $category->country_id == $loc->id ? 'selected' : '' }} value="{{ $loc->id }}">{{$loc->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Est-ce que cette catégorie est VIP?</label>
+                                    <select name="is_vip" class="form-control">
+                                        @if($category->is_vip == 'Oui' )
+                                            <option value="Oui">Oui</option>
+                                        <option value="Non">Non</option>
+                                        @else
+                                            <option value="Non">Non</option>
+                                            <option value="Oui">Oui</option>
+                                        @endif
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form">
