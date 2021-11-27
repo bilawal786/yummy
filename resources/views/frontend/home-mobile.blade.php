@@ -150,7 +150,7 @@
                         </a>
                              @endif
                              <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
-                                 <img style="width: 100%; height: 100px" src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
+                                 <img style="width: 100%; height: 100px" src="{{$shopProducts->shop->images??asset('assets/img/default/product.png')}}" alt=""></a></div>
                   <div class="product-description">
                       <a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                       <a style="right: 1.5rem;"  class="wishlist-btn1">
