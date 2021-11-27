@@ -34,6 +34,7 @@ Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' 
         'uses' => 'PurchaseCodeController@action',
     ]);
 });
+Route::post('/fetchmaincategory', 'Admin\CategoryController@fetchmaincategory')->name('fetchmaincategory');
 
 Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], function () {
     Route::post('/addtowishlist', 'WebController@addtowishlist')->name('addtowishlist');

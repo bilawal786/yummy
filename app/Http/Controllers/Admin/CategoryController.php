@@ -193,4 +193,8 @@ class CategoryController extends BackendController
                 ->make(true);
         }
     }
+    public function fetchmaincategory(Request $request){
+        $categories = Category::where('country_id', '=', $request->id)->get();
+        return response()->json($categories);
+    }
 }

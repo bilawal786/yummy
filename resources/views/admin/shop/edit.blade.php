@@ -29,7 +29,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-10">
                                         <label for="location">{{ __('levels.location') }}</label> <span class="text-danger">*</span>
-                                        <select name="location_id" id="location" class="select2 form-control @error('location_id') is-invalid red-border @enderror" data-url="{{ route('admin.shop.get-area') }}">
+                                        <select onchange="categorychange(this)" name="location_id" id="location" class="select2 form-control @error('location_id') is-invalid red-border @enderror" data-url="{{ route('admin.shop.get-area') }}">
                                             <option value="">{{ __('Select Location') }}</option>
                                             @if(!blank($locations))
                                                 @foreach($locations as $location)
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
                                         <label for="categories">{{ __('levels.categories') }}</label> <span class="text-danger">*</span>
-                                        <select id="categories" name="categories[]" class="form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" required>
+                                        <select id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" required>
                                           @if(!blank($categories))
                                               @foreach($categories as $category)
                                                   @if(in_array($category->id, $shop_categories))
@@ -364,6 +364,26 @@ $('.timepicker').pickatime({
   formatSubmit: 'HH:i',
   hiddenName: true,
 });
+function categorychange(elem){
+    $('.category').html('');
+    event.preventDefault();
+    let id = elem.value;
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        url: "{{route('fetchmaincategory')}}",
+        type:"POST",
+        data:{
+            id:id,
+            _token: _token
+        },
+        success:function(response){
+            $.each(response, function(i, item) {
+                $('.category').append('<option value="'+item.id+'">'+item.name+'</option>');
+            });
+        },
+    });
+}
     google.maps.event.addDomListener(window, 'load', initialize);
     function initialize() {
         var input = document.getElementById('shopaddress');

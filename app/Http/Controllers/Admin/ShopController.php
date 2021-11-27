@@ -239,7 +239,7 @@ class ShopController extends BackendController
         $shop                    = Shop::where(['id' => $id])->get();
         $this->data['locations'] = Location::where(['status' => Status::ACTIVE])->get();
         $location_id             = old('location_id', $this->data['shop']->location_id);
-        $this->data['categories'] = Category::where(['status' => Status::ACTIVE])->get();
+        $this->data['categories'] = Category::where(['status' => Status::ACTIVE])->where('country_id', $this->data['shop']->location_id)->get();
       if(!blank($this->data['shop']->categories())){
         $this->data['shop_categories'] = $this->data['shop']->categories()->pluck('id')->toArray();
       }else{

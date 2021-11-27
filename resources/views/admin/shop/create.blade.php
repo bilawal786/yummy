@@ -59,7 +59,7 @@
                                 <div class="form-group col">
                                     <label for="location">Localisation</label> <span
                                         class="text-danger">*</span>
-                                    <select name="location_id" id="location"
+                                    <select onchange="categorychange(this)" name="location_id" id="location"
                                         class="select2 form-control @error('location_id') is-invalid red-border @enderror"
                                         data-url="{{ route('admin.shop.get-area') }}">
                                         <option value="">{{ __('Choisir une localisation') }}</option>
@@ -99,12 +99,12 @@
                                 </div>
                                 <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
                                     <label for="categories">{{ __('levels.categories') }}</label> <span class="text-danger">*</span>
-                                    <select id="categories" name="categories[]" class="form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" required>
-                                        @if(!blank($categories))
+                                    <select id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" required>
+                                        {{--@if(!blank($categories))
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
-                                        @endif
+                                        @endif--}}
                                     </select>
                                     @if ($errors->has('categories'))
                                         <div class="invalid-feedback">
@@ -411,7 +411,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.js" integrity="sha512-PC6BMUJfhXSSRw6fOnyfn21Yjc/6oRUnAGUboA+uzAUkKX5K2wzUvTHPCEjfwmmfrjCuiSnf23iX8JYVlJTXmA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/compressed/picker.time.js" integrity="sha512-wsTBGzc0ra42jNgXre39rdHpXqAkkaSN+bRrXZ3hpOvqxOtLNZns3OseDZRfGCWSs00N9HuXyKHZEzKAWCl3SA==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/translations/fr_FR.js" integrity="sha512-oppWtIxLpE9C9k/RJ/+z8pZXIh2PIuYDYsklCWMFsoTxK2bRMJ9Y86rvVZ20NkOBsjrywgEIi/tibOxJk7cXmg==" crossorigin="anonymous"></script>
+<script>
+    function categorychange(elem){
+        $('.category').html('');
+        event.preventDefault();
+        let id = elem.value;
+        let _token   = $('meta[name="csrf-token"]').attr('content');
 
+        $.ajax({
+            url: "{{route('fetchmaincategory')}}",
+            type:"POST",
+            data:{
+                id:id,
+                _token: _token
+            },
+            success:function(response){
+                $.each(response, function(i, item) {
+                    $('.category').append('<option value="'+item.id+'">'+item.name+'</option>');
+                });
+            },
+        });
+    }
+</script>
 <script type="text/javascript">
 $('.timepicker').pickatime({
   format: 'HH:i',
