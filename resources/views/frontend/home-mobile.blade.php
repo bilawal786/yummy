@@ -149,12 +149,13 @@
                             <img style="height: 25px;" src="{{asset('Yummy-box-picto.png')}}" alt="">
                         </a>
                              @endif
-                        <a style="right: 1.5rem;"  class="wishlist-btn1">
-                            <img style="height: 25px; border-radius: 50px" src="{{asset($shopProducts->shop->user->images)}}" alt="">
-                        </a>
                              <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
                                  <img style="width: 100%; height: 100px" src="@if($shopProducts->product->images == asset('assets/img/default/product.png')) {{$shopProducts->shop->images}} @else {{$shopProducts->product->images}} @endif" alt=""></a></div>
-                  <div class="product-description"><a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
+                  <div class="product-description">
+                      <a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
+                      <a style="right: 1.5rem;"  class="wishlist-btn1">
+                          <img style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem" src="{{asset($shopProducts->shop->logo)}}" alt="">
+                      </a>
                     @if($qty != 0)
                     <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small style="display:none;"> ({{ $proximite->unit_price*1000 }} YummyCoin)</small></p>@endif
                     @if($qty != 0)<p class="sale-price"><small style="color: grey;">Disponible de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}} à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach</small></p>@endif
