@@ -68,6 +68,44 @@
       </div>
     </div>
   </div>
+  <!-- Product Catagories-->
+  <div class="product-catagories-wrapper py-3">
+    <div class="container">
+      <div class="section-heading">
+        <h6>VIP Catégories</h6>
+      </div>
+      <div class="product-catagory-wrap">
+        <div class="row g-3">
+          @foreach($vipcats as $vip)
+          <!-- Single Catagory Card-->
+          <div class="col-4">
+            <div class="card catagory-card">
+              <div class="card-body">
+                <a class="text-danger" href="{{ route('categories', $vip->slug) }}">
+                  @if($vip->getFirstMediaUrl('categories'))
+                  <img alt="image" src="{{ asset($vip->getFirstMediaUrl('categories')) }}" width="68" height="68">
+                  @else
+                  <img alt="image" src="{{ asset('assets/img/default/category.png') }}" width="28" height="28">
+                  @endif
+                  @php $qty = 0 @endphp
+                  <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;" class="btn btn-dark btn-sm ml-auto rounded-qty">
+                    @foreach($vip->products as $qt)
+                      @foreach($qt->shopproduct as $shopp)
+                        @php $qty += $shopp->quantity; @endphp
+                      @endforeach
+                    @endforeach
+                    {{$qty}}</a>
+                  <span style="margin-top: 5px;">{{ $vip->name }}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          @endforeach
+
+        </div>
+      </div>
+    </div>
+  </div>
 
   @foreach($cat as $cate)
 
