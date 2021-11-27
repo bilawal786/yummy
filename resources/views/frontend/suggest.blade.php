@@ -17,43 +17,68 @@
                             @endif
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label for="">Quel est le nom de votre enseigne?</label>
+                                    <label for="">Es-tu?</label>
+                                    <select required name="type" class="form-control" id="">
+                                        <option value="Un utilisateur de l’application">Un utilisateur de l’application</option>
+                                        <option value="Un représentant du commerce">Un représentant du commerce</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="">Quel est le nom du commerce?</label>
                                     <input required type="text" class="form-control" name="name">
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-3">
-                                <div class="form-group">
-                                    <label for="">Quel est votre numéro de téléphone?</label>
-                                    <input required type="text" class="form-control" name="phone">
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="">Est-ce?</label>
+                                        <select required name="category" class="form-control" id="">
+                                            <option value="Une épicerie">Une épicerie</option>
+                                            <option value="Une boulangerie">Une boulangerie</option>
+                                            <option value="Un traiteur">Un traiteur</option>
+                                            <option value="Un restaurant">Un restaurant</option>
+                                            <option value="Une boucherie">Une boucherie</option>
+                                            <option value="Un primeur">Un primeur</option>
+                                            <option value="Un supermarché">Un supermarché</option>
+                                            <option value="Autres">Autres</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label for="">Quelle est votre type activite?</label>
-                                    <select required name="type" class="form-control" id="">
-                                        <option value="Epicerie/Super Marché">Epicerie/Super Marché</option>
-                                        <option value="Boulangerie/Patisserie">Boulangerie/Patisserie</option>
-                                        <option value="Restaurant/Traiteur">Restaurant/Traiteur</option>
-                                        <option value="Boucherie">Boucherie</option>
-                                        <option value="Primeur">Primeur</option>
-                                        <option value="Agriculteur">Agriculteur</option>
+                                    <label for="">Dans quel département se trouve t-il?</label>
+                                    <select required name="postal" class="form-control" id="">
+                                        <option value="Guadeloupe">Guadeloupe</option>
+                                        <option value="Martinique">Martinique</option>
+                                        <option value="Guyane">Guyane</option>
+                                        <option value="La Réunion">La Réunion</option>
+                                        <option value="Ile de France">Ile de France</option>
+                                        <option value="Saint Martin">Saint Martin</option>
                                         <option value="Autres">Autres</option>
-                                        <option value="2 sur 4 répondus">2 sur 4 répondus</option>
                                     </select>
                                 </div>
                             </div>
 
+
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label for="">Quel est votre code postal?</label>
-                                    <input required type="text" class="form-control" name="postal">
+                                    <label for="">À quelle adresse se situe le commerce?</label>
+                                    <input required type="text" class="form-control" name="address">
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label for="">A quelle adresse mail pouvons nous vous contacter?
+                                    <label for="">Quel est le numéro de téléphone du commerce?
                                     </label>
-                                    <input  required type="text" class="form-control" name="address">
+                                    <input  required type="text" class="form-control" name="phone">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="">Il y a t-il un e-mail pour contacter un représentant?
+                                    </label>
+                                    <input  required type="text" class="form-control" name="email">
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">

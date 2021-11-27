@@ -19,10 +19,12 @@
                                     <tr>
                                         <th>Suggérer</th>
                                         <th>Nom</th>
+                                        <th>Email</th>
                                         <th>Téléphone</th>
+                                        <th>Taper</th>
                                         <th>Catégorie</th>
                                         <th>Adresse</th>
-                                        <th>Postal</th>
+                                        <th>Département</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -30,8 +32,10 @@
                                     <tr>
                                         <td>{{$row->user->name??''}}</td>
                                         <td>{{$row->name}}</td>
+                                        <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
                                         <td>{{$row->type}}</td>
+                                        <td>{{$row->category}}</td>
                                         <td>{{$row->address}}</td>
                                         <td>{{$row->postal}}</td>
                                     </tr>

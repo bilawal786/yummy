@@ -74,6 +74,8 @@ class ContactController extends FrontendController
         $suggest->postal = $request->postal;
         $suggest->address = $request->address;
         $suggest->phone = $request->phone;
+        $suggest->email = $request->email;
+        $suggest->category = $request->category;
         $suggest->user_id = Auth::user()->id;
         $suggest->save();
         Session::flash('message', 'Vos coordonnées ont été soumises avec succès');
