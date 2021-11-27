@@ -8,6 +8,7 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\RatingsRequest;
 use App\Http\Services\OrderService;
+use App\Models\Balance;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Shop;
@@ -60,6 +61,19 @@ class AccountController extends FrontendController
         $this->data['user']      = auth()->user();
         $this->data['namepage']  = "Mes Réservations";
         return view('frontend.account.order-history', $this->data);
+    }
+
+    public function getOrderCancel($id){
+        $order = Order::where('id', $id)->first();
+        $order->status = 10;
+        $order->update();
+
+        $coins = $order->paid_amount * 1000;
+
+        $bal = Balance::where('id', Auth::user()->balance_id)->first();
+        $bal->balance = $bal->balance + $coins;
+        $bal->update();
+        return redirect()->back();
     }
 
     public function update(ProfileRequest $request)

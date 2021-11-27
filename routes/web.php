@@ -65,6 +65,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('account/update', 'AccountController@profileUpdate')->name('account.profile.index')->middleware('auth');
     Route::put('account/update/{profile}', 'AccountController@update')->name('account.profile.update')->middleware('auth');
     Route::get('account/order', 'AccountController@getOrder')->name('account.order')->middleware('auth');
+    Route::get('account/order/cancel/{id}', 'AccountController@getOrderCancel')->name('front.order.cancel')->middleware('auth');
     Route::get('account/get-order', 'AccountController@getOrderList')->name('account.get-order')->middleware('auth');
     Route::get('account/order/{id}', 'AccountController@orderShow')->name('account.order.show')->middleware('auth');
     Route::get('account/order-cancel/{id}', 'AccountController@orderCancel')->name('account.order.cancel')->middleware('auth');

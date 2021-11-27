@@ -13,7 +13,11 @@
               <table class="table mb-0">
                 <tbody>
                   @foreach($orders as $order)
-                  <a href="{{route('account.order.show', $order->id)}}">
+                     <?php
+                     $time = $order->created_at->diffInHours(Carbon\Carbon::now(), false);
+                      ?>
+
+
                   <tr>
                     <td>
                       <a href="{{route('account.order.show', $order->id)}}"><img src="{{ $order->shop->images??"" }}"></a>
@@ -22,10 +26,18 @@
                       @php
                       \Carbon\Carbon::setlocale('fr');
                       @endphp
-                      <span>{{ \Carbon\Carbon::parse($order->created_at)->translatedformat('d M')}} <p class="badge @if($order->status == 20) bg-success @elseif($order->status == 10) bg-danger @else bg-warning @endif ms-1">{{trans('order_status.' . $order->status)}}</p></span></a></td>
-                  </tr>
-                  </a>
+                        </a>
+                      <span>{{ \Carbon\Carbon::parse($order->created_at)->translatedformat('d M')}}
+                          <p class="badge @if($order->status == 20) bg-success @elseif($order->status == 10) bg-danger @else bg-warning @endif ms-1">{{trans('order_status.' . $order->status)}}</p></span>
+                       @if($order->status == 10)
+                        @else
+                        @if($time<2)
+                        <a href="{{route('front.order.cancel', ['id' => $order->id])}}"><span style="color: white!important;" class="badge bg-danger float-right">Annuler la commande</span></a>
+                        @endif
+                        @endif
+                    </td>
 
+                  </tr>
                   @endforeach
                 </tbody>
               </table>
