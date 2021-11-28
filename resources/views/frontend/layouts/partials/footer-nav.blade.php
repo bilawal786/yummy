@@ -10,7 +10,7 @@
         <li class="{{ (request()->is('map')) ? 'active' : '' }}"><a href="{{ route('map') }}"><i class="lni lni-map-marker"></i>Carte</a></li>
      <li class="{{ (request()->is('favourites')) ? 'active' : '' }}"><a href="{{route('favourites')}}"><i class="lni lni-heart"></i>Favoris</a></li>
         <li class="{{ (request()->is('account/order')) ? 'active' : '' }}"><a href="{{ route('account.order') }}"><i class="lni lni-package"></i>Réservations</a></li>
-        <li class="{{ (request()->is('account/profile')) ? 'active' : '' }}"><a href="{{ route('account.profile') }}"><i class="lni lni-cog"></i>Profil</a></li>
+{{--        <li class="{{ (request()->is('account/profile')) ? 'active' : '' }}"><a href="{{ route('account.profile') }}"><i class="lni lni-cog"></i>Profil</a></li>--}}
       </ul>
     </div>
   </div>
