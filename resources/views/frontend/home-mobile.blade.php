@@ -172,24 +172,25 @@
            <p>Pas de panier disponible dans cette catégorie pour le moment</p>
            @endif
       </div>
-        <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger">Autoriser la notification push</button>
 
     </div>
   </div>
 
   @endforeach
-  <!-- Discount Coupon Card-
-  <div class="container">
-    <div class="card discount-coupon-card border-0">
-      <div class="card-body">
-        <div class="coupon-text-wrap d-flex align-items-center p-3">
-          <h5 class="text-white pe-3 mb-0">Get 20% <br> discount</h5>
-          <p class="text-white ps-3 mb-0">To get discount, enter the<strong class="px-1">GET20</strong>code on the checkout page.</p>
+    <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger">Autoriser la notification push</button>
+
+    <!-- Discount Coupon Card-
+    <div class="container">
+      <div class="card discount-coupon-card border-0">
+        <div class="card-body">
+          <div class="coupon-text-wrap d-flex align-items-center p-3">
+            <h5 class="text-white pe-3 mb-0">Get 20% <br> discount</h5>
+            <p class="text-white ps-3 mb-0">To get discount, enter the<strong class="px-1">GET20</strong>code on the checkout page.</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Featured Products Wrapper-->
+    <!-- Featured Products Wrapper-->
 </div>
 @endsection
 
