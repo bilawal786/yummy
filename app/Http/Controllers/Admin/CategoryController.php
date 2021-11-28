@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Models\Location;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Yajra\Datatables\Datatables;
@@ -195,6 +196,10 @@ class CategoryController extends BackendController
     }
     public function fetchmaincategory(Request $request){
         $categories = Category::where('country_id', '=', $request->id)->get();
+        return response()->json($categories);
+    }
+    public function fetchsubcategory(Request $request){
+        $categories = SubCategory::where('category_id', '=', $request->id)->get();
         return response()->json($categories);
     }
 }

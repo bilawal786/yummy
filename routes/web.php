@@ -35,6 +35,7 @@ Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' 
     ]);
 });
 Route::post('/fetchmaincategory', 'Admin\CategoryController@fetchmaincategory')->name('fetchmaincategory');
+Route::post('/fetchsubcategory', 'Admin\CategoryController@fetchsubcategory')->name('fetchsubcategory');
 
 Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], function () {
     Route::post('/addtowishlist', 'WebController@addtowishlist')->name('addtowishlist');
@@ -81,6 +82,8 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/search', 'SearchController@filter')->name('search');
     Route::get('/{shop}/products/search', 'SearchController@filterProduct')->name('search-product');
     Route::get('categorie/{slug}', 'CategorieController@index')->name('categories');
+    Route::get('sub-category/{id}', 'CategorieController@subcategory')->name('sub-category');
+    Route::get('subcategory/products/{id}', 'CategorieController@subcategoryproducts')->name('subcategory.products');
     Route::get('/favourites', 'CategorieController@favourites')->name('favourites');
     Route::get('/privacy', 'PrivacyController')->name('privacy');
     Route::get('/terms', 'TermController')->name('terms');
@@ -157,6 +160,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::resource('area', 'AreaController');
     Route::get('get-area', 'AreaController@getArea')->name('area.get-area');
 
+    Route::resource('souscategorie', 'SubCategoryController');
     Route::resource('category', 'CategoryController');
     Route::get('get-category', 'CategoryController@getCategory')->name('category.get-category');
 

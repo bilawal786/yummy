@@ -81,7 +81,7 @@
           <div class="col-4">
             <div class="card catagory-card">
               <div class="card-body">
-                <a class="text-danger" href="{{ route('categories', $vip->slug) }}">
+                <a class="text-danger" href="{{ route('sub-category', $vip->id) }}">
                   @if($vip->getFirstMediaUrl('categories'))
                   <img alt="image" src="{{ asset($vip->getFirstMediaUrl('categories')) }}" width="68" height="68">
                   @else

@@ -99,18 +99,22 @@
                                 </div>
                                 <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
                                     <label for="categories">{{ __('levels.categories') }}</label> <span class="text-danger">*</span>
-                                    <select id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" required>
-                                        {{--@if(!blank($categories))
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        @endif--}}
+                                    <select onchange="subcategorychange(this)" id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" required>
+
                                     </select>
                                     @if ($errors->has('categories'))
                                         <div class="invalid-feedback">
                                             <strong>{{ $errors->first('categories') }}</strong>
                                         </div>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label for="categories">{{ __('Sub Category') }}</label> <span class="text-danger"></span>
+                                    <select  id="categories" name="subcategory" class="subcategory form-control select2">
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-row" style="display:none">
@@ -413,7 +417,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/translations/fr_FR.js" integrity="sha512-oppWtIxLpE9C9k/RJ/+z8pZXIh2PIuYDYsklCWMFsoTxK2bRMJ9Y86rvVZ20NkOBsjrywgEIi/tibOxJk7cXmg==" crossorigin="anonymous"></script>
 <script>
     function categorychange(elem){
-        $('.category').html('');
+        $('.category').html('<option></option>');
         event.preventDefault();
         let id = elem.value;
         let _token   = $('meta[name="csrf-token"]').attr('content');
@@ -428,6 +432,26 @@
             success:function(response){
                 $.each(response, function(i, item) {
                     $('.category').append('<option value="'+item.id+'">'+item.name+'</option>');
+                });
+            },
+        });
+    }
+    function subcategorychange(elem){
+        $('.subcategory').html('<option></option>');
+        event.preventDefault();
+        let id = elem.value;
+        let _token   = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: "{{route('fetchsubcategory')}}",
+            type:"POST",
+            data:{
+                id:id,
+                _token: _token
+            },
+            success:function(response){
+                $.each(response, function(i, item) {
+                    $('.subcategory').append('<option value="'+item.id+'">'+item.name+'</option>');
                 });
             },
         });

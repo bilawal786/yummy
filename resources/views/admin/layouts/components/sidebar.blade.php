@@ -11,6 +11,9 @@
 
         <ul class="sidebar-menu">
             {!! $backendMenus !!}
+            <li class=""><a class="nav-link " href="{{route('admin.souscategorie.index')}}" ><i class="fas fa-calendar"></i> <span>
+Sous-catégorie
+</span></a></li>
             <li class=""><a class="nav-link " href="{{route('admin.suggestions')}}" ><i class="fas fa-balance-scale"></i> <span>
 Suggérer un commerce
 </span></a></li>

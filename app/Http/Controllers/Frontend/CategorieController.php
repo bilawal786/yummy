@@ -12,6 +12,7 @@ use App\Models\Location;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
+use App\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,6 +41,19 @@ class CategorieController extends FrontendController
         $this->data['user']      = auth()->user();
 
         return view('frontend.favourites', $this->data);
+    }
+    public function subcategory($id){
+        $this->data['namepage']  = "Sous-catégories";
+        $this->data['user']      = auth()->user();
+        $this->data['subcategory']      = SubCategory::where('category_id', $id)->get();
+        return view('frontend.subcategory', $this->data);
+    }
+    public function subcategoryproducts($id){
+        $this->data['cate']      = Product::where('subcategories', $id)->get();
+        $this->data['namepage']  = "Produits";
+        $this->data['user']      = auth()->user();
+
+        return view('frontend.subcategories', $this->data);
     }
 
 }

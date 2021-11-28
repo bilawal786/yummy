@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
                                         <label for="categories">{{ __('levels.categories') }}</label> <span class="text-danger">*</span>
-                                        <select id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" required>
+                                        <select id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" required>
                                           @if(!blank($categories))
                                               @foreach($categories as $category)
                                                   @if(in_array($category->id, $shop_categories))
@@ -365,7 +365,7 @@ $('.timepicker').pickatime({
   hiddenName: true,
 });
 function categorychange(elem){
-    $('.category').html('');
+    $('.category').html('<option></option>');
     event.preventDefault();
     let id = elem.value;
     let _token   = $('meta[name="csrf-token"]').attr('content');

@@ -131,6 +131,7 @@ class ShopController extends BackendController
 
         $product              = new Product;
         $product->name        = $shop->name;
+        $product->subcategories        = $request->subcategory;
         $product->description = '';
         $product->unit_price  = $request->get('unit_price') ?? 0;
         $product->requested   = ProductRequested::REQUESTED;
