@@ -48,6 +48,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::post('yummycharge', 'CheckoutController@yummycoin')->name('yummycharge')->middleware('auth');
 
     Route::get('/map', 'WebController@mapshow')->name('map')->middleware('auth');
+    Route::get('/shop/map/{lat}/{lan}', 'WebController@shopMap')->name('shop.map')->middleware('auth');
     Route::get('map-data', 'WebController@map')->name('map.data');
     Route::get('partenaire/{shop}', 'ShopController')->name('shop.show')->middleware('auth');
     Route::get('partenaire/{shop}/panier/{product}', 'ShopProductController')->name('shop.product.details')->middleware('auth');

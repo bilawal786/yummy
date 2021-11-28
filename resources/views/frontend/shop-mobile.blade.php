@@ -19,7 +19,7 @@
       </div>
     </div>
     <ul class="page-nav ps-0 p-specification mb-3">
-      <li><a href="#" id="address" target="_blank"><div class="coupon-text-wrap d-flex align-items-center">
+      <li><a href="{{route('shop.map', ['lat' => $shop->lat, 'lan' => $shop->long])}}" id="address" ><div class="coupon-text-wrap d-flex align-items-center">
         <h5 class="pe-3 mb-0"><i class="lni lni-map-marker"></i></h5>
         <p class="ps-2 mb-0"><address style="margin-bottom: unset;">{{ $shop->address }}</address></p>
       </div><i class="lni lni-chevron-right"></i></a></li>

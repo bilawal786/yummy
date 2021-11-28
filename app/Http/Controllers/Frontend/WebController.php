@@ -103,4 +103,11 @@ class WebController extends FrontendController
             );
         return response()->json($geojson, 200, array('Content-Type' => 'application/json;charset=utf8'), JSON_UNESCAPED_UNICODE);
     }
+    public function shopMap($lat, $lan){
+        $this->data['lat']  = $lat;
+        $this->data['lan']  = $lan;
+        $this->data['namepage']  = "Carte";
+        $this->data['user'] = auth()->user();
+        return view('frontend.shopMap', $this->data);
+    }
 }
