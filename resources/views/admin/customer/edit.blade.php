@@ -9,6 +9,42 @@
         </div>
 
         <div class="section-body">
+            <?php
+            $ref = \App\Refferal::where('user_id', $user->id)->first();
+            $ref_by = \App\User::where('id', $ref->refferal_user)->first();
+            ?>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <b>Utilisateur de référence</b>
+                                </div>
+                                <div class="col-md-4">
+                                    @if($ref)
+                                        OUI
+                                    @else
+                                        NON
+                                    @endif
+                                </div>
+                            </div>
+                            <hr>
+                            @if($ref)
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <b>Référencé par</b>
+                                </div>
+                                <div class="col-md-4">
+                                        {{$ref_by->first_name}} {{$ref_by->last_name}}
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         	<div class="row">
 	   			<div class="col-12 col-md-12 col-lg-12">
 			    	<form action="{{ route('admin.customers.update', $user) }}" method="POST" enctype="multipart/form-data">
