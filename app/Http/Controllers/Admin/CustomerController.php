@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\CustomerRequest;
+use App\Models\Location;
 use App\User;
 use App\Models\Balance;
 use Illuminate\Support\Facades\Hash;
@@ -57,6 +58,7 @@ class CustomerController extends BackendController
         $role = Role::find(2);
 
         $this->data['user'] = User::role($role->name)->findOrFail($id);
+        $this->data['location'] = Location::all();
         return view('admin.customer.edit', $this->data);
     }
 

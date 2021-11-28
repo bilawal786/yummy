@@ -10,6 +10,7 @@
 
         <div class="section-body">
             <?php
+            $invites = \App\Refferal::where('refferal_user', $user->id)->get();
             $ref = \App\Refferal::where('user_id', $user->id)->first();
             $ref_by = \App\User::where('id', $ref->refferal_user)->first();
             ?>
@@ -17,6 +18,15 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <b>Parrainer des utilisateurs</b>
+                                </div>
+                                <div class="col-md-4">
+                                   {{$invites->count()}}
+                                </div>
+                            </div>
+                            <hr>
                             <div class="row">
                                 <div class="col-md-4">
                                     <b>Utilisateur de référence</b>
@@ -115,7 +125,7 @@
 				                    </div>
 				                </div>
 
-				                <div class="form-row" style="Display:none">
+				                <div class="form-row" >
 							        <div class="form-group col">
 	                                    <label for="customFile">{{ __('Image') }}</label>
 	                                    <div class="custom-file">
@@ -133,15 +143,14 @@
 											<img class="img-thumbnail image-width mt-4 mb-3" id="previewImage" src="{{ asset('assets/img/default/user.png') }}" alt="your image"/>
 										@endif
 	                                </div>
-							        <div class="form-group col">
-				                        <label>{{ __('Address') }}</label>
-				                        <textarea name="address" class="form-control small-textarea-height" id="address" cols="30" rows="10">{{ old('address', $user->address) }}</textarea>
-				                        @error('address')
-					                        <div class="invalid-feedback">
-					                          	{{ $message }}
-					                        </div>
-					                    @enderror
-				                    </div>
+                                    <div class="form-group col">
+                                        <label>Address</label>
+                                        <select name="address" class="form-control">
+                                            @foreach($location as $loc)
+                                                <option  {{ $user->address == $loc->id ? 'selected' : '' }} value="{{ $loc->id }}">{{$loc->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 				                </div>
 
 				                <div class="form-row">
