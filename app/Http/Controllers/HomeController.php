@@ -39,8 +39,8 @@ class HomeController extends Controller
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
-                "title" => "Notification de rendez-vous",
-                "body" => "Nouveau rendez-vous depuis le site Web",
+                "title" => "YUMMY BOX",
+                "body" => "TEST NOTIFICATION",
             ]
         ];
         $dataString = json_encode($data);
