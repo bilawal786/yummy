@@ -10,7 +10,8 @@ use App\Models\Balance;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\Datatables\Datatables;
-
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 class CustomerController extends BackendController
 {
     public function __construct()
@@ -30,6 +31,7 @@ class CustomerController extends BackendController
      */
     public function index()
     {
+        $this->data['location'] = Location::all();
         return view('admin.customer.index', $this->data);
     }
 
@@ -138,11 +140,58 @@ class CustomerController extends BackendController
             ->escapeColumns([])
             ->make(true);
     }
+    public function getCustomersCountry($id)
+    {
+        $role      = Role::find(2);
+        $users     = User::role($role->name)->where('address', $id)->latest()->get();
+        $userArray = [];
+
+        $i = 1;
+        if (!blank($users)) {
+            foreach ($users as $user) {
+                $userArray[$i]          = $user;
+                $userArray[$i]['setID'] = $i;
+                $i++;
+            }
+        }
+        return Datatables::of($userArray)
+            ->addColumn('action', function ($user) {
+                $retAction = '';
+
+                if (auth()->user()->can('customers_edit')) {
+                    $retAction .= '<a href="' . route('admin.customers.edit', $user) . '" class="btn btn-sm btn-icon float-left btn-primary ml-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="far fa-edit"></i></a>';
+                }
+
+                return $retAction;
+            })
+            ->addColumn('image', function ($user) {
+                return '<figure class="avatar mr-2"><img src="' . $user->images . '" alt=""></figure>';
+            })
+            ->addColumn('name', function ($user) {
+                return $user->name;
+            })
+            ->editColumn('id', function ($user) {
+                return $user->setID;
+            })
+            ->escapeColumns([])
+            ->make(true);
+    }
 
     private function username($email)
     {
         $emails = explode('@', $email);
         return $emails[0] . mt_rand();
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    public function countryUsers($id){
+        $this->data['location'] = Location::all();
+        $this->data['id'] = $id;
+        return view('admin.customer.countryUsers', $this->data);
     }
 
 }

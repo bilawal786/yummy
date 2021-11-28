@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-  <section class="section">
+    <section class="section">
         <div class="section-header">
             <h1>{{ __('Clients') }}</h1>
             {{ Breadcrumbs::render('customers') }}
@@ -38,16 +38,16 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="maintable" data-url="{{ route('admin.customers.get-customers') }}" data-hidecolumn="{{ auth()->user()->can('customers_show') || auth()->user()->can('customers_edit') || auth()->user()->can('customers_delete') }}">
+                                <table class="table table-striped" id="maintable" data-url="{{ route('admin.customers.get-customers.country', ['id' => $id]) }}" data-hidecolumn="{{ auth()->user()->can('customers_show') || auth()->user()->can('customers_edit') || auth()->user()->can('customers_delete') }}">
                                     <thead>
-                                        <tr>
-                                            <th>{{ __('ID') }}</th>
-                                            <th>{{ __('Image') }}</th>
-                                            <th>{{ __('Nom') }}</th>
-                                            <th>{{ __('Email') }}</th>
-                                            <th>{{ __('Téléphone') }}</th>
-                                            <th>{{ __('Actions') }}</th>
-                                        </tr>
+                                    <tr>
+                                        <th>{{ __('ID') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Nom') }}</th>
+                                        <th>{{ __('Email') }}</th>
+                                        <th>{{ __('Téléphone') }}</th>
+                                        <th>{{ __('Actions') }}</th>
+                                    </tr>
                                     </thead>
                                 </table>
                             </div>

@@ -177,6 +177,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
 
     Route::resource('customers', 'CustomerController');
     Route::get('get-customers', 'CustomerController@getCustomers')->name('customers.get-customers');
+    Route::get('get-customers/country/{id}', 'CustomerController@getCustomersCountry')->name('customers.get-customers.country');
+    Route::get('users/export/', 'CustomerController@export')->name('users.export');
+    Route::get('get-country-users/{id}', 'CustomerController@countryUsers')->name('get-country-users');
 
     Route::resource('delivery-boys', 'DeliveryBoyController');
     Route::get('get-delivery-boys', 'DeliveryBoyController@getDeliveryBoy')->name('delivery-boys.get-delivery-boys');
