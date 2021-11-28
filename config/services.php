@@ -52,4 +52,8 @@ return [
         'redirect' => env('FACEBOOK_CALLBACK_URL'),
 
     ],
+
+    'fcm' => [
+        'key' => env('FCM_SECRET_KEY')
+    ]
 ];

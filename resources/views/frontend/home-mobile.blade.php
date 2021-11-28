@@ -17,7 +17,8 @@
 </style>
 <div class="page-content-wrapper">
   <div class="container">
-    <div class="pt-3">
+
+      <div class="pt-3">
       <!-- Hero Slides-->
       <div class="hero-slides owl-carousel">
         @foreach($banners as $banner)
@@ -171,6 +172,8 @@
            <p>Pas de panier disponible dans cette catégorie pour le moment</p>
            @endif
       </div>
+        <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger">Autoriser la notification push</button>
+
     </div>
   </div>
 
@@ -188,4 +191,70 @@
   </div>
   <!-- Featured Products Wrapper-->
 </div>
+@endsection
+
+@section('footer-js')
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyC_5Wl09LtYyCVNZq9mn5A9HstB_TzCijI",
+            authDomain: "carwash-64763.firebaseapp.com",
+            projectId: "carwash-64763",
+            storageBucket: "carwash-64763.appspot.com",
+            messagingSenderId: "720025103840",
+            appId: "1:720025103840:web:f5c124ff8f5095fc424f85",
+            measurementId: "G-E9C01SPTJC"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+
+        function initFirebaseMessagingRegistration() {
+            messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function(token) {
+                    console.log(token);
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: '{{ route("save-token") }}',
+                        type: 'POST',
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            token: token
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            alert('Les notifications push sactivent avec succès.');
+                        },
+                        error: function (err) {
+                            console.log('Une erreur sest produite, contactez le développeur'+ err);
+                        },
+                    });
+
+                }).catch(function (err) {
+                console.log('Une erreur sest produite, contactez le développeur 1'+ err);
+            });
+        }
+
+        messaging.onMessage(function(payload) {
+            const noteTitle = payload.notification.title;
+            const noteOptions = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(noteTitle, noteOptions);
+        });
+
+    </script>
+
 @endsection

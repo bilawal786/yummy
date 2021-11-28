@@ -13,6 +13,7 @@ Route::get('/', function (){
         return  redirect('/login');
     }
 });
+Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
 
 Route::group(['middleware' => ['installed']], function () {
     Auth::routes(['verify' => false]);
