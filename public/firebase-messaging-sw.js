@@ -33,7 +33,7 @@ messaging.setBackgroundMessageHandler(function(payload) {
     const notificationTitle = "Background Message Title";
     const notificationOptions = {
         body: "Background Message body.",
-        icon: "/Yummy-box-picto.png",
+        icon: "Yummy-box-picto.png",
     };
 
     return self.registration.showNotification(
