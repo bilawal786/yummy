@@ -73,7 +73,7 @@
     </div>
     <div class="p-specification bg-white mb-3 py-3">
       <div class="container">
-        <h6>Favourite</h6>
+        <h6>FAVORIS</h6>
           <div class="row">
               <div class="col">
                   <div class="card">
