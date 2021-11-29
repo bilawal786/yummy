@@ -122,6 +122,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
 
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::get('suggestions', 'ProfileController@suggestions')->name('suggestions');
+    Route::get('admin/banks', 'ProfileController@adminBank')->name('admin.bank');
+    Route::get('vendor/bank', 'ProfileController@bankDetails')->name('vendor.bank');
+    Route::post('bank/store/', 'ProfileController@bankDetailsStore')->name('bank.store');
     Route::put('profile/update/{profile}', 'ProfileController@update')->name('profile.update');
     Route::put('profile/change', 'ProfileController@change')->name('profile.change');
 

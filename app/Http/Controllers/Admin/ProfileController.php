@@ -8,7 +8,9 @@ use App\Http\Requests\ProfileRequest;
 use App\Suggest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class ProfileController extends BackendController
 {
@@ -17,6 +19,26 @@ class ProfileController extends BackendController
     {
         $this->data['user'] = auth()->user();
         return view('admin.profile.index', $this->data);
+    }
+
+    public function bankDetails(){
+        $this->data['user'] = auth()->user();
+        return view('admin.profile.bankDetails', $this->data);
+    }
+
+    public function bankDetailsStore(Request $request){
+        $bankDetailsStore = User::find(Auth::user()->id);
+        $bankDetailsStore->iban = $request->iban;
+        $bankDetailsStore->company_name = $request->company_name;
+        $bankDetailsStore->siret = $request->siret;
+        $bankDetailsStore->update();
+        return redirect()->back();
+    }
+
+    public function adminBank(){
+        $role = Role::find(3);
+        $this->data['bankdetails'] = User::role($role->name)->get();
+        return view('admin.bank.index', $this->data);
     }
 
     public function update(ProfileRequest $request)

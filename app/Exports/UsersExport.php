@@ -15,6 +15,6 @@ class UsersExport implements FromCollection
     {
         $role = Role::find(2);
 
-        return User::role($role->name)->get();
+        return User::role($role->name)->select('first_name', 'last_name', 'email', 'phone', 'address')->get();
     }
 }
