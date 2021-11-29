@@ -8,6 +8,7 @@ use App\Enums\Status;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
+use App\Models\Location;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
@@ -53,6 +54,8 @@ class ProductController extends BackendController
         if (auth()->user()->myrole == 1) {
           $this->data['shops_list'] = Shop::all();
         }
+        $this->data['locations'] = Location::where(['status' => Status::ACTIVE])->get();
+
         $this->data['categories'] = Category::where(['status' => Status::ACTIVE])->get();
         return view('admin.product.create', $this->data);
     }
@@ -73,6 +76,8 @@ class ProductController extends BackendController
         $product              = new Product;
         $product->description = $request->get('description');
         $product->unit_price  = $request->get('unit_price');
+        $product->subcategories  = $request->subcategory;
+        $product->name  = $request->name;
         $product->requested   = ProductRequested::REQUESTED;
         $product->save();
         $product->categories()->sync($request->get('categories'));

@@ -43,6 +43,46 @@
                                       @enderror
                                   </div>
                                   @endif
+                                      <div class="form-group col">
+                                          <label for="location">Localisation</label> <span
+                                              class="text-danger">*</span>
+                                          <select onchange="categorychange(this)" name="location_id" id="location"
+                                                  class="select2 form-control @error('location_id') is-invalid red-border @enderror"
+                                                  data-url="{{ route('admin.shop.get-area') }}">
+                                              <option value="">{{ __('Choisir une localisation') }}</option>
+                                              @if(!blank($locations))
+                                                  @foreach($locations as $location)
+                                                      <option value="{{ $location->id }}"
+                                                          {{ (old('location_id') == $location->id) ? 'selected' : '' }}>
+                                                          {{ $location->name }}</option>
+                                                  @endforeach
+                                              @endif
+                                          </select>
+                                          @error('location_id')
+                                          <div class="invalid-feedback">
+                                              {{ $message }}
+                                          </div>
+                                          @enderror
+                                      </div>
+                                      <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
+                                          <label for="categories">{{ __('levels.categories') }}</label> <span class="text-danger">*</span>
+                                          <select onchange="subcategorychange(this)" id="categories" name="categories[]" class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" required>
+
+                                          </select>
+                                          @if ($errors->has('categories'))
+                                              <div class="invalid-feedback">
+                                                  <strong>{{ $errors->first('categories') }}</strong>
+                                              </div>
+                                          @endif
+                                      </div>
+                                      <div class="form-row">
+                                          <div class="form-group col">
+                                              <label for="categories">{{ __('Sous-catégorie') }}</label> <span class="text-danger"></span>
+                                              <select  id="categories" name="subcategory" class="subcategory form-control select2">
+
+                                              </select>
+                                          </div>
+                                      </div>
                                     <div class="form-group col">
                                         <label for="name">{{ __('levels.name') }}</label> <span class="text-danger">*</span>
                                         <input id="name" type="text" name="name" class="form-control {{ $errors->has('name') ? " is-invalid " : '' }}" value="{{ old('name') }}">
@@ -53,21 +93,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
-                                        <label for="categories">{{ __('levels.categories') }}</label><span class="text-danger">*</span>
-                                        <select id="categories" name="categories[]" class="form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}" multiple="multiple" important>
-                                            @if(!blank($categories))
-                                                @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                        @if ($errors->has('categories'))
-                                            <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('categories') }}</strong>
-                                            </div>
-                                        @endif
-                                    </div>
+
                                 </div>
                                 <div class="form">
                                     <div class="form-group col">
@@ -196,6 +222,48 @@
           console.log(res);
           $("#unit_price").val(res);
         });
+    </script>
+    <script>
+        function categorychange(elem){
+            $('.category').html('<option></option>');
+            event.preventDefault();
+            let id = elem.value;
+            let _token   = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url: "{{route('fetchmaincategory')}}",
+                type:"POST",
+                data:{
+                    id:id,
+                    _token: _token
+                },
+                success:function(response){
+                    $.each(response, function(i, item) {
+                        $('.category').append('<option value="'+item.id+'">'+item.name+'</option>');
+                    });
+                },
+            });
+        }
+        function subcategorychange(elem){
+            $('.subcategory').html('<option></option>');
+            event.preventDefault();
+            let id = elem.value;
+            let _token   = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url: "{{route('fetchsubcategory')}}",
+                type:"POST",
+                data:{
+                    id:id,
+                    _token: _token
+                },
+                success:function(response){
+                    $.each(response, function(i, item) {
+                        $('.subcategory').append('<option value="'+item.id+'">'+item.name+'</option>');
+                    });
+                },
+            });
+        }
     </script>
     <script type="text/javascript">
     $('.timepicker').pickatime({
