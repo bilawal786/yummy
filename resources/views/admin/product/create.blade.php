@@ -181,8 +181,7 @@
                                         <label for="document"> {{ __('Image') }}
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <div class="needsclick dropzone {{ $errors->has('document') ? ' is-invalid' : '' }}" id="document-dropzone"></div>
-                                        @error('document')
+                                        <input type="file" name="image" class="form-control">                                        @error('document')
                                         <span class="text-danger">
                                             {{ $message }}
                                         </span>
@@ -282,7 +281,7 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             success: function (file, response) {
-                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+                $('form').append('<input type="hidden" name="image" value="' + response.name + '">')
                 uploadedDocumentMap[file.name] = response.name
             },
             removedfile: function (file) {

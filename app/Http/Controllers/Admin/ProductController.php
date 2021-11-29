@@ -66,7 +66,6 @@ class ProductController extends BackendController
      */
     public function store(ProductRequest $request)
     {
-
       if (auth()->user()->myrole == 3) {
         $shopID = auth()->user()->shop->id;
       }else{
@@ -80,6 +79,9 @@ class ProductController extends BackendController
         $product->name  = $request->name;
         $product->requested   = ProductRequested::REQUESTED;
         $product->save();
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $product->addMediaFromRequest('image')->toMediaCollection('products');
+        }
         $product->categories()->sync($request->get('categories'));
         if($request->get('quantity') != ''){
           $shopProduct                 = new ShopProduct;
@@ -142,7 +144,6 @@ class ProductController extends BackendController
         $product->status      = $request->get('status');
         $product->unit_price  = $request->get('unit_price');
         $product->save();
-
         $product->categories()->sync($request->get('categories'));
         $affectedRows = ShopProduct::where("product_id", $product->id)->update(["quantity" => $request->get('quantity'), "hdispoa" => $request->get('hdispoa'), "hdispob"=> $request->get('hdispob'), "discount_price"=> $request->get('discount_price')]);
 
