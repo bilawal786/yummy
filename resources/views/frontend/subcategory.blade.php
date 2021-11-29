@@ -15,9 +15,11 @@
                                                 <img alt="image" src="{{asset(empty($value->image)? 'assets/img/default/category.png' : $value->image)}}" width="68" height="68">
                                             <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;" class="btn btn-dark btn-sm ml-auto rounded-qty">
 <?php
-                                              $count =   \App\Models\Product::where('subcategories', $value->id)->get();
+                                                $products = \App\Models\Product::where('subcategories', $value->id)->pluck('id');
+                                              $count =   \App\Models\ShopProduct::whereIn('product_id',                                                            $products)->sum('quantity');
+                                                $qty = 0
                                                 ?>
-                                               {{$count->count()}}</a>
+                                               {{$count}}</a>
                                             <span style="margin-top: 5px;">{{ $value->name }}</span>
                                         </a>
                                     </div>

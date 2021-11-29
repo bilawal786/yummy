@@ -31,7 +31,14 @@
       @laravelPWA
       @stack('extra-style')
       <style>
-
+          .lni {
+              display: inline-block;
+              font: normal normal normal 1.5em/1.5 'LineIcons';
+              speak: none;
+              text-transform: none;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
+          }
           /*snackbar*/
           #snackbar {
               visibility: hidden;
