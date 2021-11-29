@@ -38,6 +38,7 @@
                                             @if($qty != 0)<p class="sale-price"><small style="color: grey;">Disponible de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}} à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach</small></p>@endif
                                             <div class="product-rating" style="display:none;"><i class="lni lni-star-filled"></i>4.88 (39)</div>
                                             @if($qty != 0)<a class="btn btn-danger btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Réserver</a> @else <a class="btn btn-dark btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Plus de panier à sauver</a> @endif
+                                            <a href="{{route('fav.remove', ['id' => $proximite->id])}}"><span class="badge bg-danger">Supprimer</span></a>
                                         </div>
                                     </div>
                                 </div>

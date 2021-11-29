@@ -42,6 +42,11 @@ class CategorieController extends FrontendController
 
         return view('frontend.favourites', $this->data);
     }
+    public function favouritremove($id){
+        $fav = Favourite::where('user_id', '=', Auth::user()->id)->where('product_id', $id)->first();
+        $fav->delete();
+        return redirect()->back();
+    }
     public function subcategory($id){
         $this->data['namepage']  = "Sous-catégories";
         $this->data['user']      = auth()->user();
