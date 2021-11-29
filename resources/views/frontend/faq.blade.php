@@ -139,7 +139,7 @@
                 <div class="card-body">
                     <button class="accordion">Comment annuler ma réservation ?</button>
                     <div class="panel">
-                        <p>Vous pouvez annuler une réservation jusqu’à 2 heures avant le début de la collecte en vous rendant directement sur le reçu et en cliquant sur « Annuler la réservation ». Cela laisse suffisamment de temps au panier pour être sauvé par un autre utilisateur.</p>
+                        <p>Vous pouvez annuler une réservation jusqu’à 2 heures avant le début de la collecte en vous rendant directement sur le reçu et en cliquant sur « Annuler la réservation ». Cela laisse suffisamment de temps au panier pour être sauvé par un autre utilisateur. Le cas échéant, le remboursement se fera en YummyCoin.</p>
                     </div>
                 </div>
             </div>

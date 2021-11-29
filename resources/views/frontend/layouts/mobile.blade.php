@@ -139,7 +139,7 @@
         </div>
         @endif
          <!-- Navbar Toggler-->
-         <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><span></span><span></span><span></span></div>
+         <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><i class="lni lni-user"></i></div>
        </div>
      </div>
      @auth
