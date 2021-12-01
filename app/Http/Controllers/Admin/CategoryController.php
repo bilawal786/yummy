@@ -190,7 +190,10 @@ class CategoryController extends BackendController
                 ->editColumn('id', function ($category) {
                     return $category->setID;
                 })
-                ->rawColumns(['image', 'action', 'description'])
+                ->editColumn('country', function ($category) {
+                    return $category->country->name;
+                })
+                ->rawColumns(['image', 'country', 'action', 'description'])
                 ->make(true);
         }
     }

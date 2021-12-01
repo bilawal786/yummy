@@ -11,12 +11,7 @@
 
         <ul class="sidebar-menu">
             {!! $backendMenus !!}
-            <li class=""><a class="nav-link " href="{{route('admin.souscategorie.index')}}" ><i class="fas fa-calendar"></i> <span>
-Catégorie Premium
-</span></a></li>
-            <li class=""><a class="nav-link " href="{{route('admin.suggestions')}}" ><i class="fas fa-balance-scale"></i> <span>
-Suggérer un commerce
-</span></a></li>
+
             <?php
             $role =  Spatie\Permission\Models\Role::find(3);
 
@@ -29,6 +24,12 @@ Coordonnées bancaires
             @if( Auth::user()->hasRole('Admin') )
             <li class=""><a class="nav-link " href="{{route('admin.admin.bank')}}" ><i class="fas fa-bars"></i> <span>
 Coordonnées bancaires
+</span></a></li>
+                <li class=""><a class="nav-link " href="{{route('admin.souscategorie.index')}}" ><i class="fas fa-calendar"></i> <span>
+Catégorie Premium
+</span></a></li>
+                <li class=""><a class="nav-link " href="{{route('admin.suggestions')}}" ><i class="fas fa-balance-scale"></i> <span>
+Suggérer un commerce
 </span></a></li>
             @endif
             <li class=""><a class="nav-link " href="{{route('home')}}" ><i class="fas fa-mobile"></i> <span>Retour à l'application</span></a></li>

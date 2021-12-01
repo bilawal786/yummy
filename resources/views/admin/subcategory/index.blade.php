@@ -25,6 +25,7 @@
                                         <th>{{ __('levels.image') }}</th>
                                         <th>{{ __('levels.name') }}</th>
                                         <th>{{ __('Catégorie') }}</th>
+                                        <th>{{ __('Région') }}</th>
                                         <th>{{ __('levels.actions') }}</th>
                                     </tr>
                                     </thead>
@@ -35,6 +36,7 @@
                                         <td><img src="{{asset($cat->image)}}" style="height: 30px" alt=""></td>
                                         <td>{{$cat->name}}</td>
                                         <td>{{$cat->category->name}}</td>
+                                        <td>{{$cat->category->country->name}}</td>
                                         <td>
                                             <form method="POST" action="{{route('admin.souscategorie.destroy', $cat->id)}}">
                                                 @csrf
@@ -55,3 +57,28 @@
 
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+    <script>
+        "use strict";
+
+        $(function() {
+            var table = $('#maintable').DataTable({
+
+            });
+
+        });
+
+        $('#maintable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+
+    </script>
+@endsection

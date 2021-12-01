@@ -22,6 +22,10 @@ class Category extends BaseModel implements HasMedia
     {
         return $this->belongsToMany(Shop::class, 'category_shops', 'category_id', 'shop_id');
     }
+    public function country()
+    {
+        return $this->belongsTo(Location::class, 'country_id');
+    }
 
     public function products()
     {

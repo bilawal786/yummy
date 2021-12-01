@@ -36,15 +36,13 @@ function load_data(status = '') {
             { data: 'name', name: 'name' },
           /*  { data: 'description', name: 'description' },*/
             { data: 'status', name: 'status' },
+            { data: 'country', name: 'country' },
             { data: 'action', name: 'action' },
         ],
         "ordering" : false
     });
 
-    let hidecolumn = $('#maintable').data('hidecolumn');
-    if(!hidecolumn) {
-        table.column( 5 ).visible( false );
-    }
+
 }
 
 $('#maintable').on('draw.dt', function () {
