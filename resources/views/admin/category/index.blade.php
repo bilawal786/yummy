@@ -43,7 +43,7 @@
                                             <th>{{ __('levels.image') }}</th>
                                             <th>{{ __('levels.name') }}</th>
                                             <th>{{ __('levels.status') }}</th>
-                                            <th>{{ __('Country') }}</th>
+                                            <th>{{ __('Région') }}</th>
                                             <th>{{ __('levels.actions') }}</th>
                                         </tr>
                                     </thead>
