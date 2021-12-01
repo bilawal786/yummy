@@ -111,7 +111,7 @@
                                 <h4>{{ __('Commande Récupéré') }}</h4>
                             </div>
                             <div class="card-body">
-                                {{ $totalCompleteOrders->count() }}
+                                {{ $vendororders }}
                             </div>
                         </div>
                     </div>

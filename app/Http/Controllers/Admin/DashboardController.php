@@ -40,7 +40,9 @@ class DashboardController extends BackendController
         if(auth()->user()->myrole == 3){
           $orders = Order::orderBy('id', 'desc')->where('shop_id', auth()->user()->shop->id)->orderOwner();
           $income = Order::where('shop_id', auth()->user()->shop->id)->where('status', 20)->sum('total');
+          $vendor_orders = Order::where('shop_id', auth()->user()->shop->id)->where('status', 20)->get()->count();
             $this->data['vendorincome']  = $income;
+            $this->data['vendororders']  = $vendor_orders;
         }else{
           $orders = Order::orderBy('id', 'desc')->orderOwner();
         }
