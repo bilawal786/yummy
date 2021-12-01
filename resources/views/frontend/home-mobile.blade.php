@@ -121,12 +121,13 @@
           @if(!blank($cate->products))
               @foreach($cate->products->take(3) as $proximite)
               @php
-              $mytime = Carbon\Carbon::now();
-              $heure = $mytime->format('H:i:s');
-              $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->with('shop')->first();
-              /*$shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->where('hdispoa', '<=', $heure)->where('hdispob', '>=', $heure)->with('product')->with('shop')->get();*/
-              $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
-              $qty = 0;
+                  $likes = \App\Favourite::where('product_id', $proximite->id)->get()->count();
+                 $mytime = Carbon\Carbon::now();
+                 $heure = $mytime->format('H:i:s');
+                 $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->with('shop')->first();
+                 /*$shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->where('hdispoa', '<=', $heure)->where('hdispob', '>=', $heure)->with('product')->with('shop')->get();*/
+                 $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
+                 $qty = 0;
               @endphp
               <div class="col-12 col-md-6">
                 @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
@@ -157,6 +158,7 @@
                       <a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                       <a style="right: 1.5rem;"  class="wishlist-btn1">
                           <img style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem" src="{{asset($shopProducts->shop->logo)}}" alt="">
+                          <img src="{{asset('dislike.png')}}" style="height: 10px" alt=""> <span style="font-size: 13px"> {{$likes}}</span>
                       </a>
                       <br>
                     @if($qty != 0)
@@ -166,8 +168,6 @@
                     @if($qty != 0)<a class="btn btn-danger btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Réserver</a> @else <a class="btn btn-dark btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Plus de panier à sauver</a> @endif
                   </div>
                 </div>
-                  @else
-                  Deleted
                   @endif
               </div>
             </div>

@@ -39,7 +39,7 @@
                                             <form method="POST" action="{{route('admin.souscategorie.destroy', $cat->id)}}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm">Suprême</button>
                                             </form></td>
                                     </tr>
                                     @endforeach

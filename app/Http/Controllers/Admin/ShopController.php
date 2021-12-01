@@ -380,9 +380,9 @@ class ShopController extends BackendController
                 if (auth()->user()->can('shop_edit')) {
                     $retAction .= '<a href="' . route('admin.shop.edit', $shop) . '" class="btn btn-sm btn-icon float-left btn-primary" data-toggle="tooltip" data-placement="top" title="Editer"> <i class="far fa-edit"></i></a>';
                 }
-                if (auth()->user()->can('shop_delete')) {
+                /*if (auth()->user()->can('shop_delete')) {
                     $retAction .= '<form class="float-left pl-2" action="' . route('admin.shop.destroy', $shop) . '" method="POST">' . method_field('DELETE') . csrf_field() . '<button class="btn btn-sm btn-icon btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer"><i class="fa fa-trash"></i></button></form>';
-                }
+                }*/
                 return $retAction;
             })->editColumn('user_id', function ($shop) {
               if($shop->vip !=0){

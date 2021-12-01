@@ -170,6 +170,7 @@
          <li><a href="{{ route('account.order') }}"><i class="lni lni-package"></i>Réservations</a></li>
          <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>Recharger mon compte</a></li>
          <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>Centre d'assistance</a></li>
+         <li><a href="{{ route('how-it-works') }}"><i class="lni lni-alarm lni-tada-effect"></i>Comment ça marche</a></li>
          <li><a href="{{ route('suggest.business') }}"><i class="lni lni-bar-chart lni-tada-effect"></i>
                  Suggérer un commerce
              </a></li>

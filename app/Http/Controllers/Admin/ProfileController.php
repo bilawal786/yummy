@@ -77,4 +77,10 @@ class ProfileController extends BackendController
         return view('admin.suggestions.index', compact('suggestions'));
     }
 
+    public function suggestDelete($id){
+        $suggestDelete = Suggest::find($id);
+        $suggestDelete->delete();
+        return redirect()->back()->withSuccess('Supprimé avec succès');
+    }
+
 }

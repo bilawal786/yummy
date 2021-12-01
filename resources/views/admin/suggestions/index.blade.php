@@ -25,6 +25,7 @@
                                         <th>Catégorie</th>
                                         <th>Adresse</th>
                                         <th>Département</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -38,6 +39,9 @@
                                         <td>{{$row->category}}</td>
                                         <td>{{$row->address}}</td>
                                         <td>{{$row->postal}}</td>
+                                        <td>
+                                            <a href="{{route('admin.suggest.delete', ['id' => $row->id])}}"><button type="submit" class="btn btn-danger btn-sm">Suprême</button></a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -53,3 +57,28 @@
 @endsection
 
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+    <script>
+        "use strict";
+
+        $(function() {
+            var table = $('#maintable').DataTable({
+
+            });
+
+        });
+
+        $('#maintable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+
+    </script>
+@endsection

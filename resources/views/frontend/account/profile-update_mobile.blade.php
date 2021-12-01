@@ -77,7 +77,7 @@ function readURL(input) {
                 </div>
                 <div class="mb-3">
                   <div class="title mb-2"><i class="lni lni-envelope"></i><span>Adresse E-mail</span></div>
-                  <input type="text" name="email"
+                  <input readonly type="text" name="email"
                          class="form-control @error('email') is-invalid @enderror"
                          value="{{ old('email', $user->email) }}">
                   @error('email')

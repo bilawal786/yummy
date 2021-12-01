@@ -199,7 +199,7 @@ class ProductController extends BackendController
                     $retAction ='';
 
                     if(auth()->user()->can('products_edit')) {
-                        $retAction .= '<a href="' . route('admin.products.edit', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="far fa-edit"></i></a>';
+                        $retAction .= '<a href="' . route('admin.products.edit', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="far fa-edit"></i></a><a href="' . route('admin.product.my.delete', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="far fa-cross"></i></a>';
                     }
                     return $retAction;
                 })
@@ -264,7 +264,11 @@ class ProductController extends BackendController
             unlink($path);
         }
     }
-
+    public function mydelete($id){
+        $product = ShopProduct::where('product_id', $id)->first();
+        $product->delete();
+        return redirect()->back();
+    }
     public function getMedia( Request $request )
     {
         $product   = Product::find($request->id);

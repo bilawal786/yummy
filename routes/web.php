@@ -92,6 +92,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/privacy', 'PrivacyController')->name('privacy');
     Route::get('/terms', 'TermController')->name('terms');
     Route::get('/faq', 'ContactController@faq')->name('faq');
+    Route::get('/how-it-works', 'ContactController@how_it_works')->name('how-it-works');
     Route::get('/sponsership', 'ContactController@sponsership')->name('sponsership');
     Route::get('/suggest/business', 'ContactController@suggest')->name('suggest.business');
     Route::post('/suggest/store', 'ContactController@suggeststore')->name('suggest.store');
@@ -122,6 +123,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
 
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::get('suggestions', 'ProfileController@suggestions')->name('suggestions');
+    Route::get('suggest/delete/{id}', 'ProfileController@suggestDelete')->name('suggest.delete');
     Route::get('admin/banks', 'ProfileController@adminBank')->name('admin.bank');
     Route::get('vendor/bank', 'ProfileController@bankDetails')->name('vendor.bank');
     Route::post('bank/store/', 'ProfileController@bankDetailsStore')->name('bank.store');
@@ -219,6 +221,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('get-shop-product', 'ShopController@getShopProduct')->name('shop.get-shop-product');
     Route::post('get-shop', 'ShopController@getArea')->name('shop.get-area');
 
+    Route::get('admin/product/my/delete/{id}', 'ProductController@mydelete')->name('product.my.delete');
     Route::resource('products', 'ProductController');
     Route::post('getMedia', 'ProductController@getMedia')->name('products.getMedia');
     Route::post('storeMedia', 'ProductController@storeMedia')->name('products.storeMedia');
