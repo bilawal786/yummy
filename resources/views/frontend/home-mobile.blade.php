@@ -131,6 +131,7 @@
               <div class="col-12 col-md-6">
                 @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
               <div class="card weekly-product-card" style="@if($qty == 0) filter: opacity(50%); -webkit-filter: opacity(50%); @endif">
+                  @if($shopProducts)
                 <div class="card-body d-flex align-items-center">
                   <div class="product-thumbnail-side">
                          @if($qty != 0)
@@ -142,7 +143,6 @@
                          @else
                            <span class="badge badge-info">Rien à sauver</span>
                          @endif
-                      @if($proximite->shop)
                       <?php
                            $check_fav =  \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
                       ?>
@@ -165,10 +165,10 @@
                     <div class="product-rating" style="display:none;"><i class="lni lni-star-filled"></i>4.88 (39)</div>
                     @if($qty != 0)<a class="btn btn-danger btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Réserver</a> @else <a class="btn btn-dark btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Plus de panier à sauver</a> @endif
                   </div>
-                    @else
-                        Shop Delete
-                        @endif
                 </div>
+                  @else
+                  Deleted
+                  @endif
               </div>
             </div>
              @endforeach
