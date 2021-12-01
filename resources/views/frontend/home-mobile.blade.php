@@ -142,7 +142,7 @@
                          @else
                            <span class="badge badge-info">Rien à sauver</span>
                          @endif
-                      @if($shopProducts->shop)
+                      @if($proximite->shop)
                       <?php
                            $check_fav =  \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
                       ?>
