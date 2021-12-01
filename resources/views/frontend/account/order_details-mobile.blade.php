@@ -7,6 +7,11 @@
   <!-- Product Slides-->
 
   <div class="product-slides">
+      @if(Session::has('message'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Succès! </strong> {{ Session::get('message') }}
+          </div>
+  @endif
     <!-- Single Hero Slide-->
       <div class="single-product-slide" style="background-image: url('{{ $order->shop->images??'' }}')"></div>
   </div>

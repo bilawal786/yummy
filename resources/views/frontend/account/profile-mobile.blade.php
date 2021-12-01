@@ -7,6 +7,11 @@
            <img width="90px" height="90px" src="{{ $user->images }}" class="img-fluid rounded-pill">
            <h6 class="font-weight-bold m-0 mt-2">{{ $user->name}}</h6>
            <p class="small text-muted">Il vous reste <span class="counter"> {{ $user->balance->balance }}</span> {{ __('YummyCoin') }}</p>
+            @if(Session::has('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Succès! </strong> {{ Session::get('message') }}
+                </div>
+            @endif
            <a href="{{ route('account.profile.index') }}" class="btn btn-success btn-sm"><i class="icofont-pencil-alt-5"></i> Editer mon Profil</a>
         </div>
         <ul class="page-nav ps-0">

@@ -27,7 +27,7 @@ use App\Models\ShopProduct;
 use App\User;
 use Stripe;
 use Auth;
-
+use Session;
 class CheckoutController extends FrontendController
 {
     public function __construct()
@@ -144,7 +144,7 @@ class CheckoutController extends FrontendController
                         'payment_method'        => $request->payment_type,
                         'payment_status'        => PaymentStatus::PAID
                     ]);
-                    
+
                     $sortant = Balance::where('id', auth()->user()->balance_id)->decrement('balance', $yumcoin);
                   }
                 } else {
@@ -177,6 +177,7 @@ class CheckoutController extends FrontendController
                         $order->shop->user->notify(new NewShopOrderCreated($order));
                     } catch (\Exception $e) { }
 
+                    Session::flash('message', 'Votre commande a été passée avec succès');
                     return redirect(route('account.order.show', $order->id))->withSuccess('You order completed successfully.');
                 } else {
                     return redirect(route('checkout.index'))->withError($orderService->message);
@@ -209,6 +210,7 @@ class CheckoutController extends FrontendController
             $blance = Balance::where('name', $username)->increment('balance', $request->valeur);
             //return $username.''.$request->valeur;
             //$deposittransac      = app(TransactionService::class)->deposit($this->adminBalanceId, $deposit->user->balance_id, $depositAmount, false);
+            Session::flash('message', 'Votre recharge à bien été pris en compte');
 
             return redirect(route('account.profile'))->withSuccess('Votre compte à bien été rechargé');
         } else {
