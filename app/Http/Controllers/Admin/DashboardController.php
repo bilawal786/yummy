@@ -39,6 +39,7 @@ class DashboardController extends BackendController
         ];
         if(auth()->user()->myrole == 3){
           $orders = Order::orderBy('id', 'desc')->where('shop_id', auth()->user()->shop->id)->orderOwner();
+          $income = Order::where('shop_id', auth()->user()->shop->id)->where('status', 20)->sum('total');
         }else{
           $orders = Order::orderBy('id', 'desc')->orderOwner();
         }
@@ -83,6 +84,7 @@ class DashboardController extends BackendController
         $this->data['monthDayWiseTotalIncome'] = $monthDayWiseTotalIncome;
         $this->data['monthWiseTotalOrder']     = $monthWiseTotalOrder;
         $this->data['monthDayWiseTotalOrder']  = $monthDayWiseTotalOrder;
+        $this->data['vendorincome']  = $income;
         $this->data['totalOrders'] = $totalOrders;
         $this->data['totalIncome'] = $totalIncome;
         if ( auth()->user()->myrole == UserRole::ADMIN ) {
