@@ -85,7 +85,7 @@ class ContactController extends FrontendController
         $suggest->category = $request->category;
         $suggest->user_id = Auth::user()->id;
         $suggest->save();
-        Session::flash('message', 'Vos coordonnées ont été soumises avec succès');
+        Session::flash('message', 'Les coordonnées ont été soumises avec succès.');
         return redirect()->back();
     }
 }

@@ -210,7 +210,7 @@ class CheckoutController extends FrontendController
             $blance = Balance::where('name', $username)->increment('balance', $request->valeur);
             //return $username.''.$request->valeur;
             //$deposittransac      = app(TransactionService::class)->deposit($this->adminBalanceId, $deposit->user->balance_id, $depositAmount, false);
-            Session::flash('message', 'Votre recharge à bien été pris en compte');
+            Session::flash('message', 'Succès! Votre recharge a bien été prise en compte');
 
             return redirect(route('account.profile'))->withSuccess('Votre compte à bien été rechargé');
         } else {

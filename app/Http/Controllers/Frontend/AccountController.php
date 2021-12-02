@@ -84,7 +84,6 @@ class AccountController extends FrontendController
         $user->email      = $request->get('email');
         $user->phone      = $request->get('phone');
         $user->username   = $request->username ?? $this->username($request->email);
-        $user->address    = $request->get('address');
         $user->save();
 
         if (request()->file('image')) {

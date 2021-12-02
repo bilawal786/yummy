@@ -25,7 +25,6 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => ['required', 'string', Rule::unique("categories", "name")->ignore($this->category), 'max:255'],
             'description' => ['nullable', 'string'],
             'status'      => ['required', 'numeric'],
             'image'       => 'image|mimes:jpeg,png,jpg|max:5098'
@@ -35,7 +34,6 @@ class CategoryRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name'        => trans('validation.attributes.name'),
             'image'       => trans('validation.attributes.image'),
             'description' => trans('validation.attributes.description'),
             'status'      => trans('validation.attributes.status'),
