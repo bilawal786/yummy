@@ -18,7 +18,7 @@
 {{--      <div class="single-product-slide" style="background-image: url('{{ $thumimage }}')"></div>--}}
 {{--      @endforeach--}}
 {{--    @else--}}
-      <div class="single-product-slide" style="background-image: url('{{ $shopProduct->product->products }}')"></div>
+      <div class="single-product-slide" style="background-image: url('{{ $shopProduct->product->images }}')"></div>
 {{--    @endif--}}
   </div>
   <div class="product-description">
