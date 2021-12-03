@@ -32,7 +32,8 @@ class ShopController extends FrontendController
         $this->data['user'] = auth()->user();
         $this->data['namepage']  = $this->data['shop']->name;
         //\DB::enableQueryLog();
-        $shopProduct = ShopProduct::where(['shop_id' => $shop->id])->where('quantity', '>', 0)->where('hdispoa', '<=', $heure)->where('hdispob', '>=', $heure)->with('product')->get();
+//        ->where('hdispoa', '<=', $heure)->where('hdispob', '>=', $heure)
+        $shopProduct = ShopProduct::where(['shop_id' => $shop->id])->where('quantity', '>', 0)->with('product')->get();
         $this->data['shopProduct'] = $shopProduct;
         //dd($shopProduct);
         $this->data['productPrices']         = $shopProduct->pluck('unit_price', 'product_id');
