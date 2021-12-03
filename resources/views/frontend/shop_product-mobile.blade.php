@@ -13,13 +13,13 @@
 
   <div class="product-slides" @if($qty == 0) style=" filter: opacity(50%); -webkit-filter: opacity(50%); "@endif>
     <!-- Single Hero Slide-->
-    @if(!blank($shopProduct->product->thumimages))
-      @foreach($shopProduct->product->thumimages as $thumimage)
-      <div class="single-product-slide" style="background-image: url('{{ $thumimage }}')"></div>
-      @endforeach
-    @else
-      <div class="single-product-slide" style="background-image: url('{{ $shopProduct->shop->images }}')"></div>
-    @endif
+{{--    @if(!blank($shopProduct->product->thumimages))--}}
+{{--      @foreach($shopProduct->product->thumimages as $thumimage)--}}
+{{--      <div class="single-product-slide" style="background-image: url('{{ $thumimage }}')"></div>--}}
+{{--      @endforeach--}}
+{{--    @else--}}
+      <div class="single-product-slide" style="background-image: url('{{ $shopProduct->product->products }}')"></div>
+{{--    @endif--}}
   </div>
   <div class="product-description">
     <!-- Product Title & Meta Data-->
