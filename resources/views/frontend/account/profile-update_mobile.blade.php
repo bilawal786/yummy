@@ -86,6 +86,14 @@ function readURL(input) {
                   </div>
                   @enderror
                 </div>
+                <div class="mb-3">
+                  <div class="title mb-2"><i class="lni lni-envelope"></i><span>Région</span></div>
+                    <select class="form-control" name="address" id="">
+                        @foreach($location as $loc)
+                        <option {{$user->address == $loc->id ? 'selected' : ''}} value="{{$loc->id}}">{{$loc->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <button class="btn btn-success w-100" type="submit">Sauvegarder</button>
             </div>
           </div>

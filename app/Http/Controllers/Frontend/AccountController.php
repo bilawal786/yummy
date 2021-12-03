@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
 use Spatie\MediaLibrary\MediaStream;
 use Spatie\MediaLibrary\Models\Media;
 use Yajra\Datatables\Datatables;
-
+use App\Models\Location;
 class AccountController extends FrontendController
 {
     public function __construct()
@@ -42,6 +42,7 @@ class AccountController extends FrontendController
     public function profileUpdate()
     {
         $this->data['user'] = auth()->user();
+        $this->data['location'] = Location::all();
         $this->data['namepage']  = "Editer mon Profil";
         return view('frontend.account.profile-update_mobile', $this->data);
     }
@@ -83,6 +84,7 @@ class AccountController extends FrontendController
         $user->last_name  = $request->get('last_name');
         $user->email      = $request->get('email');
         $user->phone      = $request->get('phone');
+        $user->address      = $request->get('address');
         $user->username   = $request->username ?? $this->username($request->email);
         $user->save();
 
