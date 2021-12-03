@@ -48,7 +48,7 @@
               @else
                 <div class="member-plan position-absolute"><span class="badge m-3 badge-grey">Rien à sauver</span></div>
               @endif
-              <a href="{{ route('shop.product.details', ['shop'=>$shop->slug,'product'=>$product->product->slug]) }}"><img src="{{ $shop->images }}"><span class="product-title">{{ $product->product->name }}</span>
+              <a href="{{ route('shop.product.details', ['shop'=>$shop->slug,'product'=>$product->product->slug]) }}"><img src="{{ $product->product->products }}"><span class="product-title">{{ $product->product->name }}</span>
                 @if($product->quantity != 0)
                   <p>Disponible de {{\Carbon\Carbon::createFromFormat('H:i:s',$product->hdispoa)->format('H:i')}} à {{\Carbon\Carbon::createFromFormat('H:i:s',$product->hdispob)->format('H:i')}}</p>
                 @endif

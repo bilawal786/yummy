@@ -74,7 +74,7 @@
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Dois-je avoir mon téléphone pour récupérer mon panier.</button>
+                    <button class="accordion">Dois-je avoir mon téléphone pour récupérer mon panier?</button>
                     <div class="panel">
                         <p>Oui, il est nécessaire d’avoir votre téléphone pour récupérer votre commande. Arrivé au magasin, vous devrez montrer votre commande au personnel qui la validera directement sur votre téléphone et vous remettra ensuite votre panier surprise.</p>
                     </div>
@@ -125,7 +125,7 @@
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Comment gagner des YummyCoin avec la recommandation de commerçant près de chez vous ?</button>
+                    <button class="accordion">Comment gagner des YummyCoin avec la recommandation de commerçants près de chez moi ?</button>
                     <div class="panel">
                         <p>
                             La recommandation de commerçant est simple et vous rapporte 10000 YC !
@@ -139,7 +139,7 @@
                 <div class="card-body">
                     <button class="accordion">Comment annuler ma réservation ?</button>
                     <div class="panel">
-                        <p>Vous pouvez annuler une réservation jusqu’à 2 heures avant le début de la collecte en vous rendant directement sur le reçu et en cliquant sur « Annuler la réservation ». Cela laisse suffisamment de temps au panier pour être sauvé par un autre utilisateur. Le cas échéant, le remboursement se fera en YummyCoin.</p>
+                        <p>Vous pouvez annuler une réservation jusqu’à 2 heures après la commande en cliquant sur « Annuler la réservation » dans la rubrique Réservation. Le cas échéant, le remboursement se fera en YummyCoin. Après ce délai, votre commande sera validée et non modifiable.</p>
                     </div>
                 </div>
             </div>
