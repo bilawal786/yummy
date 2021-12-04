@@ -18,6 +18,7 @@
           <li><a href="{{ route('account.order') }}">Mes réservations<i class="lni lni-chevron-right"></i></a></li>
           <li><a href="{{ route('yummycoin') }}">Recharger mon compte YummyCoin<i class="lni lni-chevron-right"></i></a></li>
           <li><a href="/page/conditions-generales-dutilisation">Conditions Générales d'Utilisation<i class="lni lni-chevron-right"></i></a></li>
+          <li><a href="{{ route('how-it-works') }}">Comment ça marche<i class="lni lni-chevron-right"></i></a></li>
         </ul>
       </div>
     </div>

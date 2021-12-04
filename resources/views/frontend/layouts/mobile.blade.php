@@ -115,7 +115,10 @@
 
    </head>
    <body>
-
+<?php
+$location = \App\Models\Location::all();
+$user = Auth::user();
+?>
      <!-- Preloader-->
      <div class="preloader" id="preloader">
        <div class="spinner-grow text-secondary" role="status">
@@ -165,16 +168,23 @@
        <!-- Sidenav Nav-->
        <ul class="sidenav-nav ps-0">
         @if($user->myrole == 1 || $user->myrole == 3) <li><a href="{{ route('admin') }}"><i class="lni lni-briefcase"></i>Accès boutique </a></li> @endif
-         <li><a href="{{ route('home') }}"><i class="lni lni-home"></i>Découvrir</a></li>
+{{--         <li><a href="{{ route('home') }}"><i class="lni lni-home"></i>Découvrir</a></li>--}}
          <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>Mon Profil</a></li>
          <li><a href="{{ route('account.order') }}"><i class="lni lni-package"></i>Réservations</a></li>
          <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>Recharger mon compte</a></li>
          <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>Centre d'assistance</a></li>
-         <li><a href="{{ route('how-it-works') }}"><i class="lni lni-alarm lni-tada-effect"></i>Comment ça marche</a></li>
+{{--         <li><a href=""><i class="lni lni-alarm lni-tada-effect"></i>Comment ça marche</a></li>--}}
          <li><a href="{{ route('suggest.business') }}"><i class="lni lni-bar-chart lni-tada-effect"></i>
                  Suggérer un commerce
              </a></li>
          <li><a href="{{ route('sponsership') }}"><i class="lni lni-calendar lni-tada-effect"></i>Parrainage</a></li>
+            <li>
+                <select onchange="location = this.value;" style="height: 30px" class="form-control" name="" id="">
+                    @foreach($location as $loc)
+                    <option {{$user->address == $loc->id ? 'selected' : ''}} value="{{route('change.location', ['id' => $loc->id])}}">{{$loc->name}}</option>
+                    @endforeach
+                </select>
+            </li>
          <li><a href="{{ route('logout') }}"
               onclick="event.preventDefault();document.getElementById('logout-form-sidebar').submit();"><i class="lni lni-power-switch"></i>Déconnexion</a>
            <form class="d-none" id="logout-form-sidebar" action="{{ route('logout') }}" method="POST">

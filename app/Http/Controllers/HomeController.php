@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -61,5 +62,11 @@ class HomeController extends Controller
 
         $response = curl_exec($ch);
         dd($response);
+    }
+    public function changelocation($id){
+        $user = Auth::user();
+        $user->address = $id;
+        $user->update();
+        return redirect()->back();
     }
 }

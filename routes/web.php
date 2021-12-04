@@ -14,6 +14,7 @@ Route::get('/', function (){
     }
 });
 Route::get('/testnotification', 'HomeController@testnotification');
+Route::get('/change/location/{id}', 'HomeController@changelocation')->name('change.location');
 Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
 
 Route::group(['middleware' => ['installed']], function () {
