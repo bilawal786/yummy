@@ -181,7 +181,7 @@
   </div>
 
   @endforeach
-    <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger">Autoriser la notification push</button>
+{{--    <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger">Autoriser la notification push</button>--}}
 
     <!-- Discount Coupon Card-
     <div class="container">
