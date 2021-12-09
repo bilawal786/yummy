@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\OrderStatus;
+use App\SubCategory;
 use Shipu\Watchable\Traits\WatchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -45,7 +46,7 @@ class Product extends BaseModel implements HasMedia
     {
         $mytime = Carbon::now();
         $heure = $mytime->format('H:i:s');
-        
+
         return $this->HasMany(ShopProduct::class)->where('shop_products.hdispoa', '<=', $heure)->where('shop_products.hdispob', '>=', $heure);
 
     }
@@ -62,6 +63,10 @@ class Product extends BaseModel implements HasMedia
     public function shops()
     {
         return $this->belongsToMany(Shop::class, 'shop_products');
+    }
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'subcategories');
     }
 
     public function orders()

@@ -116,6 +116,8 @@ class ProductController extends BackendController
      */
     public function edit(Product $product)
     {
+        $this->data['locations'] = Location::where(['status' => Status::ACTIVE])->get();
+
         $this->data['product']            = $product;
         $this->data['shopproduct']        = ShopProduct::where('product_id','=' ,$product->id)->first();
         //dd($this->data['shopproduct']);
@@ -143,6 +145,7 @@ class ProductController extends BackendController
         $product->description = $request->get('description');
         $product->status      = $request->get('status');
         $product->unit_price  = $request->get('unit_price');
+        $product->subcategories  = $request->subcategory;
         $product->save();
         $product->categories()->sync($request->get('categories'));
         $affectedRows = ShopProduct::where("product_id", $product->id)->update(["quantity" => $request->get('quantity'), "hdispoa" => $request->get('hdispoa'), "hdispob"=> $request->get('hdispob'), "discount_price"=> $request->get('discount_price')]);
