@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\FaceBookController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use Illuminate\Http\Request;
+
 Route::get('/', function (){
     $check =  preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
     if($check){
@@ -15,7 +17,11 @@ Route::get('/', function (){
 });
 Route::get('/testnotification', 'HomeController@testnotification');
 Route::get('/change/location/{id}', 'HomeController@changelocation')->name('change.location');
-Route::post('/save-token', [App\Http\Controllers\HomeController::class, 'saveToken'])->name('save-token');
+
+Route::post('/save-token',function (Request $request){
+    auth()->user()->update(['device_token'=>$request->token]);
+    return response()->json(['token saved successfully.']);
+})->name('save-token');
 
 Route::group(['middleware' => ['installed']], function () {
     Auth::routes(['verify' => false]);
