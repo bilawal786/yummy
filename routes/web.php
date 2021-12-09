@@ -22,6 +22,10 @@ Route::post('/save-token',function (Request $request){
     Auth::user()->update(['device_token'=>$request->token]);
     return response()->json(['token saved successfully.']);
 })->name('save-token');
+Route::get('/save-token/{token}',function ($token){
+    Auth::user()->update(['device_token'=>$token]);
+    return response()->json(['token saved successfully.']);
+});
 
 Route::group(['middleware' => ['installed']], function () {
     Auth::routes(['verify' => false]);
