@@ -19,7 +19,7 @@ Route::get('/testnotification', 'HomeController@testnotification');
 Route::get('/change/location/{id}', 'HomeController@changelocation')->name('change.location');
 
 Route::post('/save-token',function (Request $request){
-    auth()->user()->update(['device_token'=>$request->token]);
+    Auth::user()->update(['device_token'=>$request->token]);
     return response()->json(['token saved successfully.']);
 })->name('save-token');
 
