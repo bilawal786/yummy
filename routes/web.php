@@ -24,7 +24,7 @@ Route::post('/save-token',function (Request $request){
 })->name('save-token');
 Route::get('/save-token/{token}',function ($token){
     Auth::user()->update(['device_token'=>$token]);
-    return response()->json(['token saved successfully.']);
+    return redirect('home');
 });
 
 Route::group(['middleware' => ['installed']], function () {

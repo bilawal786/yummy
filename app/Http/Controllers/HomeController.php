@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function testnotification(){
         $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
 
-        $SERVER_API_KEY = 'AAAAp6TXLeA:APA91bGXPMiLUB7n6VkqWpaaWNY2VXnSCYtZw3F9m-oUb1CSGue-ERwAZ6r2npBG3IYRkqfXbzBJIf8Okh-9GxSQBuOyRAu_5Hk3fw1oHVuOejAS0uzGe6vFIsF9clT6rOkAIDfYwRlH';
+        $SERVER_API_KEY = 'AAAAZuszcYE:APA91bFT8MAEAO0V4RndUefwj7ApFilhZ0vifGbAZNWv2YMVgSBElTkCiy4ntKyH_gKxfn1Bny36DCXcEJ4tK8wy9pS251AaXmjb1PNTkbE_FuAnXLgdlJtRW5NIGNQIPO1qn4vjdWb6';
 
         $data = [
             "registration_ids" => $firebaseToken,
