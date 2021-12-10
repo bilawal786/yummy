@@ -79,8 +79,8 @@
                                     <div class="form-group col">
                                         <label for="categories">{{ __('Sous-catégorie') }}</label> <span class="text-danger"></span>
                                         <select  id="categories" name="subcategory" class="subcategory form-control select2">
-                                            <option value="{{ $product->subcategory->id }}">
-                                                {{ $product->subcategory->name }}</option>
+                                            <option value="{{ $product->subcategory->id??'' }}">
+                                                {{ $product->subcategory->name??'' }}</option>
                                         </select>
                                     </div>
                                 </div>

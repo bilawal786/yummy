@@ -26,7 +26,6 @@
                                         <th>{{ __('levels.name') }}</th>
                                         <th>{{ __('Catégorie') }}</th>
                                         <th>{{ __('Région') }}</th>
-                                        <th>{{ __('levels.actions') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -37,12 +36,12 @@
                                         <td>{{$cat->name}}</td>
                                         <td>{{$cat->category->name}}</td>
                                         <td>{{$cat->category->country->name}}</td>
-                                        <td>
+<!--                                        <td>
                                             <form method="POST" action="{{route('admin.souscategorie.destroy', $cat->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Suprême</button>
-                                            </form></td>
+                                            </form></td>-->
                                     </tr>
                                     @endforeach
                                     </tbody>
