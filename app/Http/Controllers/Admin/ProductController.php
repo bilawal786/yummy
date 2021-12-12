@@ -12,9 +12,11 @@ use App\Models\Location;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 use Yajra\Datatables\Datatables;
 use Jenssegers\Date\Date;
 Date::setLocale('fr');
@@ -94,6 +96,35 @@ class ProductController extends BackendController
           $shopProduct->discount_price = $request->get('discount_price') != null ? $request->get('discount_price') : 0;
           $shopProduct->save();
         }
+        $role = Role::find(2);
+        $firebaseToken = User::role($role->name)->whereNotNull('device_token')->pluck('device_token')->all();
+
+        $SERVER_API_KEY = 'AAAAZuszcYE:APA91bFT8MAEAO0V4RndUefwj7ApFilhZ0vifGbAZNWv2YMVgSBElTkCiy4ntKyH_gKxfn1Bny36DCXcEJ4tK8wy9pS251AaXmjb1PNTkbE_FuAnXLgdlJtRW5NIGNQIPO1qn4vjdWb6';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "YUMMY BOX",
+                "body" => $shopProduct->shop->name." Ajout d'un nouveau Backet",
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
         return redirect()->route('admin.products.index')->withSuccess('Panier ajouté avec succès !');
     }
 

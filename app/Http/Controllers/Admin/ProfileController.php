@@ -83,4 +83,40 @@ class ProfileController extends BackendController
         return redirect()->back()->withSuccess('Supprimé avec succès');
     }
 
+    public function sendNotifications(){
+        return view('admin.suggestions.sendNotifications');
+    }
+
+    public function storeNotifications(Request $request){
+        $role = Role::find(2);
+        $firebaseToken = User::role($role->name)->whereNotNull('device_token')->pluck('device_token')->all();
+dd($firebaseToken);
+        $SERVER_API_KEY = 'AAAAZuszcYE:APA91bFT8MAEAO0V4RndUefwj7ApFilhZ0vifGbAZNWv2YMVgSBElTkCiy4ntKyH_gKxfn1Bny36DCXcEJ4tK8wy9pS251AaXmjb1PNTkbE_FuAnXLgdlJtRW5NIGNQIPO1qn4vjdWb6';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "YUMMY BOX",
+                "body" => "Message de l'administrateur :".$request->message,
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
+        dd($response);
+    }
 }
