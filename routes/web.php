@@ -98,7 +98,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('categorie/{slug}', 'CategorieController@index')->name('categories');
     Route::get('sub-category/{id}', 'CategorieController@subcategory')->name('sub-category');
     Route::get('subcategory/products/{id}', 'CategorieController@subcategoryproducts')->name('subcategory.products');
-    Route::get('/favourites', 'CategorieController@favourites')->name('favourites');
+    Route::get('/favourites', 'CategorieController@favourites')->name('favourites')->middleware('auth');
     Route::get('/fav/remove/{id}', 'CategorieController@favouritremove')->name('fav.remove');
     Route::get('/privacy', 'PrivacyController')->name('privacy');
     Route::get('/terms', 'TermController')->name('terms');
