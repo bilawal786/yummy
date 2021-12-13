@@ -7,6 +7,7 @@
     <div class="container">
       <div class="row g-3">
           <!-- Single Weekly Product Card-->
+          @if($products)
               @foreach($products as $proximite)
               @php
               $qty = $proximite->quantity;
@@ -37,6 +38,9 @@
               </div>
             </div>
              @endforeach
+          @else
+              <p>Élément recherché non trouvé </p>
+          @endif
       </div>
     </div>
   </div>

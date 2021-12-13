@@ -134,18 +134,22 @@
                 class="form-control @if($errors->has('refferal')) is-invalid @endif"
                 type="text" placeholder="Code de parrainage (facultatif)">
          </div>
-         <div class="form-group">
-           <label  class="custom-control custom-checkbox">
-               <input name="terms_and_conditions" class="custom-control-input @if($errors->has('terms_and_conditions')) is-invalid @endif" type="checkbox" {{  (old('terms_and_conditions') == 1 ? ' checked' : '') }} value="1">
-               <span class="custom-control-label" id="terms_and_condition_color"> {{ __('J\'accepte les') }}</span> <a target="_blank" href="{{ route('page', 'terms-and-condition') }}">{{ __('termes et conditions') }}</a> <span class="text-danger">*</span>
-               @if($errors->has('terms_and_conditions'))
-                   <span class="invalid-feedback" role="alert">
+          <div class="form-group">
+              <label  class="custom-control custom-checkbox">
+                  <input name="terms_and_conditions" required class="custom-control-input @if($errors->has('terms_and_conditions')) is-invalid @endif" type="checkbox" {{  (old('terms_and_conditions') == 1 ? ' checked' : '') }} value="1">
+                  <span class="custom-control-label" id="terms_and_condition_color">
+                            {{ __('J\'accepte les') }}</span>
+                  <a target="_blank" href="{{ route('page', 'conditions-generales-dutilisation') }}">{{ __('Conditions générales') }}</a> ainsi que la
+                  <a target="_blank" href="{{ route('page', 'politique-de-confidentialite') }}">{{ __('Politique de confidentialité') }}</a>
+                  <span class="text-danger">*</span>
+                  @if($errors->has('terms_and_conditions'))
+                      <span class="invalid-feedback" role="alert">
                        <strong>{{ $errors->first('terms_and_conditions') }}</strong>
                    </span>
-               @endif
+                  @endif
 
-           </label>
-         </div>
+              </label>
+          </div>
          <button type="submit" class="btn btn-success rounded btn-lg btn-block">Créer un compte</button>
       </form>
       <!--
