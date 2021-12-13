@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Location;
 use App\Suggest;
 use App\User;
 use Illuminate\Http\Request;
@@ -84,13 +85,13 @@ class ProfileController extends BackendController
     }
 
     public function sendNotifications(){
-        return view('admin.suggestions.sendNotifications');
+        $locations = Location::all();
+        return view('admin.suggestions.sendNotifications', compact('locations'));
     }
 
     public function storeNotifications(Request $request){
-        $role = Role::find(2);
-        $firebaseToken = User::role($role->name)->whereNotNull('device_token')->pluck('device_token')->all();
-dd($firebaseToken);
+        $role = Role::find($request->type);
+        $firebaseToken = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->pluck('device_token')->all();
         $SERVER_API_KEY = 'AAAAZuszcYE:APA91bFT8MAEAO0V4RndUefwj7ApFilhZ0vifGbAZNWv2YMVgSBElTkCiy4ntKyH_gKxfn1Bny36DCXcEJ4tK8wy9pS251AaXmjb1PNTkbE_FuAnXLgdlJtRW5NIGNQIPO1qn4vjdWb6';
 
         $data = [
@@ -117,6 +118,6 @@ dd($firebaseToken);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
         $response = curl_exec($ch);
-        dd($response);
+        return redirect()->back()->withSuccess('Envoyé avec succès à tous');
     }
 }

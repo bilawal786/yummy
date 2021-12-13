@@ -15,6 +15,29 @@
                             <div class="card-body">
                                 <div class="form">
                                     <div class="col">
+                                        <label>Region</label> <span class="text-danger">*</span>
+                                        <select name="country_id" class="form-control" id="">
+                                            @foreach($locations as $loc)
+                                                <option value="{{$loc->id}}">{{$loc->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="col">
+                                        <label>Send to</label> <span class="text-danger">*</span>
+                                        <select name="type" class="form-control" id="">
+                                                <option value="3">Shop Owners</option>
+                                                <option value="2"><Users></Users></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="col">
                                         <label>Notification</label> <span class="text-danger">*</span>
                                         <textarea name="message" class="form-control"  id="" cols="30" rows="10"></textarea>
                                     </div>
