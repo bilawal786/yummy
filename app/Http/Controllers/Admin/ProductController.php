@@ -104,7 +104,7 @@ class ProductController extends BackendController
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
-                "title" => "YUMMY BOX",
+                "title" => "Yummy Box",
                 "body" => $shopProduct->shop->name." Ajout d'un nouveau Backet",
             ]
         ];

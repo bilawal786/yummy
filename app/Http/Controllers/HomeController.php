@@ -40,7 +40,7 @@ class HomeController extends Controller
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
-                "title" => "YUMMY BOX",
+                "title" => "Yummy Box",
                 "body" => "TEST NOTIFICATION",
             ]
         ];

@@ -111,7 +111,7 @@ class ProfileController extends BackendController
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
-                "title" => "YUMMY BOX",
+                "title" => "Yummy Box",
                 "body" => $request->message,
             ]
         ];
@@ -148,7 +148,7 @@ class ProfileController extends BackendController
         $data = [
             "registration_ids" => $firebaseToken,
             "notification" => [
-                "title" => "YUMMY BOX",
+                "title" => "Yummy Box",
                 "body" => $request->message,
             ]
         ];
