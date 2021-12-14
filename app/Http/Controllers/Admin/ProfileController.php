@@ -86,12 +86,21 @@ class ProfileController extends BackendController
 
     public function sendNotifications(){
         $locations = Location::all();
-        return view('admin.suggestions.sendNotifications', compact('locations'));
+        $role = Role::find(2);
+        $role1 = Role::find(3);
+        $users = User::role($role)->get();
+        $traders = User::role($role1)->get();
+        return view('admin.suggestions.sendNotifications', compact('locations', 'users', 'traders'));
     }
 
     public function storeNotifications(Request $request){
         $role = Role::find($request->type);
-        $firebaseToken = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->pluck('device_token')->all();
+        if ($request->user_id[0] == "send_to_all"){
+            $firebaseToken = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->pluck('device_token')->all();
+        }else{
+            $firebaseToken = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+        }
+
         $SERVER_API_KEY = 'AAAAZuszcYE:APA91bFT8MAEAO0V4RndUefwj7ApFilhZ0vifGbAZNWv2YMVgSBElTkCiy4ntKyH_gKxfn1Bny36DCXcEJ4tK8wy9pS251AaXmjb1PNTkbE_FuAnXLgdlJtRW5NIGNQIPO1qn4vjdWb6';
 
         $data = [
