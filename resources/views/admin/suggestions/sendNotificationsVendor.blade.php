@@ -38,7 +38,7 @@
                                 <div class="card-body">
                                     <div class="form">
                                         <div class="col">
-                                            <label>Suiveuses</label> <span class="text-danger">*</span>
+                                            <label>Abonnés</label> <span class="text-danger">*</span>
                                             <select name="user_id[]" multiple="" class="form-control select2" id="">
                                                 <option value="send_to_all">Envoyer à tous</option>
                                                 @foreach($users as $user)
