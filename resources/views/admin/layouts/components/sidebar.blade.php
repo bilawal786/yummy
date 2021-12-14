@@ -31,7 +31,7 @@ Catégorie Premium
                 <li class=""><a class="nav-link " href="{{route('admin.suggestions')}}" ><i class="fas fa-balance-scale"></i> <span>
 Suggérer un commerce
 </span></a></li>
-                <li class=""><a class="nav-link " href="{{route('admin.send.notifications')}}" ><i class="fas fa-balance-scale"></i> <span>
+                <li class=""><a class="nav-link " href="{{route('admin.send.notifications')}}" ><i class="fas fa-address-card"></i> <span>
 Envoyer des notifications aux clients
 </span></a></li>
             @endif

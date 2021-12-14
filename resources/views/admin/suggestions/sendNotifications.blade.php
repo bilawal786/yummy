@@ -27,10 +27,10 @@
                             <div class="card-body">
                                 <div class="form">
                                     <div class="col">
-                                        <label>Send to</label> <span class="text-danger">*</span>
+                                        <label>Utilisateurs</label> <span class="text-danger">*</span>
                                         <select name="type" class="form-control" id="">
-                                                <option value="3">Shop Owners</option>
-                                                <option value="2"><Users></Users></option>
+                                                <option value="3">Commerçant</option>
+                                                <option value="2">Clients</option>
                                         </select>
                                     </div>
                                 </div>
