@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Favourite;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ProfileRequest;
@@ -92,6 +93,47 @@ class ProfileController extends BackendController
         $traders = User::role($role1)->get();
         return view('admin.suggestions.sendNotifications', compact('locations', 'users', 'traders'));
     }
+    public function sendNotificationsVendor(){
+       $users_id = Favourite::where('product_creator', Auth::user()->id)->pluck('user_id');
+       $users = User::whereIn('id', $users_id)->get();
+        return view('admin.suggestions.sendNotificationsVendor', compact( 'users'));
+    }
+
+    public function storeNotificationsvendor(Request $request){
+        if ($request->user_id[0] == "send_to_all"){
+            $users_id = Favourite::where('product_creator', Auth::user()->id)->pluck('user_id');
+            $firebaseToken = User::whereIn('id', $users_id)->whereNotNull('device_token')->pluck('device_token')->all();
+        }else{
+            $firebaseToken = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+        }
+        $SERVER_API_KEY = 'AAAAZuszcYE:APA91bFT8MAEAO0V4RndUefwj7ApFilhZ0vifGbAZNWv2YMVgSBElTkCiy4ntKyH_gKxfn1Bny36DCXcEJ4tK8wy9pS251AaXmjb1PNTkbE_FuAnXLgdlJtRW5NIGNQIPO1qn4vjdWb6';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "YUMMY BOX",
+                "body" => $request->message,
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
+        return redirect()->back()->withSuccess('Envoyé avec succès à tous');
+    }
 
     public function storeNotifications(Request $request){
         $role = Role::find($request->type);
@@ -107,7 +149,7 @@ class ProfileController extends BackendController
             "registration_ids" => $firebaseToken,
             "notification" => [
                 "title" => "YUMMY BOX",
-                "body" => "Message de l'administrateur :".$request->message,
+                "body" => $request->message,
             ]
         ];
         $dataString = json_encode($data);

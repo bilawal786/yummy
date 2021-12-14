@@ -20,6 +20,9 @@
             <li class=""><a class="nav-link " href="{{route('admin.vendor.bank')}}" ><i class="fas fa-bars"></i> <span>
 Coordonnées bancaires
 </span></a></li>
+                <li class=""><a class="nav-link " href="{{route('admin.vendor.send.notifications')}}" ><i class="fas fa-address-card"></i> <span>
+Envoyer des notifications aux clients
+</span></a></li>
             @endif
             @if( Auth::user()->hasRole('Admin') )
             <li class=""><a class="nav-link " href="{{route('admin.admin.bank')}}" ><i class="fas fa-bars"></i> <span>

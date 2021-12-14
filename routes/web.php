@@ -135,7 +135,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('profile', 'ProfileController@index')->name('profile');
     Route::get('suggestions', 'ProfileController@suggestions')->name('suggestions');
     Route::get('send/notifications', 'ProfileController@sendNotifications')->name('send.notifications');
+    Route::get('send/vendor/notifications', 'ProfileController@sendNotificationsVendor')->name('vendor.send.notifications');
     Route::post('store/notifications', 'ProfileController@storeNotifications')->name('notification.store');
+    Route::post('vendor/store/notifications', 'ProfileController@storeNotificationsvendor')->name('vendor.notification.store');
     Route::get('suggest/delete/{id}', 'ProfileController@suggestDelete')->name('suggest.delete');
     Route::get('admin/banks', 'ProfileController@adminBank')->name('admin.bank');
     Route::get('vendor/bank', 'ProfileController@bankDetails')->name('vendor.bank');
