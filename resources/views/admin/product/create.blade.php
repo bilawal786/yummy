@@ -178,7 +178,7 @@
                                     </div>
 
                                     <div class="form-group col {{ $errors->has('document') ? 'has-error' : '' }}">
-                                        <label for="document"> {{ __('Image') }}
+                                        <label for="document"> {{ __('Image') }} (525 * 329)
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input type="file" name="image" class="form-control">                                        @error('document')
