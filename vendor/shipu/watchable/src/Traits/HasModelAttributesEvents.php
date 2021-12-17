@@ -4,13 +4,14 @@ namespace Shipu\Watchable\Traits;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 trait HasModelAttributesEvents
 {
     /**
      * Automatically boot with Model, and register Events handler.
      */
-    protected static function bootHasModelAttributes()
+    protected static function bootHasModelAttributesEvents()
     {
         static::getAttributesModelEvents()->each(function ($eventName) {
             if (method_exists(static::class, $eventName)) {
@@ -20,11 +21,7 @@ trait HasModelAttributesEvents
                         $oldValue = $model->getOriginal($attribute);
                         $newValue = $model->getAttribute($attribute);
 
-                        if($model->hasCast($attribute)) {
-                            $oldValue = $model->castAttribute($attribute, $oldValue);
-                        }
-
-                        $hookMethod = "on" . studly_case($attribute . "_attribute_{$eventName}");
+                        $hookMethod = "on" . Str::studly($attribute . "_attribute_{$eventName}");
                         if (method_exists($model, $hookMethod)) {
                             $message = sprintf("[%s::%s]", get_class($model), $hookMethod);
                             Log::info($message, compact('newValue', 'oldValue', 'model'));

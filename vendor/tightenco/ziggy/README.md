@@ -486,7 +486,11 @@ If your application is using [TLS/SSL termination](https://en.wikipedia.org/wiki
 A [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (CSP) may block inline scripts, including those output by Ziggy's `@routes` Blade directive. If you have a CSP and are using a nonce to flag safe inline scripts, you can pass the nonce as as the second argument to the `@routes` directive and it will be added to Ziggy's script tag:
 
 ```php
-@routes(false, 'your-nonce-here')
+// PHP ^8.0
+@routes(nonce: 'your-nonce-here')
+
+// PHP <=7.4
+@routes(null, 'your-nonce-here')
 ```
 
 #### Disabling the `route()` helper
@@ -589,7 +593,7 @@ Thanks to [Caleb Porzio](http://twitter.com/calebporzio), [Adam Wathan](http://t
 
 ## Security
 
-If you discover any security related issues, please email <hello@tighten.co> instead of using the issue tracker.
+Please review our [security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## License
 

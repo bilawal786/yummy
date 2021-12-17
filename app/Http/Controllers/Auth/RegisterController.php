@@ -87,7 +87,7 @@ class RegisterController extends Controller {
         if ( !blank($user) && !blank($role) ) {
             $user->assignRole($role->name);
         }
-        $refferal_user = User::where('refferal', $data['refferal'])->first();
+        $refferal_user = User::whereNotNull('refferal')->where('refferal', $data['refferal'])->first();
         if ($refferal_user){
             $refferal = new Refferal();
             $refferal->user_id = $user->id;
