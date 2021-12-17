@@ -12,7 +12,10 @@
             <?php
             $invites = \App\Refferal::where('refferal_user', $user->id)->get();
             $ref = \App\Refferal::where('user_id', $user->id)->first();
-            $ref_by = \App\User::where('id', $ref->refferal_user)->first();
+			if ($ref){
+				$ref_by = \App\User::where('id', $ref->refferal_user)->first();
+			}
+
             ?>
             <div class="row">
                 <div class="col-12">
@@ -46,7 +49,7 @@
                                     <b>Référencé par</b>
                                 </div>
                                 <div class="col-md-4">
-                                        {{$ref_by->first_name}} {{$ref_by->last_name}}
+                                        {{$ref_by->first_name??''}} {{$ref_by->last_name??''}}
                                 </div>
                             </div>
                             @endif
