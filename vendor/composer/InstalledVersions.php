@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '45c32f717fd043082c48102332db148c8cd12197',
+    'reference' => 'e0f79993419cb18550d701694a8cb9aa2172eb01',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -563,7 +563,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '45c32f717fd043082c48102332db148c8cd12197',
+      'reference' => 'e0f79993419cb18550d701694a8cb9aa2172eb01',
     ),
     'laravel/socialite' => 
     array (
@@ -922,12 +922,12 @@ private static $installed = array (
     ),
     'psr/container' => 
     array (
-      'pretty_version' => '1.1.1',
-      'version' => '1.1.1.0',
+      'pretty_version' => '1.1.2',
+      'version' => '1.1.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8622567409010282b7aeebe4bb841fe98b58dcaf',
+      'reference' => '513e0666f7216c7459170d56df27dfcefe1689ea',
     ),
     'psr/container-implementation' => 
     array (
@@ -999,8 +999,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0.0 || 2.0.0 || 3.0.0',
-        1 => '1.0|2.0',
+        0 => '1.0|2.0',
+        1 => '1.0.0 || 2.0.0 || 3.0.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1229,12 +1229,12 @@ private static $installed = array (
     ),
     'spatie/laravel-sluggable' => 
     array (
-      'pretty_version' => '2.2.2',
-      'version' => '2.2.2.0',
+      'pretty_version' => '2.6.2',
+      'version' => '2.6.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b711700bacdf5382d8f4ed896b38e22102d27821',
+      'reference' => '297097239a675747d74fbd1ecb3ae0d4724a17de',
     ),
     'spatie/pdf-to-image' => 
     array (

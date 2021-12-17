@@ -2,24 +2,30 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-sluggable.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-sluggable)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/spatie/laravel-sluggable/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-sluggable)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-sluggable.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-sluggable)
-[![StyleCI](https://styleci.io/repos/48512561/shield?branch=master)](https://styleci.io/repos/48512561)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-sluggable/run-tests?label=tests)](https://github.com/spatie/laravel-sluggable/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-sluggable.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-sluggable)
 
-This package provides a trait that will generate a unique slug when saving any Eloquent model. 
+This package provides a trait that will generate a unique slug when saving any Eloquent model.
 
 ```php
 $model = new EloquentModel();
 $model->name = 'activerecord is awesome';
 $model->save();
 
-echo $model->slug; // ouputs "activerecord-is-awesome"
+echo $model->slug; // outputs "activerecord-is-awesome"
 ```
 
 The slugs are generated with Laravels `Str::slug` method, whereby spaces are converted to '-'.
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
+
+## Support us
+
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-sluggable.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-sluggable)
+
+We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+
+We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -32,15 +38,13 @@ composer require spatie/laravel-sluggable
 
 Your Eloquent models should use the `Spatie\Sluggable\HasSlug` trait and the `Spatie\Sluggable\SlugOptions` class.
 
-The trait contains an abstract method `getSlugOptions()` that you must implement yourself. 
+The trait contains an abstract method `getSlugOptions()` that you must implement yourself.
 
 Your models' migrations should have a field to save the generated slug to.
 
 Here's an example of how to implement the trait:
 
 ```php
-<?php
-
 namespace App;
 
 use Spatie\Sluggable\HasSlug;
@@ -50,7 +54,7 @@ use Illuminate\Database\Eloquent\Model;
 class YourEloquentModel extends Model
 {
     use HasSlug;
-    
+
     /**
      * Get the options for generating the slug.
      */
@@ -102,7 +106,7 @@ use Illuminate\Database\Eloquent\Model;
 class YourEloquentModel extends Model
 {
     use HasSlug;
-    
+
     /**
      * Get the options for generating the slug.
      */
@@ -112,7 +116,7 @@ class YourEloquentModel extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
-    
+
     /**
      * Get the route key for the model.
      *
@@ -193,9 +197,9 @@ public function getSlugOptions() : SlugOptions
 You can also override the generated slug just by setting it to another value than the generated slug.
 
 ```php
-$model = EloquentModel:create(['name' => 'my name']); //slug is now "my-name"; 
+$model = EloquentModel::create(['name' => 'my name']); //slug is now "my-name";
 $model->slug = 'my-custom-url';
-$model->save(); //slug is now "my-custom-url"; 
+$model->save(); //slug is now "my-custom-url";
 ```
 
 If you don't want to create the slug when the model is initially created you can set use the `doNotGenerateSlugsOnCreate()` function.
@@ -225,7 +229,7 @@ public function getSlugOptions() : SlugOptions
 This can be helpful for creating permalinks that don't change until you explicitly want it to.
 
 ```php
-$model = EloquentModel:create(['name' => 'my name']); //slug is now "my-name"; 
+$model = EloquentModel::create(['name' => 'my name']); //slug is now "my-name";
 $model->save();
 
 $model->name = 'changed name';
@@ -233,6 +237,79 @@ $model->save(); //slug stays "my-name"
 ```
 
 If you want to explicitly update the slug on the model you can call `generateSlug()` on your model at any time to make the slug according to your other options. Don't forget to `save()` the model to persist the update to your database.
+
+
+You can prevent slugs from being overwritten.
+
+```php
+public function getSlugOptions() : SlugOptions
+{
+    return SlugOptions::create()
+        ->generateSlugsFrom('name')
+        ->saveSlugsTo('slug')
+        ->preventOverwrite();
+}
+```
+
+### Integration with laravel-translatable
+
+You can use this package along with [laravel-translatable](https://github.com/spatie/laravel-translatable) to generate a slug for each locale. Instead of using the `HasSlug` trait, you must use the `HasTranslatableSlug` trait, and add the name of the slug field to the `$translatable` array. For slugs that are generated from a single field _or_ multiple fields, you don't have to change anything else.
+
+```php
+namespace App;
+
+use Spatie\Sluggable\HasTranslatableSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Model;
+
+class YourEloquentModel extends Model
+{
+    use HasTranslations, HasTranslatableSlug;
+
+    public $translatable = ['name', 'slug'];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
+}
+```
+
+For slugs that are generated from a callable, you need to instantiate the `SlugOptions` with the `createWithLocales` method. The callable now takes two arguments instead of one. Both the `$model` and the `$locale` are available to generate a slug from.
+
+```php
+namespace App;
+
+use Spatie\Sluggable\HasTranslatableSlug;
+use Spatie\Sluggable\SlugOptions;
+use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Model;
+
+class YourEloquentModel extends Model
+{
+    use HasTranslations, HasTranslatableSlug;
+
+    public $translatable = ['name', 'slug'];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::createWithLocales(['en', 'nl'])
+            ->generateSlugsFrom(function($model, $locale) {
+                return "{$locale} {$model->id}";
+            })
+            ->saveSlugsTo('slug');
+    }
+}
+```
 
 ## Changelog
 
@@ -252,25 +329,10 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
 
-## Postcardware
-
-You're free to use this package, but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
-
-Our address is: Spatie, Samberstraat 69D, 2060 Antwerp, Belgium.
-
-We publish all received postcards [on our company website](https://spatie.be/en/opensource/postcards).
-
 ## Credits
 
 - [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
-
-## Support us
-
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
-
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
-All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License
 

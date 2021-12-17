@@ -2,13 +2,12 @@
 
 namespace Spatie\Sluggable;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 trait HasSlug
 {
-    /** @var \Spatie\Sluggable\SlugOptions */
-    protected $slugOptions;
+    protected SlugOptions $slugOptions;
 
     abstract public function getSlugOptions(): SlugOptions;
 
@@ -31,6 +30,12 @@ trait HasSlug
             return;
         }
 
+        if ($this->slugOptions->preventOverwrite) {
+            if ($this->{$this->slugOptions->slugField} !== null) {
+                return;
+            }
+        }
+
         $this->addSlug();
     }
 
@@ -40,6 +45,12 @@ trait HasSlug
 
         if (! $this->slugOptions->generateSlugsOnUpdate) {
             return;
+        }
+
+        if ($this->slugOptions->preventOverwrite) {
+            if ($this->{$this->slugOptions->slugField} !== null) {
+                return;
+            }
         }
 
         $this->addSlug();
@@ -88,18 +99,21 @@ trait HasSlug
     protected function getSlugSourceString(): string
     {
         if (is_callable($this->slugOptions->generateSlugFrom)) {
-            $slugSourceString = call_user_func($this->slugOptions->generateSlugFrom, $this);
+            $slugSourceString = $this->getSlugSourceStringFromCallable();
 
-            return substr($slugSourceString, 0, $this->slugOptions->maximumLength);
+            return $this->generateSubstring($slugSourceString);
         }
 
         $slugSourceString = collect($this->slugOptions->generateSlugFrom)
-            ->map(function (string $fieldName) : string {
-                return data_get($this, $fieldName, '');
-            })
+            ->map(fn (string $fieldName): string => data_get($this, $fieldName, ''))
             ->implode($this->slugOptions->slugSeparator);
 
-        return substr($slugSourceString, 0, $this->slugOptions->maximumLength);
+        return $this->generateSubstring($slugSourceString);
+    }
+
+    protected function getSlugSourceStringFromCallable(): string
+    {
+        return call_user_func($this->slugOptions->generateSlugFrom, $this);
     }
 
     protected function makeSlugUnique(string $slug): string
@@ -116,15 +130,12 @@ trait HasSlug
 
     protected function otherRecordExistsWithSlug(string $slug): bool
     {
-        $key = $this->getKey();
-
-        if ($this->incrementing) {
-            $key = $key ?? '0';
-        }
-
         $query = static::where($this->slugOptions->slugField, $slug)
-            ->where($this->getKeyName(), '!=', $key)
             ->withoutGlobalScopes();
+
+        if ($this->exists) {
+            $query->where($this->getKeyName(), '!=', $this->getKey());
+        }
 
         if ($this->usesSoftDeletes()) {
             $query->withTrashed();
@@ -133,13 +144,9 @@ trait HasSlug
         return $query->exists();
     }
 
-    protected function usesSoftDeletes()
+    protected function usesSoftDeletes(): bool
     {
-        if (in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this))) {
-            return true;
-        }
-
-        return false;
+        return (bool) in_array('Illuminate\Database\Eloquent\SoftDeletes', class_uses($this));
     }
 
     protected function ensureValidSlugOptions()
@@ -155,5 +162,18 @@ trait HasSlug
         if ($this->slugOptions->maximumLength <= 0) {
             throw InvalidOption::invalidMaximumLength();
         }
+    }
+
+    /**
+     * Helper function to handle multi-bytes strings if the module mb_substr is present,
+     * default to substr otherwise.
+     */
+    protected function generateSubstring($slugSourceString)
+    {
+        if (function_exists('mb_substr')) {
+            return mb_substr($slugSourceString, 0, $this->slugOptions->maximumLength);
+        }
+
+        return substr($slugSourceString, 0, $this->slugOptions->maximumLength);
     }
 }

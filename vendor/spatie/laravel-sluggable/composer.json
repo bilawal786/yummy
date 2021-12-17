@@ -16,12 +16,15 @@
         }
     ],
     "require": {
-        "php" : "^7.2",
-        "illuminate/database": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
-        "illuminate/support": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0"
+        "php": "^7.4|^8.0",
+        "illuminate/database": "^7.30|^8.0",
+        "illuminate/support": "^7.30|^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "~3.6.0|~3.7.0|~3.8.0|^4.0|^5.0"
+        "orchestra/testbench": "^5.16|^6.11",
+        "spatie/laravel-translatable": "^4.6",
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "phpunit/phpunit": "^9.5.1"
     },
     "autoload": {
         "psr-4": {
@@ -30,10 +33,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Sluggable\\Test\\": "tests"
+            "Spatie\\Sluggable\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test": "phpunit"
-    }
+        "test": "phpunit",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

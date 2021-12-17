@@ -4,17 +4,19 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
+class ComposerStaticInita675570be5c42db4eba2a797b9bc4112
 {
     public static $files = array (
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
@@ -25,16 +27,14 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'a7af7b67318e84e7f5f763df69bfbafa' => __DIR__ . '/..' . '/akaunting/setting/src/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'd7354eb4c8441fbf08eec280b61c7c73' => __DIR__ . '/..' . '/rachidlaasri/laravel-installer/src/Helpers/functions.php',
@@ -237,8 +237,8 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'ZipStream\\' => 
         array (
@@ -446,8 +446,8 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -3796,7 +3796,7 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'Jackiedo\\Timezonelist\\TimezonelistServiceProvider' => __DIR__ . '/..' . '/jackiedo/timezonelist/src/Jackiedo/Timezonelist/TimezonelistServiceProvider.php',
         'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
         'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
-        'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException 2.php',
+        'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'LaravelPWA\\Http\\Controllers\\LaravelPWAController' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Http/Controllers/LaravelPWAController.php',
         'LaravelPWA\\Providers\\LaravelPWAServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/LaravelPWAServiceProvider.php',
         'LaravelPWA\\Providers\\RouteServiceProvider' => __DIR__ . '/..' . '/silviolleite/laravelpwa/Providers/RouteServiceProvider.php',
@@ -4583,7 +4583,7 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'Namshi\\JOSE\\Signer\\SecLib\\RSA' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Signer/SecLib/RSA.php',
         'Namshi\\JOSE\\Signer\\SignerInterface' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/Signer/SignerInterface.php',
         'Namshi\\JOSE\\SimpleJWS' => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE/SimpleJWS.php',
-        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer 2.php',
+        'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'NotificationChannels\\Twilio\\Exceptions\\CouldNotSendNotification' => __DIR__ . '/..' . '/laravel-notification-channels/twilio/src/Exceptions/CouldNotSendNotification.php',
         'NotificationChannels\\Twilio\\Exceptions\\InvalidConfigException' => __DIR__ . '/..' . '/laravel-notification-channels/twilio/src/Exceptions/InvalidConfigException.php',
         'NotificationChannels\\Twilio\\Twilio' => __DIR__ . '/..' . '/laravel-notification-channels/twilio/src/Twilio.php',
@@ -4855,9 +4855,9 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'PHPUnit\\Util\\XdebugFilterScriptGenerator' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/XdebugFilterScriptGenerator.php',
         'PHPUnit\\Util\\Xml' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/Xml.php',
         'PHPUnit\\Util\\XmlTestListRenderer' => __DIR__ . '/..' . '/phpunit/phpunit/src/Util/XmlTestListRenderer.php',
-        'PHP_Token' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_TokenWithScope' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_TokenWithScopeAndVisibility' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
+        'PHP_Token' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_TokenWithScope' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/TokenWithScope.php',
+        'PHP_TokenWithScopeAndVisibility' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/TokenWithScopeAndVisibility.php',
         'PHP_Token_ABSTRACT' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Abstract.php',
         'PHP_Token_AMPERSAND' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Ampersand.php',
         'PHP_Token_AND_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/AndEqual.php',
@@ -5018,21 +5018,21 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'PHP_Token_Stream_CachingFactory' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/CachingFactory.php',
         'PHP_Token_THROW' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Throw.php',
         'PHP_Token_TILDE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Tilde.php',
-        'PHP_Token_TRAIT' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_TRAIT_C' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_TRY' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_UNSET' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_UNSET_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_USE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_USE_FUNCTION' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
+        'PHP_Token_TRAIT' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Trait.php',
+        'PHP_Token_TRAIT_C' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/TraitC.php',
+        'PHP_Token_TRY' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Try.php',
+        'PHP_Token_UNSET' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Unset.php',
+        'PHP_Token_UNSET_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/UnsetCast.php',
+        'PHP_Token_USE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Use.php',
+        'PHP_Token_USE_FUNCTION' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/UseFunction.php',
         'PHP_Token_Util' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Util.php',
-        'PHP_Token_VAR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_VARIABLE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_WHILE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_WHITESPACE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
-        'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token 2.php',
+        'PHP_Token_VAR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Var.php',
+        'PHP_Token_VARIABLE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Variable.php',
+        'PHP_Token_WHILE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/While.php',
+        'PHP_Token_WHITESPACE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Whitespace.php',
+        'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/XorEqual.php',
+        'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Yield.php',
+        'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/YieldFrom.php',
         'PageTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PageTableSeeder.php',
         'PermissionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PermissionTableSeeder.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
@@ -5085,25 +5085,25 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'PharIo\\Manifest\\RequiresElement' => __DIR__ . '/..' . '/phar-io/manifest/src/xml/RequiresElement.php',
         'PharIo\\Manifest\\Type' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Type.php',
         'PharIo\\Manifest\\Url' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Url.php',
-        'PharIo\\Version\\AbstractVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/AbstractVersionConstraint 2.php',
-        'PharIo\\Version\\AndVersionConstraintGroup' => __DIR__ . '/..' . '/phar-io/version/src/constraints/AndVersionConstraintGroup 2.php',
-        'PharIo\\Version\\AnyVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/AnyVersionConstraint 2.php',
-        'PharIo\\Version\\ExactVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/ExactVersionConstraint 2.php',
-        'PharIo\\Version\\Exception' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/Exception 2.php',
-        'PharIo\\Version\\GreaterThanOrEqualToVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/GreaterThanOrEqualToVersionConstraint 2.php',
-        'PharIo\\Version\\InvalidPreReleaseSuffixException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/InvalidPreReleaseSuffixException 2.php',
-        'PharIo\\Version\\InvalidVersionException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/InvalidVersionException 2.php',
+        'PharIo\\Version\\AbstractVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/AbstractVersionConstraint.php',
+        'PharIo\\Version\\AndVersionConstraintGroup' => __DIR__ . '/..' . '/phar-io/version/src/constraints/AndVersionConstraintGroup.php',
+        'PharIo\\Version\\AnyVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/AnyVersionConstraint.php',
+        'PharIo\\Version\\ExactVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/ExactVersionConstraint.php',
+        'PharIo\\Version\\Exception' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/Exception.php',
+        'PharIo\\Version\\GreaterThanOrEqualToVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/GreaterThanOrEqualToVersionConstraint.php',
+        'PharIo\\Version\\InvalidPreReleaseSuffixException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/InvalidPreReleaseSuffixException.php',
+        'PharIo\\Version\\InvalidVersionException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/InvalidVersionException.php',
         'PharIo\\Version\\NoPreReleaseSuffixException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/NoPreReleaseSuffixException.php',
-        'PharIo\\Version\\OrVersionConstraintGroup' => __DIR__ . '/..' . '/phar-io/version/src/constraints/OrVersionConstraintGroup 2.php',
-        'PharIo\\Version\\PreReleaseSuffix' => __DIR__ . '/..' . '/phar-io/version/src/PreReleaseSuffix 2.php',
-        'PharIo\\Version\\SpecificMajorAndMinorVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/SpecificMajorAndMinorVersionConstraint 2.php',
-        'PharIo\\Version\\SpecificMajorVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/SpecificMajorVersionConstraint 2.php',
-        'PharIo\\Version\\UnsupportedVersionConstraintException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/UnsupportedVersionConstraintException 2.php',
-        'PharIo\\Version\\Version' => __DIR__ . '/..' . '/phar-io/version/src/Version 2.php',
-        'PharIo\\Version\\VersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/VersionConstraint 2.php',
-        'PharIo\\Version\\VersionConstraintParser' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintParser 2.php',
-        'PharIo\\Version\\VersionConstraintValue' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintValue 2.php',
-        'PharIo\\Version\\VersionNumber' => __DIR__ . '/..' . '/phar-io/version/src/VersionNumber 2.php',
+        'PharIo\\Version\\OrVersionConstraintGroup' => __DIR__ . '/..' . '/phar-io/version/src/constraints/OrVersionConstraintGroup.php',
+        'PharIo\\Version\\PreReleaseSuffix' => __DIR__ . '/..' . '/phar-io/version/src/PreReleaseSuffix.php',
+        'PharIo\\Version\\SpecificMajorAndMinorVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/SpecificMajorAndMinorVersionConstraint.php',
+        'PharIo\\Version\\SpecificMajorVersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/SpecificMajorVersionConstraint.php',
+        'PharIo\\Version\\UnsupportedVersionConstraintException' => __DIR__ . '/..' . '/phar-io/version/src/exceptions/UnsupportedVersionConstraintException.php',
+        'PharIo\\Version\\Version' => __DIR__ . '/..' . '/phar-io/version/src/Version.php',
+        'PharIo\\Version\\VersionConstraint' => __DIR__ . '/..' . '/phar-io/version/src/constraints/VersionConstraint.php',
+        'PharIo\\Version\\VersionConstraintParser' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintParser.php',
+        'PharIo\\Version\\VersionConstraintValue' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintValue.php',
+        'PharIo\\Version\\VersionNumber' => __DIR__ . '/..' . '/phar-io/version/src/VersionNumber.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Calculation' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Calculation.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Category' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Category.php',
         'PhpOffice\\PhpSpreadsheet\\Calculation\\Database' => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Calculation/Database.php',
@@ -6471,6 +6471,7 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
         'Spatie\\Permission\\Traits\\RefreshesPermissionCache' => __DIR__ . '/..' . '/spatie/laravel-permission/src/Traits/RefreshesPermissionCache.php',
         'Spatie\\Permission\\WildcardPermission' => __DIR__ . '/..' . '/spatie/laravel-permission/src/WildcardPermission.php',
         'Spatie\\Sluggable\\HasSlug' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/HasSlug.php',
+        'Spatie\\Sluggable\\HasTranslatableSlug' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/HasTranslatableSlug.php',
         'Spatie\\Sluggable\\InvalidOption' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/InvalidOption.php',
         'Spatie\\Sluggable\\SlugOptions' => __DIR__ . '/..' . '/spatie/laravel-sluggable/src/SlugOptions.php',
         'Spatie\\TemporaryDirectory\\TemporaryDirectory' => __DIR__ . '/..' . '/spatie/temporary-directory/src/TemporaryDirectory.php',
@@ -9866,10 +9867,10 @@ class ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit6c2de1c543b95c957df2421e9f4aa143::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita675570be5c42db4eba2a797b9bc4112::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita675570be5c42db4eba2a797b9bc4112::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInita675570be5c42db4eba2a797b9bc4112::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInita675570be5c42db4eba2a797b9bc4112::$classMap;
 
         }, null, ClassLoader::class);
     }

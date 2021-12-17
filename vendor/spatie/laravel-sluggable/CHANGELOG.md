@@ -2,11 +2,52 @@
 
 All notable changes to `laravel-sluggable` will be documented in this file
 
+## 2.6.2 - 2021-03-20
+
+- Added translatable slug overriding (#190)
+
+## 2.6.1 - 2020-01-31
+
+- fix Eloquent model checking (#186)
+
+## 2.6.0 - 2020-10-28
+
+- add `preventOverwrite`
+- add support for PHP 8
+
+## 2.5.2 - 2020-10-01
+
+- fixed an incompatibility bug with postgresql uuid column (#173)
+
+## 2.5.1 - 2020-09-07
+
+- add support for Laravel 8
+
+## 2.5.0 - 2020-06-15
+
+- add helper trait to integrate with `laravel-translatable` #155
+
+## 2.4.2 - 2020-04-20
+
+- fix bug that causes empty slugs when dealing with multi-bytes chars (#152)
+
+## 2.4.1 - 2020-04-09
+
+- use method for retrieving incrementing status of the model (#151)
+
+## 2.4.0 - 2020-03-03
+
+- add support for Laravel 7, drop support for Laravel 6
+
+## 2.3.0 - 2019-12-06
+
+- drop support for anything below PHP 7.4 and Laravel 6
+
 ## 2.2.1 - 2019-09-16
 - Changed: Updated Laravel 6 compatibility for future versions
 
 ## 2.2.0 - 2019-09-04
-- Drop support for PHP 7.2
+- Drop support for PHP 7.1
 - Add support for Laravel 6.0
 
 ## 2.1.8 - 2019-06-08
