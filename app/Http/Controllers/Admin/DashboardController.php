@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Shop;
 use App\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends BackendController
 {
@@ -49,14 +50,14 @@ class DashboardController extends BackendController
         $totalOrders  = $orders->get();
         $recentOrders = Order::orderBy('id', 'desc')->whereDate('created_at', date('Y-m-d'))->orderOwner()->get();
         $yearlyOrders = Order::orderBy('id', 'desc')->where('status', '!=', OrderStatus::CANCEL)->whereYear('created_at', date('Y'))->orderOwner()->get();
-        $totalIncome = 0;
-        if ( !blank($totalOrders) ) {
+        $totalIncome = Order::where('status', 20)->sum('total');
+        /*if ( !blank($totalOrders) ) {
             foreach ( $totalOrders as $totalOrder ) {
                 if ( OrderStatus::COMPLETED == $totalOrder->status ) {
                     $totalIncome += $totalOrder->paid_amount;
                 }
             }
-        }
+        }*/
         $monthWiseTotalIncome    = [];
         $monthDayWiseTotalIncome = [];
         $monthWiseTotalOrder     = [];
@@ -90,7 +91,8 @@ class DashboardController extends BackendController
         $this->data['totalOrders'] = $totalOrders;
         $this->data['totalIncome'] = $totalIncome;
         if ( auth()->user()->myrole == UserRole::ADMIN ) {
-            $this->data['totalUsers'] = User::where([ 'status' => UserStatus::ACTIVE ])->get();
+            $role = Role::find(2);
+            $this->data['totalUsers'] = User::role($role->name)->where([ 'status' => UserStatus::ACTIVE ])->get();
             $this->data['totalShops'] = Shop::where([ 'status' => ShopStatus::ACTIVE ])->get();
         } elseif ( auth()->user()->myrole == UserRole::SHOPOWNER || auth()->user()->myrole == UserRole::DELIVERYBOY ) {
             if ( auth()->user()->myrole == UserRole::SHOPOWNER ) {

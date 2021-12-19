@@ -5756,7 +5756,6 @@ return array(
     'Spatie\\Permission\\Traits\\RefreshesPermissionCache' => $vendorDir . '/spatie/laravel-permission/src/Traits/RefreshesPermissionCache.php',
     'Spatie\\Permission\\WildcardPermission' => $vendorDir . '/spatie/laravel-permission/src/WildcardPermission.php',
     'Spatie\\Sluggable\\HasSlug' => $vendorDir . '/spatie/laravel-sluggable/src/HasSlug.php',
-    'Spatie\\Sluggable\\HasTranslatableSlug' => $vendorDir . '/spatie/laravel-sluggable/src/HasTranslatableSlug.php',
     'Spatie\\Sluggable\\InvalidOption' => $vendorDir . '/spatie/laravel-sluggable/src/InvalidOption.php',
     'Spatie\\Sluggable\\SlugOptions' => $vendorDir . '/spatie/laravel-sluggable/src/SlugOptions.php',
     'Spatie\\TemporaryDirectory\\TemporaryDirectory' => $vendorDir . '/spatie/temporary-directory/src/TemporaryDirectory.php',

@@ -7,36 +7,30 @@ class SlugOptions
     /** @var array|callable */
     public $generateSlugFrom;
 
-    public string $slugField;
+    /** @var string */
+    public $slugField;
 
-    public bool $generateUniqueSlugs = true;
+    /** @var bool */
+    public $generateUniqueSlugs = true;
 
-    public int $maximumLength = 250;
+    /** @var int */
+    public $maximumLength = 250;
 
-    public bool $generateSlugsOnCreate = true;
+    /** @var bool */
+    public $generateSlugsOnCreate = true;
 
-    public bool $generateSlugsOnUpdate = true;
+    /** @var bool */
+    public $generateSlugsOnUpdate = true;
 
-    public bool $preventOverwrite = false;
+    /** @var string */
+    public $slugSeparator = '-';
 
-    public string $slugSeparator = '-';
-
-    public string $slugLanguage = 'en';
-
-    public array $translatableLocales = [];
+    /** @var string */
+    public $slugLanguage = 'en';
 
     public static function create(): self
     {
         return new static();
-    }
-
-    public static function createWithLocales(array $locales): self
-    {
-        $slugOptions = static::create();
-
-        $slugOptions->translatableLocales = $locales;
-
-        return $slugOptions;
     }
 
     /**
@@ -86,13 +80,6 @@ class SlugOptions
     public function doNotGenerateSlugsOnUpdate(): self
     {
         $this->generateSlugsOnUpdate = false;
-
-        return $this;
-    }
-
-    public function preventOverwrite(): self
-    {
-        $this->preventOverwrite = true;
 
         return $this;
     }
