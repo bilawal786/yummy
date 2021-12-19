@@ -50,7 +50,7 @@ class OrderController extends BackendController
      */
     public function index()
     {
-        $orders = Order::whereDate('created_at', Carbon::today())->orderOwner()->get();
+        $orders = Order::orderOwner()->get();
 
         $this->data['total_order']     = $orders->count();
         $this->data['pending_order']   = $orders->where('status', OrderStatus::PENDING)->count();
