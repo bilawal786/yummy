@@ -95,6 +95,35 @@ class CheckoutController extends FrontendController
                 'payment_type' => 'required|numeric',
             ];
 
+            $merchent = Shop::where('id', $shop_product_id)->first();
+            $firebaseToken = User::where('id', $merchent->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+
+            $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
+
+            $data = [
+                "registration_ids" => $firebaseToken,
+                "notification" => [
+                    "title" => "Yummy Box",
+                    "body" => "Félicitations! Vous avez une nouvelle commande, ouvrez l'application pour plus de détails.",
+                ]
+            ];
+            $dataString = json_encode($data);
+
+            $headers = [
+                'Authorization: key=' . $SERVER_API_KEY,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+            $response = curl_exec($ch);
             /*$validator = Validator::make($request->all(), $validation);
 
             $validator->after(function ($validator) use ($request, $shop) {
