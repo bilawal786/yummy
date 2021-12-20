@@ -80,8 +80,8 @@
                             <div class="row mt-4">
                                 <div class="col-lg-8">
                                     <div class="section-title">{{ __('État') }} : {{ trans('order_status.'.$order->status) }}</div>
-                                    <div class="section-title">{{ __('Statut du paiement') }} : {{ trans('payment_status.'.$order->payment_status) }}</div>
-                                    <div class="section-title">{{ __('Méthode de paieemnt') }} : {{ trans('payment_method.'.$order->payment_method) }}</div>
+                                    <div class="section-title">{{ __('Statut du paiement') }} : Payé</div>
+                                    <div class="section-title">{{ __('Méthode de Paiement') }} : {{ trans('payment_method.'.$order->payment_method) }}</div>
                                 </div>
                                 <div class="col-lg-4 text-right">
                                     <div class="invoice-detail-item">
