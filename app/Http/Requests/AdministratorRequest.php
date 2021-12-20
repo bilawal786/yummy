@@ -31,9 +31,7 @@ class AdministratorRequest extends FormRequest
             'username'   => request('username') ? ['required', 'string', Rule::unique("users", "username")->ignore($this->administrator), 'max:60'] : ['nullable'],
             'password'   => [$this->administrator ? 'nullable' : 'required'],
             'phone'      => ['required', 'max:60'],
-            'address'    => ['nullable', 'max:200'],
             'status'     => ['required', 'numeric'],
-            'image'      => 'nullable|mimes:jpeg,jpg,png,gif|max:3096',
         ];
     }
 

@@ -56,7 +56,7 @@
 				                    </div>
 				                </div>
 
-								<div class="form-row" style="Display:none">
+								<div class="form-row">
 							        <div class="form-group col">
 				                        <label>{{ __('levels.username') }}</label>
 				                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}">
