@@ -84,9 +84,9 @@
                                        @endif
             </form>
             <br>
-            <a href="{{ route('facebook.login') }}" class="btn btn-fb btn-block rounded btn-lg">
-               <i class="fab fa-facebook mr-2"></i> Continuer avec Facebook
-               </a>
+{{--            <a href="{{ route('facebook.login') }}" class="btn btn-fb btn-block rounded btn-lg">--}}
+{{--               <i class="fab fa-facebook mr-2"></i> Continuer avec Facebook--}}
+{{--               </a>--}}
 
               <!--<br>
             <a href="#" class="btn btn-dark btn-block rounded btn-lg btn-apple">
