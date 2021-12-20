@@ -66,7 +66,7 @@ class LoginController extends Controller
         $permissionRole = [1, 3, 4];
         
         if (Auth::user() && in_array(Auth::user()->myrole, $permissionRole)) {
-          return redirect('/admin');
+          return redirect('/home');
         }
         return redirect(route('home'));
     }
