@@ -106,7 +106,7 @@ class ProfileController extends BackendController
         }else{
             $firebaseToken = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
         }
-        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYx';
+        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
 
         $data = [
             "registration_ids" => $firebaseToken,
