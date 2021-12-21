@@ -86,36 +86,63 @@ class CheckoutController extends FrontendController
         $shop_product_id = $request->pid ?? session('shop_product_id');
 
         $this->data['shop'] = ShopProduct::findOrfail($shop_product_id);
-        $merchent = Shop::where('id', $this->data['shop']->shop_id)->first();
-        $firebaseToken = User::where('id', $merchent->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
 
-        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
-
-        $data = [
-            "registration_ids" => $firebaseToken,
-            "notification" => [
-                "title" => "Yummy Box",
-                "body" => "Félicitations! Vous avez une nouvelle commande, ouvrez l'application pour plus de détails.",
-            ]
-        ];
-        $dataString = json_encode($data);
-
-        $headers = [
-            'Authorization: key=' . $SERVER_API_KEY,
-            'Content-Type: application/json',
-        ];
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-        $response = curl_exec($ch);
         if($request->payment_type){
+            $merchent = Shop::where('id', $this->data['shop']->shop_id)->first();
+            $firebaseToken = User::where('id', $merchent->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+            $firebaseTokenForcurrentUser = User::where('id',Auth::user()->id)->whereNotNull('device_token')->pluck('device_token')->all();
+
+            $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
+
+            $data = [
+                "registration_ids" => $firebaseToken,
+                "notification" => [
+                    "title" => "Yummy Box",
+                    "body" => "Félicitations! Vous avez une nouvelle commande, ouvrez l'application pour plus de détails",
+                ]
+            ];
+            $dataString = json_encode($data);
+
+            $headers = [
+                'Authorization: key=' . $SERVER_API_KEY,
+                'Content-Type: application/json',
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+            $response = curl_exec($ch);
+            //////////////////////////////////////
+            $data1 = [
+                "registration_ids" => $firebaseTokenForcurrentUser,
+                "notification" => [
+                    "title" => "Yummy Box",
+                    "body" => "Félicitations, vous venez de faire un geste pour la planète 🌎",
+                ]
+            ];
+            $dataString1 = json_encode($data1);
+
+            $headers1 = [
+                'Authorization: key=' . $SERVER_API_KEY,
+                'Content-Type: application/json',
+            ];
+
+            $ch1 = curl_init();
+
+            curl_setopt($ch1, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch1, CURLOPT_POST, true);
+            curl_setopt($ch1, CURLOPT_HTTPHEADER, $headers1);
+            curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch1, CURLOPT_POSTFIELDS, $dataString1);
+            $response = curl_exec($ch1);
+            ///////////////////////
         if ($shop_product_id > 0 or blank($request->coin)) {
             $shop = Shop::find($this->data['shop']->shop_id);
             $validation = [
