@@ -64,11 +64,15 @@ class CheckoutController extends FrontendController
           $user->save();
           $customer_id = $customer->id;
         }
+
+        $merchent = Shop::where('id', $this->data['shop']->shop_id)->first();
+        $merchant_details = User::where('id', $merchent->user_id)->first();
+
         $payment_intent = \Stripe\PaymentIntent::create([
           'amount' => $this->data['shop']->product->unit_price *100,
           'currency' => 'EUR',
           'customer' => $customer_id,
-          'description' => 'Panier YummyBox'
+          'description' => $merchant_details->first_name ." ". $merchant_details->last_name.' YummyBox'
         ]);
 
         $this->data['intent'] = $payment_intent->client_secret;
