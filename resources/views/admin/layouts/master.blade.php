@@ -84,7 +84,7 @@
                     )
                 )
                     var d = "whatsapp://send";
-                var g = d + "?phone=+590690283282" + e + f;
+                var g = d + "?phone=+590690425402" + e + f;
                 window.open(g, "_blank");
             }
         }),
