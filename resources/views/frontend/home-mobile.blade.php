@@ -114,7 +114,8 @@
   <div class="weekly-best-seller-area py-3">
     <div class="container">
       <div class="section-heading d-flex align-items-center justify-content-between">
-        <h6>{{ $cate->name }}</h6><a class="btn btn-success btn-sm" href="{{ route('categories', $cate->slug) }}">Voir</a>
+        <h6>{{ $cate->name }}</h6>
+          <a class="btn btn-success btn-sm" href="{{ route('categories', $cate->slug) }}">Voir</a>
       </div>
       <div class="row g-3">
           <!-- Single Weekly Product Card-->
@@ -176,7 +177,7 @@
            <p>Pas de panier disponible dans cette catégorie pour le moment</p>
            @endif
       </div>
-
+        <p><a href="{{ route('categories.traders', $cate->slug) }}">Voir la liste des commerçants</a></p>
     </div>
   </div>
 

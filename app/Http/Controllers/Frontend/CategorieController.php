@@ -34,6 +34,15 @@ class CategorieController extends FrontendController
       //  dd($page);
         return view('frontend.category', $this->data);
     }
+    public function tradersindex($slug)
+    {
+        $this->data['cate']      = Category::where('slug', '=', $slug)->where('status', '!=', 10)->first();
+        $this->data['namepage']  = $this->data['cate']->name;
+        $this->data['user']      = auth()->user();
+
+      //  dd($page);
+        return view('frontend.tradersindex', $this->data);
+    }
     public function favourites(){
         $fav = Favourite::where('user_id', '=', Auth::user()->id)->pluck('product_id');
         $this->data['cate']      = Product::whereIn('id', $fav)->get();
