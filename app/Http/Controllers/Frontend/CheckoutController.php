@@ -72,7 +72,7 @@ class CheckoutController extends FrontendController
           'amount' => $this->data['shop']->product->unit_price *100,
           'currency' => 'EUR',
           'customer' => $customer_id,
-          'description' => $merchant_details->first_name ." ". $merchant_details->last_name.' YummyBox'
+          'description' => $merchent->name .' YummyBox'
         ]);
 
         $this->data['intent'] = $payment_intent->client_secret;
