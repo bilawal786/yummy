@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 Route::get('/', function (){
     $check =  preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
     if($check){
-        return view('frontend.intro.1');
+        return  redirect('/intro-screens');
     }else{
         return  redirect('/login');
     }
@@ -26,6 +26,9 @@ Route::get('/save-token/{token}',function ($token){
     Auth::user()->update(['device_token'=>$token]);
     return redirect('home');
 });
+Route::get('/intro-screens',function (){
+    return view('frontend.intro.1');
+})->middleware('guest');
 
 Route::group(['middleware' => ['installed']], function () {
     Auth::routes(['verify' => false]);
