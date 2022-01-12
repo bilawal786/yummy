@@ -124,7 +124,7 @@
                   $likes = \App\Favourite::where('product_id', $proximite->id)->get()->count();
                  $mytime = Carbon\Carbon::now();
                  $heure = $mytime->format('H:i:s');
-                 $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->with('shop')->first();
+                 $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('shop')->first();
                  /*$shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->where('hdispoa', '<=', $heure)->where('hdispob', '>=', $heure)->with('product')->with('shop')->get();*/
                  $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
                  $qty = 0;

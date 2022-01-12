@@ -20,7 +20,7 @@ class Category extends BaseModel implements HasMedia
 
     public function shops()
     {
-        return $this->belongsToMany(Shop::class, 'category_shops', 'category_id', 'shop_id');
+        return $this->belongsToMany(Shop::class, 'category_shops', 'category_id', 'shop_id')->latest();
     }
     public function country()
     {
@@ -29,7 +29,7 @@ class Category extends BaseModel implements HasMedia
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id');
+        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->latest();
     }
     public function qty()
     {
