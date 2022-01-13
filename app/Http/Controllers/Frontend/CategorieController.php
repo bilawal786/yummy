@@ -44,8 +44,9 @@ class CategorieController extends FrontendController
         return view('frontend.tradersindex', $this->data);
     }
     public function favourites(){
-        $fav = Favourite::where('user_id', '=', Auth::user()->id)->pluck('product_id');
-        $this->data['cate']      = Product::whereIn('id', $fav)->get();
+        $fav = Favourite::where('user_id', '=', Auth::user()->id)->get()->unique('product_creator');
+        $p_ids = $fav->pluck('product_id');
+        $this->data['cate']      = Product::whereIn('id', $p_ids)->get();
         $this->data['namepage']  = "Favoris";
         $this->data['user']      = auth()->user();
 
