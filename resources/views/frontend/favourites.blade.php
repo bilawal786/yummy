@@ -9,12 +9,12 @@
                     @if(!blank($cate))
                         @foreach($cate as $proximite)
                             @php
-                            $likes = \App\Favourite::where('product_id', $proximite->id)->get()->count();
                                 $mytime = Carbon\Carbon::now();
                                 $heure = $mytime->format('H:i:s');
                                 $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->with('shop')->first();
                                 $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
                                 $qty = 0;
+                                $likes = \App\Favourite::where('product_creator', $shopProducts->shop->user->id)->get()->unique('user_id')->count();
                             @endphp
                             <div class="col-12 col-md-6">
                                 @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach

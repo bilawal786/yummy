@@ -7,6 +7,7 @@
                 <div class="row g-3">
                     <!-- Single Weekly Product Card-->
                     @foreach($notfications as $notfication)
+                        @if($notfication->activity == "Nouveau panier")
                         @php
                         $product = \App\Models\Product::where('id', $notfication->generate_id)->first();
                            $shopProducts = App\Models\ShopProduct::where(['product_id' => $notfication->generate_id])->first();
@@ -26,6 +27,7 @@
                                 </div>
                             </div>
                         </a>
+                        @endif
                     @endforeach
                 </div>
             </div>
