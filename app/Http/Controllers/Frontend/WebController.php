@@ -13,6 +13,7 @@ use App\Models\Location;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
+use App\Notify;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,5 +110,12 @@ class WebController extends FrontendController
         $this->data['namepage']  = "Carte";
         $this->data['user'] = auth()->user();
         return view('frontend.shopMap', $this->data);
+    }
+    public function notifications(){
+        $namepage = 'Notifications';
+        $user = Auth::user();
+        $notfications = Notify::latest()->where('r_id','=',$user->id)->paginate('20');
+        Notify::latest()->where('r_id','=',$user->id)->update(['status' => 1]);
+        return view('frontend.notifications', compact('user','namepage','notfications'));
     }
 }

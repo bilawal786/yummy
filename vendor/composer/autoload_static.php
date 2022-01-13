@@ -997,6 +997,7 @@ class ComposerStaticInita675570be5c42db4eba2a797b9bc4112
         'App\\Notifications\\OrderCreated' => __DIR__ . '/../..' . '/app/Notifications/OrderCreated.php',
         'App\\Notifications\\OrderUpdated' => __DIR__ . '/../..' . '/app/Notifications/OrderUpdated.php',
         'App\\Notifications\\PasswordReset' => __DIR__ . '/../..' . '/app/Notifications/PasswordReset.php',
+        'App\\Notify' => __DIR__ . '/../..' . '/app/Notify.php',
         'App\\Presenters\\Presenter' => __DIR__ . '/../..' . '/app/Presenters/Presenter.php',
         'App\\Presenters\\User\\UserPresenter' => __DIR__ . '/../..' . '/app/Presenters/User/UserPresenter.php',
         'App\\Presenters\\UsesPresenters' => __DIR__ . '/../..' . '/app/Presenters/UsesPresenters.php',

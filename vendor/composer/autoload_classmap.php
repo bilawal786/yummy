@@ -282,6 +282,7 @@ return array(
     'App\\Notifications\\OrderCreated' => $baseDir . '/app/Notifications/OrderCreated.php',
     'App\\Notifications\\OrderUpdated' => $baseDir . '/app/Notifications/OrderUpdated.php',
     'App\\Notifications\\PasswordReset' => $baseDir . '/app/Notifications/PasswordReset.php',
+    'App\\Notify' => $baseDir . '/app/Notify.php',
     'App\\Presenters\\Presenter' => $baseDir . '/app/Presenters/Presenter.php',
     'App\\Presenters\\User\\UserPresenter' => $baseDir . '/app/Presenters/User/UserPresenter.php',
     'App\\Presenters\\UsesPresenters' => $baseDir . '/app/Presenters/UsesPresenters.php',

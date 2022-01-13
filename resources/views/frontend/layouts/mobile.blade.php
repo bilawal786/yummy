@@ -170,6 +170,7 @@ $user = Auth::user();
         @if($user->myrole == 1 || $user->myrole == 3) <li><a href="{{ route('admin') }}"><i class="lni lni-briefcase"></i>Accès boutique </a></li> @endif
 {{--         <li><a href="{{ route('home') }}"><i class="lni lni-home"></i>Découvrir</a></li>--}}
          <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>Mon Profil</a></li>
+         <li><a href="{{ route('notifications') }}"><i class="lni lni-bullhorn"></i>Notifications</a></li>
          <li><a href="{{ route('account.order') }}"><i class="lni lni-package"></i>Réservations</a></li>
          <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>Recharger mon compte</a></li>
          <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>Centre d'assistance</a></li>

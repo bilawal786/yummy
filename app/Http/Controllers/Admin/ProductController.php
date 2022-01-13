@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\ProductRequested;
 use App\Enums\ProductStatus;
 use App\Enums\Status;
+use App\Favourite;
 use App\Http\Controllers\BackendController;
+use App\Http\NotificationHelper;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Location;
@@ -68,8 +70,9 @@ class ProductController extends BackendController
      */
     public function store(ProductRequest $request)
     {
+        $user = auth()->user();
       if (auth()->user()->myrole == 3) {
-        $shopID = auth()->user()->shop->id;
+        $shopID = $user->shop->id;
       }else{
         $shopID = $request->get('shop_id');
       }
@@ -81,6 +84,7 @@ class ProductController extends BackendController
         $product->name  = $request->name;
         $product->requested   = ProductRequested::REQUESTED;
         $product->save();
+//        dd($product->slug);
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $product->addMediaFromRequest('image')->toMediaCollection('products');
         }
@@ -96,8 +100,16 @@ class ProductController extends BackendController
           $shopProduct->discount_price = $request->get('discount_price') != null ? $request->get('discount_price') : 0;
           $shopProduct->save();
         }
-        $role = Role::find(2);
-        $firebaseToken = User::role($role->name)->where('address', auth()->user()->id)->whereNotNull('device_token')->pluck('device_token')->all();
+        $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get()->unique('user_id');
+        $user_ids = $fav->pluck('user_id');
+        $firebaseToken = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->whereNotNull('device_token')->pluck('device_token')->all();
+
+        $activity = "Nouveau panier";
+        $msg = "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋";
+        $users = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->get();
+        foreach ($users as $user){
+            NotificationHelper::addtoNitification($shopProduct->shop->user->id, $user->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
+        }
 
         $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
 

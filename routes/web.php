@@ -56,6 +56,7 @@ Route::post('/fetchsubcategory', 'Admin\CategoryController@fetchsubcategory')->n
 Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], function () {
     Route::post('/addtowishlist', 'WebController@addtowishlist')->name('addtowishlist');
     Route::get('/home', 'WebController@index')->name('home')->middleware('auth');
+    Route::get('/notifications', 'WebController@notifications')->name('notifications')->middleware('auth');
     Route::view('/setup', 'frontend.account-setup');
     Route::get('/coin', 'YummyCoinController@index')->name('yummycoin')->middleware('auth');
     Route::post('/coinjson', 'YummyCoinController@json')->name('coinjson')->middleware('auth');
