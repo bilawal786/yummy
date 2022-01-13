@@ -14,7 +14,12 @@
                                 $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->with('shop')->first();
                                 $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
                                 $qty = 0;
-                                $likes = \App\Favourite::where('product_creator', $shopProducts->shop->user->id)->get()->unique('user_id')->count();
+                                if (isset($shopProducts->shop)){
+                                    $likes = \App\Favourite::where('product_creator', $shopProducts->shop->user->id)->get()->unique('user_id')->count();
+                                }else{
+                                    $likes = 0;
+                                }
+
                             @endphp
                             <div class="col-12 col-md-6">
                                 @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
