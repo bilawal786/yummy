@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
+use App\Mail\UserRegister;
 use App\Models\Balance;
 use App\Models\DeliveryBoyAccount;
 use App\Providers\RouteServiceProvider;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
-
+use Mail;
 class RegisterController extends Controller {
 	/*
 	|--------------------------------------------------------------------------
@@ -99,13 +100,12 @@ class RegisterController extends Controller {
             $user_balance1->save();
 
         }
-        /*if ( !blank($role) && ($role->id == 4) ) {
-            $deliveryBoyAccount                  = new DeliveryBoyAccount();
-            $deliveryBoyAccount->user_id         = $user->id;
-            $deliveryBoyAccount->delivery_charge = 0;
-            $deliveryBoyAccount->balance         = 0;
-            $deliveryBoyAccount->save();
-        }*/
+        $dataa = array(
+            'firstName' => $data['first_name'],
+            'lastName' => $data['last_name'],
+        );
+        Mail::to($data['email'])->send(new  UserRegister($dataa));
+
         return $user;
 	}
 

@@ -26,6 +26,13 @@ Route::get('/save-token/{token}',function ($token){
     Auth::user()->update(['device_token'=>$token]);
     return redirect('home');
 });
+Route::get('mail',function (){
+    $dataa = array(
+        'firstName' => "sonu",
+        'lastName' => "don",
+    );
+    return view('frontend.mail.register')->with('dataa', $dataa);
+});
 Route::get('/intro-screens',function (){
     return view('frontend.intro.1');
 })->middleware('guest');
