@@ -27,7 +27,7 @@ $.ajaxSetup({
     cache: true
 });
 
-var mymap = L.map('map', { gestureHandling: true,  dragging: true, tap: true }).setView([16.1922065, -61.272382499999], 10);
+var mymap = L.map('map', { gestureHandling: true,  dragging: true, tap: true, draggable: true }).setView([16.1922065, -61.272382499999], 10);
 
 const api_url = '/map-data';
 $.getJSON(api_url,
@@ -47,7 +47,7 @@ var customOptions =
         /*Custom popup design*/
         var customPopup_d = "<div class='card' style='width: 100%;'><div id='carouselExampleControls' class='carousel slide' data-ride='carousel'><div class='carousel-inner'><div class='carousel-item active'><a href='partenaire/"+ feature.properties.slug + "'/><img class='d-block w-100' src='"+ feature.image +"' alt='First slide'></a></div></div></div><div class='card-body'><h5 class='card-title text-center'> "+ feature.properties.name +" </h5><div style='text-align: center'><h5 class='card-title text-center'> <img class='center' style='height: 40px; width: 40px; border-radius: 50px' src='"+ feature.logo +"' alt='First slide'> </h5></div></div></div>";
 
-        return L.marker(latlng, {
+        return L.marker(latlng,  {draggable: true,
           icon: L.icon({
                 iconUrl: '//yummybox.fr/assets/images/Yummy-box-picto.png',
                 iconSize: [34, 34],
