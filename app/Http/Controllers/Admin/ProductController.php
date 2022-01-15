@@ -118,6 +118,7 @@ class ProductController extends BackendController
             "notification" => [
                 "title" => "Yummy Box",
                 "body" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
+                "clickAction" => "NotificationLunchScreen",
             ]
         ];
         $dataString = json_encode($data);
