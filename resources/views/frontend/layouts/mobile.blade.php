@@ -120,11 +120,11 @@ $location = \App\Models\Location::all();
 $user = Auth::user();
 ?>
      <!-- Preloader-->
-     <div class="preloader" id="preloader">
+<!--     <div class="preloader" id="preloader">
        <div class="spinner-grow text-secondary" role="status">
          <div class="sr-only">Chargement...</div>
        </div>
-     </div>
+     </div>-->
      <!-- Header Area-->
      <div class="header-area" id="headerArea">
        <div class="container h-100 d-flex align-items-center justify-content-between">

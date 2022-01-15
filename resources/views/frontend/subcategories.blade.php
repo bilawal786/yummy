@@ -31,7 +31,7 @@
                                                 <span class="badge badge-info">Rien à sauver</span>
                                             @endif
                                             {{--                                            <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>--}}
-                                            <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img style="width: 100%; height: 100px" src="{{ $proximite->images }}" alt=""></a></div>
+                                            <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img loading="lazy" style="width: 100%; height: 100px" src="{{ $proximite->images }}" alt=""></a></div>
                                         <div class="product-description"><a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                                             @if($qty != 0)
                                                 <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small style="display:none;"> ({{ $proximite->unit_price*1000 }} YummyCoin)</small></p>@endif

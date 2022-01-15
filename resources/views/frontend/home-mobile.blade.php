@@ -46,9 +46,9 @@
               <div class="card-body">
                 <a class="text-danger" href="{{ route('categories', $value->slug) }}">
                   @if($value->getFirstMediaUrl('categories'))
-                  <img alt="image" src="{{ asset($value->getFirstMediaUrl('categories')) }}" width="68" height="68">
+                  <img loading="lazy" alt="image" src="{{ asset($value->getFirstMediaUrl('categories')) }}" width="68" height="68">
                   @else
-                  <img alt="image" src="{{ asset('assets/img/default/category.png') }}" width="28" height="28">
+                  <img  loading="lazy" alt="image" src="{{ asset('assets/img/default/category.png') }}" width="28" height="28">
                   @endif
                   @php $qty = 0 @endphp
                   <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;" class="btn btn-dark btn-sm ml-auto rounded-qty">
@@ -84,9 +84,9 @@
               <div class="card-body">
                 <a class="text-danger" href="{{ route('sub-category', $vip->id) }}">
                   @if($vip->getFirstMediaUrl('categories'))
-                  <img alt="image" src="{{ asset($vip->getFirstMediaUrl('categories')) }}" width="68" height="68">
+                  <img loading="lazy" alt="image" src="{{ asset($vip->getFirstMediaUrl('categories')) }}" width="68" height="68">
                   @else
-                  <img alt="image" src="{{ asset('assets/img/default/category.png') }}" width="28" height="28">
+                  <img  loading="lazy" alt="image" src="{{ asset('assets/img/default/category.png') }}" width="28" height="28">
                   @endif
                   @php $qty = 0 @endphp
                   <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;" class="btn btn-dark btn-sm ml-auto rounded-qty">
@@ -150,16 +150,16 @@
                       ?>
                              @if($check_fav)
                         <a style="left: 0.5rem" id="{{$proximite->id}}" c_id="{{$shopProducts->shop->user->id}}" onClick="addtofav(this)" class="wishlist-btn">
-                            <img style="height: 25px;" src="{{asset('Yummy-box-picto.png')}}" alt="">
+                            <img loading="lazy" style="height: 25px;" src="{{asset('Yummy-box-picto.png')}}" alt="">
                         </a>
                              @endif
                              <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
-                                 <img style="width: 100%; height: 100px" src="{{$shopProducts->shop->images??asset('assets/img/default/product.png')}}" alt=""></a></div>
+                                 <img loading="lazy" style="width: 100%; height: 100px" src="{{$shopProducts->shop->images??asset('assets/img/default/product.png')}}" alt=""></a></div>
                   <div class="product-description">
                       <a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                       <a style="right: 1.5rem;"  class="wishlist-btn1">
-                          <img style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem" src="{{asset($shopProducts->shop->logo)}}" alt="">
-                          <img src="{{asset('dislike.png')}}" style="height: 10px" alt=""> <span style="font-size: 13px"> {{$likes}}</span>
+                          <img loading="lazy" style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem" src="{{asset($shopProducts->shop->logo)}}" alt="">
+                          <img loading="lazy" src="{{asset('dislike.png')}}" style="height: 10px" alt=""> <span style="font-size: 13px"> {{$likes}}</span>
                       </a>
                       <br>
                     @if($qty != 0)
