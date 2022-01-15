@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Favourite;
 use App\Http\Controllers\BackendController;
+use App\Http\NotificationHelper;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Location;
@@ -139,10 +140,16 @@ class ProfileController extends BackendController
         $role = Role::find($request->type);
         if ($request->user_id[0] == "send_to_all"){
             $firebaseToken = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->pluck('device_token')->all();
+            $users = User::role($role->name)->where('address', $request->country_id)->get();
         }else{
             $firebaseToken = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+            $users = User::whereIn('id', $request->user_id)->get();
         }
-
+        $activity = "Message de l'administrateur";
+        $msg = $request->message;
+        foreach ($users as $user){
+            NotificationHelper::addtoNitification(0, $user->id, $msg, 0, $activity, $user->address);
+        }
         $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
 
         $data = [
