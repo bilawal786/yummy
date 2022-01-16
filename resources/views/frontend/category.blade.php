@@ -9,11 +9,12 @@
           @if(!blank($cate->products))
               @foreach($cate->products as $proximite)
               @php
-              $mytime = Carbon\Carbon::now();
-              $heure = $mytime->format('H:i:s');
-              $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('shop')->first();
-              $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
-              $qty = 0;
+                  $likes = \App\Favourite::where('product_id', $proximite->id)->get()->count();
+                  $mytime = Carbon\Carbon::now();
+                  $heure = $mytime->format('H:i:s');
+                  $shopProducts = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('shop')->first();
+                  $shopProduct = App\Models\ShopProduct::where(['product_id' => $proximite->id])->where('quantity', '>', 0)->with('product')->with('shop')->get();
+                  $qty = 0;
               @endphp
               <div class="col-12 col-md-6">
                 @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
@@ -44,6 +45,7 @@
                       <a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                       <a style="right: 1.5rem;"  class="wishlist-btn1">
                           <img loading="lazy" style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem" src="{{asset($shopProducts->shop->logo)}}" alt="">
+                          <img loading="lazy" src="{{asset('dislike.png')}}" style="height: 10px" alt=""> <span style="font-size: 13px"> {{$likes}}</span>
                       </a>
                       <br>
                     @if($qty != 0)
