@@ -114,7 +114,7 @@ class ProfileController extends BackendController
             "notification" => [
                 "title" => "Yummy Box",
                 "body" => $request->message,
-                "clickAction" => "NotificationLunchScreen",
+                "click_action" => "NotificationLunchScreen",
             ]
         ];
         $dataString = json_encode($data);
@@ -158,7 +158,7 @@ class ProfileController extends BackendController
             "notification" => [
                 "title" => "Yummy Box",
                 "body" => $request->message,
-                "clickAction" => "NotificationLunchScreen",
+                "click_action" => "NotificationLunchScreen",
             ]
         ];
         $dataString = json_encode($data);
