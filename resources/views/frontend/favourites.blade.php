@@ -21,9 +21,9 @@
                                 }
 
                             @endphp
-                            <div class="col-12 col-md-6">
-                                @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
-                                @if($shopProducts)
+                            @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
+                            @if($shopProducts)
+                                <div class="col-12 col-md-6">
                                     <div class="card weekly-product-card"
                                          style="@if($qty == 0) filter: opacity(50%); -webkit-filter: opacity(50%); @endif">
                                         <div class="card-body d-flex align-items-center">
@@ -73,8 +73,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                         @endforeach
                     @endif
                 </div>

@@ -209,12 +209,31 @@
             </div>
         </div>
     </div>
+{{--    <button onclick="getLocation()">Try It</button>--}}
+    <p id="demo"></p>
 @endsection
 
 @section('footer-js')
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
+    <script>
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+        // getLocation();
+    </script>
 
     <script>
 
