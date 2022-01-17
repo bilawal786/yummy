@@ -158,6 +158,7 @@ class ProfileController extends BackendController
             "data" => [
                 "title" => "Yummy Box",
                 "message" => $request->message,
+                "body" => $request->message,
                 "click_action" => "NotificationLunchScreen",
             ]
         ];
