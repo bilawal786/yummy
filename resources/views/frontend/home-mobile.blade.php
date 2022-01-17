@@ -177,7 +177,7 @@
            <p>Pas de panier disponible dans cette catégorie pour le moment</p>
            @endif
       </div>
-        <p><a class="btn btn-success btn-sm btn-block" href="{{ route('categories.traders', $cate->slug) }}">Voir la liste des commerçants</a></p>
+{{--        <p><a class="btn btn-success btn-sm btn-block" href="{{ route('categories.traders', $cate->slug) }}">Voir la liste des commerçants</a></p>--}}
     </div>
   </div>
 
@@ -265,5 +265,4 @@
         });
 
     </script>
-
 @endsection
