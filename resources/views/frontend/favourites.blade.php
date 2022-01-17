@@ -23,35 +23,57 @@
                             @endphp
                             <div class="col-12 col-md-6">
                                 @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp @endforeach
-                                    @if($shopProducts)
-                                <div class="card weekly-product-card" style="@if($qty == 0) filter: opacity(50%); -webkit-filter: opacity(50%); @endif">
-                                    <div class="card-body d-flex align-items-center">
-                                        <div class="product-thumbnail-side">
-                                            @if($qty != 0)
-                                                @if($qty > 5)
-                                                    <span class="badge badge-success">5+</span>
+                                @if($shopProducts)
+                                    <div class="card weekly-product-card"
+                                         style="@if($qty == 0) filter: opacity(50%); -webkit-filter: opacity(50%); @endif">
+                                        <div class="card-body d-flex align-items-center">
+                                            <div class="product-thumbnail-side">
+                                                @if($qty != 0)
+                                                    @if($qty > 5)
+                                                        <span class="badge badge-success">5+</span>
+                                                    @else
+                                                        <span class="badge badge-danger">{{ $qty }}</span>
+                                                    @endif
                                                 @else
-                                                    <span class="badge badge-danger">{{ $qty }}</span>
+                                                    <span class="badge badge-info">Rien à sauver</span>
                                                 @endif
-                                            @else
-                                                <span class="badge badge-info">Rien à sauver</span>
-                                            @endif
-{{--                                            <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>--}}
-                                                <a class="product-thumbnail d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img loading="lazy" style="width: 100%; height: 100px" src="{{ $shopProducts->shop->images }}" alt=""></a></div>
-                                        <div class="product-description">
-                                            <img loading="lazy" src="{{asset('dislike.png')}}" style="height: 10px" alt=""> <span style="font-size: 13px"> {{$likes}}</span>
-                                            <a class="product-title d-block" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
-                                            @if($qty != 0)
-                                                <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small style="display:none;"> ({{ $proximite->unit_price*1000 }} YummyCoin)</small></p>@endif
-                                            @if($qty != 0)<p class="sale-price"><small style="color: grey;">Disponible de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}} à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach</small></p>@endif
-                                            <div class="product-rating" style="display:none;"><i class="lni lni-star-filled"></i>4.88 (39)</div>
-                                            @if($qty != 0)<a class="btn btn-danger btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Réserver</a> @else <a class="btn btn-dark btn-sm" href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i class="me-1 lni lni-cart"></i>Plus de panier à sauver</a> @endif
-                                            <a href="{{route('fav.remove', ['id' => $proximite->id])}}"><span class="badge bg-danger">Supprimer</span></a>
+                                                {{--                                            <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>--}}
+                                                <a class="product-thumbnail d-block"
+                                                   href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><img
+                                                            loading="lazy" style="width: 100%; height: 100px"
+                                                            src="{{ $shopProducts->shop->images }}" alt=""></a></div>
+                                            <div class="product-description">
+                                                <img loading="lazy" src="{{asset('dislike.png')}}" style="height: 10px"
+                                                     alt=""> <span style="font-size: 13px"> {{$likes}}</span>
+                                                <a class="product-title d-block"
+                                                   href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
+                                                @if($qty != 0)
+                                                    <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}
+                                                        €<span>{{$shopProducts->discount_price}}€</span><small
+                                                                style="display:none;">
+                                                            ({{ $proximite->unit_price*1000 }} YummyCoin)</small>
+                                                    </p>@endif
+                                                @if($qty != 0)<p class="sale-price"><small style="color: grey;">Disponible
+                                                        de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}}
+                                                        à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach</small>
+                                                </p>@endif
+                                                <div class="product-rating" style="display:none;"><i
+                                                            class="lni lni-star-filled"></i>4.88 (39)
+                                                </div>
+                                                @if($qty != 0)<a class="btn btn-danger btn-sm"
+                                                                 href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
+                                                            class="me-1 lni lni-cart"></i>Réserver</a> @else <a
+                                                        class="btn btn-dark btn-sm"
+                                                        href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
+                                                            class="me-1 lni lni-cart"></i>Plus de panier à
+                                                    sauver</a> @endif
+                                                <a href="{{route('fav.remove', ['id' => $proximite->id])}}"><span
+                                                            class="badge bg-danger">Supprimer</span></a>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                    @endif
+                                @endif
                             </div>
                         @endforeach
                     @endif
