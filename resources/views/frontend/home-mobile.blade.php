@@ -113,14 +113,14 @@
   <!-- Weekly Best Sellers-->
   <div class="weekly-best-seller-area py-3">
     <div class="container">
-      <div class="section-heading d-flex align-items-center justify-content-between">
+<!--      <div class="section-heading d-flex align-items-center justify-content-between">
         <h6>{{ $cate->name }}</h6>
           <a class="btn btn-success btn-sm" href="{{ route('categories', $cate->slug) }}">Voir</a>
-      </div>
+      </div>-->
       <div class="row g-3">
           <!-- Single Weekly Product Card-->
           @if(!blank($cate->products))
-              @foreach($cate->products->take(3) as $proximite)
+              @foreach($cate->products as $proximite)
               @php
                   $likes = \App\Favourite::where('product_id', $proximite->id)->get()->count();
                  $mytime = Carbon\Carbon::now();
@@ -174,7 +174,6 @@
             </div>
              @endforeach
            @else
-           <p>Pas de panier disponible dans cette catégorie pour le moment</p>
            @endif
       </div>
 {{--        <p><a class="btn btn-success btn-sm btn-block" href="{{ route('categories.traders', $cate->slug) }}">Voir la liste des commerçants</a></p>--}}
