@@ -115,11 +115,16 @@ class ProductController extends BackendController
 
         $data = [
             "registration_ids" => $firebaseToken,
+            "data" => [
+                "title" => "Yummy Box",
+                "message" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
+                "click_action" => "NotificationLunchScreen",
+            ],
             "notification" => [
                 "title" => "Yummy Box",
                 "body" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
-                "clickAction" => "NotificationLunchScreen",
-            ]
+                "click_action" => "NotificationLunchScreen",
+            ],
         ];
         $dataString = json_encode($data);
 

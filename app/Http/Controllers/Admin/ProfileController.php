@@ -111,11 +111,16 @@ class ProfileController extends BackendController
 
         $data = [
             "registration_ids" => $firebaseToken,
+            "data" => [
+                "title" => "Yummy Box",
+                "message" => $request->message,
+                "click_action" => "NotificationLunchScreen",
+            ],
             "notification" => [
                 "title" => "Yummy Box",
                 "body" => $request->message,
                 "click_action" => "NotificationLunchScreen",
-            ]
+            ],
         ];
         $dataString = json_encode($data);
 
