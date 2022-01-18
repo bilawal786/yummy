@@ -17,11 +17,11 @@
                                         </a>
                                     </div>
                                     <?php
-                                    if (isset($trader->user)){
+                                    if (isset($trader->user)) {
                                         $likes = \App\Favourite::where('product_creator', $trader->user->id)->get()->unique('user_id')->count();
-                                    }else{
-                                         $likes = 0;
-                                     }
+                                    } else {
+                                        $likes = 0;
+                                    }
                                     ?>
                                     <div class="product-description">
                                         <a class="product-title d-block"
@@ -50,6 +50,7 @@
                             </div>
                         </div>
                     @endforeach
+                    {{$traders->links()}}
                 </div>
             </div>
         </div>
