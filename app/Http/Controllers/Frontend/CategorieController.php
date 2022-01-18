@@ -34,10 +34,10 @@ class CategorieController extends FrontendController
       //  dd($page);
         return view('frontend.category', $this->data);
     }
-    public function tradersindex($slug)
+    public function tradersindex()
     {
-        $this->data['cate']      = Category::where('slug', '=', $slug)->where('status', '!=', 10)->first();
-        $this->data['namepage']  = $this->data['cate']->name;
+        $this->data['traders']      = Shop::where('location_id', Auth::user()->address)->get();
+        $this->data['namepage']  = "Nos commerçants";
         $this->data['user']      = auth()->user();
 
       //  dd($page);
