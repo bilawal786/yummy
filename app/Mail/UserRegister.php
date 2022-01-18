@@ -29,6 +29,7 @@ class UserRegister extends Mailable
     public function build()
     {
         return $this->from('info@yummybox.fr', 'Yummy Box')
+            ->subject('Bienvenue! Yummy Box')
             ->view('frontend.mail.register')
             ->with('dataa', $this->dataa);
     }
