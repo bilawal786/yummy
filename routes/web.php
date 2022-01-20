@@ -50,8 +50,8 @@ Route::post('/save-token',function (Request $request){
     Auth::user()->update(['device_token'=>$request->token]);
     return response()->json(['token saved successfully.']);
 })->name('save-token');
-Route::get('/save-token/{token}',function ($token){
-    Auth::user()->update(['device_token'=>$token]);
+Route::get('/save-token/{token}/{type}',function ($token, $type){
+    Auth::user()->update(['device_token'=>$token, 'device_type' => $type]);
     return redirect('home');
 });
 Route::get('mail',function (){
