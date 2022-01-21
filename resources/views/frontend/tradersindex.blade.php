@@ -18,7 +18,10 @@
                                     </div>
                                     <?php
                                     if (isset($trader->user)) {
+                                        $shop_product = \App\Models\ShopProduct::where('shop_id', $trader->id)->first();
+                                        $product = \App\Models\Product::find($shop_product->product_id);
                                         $likes = \App\Favourite::where('product_creator', $trader->user->id)->get()->unique('user_id')->count();
+                                        $check = \App\Favourite::where('product_id', $shop_product->product_id)->where('user_id', Auth::user()->id)->first();
                                     } else {
                                         $likes = 0;
                                     }
@@ -38,6 +41,25 @@
                                                         style="vertical-align: inherit;"><font
                                                             style="vertical-align: inherit;"> {{$likes}}</font></font></span>
                                         </a>
+                                        <div style="float: right">
+                                            @if(isset($trader->user))
+                                                @if(isset($check))
+                                                    <a id="{{$product->id}}" class="dislike" c_id="{{$trader->user->id}}" onClick="addtofav(this)" >
+                                                        <img style="height: 30px; margin-bottom: 10px" src="{{asset('Yummy-box-picto.png')}}" alt="">
+                                                    </a>
+                                                @else
+                                                <a id="{{$product->id}}" class="like{{$product->id}}" c_id="{{$trader->user->id}}" onClick="addtofavtrader(this)" >
+                                                    <img loading="lazy" src="{{asset('like.png')}}"
+                                                         style="height: 30px"
+                                                         alt="">
+                                                </a>
+                                                <a id="{{$product->id}}" style="display: none" class="temporary{{$product->id}}" c_id="{{$trader->user->id}}" onClick="addtofavtrader(this)" >
+                                                    <img style="height: 30px; margin-bottom: 10px" src="{{asset('Yummy-box-picto.png')}}" alt="">
+                                                </a>
+                                                @endif
+                                            @endif
+                                        </div>
+
                                         <br>
                                         <p class="sale-price"><small style="color: grey;"><font
                                                         style="vertical-align: inherit;"><font

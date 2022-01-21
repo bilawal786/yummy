@@ -246,6 +246,35 @@ $user = Auth::user();
                  },
              });
          }
+         function addtofavtrader(elem){
+             let id = $(elem).attr("id");
+             let c_id = $(elem).attr("c_id");
+             let _token   = $('meta[name="csrf-token"]').attr('content');
+             $.ajax({
+                 url: "{{route('addtowishlist')}}",
+                 type:"POST",
+                 data:{
+                     id:id,
+                     c_id:c_id,
+                     _token: _token
+                 },
+                 success:function(response){
+                     if(response.success === "Successfully Added") {
+                         $(".like"+id).hide();
+                         $(".temporary"+id).show();
+                         var fav_count = $(".fav_count").html();
+                         $(".fav_count").html(+fav_count + +1);
+                         var x = document.getElementById("snackbar");
+                         x.className = "show";
+                         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                     }else {
+                         var x = document.getElementById("snackbar1");
+                         x.className = "show";
+                         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                     }
+                 },
+             });
+         }
      </script>
 {{--<script>--}}
 {{--    function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {--}}
