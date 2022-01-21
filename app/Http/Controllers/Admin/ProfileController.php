@@ -145,10 +145,10 @@ class ProfileController extends BackendController
     public function storeNotifications(Request $request){
         $role = Role::find($request->type);
         if ($request->user_id[0] == "send_to_all"){
-            $firebaseTokens = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->get();
+            $firebaseToken = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->pluck('device_token')->all();
             $users = User::role($role->name)->where('address', $request->country_id)->get();
         }else{
-            $firebaseTokens = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->get();
+            $firebaseToken = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
             $users = User::whereIn('id', $request->user_id)->get();
         }
         $activity = "Message de l'administrateur";
@@ -156,46 +156,38 @@ class ProfileController extends BackendController
         foreach ($users as $user){
             NotificationHelper::addtoNitification(0, $user->id, $msg, 0, $activity, $user->address);
         }
-        foreach ($firebaseTokens as $firebaseToken){
-            $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
+        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
 
-//            if ($firebaseToken->device_type == "android"){
-//                $data = [
-//                    "registration_ids" => $firebaseToken->device_token,
-//                    "data" => [
-//                        "title" => "Yummy Box",
-//                        "message" => $request->message,
-//                        "click_action" => "NotificationLunchScreen",
-//                    ],
-//                ];
-//            }else{
-                $data = [
-                    "registration_ids" => $firebaseToken->device_token,
-                    "notification" => [
-                        "title" => "Yummy Box",
-                        "body" => $request->message,
-                        "click_action" => "NotificationLunchScreen",
-                    ],
-                ];
-//            }
-            $dataString = json_encode($data);
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "data" => [
+                "title" => "Yummy Box",
+                "message" => $request->message,
+                "click_action" => "NotificationLunchScreen",
+            ],
+            "notification" => [
+                "title" => "Yummy Box",
+                "body" => $request->message,
+                "click_action" => "NotificationLunchScreen",
+            ],
+        ];
+        $dataString = json_encode($data);
 
-            $headers = [
-                'Authorization: key=' . $SERVER_API_KEY,
-                'Content-Type: application/json',
-            ];
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
 
-            $ch = curl_init();
+        $ch = curl_init();
 
-            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
-            $response = curl_exec($ch);
-        }
+        $response = curl_exec($ch);
         return redirect()->back()->withSuccess('Envoyé avec succès à tous');
     }
 }
