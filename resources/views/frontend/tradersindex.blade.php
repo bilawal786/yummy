@@ -19,9 +19,11 @@
                                     <?php
                                     if (isset($trader->user)) {
                                         $shop_product = \App\Models\ShopProduct::where('shop_id', $trader->id)->first();
-                                        $product = \App\Models\Product::find($shop_product->product_id);
+                                        if ($shop_product){
+                                            $product = \App\Models\Product::find($shop_product->product_id);
+                                            $check = \App\Favourite::where('product_id', $shop_product->product_id)->where('user_id', Auth::user()->id)->first();
+                                        }
                                         $likes = \App\Favourite::where('product_creator', $trader->user->id)->get()->unique('user_id')->count();
-                                        $check = \App\Favourite::where('product_id', $shop_product->product_id)->where('user_id', Auth::user()->id)->first();
                                     } else {
                                         $likes = 0;
                                     }
