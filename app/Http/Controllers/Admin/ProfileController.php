@@ -192,16 +192,29 @@ class ProfileController extends BackendController
 
         foreach ($firebaseTokens as $UserToken){
             $url = 'https://fcm.googleapis.com/fcm/send';
-            $fields = array (
-                'registration_ids' => array (
-                    $UserToken->device_token
-                ),
-                'data' => array (
-                    "title" => "Yummy Box",
-                    "message" => $request->message,
-                    "click_action" => "NotificationLunchScreen",
-                )
-            );
+            if ($UserToken->device_type == "android"){
+                $fields = array (
+                    'registration_ids' => array (
+                        $UserToken->device_token
+                    ),
+                    'data' => array (
+                        "title" => "Yummy Box",
+                        "message" => $request->message,
+                        "click_action" => "NotificationLunchScreen",
+                    )
+                );
+            }else{
+                $fields = array (
+                    'registration_ids' => array (
+                        $UserToken->device_token
+                    ),
+                    'notification' => array (
+                        "title" => "Yummy Box",
+                        "body" => $request->message,
+                        "click_action" => "NotificationLunchScreen",
+                    )
+                );
+            }
             $fields = json_encode ( $fields );
             $headers = array (
                 'Authorization: key=' . "AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm",
