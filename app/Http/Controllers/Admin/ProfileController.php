@@ -145,10 +145,10 @@ class ProfileController extends BackendController
     public function storeNotifications(Request $request){
         $role = Role::find($request->type);
         if ($request->user_id[0] == "send_to_all"){
-            $firebaseToken = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->pluck('device_token')->all();
+            $firebaseTokens = User::role($role->name)->where('address', $request->country_id)->whereNotNull('device_token')->get();
             $users = User::role($role->name)->where('address', $request->country_id)->get();
         }else{
-            $firebaseToken = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+            $firebaseTokens = User::whereIn('id', $request->user_id)->whereNotNull('device_token')->get();
             $users = User::whereIn('id', $request->user_id)->get();
         }
         $activity = "Message de l'administrateur";
@@ -156,9 +156,9 @@ class ProfileController extends BackendController
         foreach ($users as $user){
             NotificationHelper::addtoNitification(0, $user->id, $msg, 0, $activity, $user->address);
         }
-        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
+//        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
 
-        $data = [
+        /*$data = [
             "registration_ids" => $firebaseToken,
             "data" => [
                 "title" => "Yummy Box",
@@ -188,6 +188,35 @@ class ProfileController extends BackendController
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
         $response = curl_exec($ch);
+*/
+
+        foreach ($firebaseTokens as $UserToken){
+            $url = 'https://fcm.googleapis.com/fcm/send';
+            $fields = array (
+                'registration_ids' => array (
+                    $UserToken->device_token
+                ),
+                'data' => array (
+                    "title" => "Yummy Box",
+                    "message" => $request->message,
+                    "click_action" => "NotificationLunchScreen",
+                )
+            );
+            $fields = json_encode ( $fields );
+            $headers = array (
+                'Authorization: key=' . "AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm",
+                'Content-Type: application/json'
+            );
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, true );
+            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+            $result = curl_exec ( $ch );
+            curl_close ( $ch );
+        }
+
         return redirect()->back()->withSuccess('Envoyé avec succès à tous');
     }
 }
