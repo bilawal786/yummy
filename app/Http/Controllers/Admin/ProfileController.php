@@ -159,16 +159,16 @@ class ProfileController extends BackendController
         foreach ($firebaseTokens as $firebaseToken){
             $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
 
-            if ($firebaseToken->device_type == "android"){
-                $data = [
-                    "registration_ids" => $firebaseToken->device_token,
-                    "data" => [
-                        "title" => "Yummy Box",
-                        "message" => $request->message,
-                        "click_action" => "NotificationLunchScreen",
-                    ],
-                ];
-            }else{
+//            if ($firebaseToken->device_type == "android"){
+//                $data = [
+//                    "registration_ids" => $firebaseToken->device_token,
+//                    "data" => [
+//                        "title" => "Yummy Box",
+//                        "message" => $request->message,
+//                        "click_action" => "NotificationLunchScreen",
+//                    ],
+//                ];
+//            }else{
                 $data = [
                     "registration_ids" => $firebaseToken->device_token,
                     "notification" => [
@@ -177,7 +177,7 @@ class ProfileController extends BackendController
                         "click_action" => "NotificationLunchScreen",
                     ],
                 ];
-            }
+//            }
             $dataString = json_encode($data);
 
             $headers = [
