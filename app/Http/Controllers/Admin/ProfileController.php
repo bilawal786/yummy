@@ -161,7 +161,7 @@ class ProfileController extends BackendController
         $activity = "Message de l'administrateur";
         $msg = $request->message;
         foreach ($users as $user){
-            NotificationHelper::addtoNitification(0, $user->id, $msg, 0, $activity, $user->address);
+            NotificationHelper::addtoNitification(0, $user->id, $msg, $request->link, $activity, $user->address);
         }
 
         foreach ($firebaseTokens as $UserToken){

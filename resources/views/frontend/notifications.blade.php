@@ -30,7 +30,7 @@
                         </a>
                        @endif
                         @elseif($notfication->activity == "Message de l'administrateur")
-                        <a href="#">
+                        <a href="{{$notfication->generate_id}}">
                             <div class="card weekly-product-card">
                                 <div class="card-body d-flex">
                                     <div class="row">

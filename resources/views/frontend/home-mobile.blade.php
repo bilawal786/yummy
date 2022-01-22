@@ -13,7 +13,7 @@
                 <div class="hero-slides owl-carousel">
                 @foreach($banners as $banner)
                     <!-- Single Hero Slide-->
-                        <a href="@if($banner->link != '#') {{ route('shop.show', $banner->link) }} @else {{ $banner->link }}  @endif">
+                        <a href="{{$banner->link}}">
                             <div class="single-hero-slide" style="background-image: url('{{ $banner->images }}')">
                                 <div class="slide-content h-100 d-flex align-items-center">
                                 </div>

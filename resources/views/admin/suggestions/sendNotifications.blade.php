@@ -93,6 +93,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <div class="form">
+                                    <div class="col">
+                                        <label>Lien de notification ajouter <small>(#) si aucun lien n'est disponible</small> </label> <span class="text-danger">*</span>
+                                        <input type="url" class="form-control" name="link">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary btn-block mr-1" type="submit">{{ __('Enregistrer') }}</button>
                             </div>

@@ -17,36 +17,10 @@
                         @method('PUT')
                         <div class="card-body">
 
-                          <!--  <div class="form-row">
-
-                                <div class="form-group col">
-                                    <label>{{ __('levels.title') }}</label>
-                                    <input type="text" name="name"
-                                        class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name', $banner->title) }}">
-                                    @error('name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
-                            </div>-->
-
-
                             <div class="form">
                                 <div class="form-group col">
-                                    <label>Boutique</label>
-                                    <select name="url" class="form-control">
-                                    <option value="#">Aucune url</option>
-                                    @foreach($status as $stat)
-                                    <option value="{{ $stat->slug }}" {{ $stat->slug == $banner->link ? 'selected' : '' }}>{{$stat->name}}</option>
-                    								@endforeach
-                                    </select>
-                                    @error('url')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                                    <label>Lien de la bannière</label>
+                                    <input type="url" name="url" value="{{$banner->link}}" class="form-control" required>
                                 </div>
                                 <div class="form-group col">
                                     <label>{{ __('levels.status') }}</label> <span class="text-danger">*</span>

@@ -27,18 +27,8 @@
 								</div>-->
 								<div class="form">
 									<div class="form-group col">
-										<label>Boutique</label>
-										<select name="url" class="form-control">
-										<option value="#">Aucune url</option>
-										@foreach($status as $stat)
-										<option value="{{ $stat->slug }}">{{$stat->name}}</option>
-										@endforeach
-										</select>
-										@error('url')
-										<div class="invalid-feedback">
-											{{ $message }}
-										</div>
-										@enderror
+										<label>Lien de la bannière <small>ajouter (#) si aucun lien n'est disponible</small></label>
+										<input type="url" name="url" class="form-control" required>
 									</div>
 									<div class="form-group col">
 										<label>Sélectionnez l'emplacement</label>
