@@ -14,6 +14,7 @@ use App\Models\Shop;
 use App\Models\ShopProduct;
 use App\SubCategory;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -39,8 +40,12 @@ class CategorieController extends FrontendController
         $this->data['traders']      = Shop::where('location_id', Auth::user()->address)->paginate(10);
         $this->data['namepage']  = "Nos commerçants";
         $this->data['user']      = auth()->user();
-
-      //  dd($page);
+        return view('frontend.tradersindex', $this->data);
+    }
+    public function tradersSearch(Request $request){
+        $this->data['traders'] = Shop::where('name','LIKE','%'.$request->name.'%')->paginate(10);
+        $this->data['namepage']  = "Résultat de la recherche";
+        $this->data['user']      = auth()->user();
         return view('frontend.tradersindex', $this->data);
     }
     public function favourites(){

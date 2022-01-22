@@ -4,6 +4,17 @@
         <!-- Weekly Best Sellers-->
         <div class="weekly-best-seller-area py-3">
             <div class="container">
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <div class="top-search-form">
+                            <form action="{{route('traders.search')}}" method="POST">
+                                @csrf
+                                <input style="width:100%; max-width: 100%" class="form-control" name="name" placeholder="Entrez le nom du commerçant">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="row g-3">
                     @foreach($traders as $trader)
                         <div class="col-12 col-md-6">
