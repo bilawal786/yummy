@@ -110,6 +110,12 @@
               z-index: 11;
               font-size: 1.25rem;
           }
+          .page-item.active .page-link {
+              z-index: 3;
+              color: #fff;
+              background-color: #ea4c62;
+              border-color: #ea4c62;
+          }
       </style>
       @yield('style')
 
