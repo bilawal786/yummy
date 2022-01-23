@@ -76,34 +76,49 @@ class AccountController extends FrontendController
         $bal->update();
 
         $merchent = Shop::where('id', $order->shop_id)->first();
-        $firebaseToken = User::where('id', $merchent->user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+        $firebaseToken = User::where('id', $merchent->user_id)->first();
 
-        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
-
-        $data = [
-            "registration_ids" => $firebaseToken,
-            "notification" => [
-                "title" => "Yummy Box",
-                "body" => "Attention une commande vient d'être annulée, pensez à remettre votre panier en vente",
-            ]
-        ];
-        $dataString = json_encode($data);
-
-        $headers = [
-            'Authorization: key=' . $SERVER_API_KEY,
-            'Content-Type: application/json',
-        ];
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-        $response = curl_exec($ch);
+        $shop_product = ShopProduct::where('shop_id', $order->shop_id)->first();
+        $shop_product->quantity = $shop_product->quantity + 1;
+        $shop_product->update();
+        
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        if ($firebaseToken->device_type == "android"){
+            $fields = array (
+                'registration_ids' => array (
+                    $firebaseToken->device_token
+                ),
+                'data' => array (
+                    "title" => "Yummy Box",
+                    "message" => "Attention une commande vient d'être annulée, pensez à remettre votre panier en vente",
+                    "click_action" => "NotificationLunchScreen",
+                )
+            );
+        }else{
+            $fields = array (
+                'registration_ids' => array (
+                    $firebaseToken->device_token
+                ),
+                'notification' => array (
+                    "title" => "Yummy Box",
+                    "body" => "Attention une commande vient d'être annulée, pensez à remettre votre panier en vente",
+                    "click_action" => "NotificationLunchScreen",
+                )
+            );
+        }
+        $fields = json_encode ( $fields );
+        $headers = array (
+            'Authorization: key=' . "AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm",
+            'Content-Type: application/json'
+        );
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+        $result = curl_exec ( $ch );
+        curl_close ( $ch );
 
         return redirect()->back();
     }

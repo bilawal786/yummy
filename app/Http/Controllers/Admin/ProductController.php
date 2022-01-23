@@ -263,7 +263,7 @@ class ProductController extends BackendController
                     return $retAction;
                 })
                 ->editColumn('name', function ($product) {
-                    $col = '<p class="p-0 m-0">' . $product->shop->name . '</p>';
+                    $col = '<p class="p-0 m-0">' . $product->shop->name .' '.'('.$product->product->name.')'.'</p>';
                     $col .= '<small class="text-muted">' . Str::limit($product->product->description, 20) . '</small>';
                     return $col;
                 })

@@ -20,7 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>{{ __('levels.id') }}</th>
-                                        <th>{{ __('levels.name') }}</th>
+                                        <th>Nom de la boutique (nom du panier)</th>
                                         <th>{{ __('levels.stock') }}</th>
                                         <th>{{ __('levels.actions') }}</th>
                                     </tr>
