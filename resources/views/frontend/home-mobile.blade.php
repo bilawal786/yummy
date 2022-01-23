@@ -14,7 +14,8 @@
                 @foreach($banners as $banner)
                     <!-- Single Hero Slide-->
                         <a href="{{$banner->link}}">
-                            <div class="single-hero-slide" style="background-image: url('{{ $banner->images }}')">
+                            <div class="single-hero-slide" style="background-image: url('{{ $banner->images }}');  background-repeat: no-repeat;
+                                    background-size: 100% 100%;">
                                 <div class="slide-content h-100 d-flex align-items-center">
                                 </div>
                             </div>
