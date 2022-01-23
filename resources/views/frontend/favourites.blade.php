@@ -43,20 +43,26 @@
                                                             loading="lazy" style="width: 100%; height: 100px"
                                                             src="{{ $shopProducts->shop->images }}" alt=""></a></div>
                                             <div class="product-description">
+                                                <a class="product-title d-block"
+                                                   href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{$shopProducts->shop->name}}
+                                                    ({{ $proximite->name }})</a>
                                                 <img loading="lazy" src="{{asset('dislike.png')}}" style="height: 10px"
                                                      alt=""> <span style="font-size: 13px"> {{$likes}}</span>
-                                                <a class="product-title d-block"
-                                                   href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
                                                 @if($qty != 0)
                                                     <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}
                                                         €<span>{{$shopProducts->discount_price}}€</span><small
                                                                 style="display:none;">
                                                             ({{ $proximite->unit_price*1000 }} YummyCoin)</small>
                                                     </p>@endif
-                                                @if($qty != 0)<p class="sale-price"><small style="color: grey;">Disponible
-                                                        de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}}
-                                                        à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach</small>
-                                                </p>@endif
+                                                @if($qty != 0)
+                                                    <p class="sale-price">
+                                                        <small style="color: grey;">Disponible
+                                                            de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}}
+                                                            à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach
+                                                            <br>
+                                                            {{$shopProducts->shop->user->country->name}}
+                                                        </small>
+                                                    </p>@endif
                                                 <div class="product-rating" style="display:none;"><i
                                                             class="lni lni-star-filled"></i>4.88 (39)
                                                 </div>
@@ -68,7 +74,7 @@
                                                             class="me-1 lni lni-cart"></i>Plus de panier à
                                                     sauver</a> @endif
                                                 <a href="{{route('fav.remove', ['id' => $proximite->id])}}"><span
-                                                            class="badge bg-danger">Supprimer</span></a>
+                                                            class="btn btn-danger btn-sm">Supprimer</span></a>
 
                                             </div>
                                         </div>

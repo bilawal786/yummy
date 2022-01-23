@@ -168,7 +168,7 @@
                                                 </div>
                                                 <div class="product-description">
                                                     <a class="product-title d-block"
-                                                       href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{ $proximite->name }}</a>
+                                                       href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{$shopProducts->shop->name}} ({{ $proximite->name }})</a>
                                                     <a style="right: 1.5rem;" class="wishlist-btn1">
                                                         <img loading="lazy"
                                                              style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem"
@@ -183,10 +183,15 @@
                                                                     style="display:none;">
                                                                 ({{ $proximite->unit_price*1000 }} YummyCoin)</small>
                                                         </p>@endif
-                                                    @if($qty != 0)<p class="sale-price"><small style="color: grey;">Disponible
+                                                    @if($qty != 0)<p class="sale-price">
+                                                        <small style="color: grey;">Disponible
                                                             de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}}
-                                                            à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach</small>
+                                                            à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach
+                                                            <br>
+                                                            {{$shopProducts->shop->user->country->name}}
+                                                        </small>
                                                     </p>@endif
+
                                                     <div class="product-rating" style="display:none;"><i
                                                                 class="lni lni-star-filled"></i>4.88 (39)
                                                     </div>
