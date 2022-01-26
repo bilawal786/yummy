@@ -46,6 +46,9 @@
                                                 <a class="product-title d-block"
                                                    href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{$shopProducts->shop->name}}
                                                     ({{ $proximite->name }})</a>
+                                                <img loading="lazy"
+                                                     style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem"
+                                                     src="{{asset($shopProducts->shop->logo)}}" alt="">
                                                 <img loading="lazy" src="{{asset('dislike.png')}}" style="height: 10px"
                                                      alt=""> <span style="font-size: 13px"> {{$likes}}</span>
                                                 @if($qty != 0)
