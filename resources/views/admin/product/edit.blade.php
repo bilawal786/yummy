@@ -167,7 +167,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col">
-                                    <label for="unit_price">Publish On</label> <span class="text-danger">*</span>
+                                    <label for="unit_price">Publier sur</label> <span class="text-danger">*</span>
                                     <input type="date" value="{{$product->publish}}" name="publish"
                                            class="form-control"
                                     >
