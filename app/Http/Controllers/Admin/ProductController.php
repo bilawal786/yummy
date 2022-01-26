@@ -82,6 +82,7 @@ class ProductController extends BackendController
         $product->unit_price  = $request->get('unit_price');
         $product->subcategories  = $request->subcategory;
         $product->name  = $request->name;
+        $product->publish  = $request->publish;
         $product->requested   = ProductRequested::REQUESTED;
         $product->save();
 //        dd($product->slug);
@@ -202,6 +203,7 @@ class ProductController extends BackendController
         $product->status      = $request->get('status');
         $product->unit_price  = $request->get('unit_price');
         $product->subcategories  = $request->subcategory;
+        $product->publish  = $request->publish;
         $product->save();
         $product->categories()->sync($request->get('categories'));
         $affectedRows = ShopProduct::where("product_id", $product->id)->update(["quantity" => $request->get('quantity'), "hdispoa" => $request->get('hdispoa'), "hdispob"=> $request->get('hdispob'), "discount_price"=> $request->get('discount_price')]);

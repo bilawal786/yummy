@@ -169,7 +169,8 @@
                                                 </div>
                                                 <div class="product-description">
                                                     <a class="product-title d-block"
-                                                       href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{$shopProducts->shop->name}} ({{ $proximite->name }})</a>
+                                                       href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{$shopProducts->shop->name}}
+                                                        <br> <i style="color: #ea4c62; font-size: 10px;">{{ $proximite->name }}</i> </a>
                                                     <a style="right: 1.5rem;" class="wishlist-btn1">
                                                         <img loading="lazy"
                                                              style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem"

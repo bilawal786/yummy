@@ -166,6 +166,12 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="form-group col">
+                                    <label for="unit_price">Publish On</label> <span class="text-danger">*</span>
+                                    <input type="date" value="{{$product->publish}}" name="publish"
+                                           class="form-control"
+                                    >
+                                </div>
                                 <div class="form">
                                     <div class="form-group col">
                                         <label for="hdispoa">Heure début</label> <span class="text-danger">*</span>
