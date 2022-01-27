@@ -121,7 +121,7 @@ class ProductController extends BackendController
                     ),
                     'data' => array (
                         "title" => "Yummy Box",
-                        "message" => $request->message,
+                        "message" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
                         "click_action" => "NotificationLunchScreen",
                     )
                 );
@@ -132,7 +132,7 @@ class ProductController extends BackendController
                     ),
                     'notification' => array (
                         "title" => "Yummy Box",
-                        "body" => $request->message,
+                        "body" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
                         "click_action" => "NotificationLunchScreen",
                     )
                 );
@@ -207,7 +207,57 @@ class ProductController extends BackendController
         $product->save();
         $product->categories()->sync($request->get('categories'));
         $affectedRows = ShopProduct::where("product_id", $product->id)->update(["quantity" => $request->get('quantity'), "hdispoa" => $request->get('hdispoa'), "hdispob"=> $request->get('hdispob'), "discount_price"=> $request->get('discount_price')]);
+        $shopProduct = ShopProduct::where("product_id", $product->id)->first();
+        $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get()->unique('user_id');
+        $user_ids = $fav->pluck('user_id');
+        $firebaseTokens = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->whereNotNull('device_token')->get();
 
+        $activity = "Nouveau panier";
+        $msg = "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋";
+        $users = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->get();
+        foreach ($users as $user){
+            NotificationHelper::addtoNitification($shopProduct->shop->user->id, $user->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
+        }
+
+        foreach ($firebaseTokens as $UserToken){
+            $url = 'https://fcm.googleapis.com/fcm/send';
+            if ($UserToken->device_type == "android"){
+                $fields = array (
+                    'registration_ids' => array (
+                        $UserToken->device_token
+                    ),
+                    'data' => array (
+                        "title" => "Yummy Box",
+                        "message" => $msg,
+                        "click_action" => "NotificationLunchScreen",
+                    )
+                );
+            }else{
+                $fields = array (
+                    'registration_ids' => array (
+                        $UserToken->device_token
+                    ),
+                    'notification' => array (
+                        "title" => "Yummy Box",
+                        "body" => $msg,
+                        "click_action" => "NotificationLunchScreen",
+                    )
+                );
+            }
+            $fields = json_encode ( $fields );
+            $headers = array (
+                'Authorization: key=' . "AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm",
+                'Content-Type: application/json'
+            );
+            $ch = curl_init ();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, true );
+            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+            $result = curl_exec ( $ch );
+            curl_close ( $ch );
+        }
         return back()->withSuccess('Panier mis à jour avec succès !');
     }
 
