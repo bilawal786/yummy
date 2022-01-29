@@ -93,12 +93,12 @@
                                             @php $qty = 0 @endphp
                                             <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;"
                                                class="btn btn-dark btn-sm ml-auto rounded-qty">
-                                                @foreach($vip->products as $qt)
-                                                    @foreach($qt->shopproduct as $shopp)
-                                                        @php $qty += $shopp->quantity; @endphp
-                                                    @endforeach
-                                                @endforeach
-                                                {{$qty}}</a>
+                                                <?php
+                                                $sub = \App\SubCategory::where('category_id', $vip->id)->pluck('id');
+                                                $p = \App\Models\Product::whereIn('subcategories', $sub)->pluck('id');
+                                                $ch = \App\Models\ShopProduct::whereIn('product_id', $p)->sum('quantity');
+                                                ?>
+                                                {{$ch}}</a>
                                             <span style="margin-top: 5px;">{{ $vip->name }}</span>
                                         </a>
                                     </div>
