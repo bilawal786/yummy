@@ -310,7 +310,9 @@ class ProductController extends BackendController
                     $retAction ='';
 
                     if(auth()->user()->can('products_edit')) {
-                        $retAction .= '<a href="' . route('admin.products.edit', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="far fa-edit"></i></a><a href="' . route('admin.product.my.delete', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="far fa-cross"></i></a>';
+                        $retAction .= '<a href="' . route('admin.products.edit', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="far fa-edit"></i></a>
+<a href="' . route('admin.product.my.delete', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="far fa-cross"></i></a>
+<a href="' . route('admin.product.duplicate', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-success" data-toggle="tooltip" data-placement="top" title="Dupliquer"> <i class="far fa-vcard"></i></a>';
                     }
                     return $retAction;
                 })
@@ -379,6 +381,36 @@ class ProductController extends BackendController
         $product = ShopProduct::where('product_id', $id)->first();
         $product->delete();
         return redirect()->back();
+    }
+    public function duplicate($id){
+        $shop_product = ShopProduct::where('product_id', $id)->first();
+        $product_old = Product::where('id', $id)->first();
+        $shopID = $shop_product->shop_id;
+
+        $product              = new Product;
+        $product->description = $product_old->description;
+        $product->unit_price  = $product_old->unit_price;
+        $product->subcategories  = $product->subcategory;
+        $product->name  = $product_old->name;
+        $product->publish  = $product_old->publish;
+        $product->requested   = ProductRequested::REQUESTED;
+        $product->save();
+//        dd($product->slug);
+        if ($product_old->image) {
+            $product->addMediaFromRequest('image')->toMediaCollection('products');
+        }
+        $product->categories()->sync($product_old->categories);
+        $shopProduct                 = new ShopProduct;
+        $shopProduct->shop_id        = $shopID;
+        $shopProduct->product_id     = $product->id;
+        $shopProduct->unit_price     = $shop_product->unit_price;
+        $shopProduct->quantity       = $shop_product->quantity != null ? $shop_product->quantity : 0;
+        $shopProduct->hdispoa        = $shop_product->hdispoa;
+        $shopProduct->hdispob        = $shop_product->hdispob;
+        $shopProduct->discount_price = $shop_product->discount_price != null ? $shop_product->discount_price : 0;
+        $shopProduct->save();
+
+        return back()->withSuccess('Panier mis à jour avec succès !');
     }
     public function getMedia( Request $request )
     {

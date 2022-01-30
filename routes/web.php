@@ -278,6 +278,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::post('get-shop', 'ShopController@getArea')->name('shop.get-area');
 
     Route::get('admin/product/my/delete/{id}', 'ProductController@mydelete')->name('product.my.delete');
+    Route::get('admin/product/duplicate/{id}', 'ProductController@duplicate')->name('product.duplicate');
     Route::resource('products', 'ProductController');
     Route::post('getMedia', 'ProductController@getMedia')->name('products.getMedia');
     Route::post('storeMedia', 'ProductController@storeMedia')->name('products.storeMedia');
