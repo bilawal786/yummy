@@ -312,7 +312,7 @@ class ProductController extends BackendController
                     if(auth()->user()->can('products_edit')) {
                         $retAction .= '<a href="' . route('admin.products.edit', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"> <i class="far fa-edit"></i></a>
 <a href="' . route('admin.product.my.delete', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"> <i class="far fa-cross"></i></a>
-<a href="' . route('admin.product.duplicate', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-success" data-toggle="tooltip" data-placement="top" title="Dupliquer"> <i class="far fa-vcard"></i></a>';
+<a href="' . route('admin.product.duplicate', $product->product_id) . '" class="btn btn-sm btn-icon float-left btn-success" data-toggle="tooltip" data-placement="top" title="Dupliquer"> <i class="far fa-copy"></i></a>';
                     }
                     return $retAction;
                 })
