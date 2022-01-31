@@ -4,7 +4,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Sous Catégories') }}</h1>
+            <h1>{{ __('Catégories Premium') }}</h1>
         </div>
 
         <div class="section-body">
@@ -24,8 +24,8 @@
                                         <th>{{ __('levels.id') }}</th>
                                         <th>{{ __('levels.image') }}</th>
                                         <th>{{ __('levels.name') }}</th>
-                                        <th>{{ __('Catégorie') }}</th>
                                         <th>{{ __('Région') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -34,14 +34,13 @@
                                         <td>{{$cat->id}}</td>
                                         <td><img src="{{asset($cat->image)}}" style="height: 30px" alt=""></td>
                                         <td>{{$cat->name}}</td>
-                                        <td>{{$cat->category->name}}</td>
-                                        <td>{{$cat->category->country->name}}</td>
-<!--                                        <td>
+                                        <td>{{$cat->location->name}}</td>
+                                    <td>
                                             <form method="POST" action="{{route('admin.souscategorie.destroy', $cat->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">Suprême</button>
-                                            </form></td>-->
+                                            </form></td>
                                     </tr>
                                     @endforeach
                                     </tbody>

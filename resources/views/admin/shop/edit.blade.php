@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="vip">VIP</label> <span class="text-danger">*</span>
-                                        <select name="vip" id="vip" class="select2 form-control">
+                                        <select name="vip" id="vip" class="checkvip select2 form-control">
                                             <option value="0">Non</option>
                                             <option value="1" {{ ($shop->vip == 1) ? 'selected' : '' }}>Oui</option>
                                         </select>
@@ -88,6 +88,17 @@
                                             {{ $message }}
                                         </div>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="form-row premium" style="display: {{$shop->vip == 1 ? 'block' : 'none'}}">
+                                    <div class="form-group col">
+                                        <label for="categories">{{ __('Sélectionnez La catégorie premium') }}</label> <span class="text-danger"></span>
+                                        <select  style="width: 100%" name="subcategory" class="form-control select2">
+                                            <option value="">Sélectionnez la prime</option>
+                                            @foreach($premiums as $prem)
+                                                <option {{$shop->subcategory == $prem->id ? 'selected' : ''}} value="{{$prem->id}}">{{$prem->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-row" style="display:none">
@@ -398,4 +409,15 @@ function categorychange(elem){
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
     <script src="{{ asset('js/shop/edit.js') }}"></script>
+<script>
+    $(".checkvip").change(function(){
+        var bb = $(this).val();
+        if(bb == 0){
+            $(".premium").hide();
+        }else {
+            $(".premium").show();
+        }
+
+    });
+</script>
 @endsection

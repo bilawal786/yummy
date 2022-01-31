@@ -10,7 +10,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Catégories') }}</h1>
+            <h1>{{ __('Catégories Premium') }}</h1>
         </div>
 
         <div class="section-body">
@@ -31,9 +31,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col">
-                                        <label>Sélectionnez VIP Catégorie</label>
-                                        <select name="category_id" class="form-control">
-                                            @foreach($category as $loc)
+                                        <label>Sélectionnez region</label>
+                                        <select name="location_id" class="form-control">
+                                            @foreach($locations as $loc)
                                                 <option value="{{ $loc->id }}">{{$loc->name}}</option>
                                             @endforeach
                                         </select>

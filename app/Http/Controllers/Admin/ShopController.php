@@ -21,6 +21,7 @@ use App\Models\ShopProduct;
 use App\Models\ShopProductOption;
 use App\Models\ShopProductVariation;
 use App\Enums\ProductRequested;
+use App\SubCategory;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -77,6 +78,7 @@ class ShopController extends BackendController
         $this->data['locations'] = Location::where(['status' => Status::ACTIVE])->get();
         $location_id             = old('location_id');
         $this->data['categories'] = Category::where(['status' => Status::ACTIVE])->get();
+        $this->data['premiums'] = SubCategory::all();
         return view('admin.shop.create', $this->data);
     }
 
@@ -101,12 +103,14 @@ class ShopController extends BackendController
         $user->assignRole($role->name);
         $shop                  = new Shop;
         $shop->user_id         = $user->id;
+        $shop->subcategory        = $request->subcategory;
         $shop->location_id     = $request->location_id;
         $shop->name            = $request->name;
         $shop->description     = $request->description;
         $shop->delivery_charge = empty($request->delivery_charge) ? 0 : $request->delivery_charge;
         $shop->lat             = $request->lat;
         $shop->long            = $request->long;
+        $shop->vip            = $request->vip;
         $shop->opening_time    = date('H:i:s', strtotime($request->opening_time));
         $shop->closing_time    = date('H:i:s', strtotime($request->closing_time));
         $shop->address         = $request->shopaddress;
@@ -167,6 +171,7 @@ class ShopController extends BackendController
     {
         $shop                  = new Shop;
         $shop->user_id         = auth()->id();
+        $shop->subcategory        = $request->subcategory;
         $shop->location_id     = $request->location_id;
         $shop->name            = $request->name;
         $shop->description     = $request->description;
@@ -236,6 +241,7 @@ class ShopController extends BackendController
     public function edit($id)
     {
         $this->data['shop']      = Shop::shopowner()->findOrFail($id);
+        $this->data['premiums'] = SubCategory::all();
         //dd($id);
         $shop                    = Shop::where(['id' => $id])->get();
         $this->data['locations'] = Location::where(['status' => Status::ACTIVE])->get();
@@ -287,6 +293,7 @@ class ShopController extends BackendController
                 $role = Role::find(3);
                 $user->assignRole($role->name);
                 $shop->location_id     = $request->location_id;
+                $shop->subcategory     = $request->subcategory;
                 $shop->name            = $request->name;
                 $shop->description     = $request->description;
                 $shop->delivery_charge = empty($request->delivery_charge) ? 0 : $request->delivery_charge;

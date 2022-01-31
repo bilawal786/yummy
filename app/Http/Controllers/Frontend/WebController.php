@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
 use App\Notify;
+use App\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ class WebController extends FrontendController
         $this->data['bestSellingShops']      = ShopProduct::with('shop')->selectRaw('shop_products.*, SUM(counter) as qty')->groupBy('shop_id')->orderBy('qty', 'desc')->get()->take(3);
         $this->data['categories']            = Category::pluck('name', 'id');
         $this->data['cat']                   = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', Auth::user()->address)->get();
-        $this->data['vipcats']               = Category::where('status', '!=', 10)->where('is_vip', 'Oui')->where('country_id', Auth::user()->address)->get();
+        $this->data['vipcats']               = SubCategory::where('location_id', Auth::user()->address)->get();
         $this->data['shopProducts']          = ShopProduct::orderBy('id', 'desc')->limit(3)->with('product')->get();
         $mytime = Carbon::now();
         $this->data['heure'] = $mytime->format('H:i:s');

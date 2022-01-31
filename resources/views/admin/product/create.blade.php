@@ -72,7 +72,7 @@
                                     <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
                                         <label for="categories">{{ __('levels.categories') }}</label> <span
                                                 class="text-danger">*</span>
-                                        <select onchange="subcategorychange(this)" id="categories" name="categories[]"
+                                        <select  id="categories" name="categories[]"
                                                 class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}"
                                                 required>
 
@@ -83,14 +83,14 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <div class="form-group col">
+<!--                                    <div class="form-group col">
                                         <label for="categories">{{ __('Sous-catégorie') }}</label> <span
                                                 class="text-danger"></span>
                                         <select id="categories" name="subcategory"
                                                 class="subcategory form-control select2">
 
                                         </select>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group col">
                                         <label for="name">Nom du panier</label> <span
                                                 class="text-danger">*</span>

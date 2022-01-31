@@ -65,8 +65,8 @@ class CategorieController extends FrontendController
     public function subcategory($id){
         $this->data['namepage']  = "Sous-catégories";
         $this->data['user']      = auth()->user();
-        $this->data['subcategory']      = SubCategory::where('category_id', $id)->get();
-        return view('frontend.subcategory', $this->data);
+        $this->data['shops']      = Shop::where('subcategory', '=', $id)->get();
+        return view('frontend.shops', $this->data);
     }
     public function subcategoryproducts($id){
         $this->data['cate']      = Product::where('subcategories', $id)->get();
@@ -74,6 +74,11 @@ class CategorieController extends FrontendController
         $this->data['user']      = auth()->user();
 
         return view('frontend.subcategories', $this->data);
+    }
+    public function shopProducts($id){
+        $id = ShopProduct::where('shop_id', $id)->pluck('product_id');
+        $shop_products = Product::whereIn('id', $id)->get();
+        return view('frontend.baskets', compact('shop_products'));
     }
 
 }

@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="vip">VIP</label> <span class="text-danger">*</span>
-                                    <select name="vip" id="vip" class="select2 form-control">
+                                    <select name="vip" id="vip" class="checkvip select2 form-control">
                                         <option value="0">Non</option>
                                         <option value="1">Oui</option>
                                     </select>
@@ -109,11 +109,14 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row premium" style="display: none">
                                 <div class="form-group col">
-                                    <label for="categories">{{ __('Sub Category') }}</label> <span class="text-danger"></span>
-                                    <select  id="categories" name="subcategory" class="subcategory form-control select2">
-
+                                    <label for="categories">{{ __('Sélectionnez La catégorie premium') }}</label> <span class="text-danger"></span>
+                                    <select  style="width: 100%" name="subcategory" class="form-control select2">
+                                        <option value="">Sélectionnez la prime</option>
+                                        @foreach($premiums as $prem)
+                                            <option value="{{$prem->id}}">{{$prem->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -473,6 +476,17 @@ $('.timepicker').pickatime({
            $('#long').val(place.geometry['location'].lng());
        });
    }
+</script>
+<script>
+    $(".checkvip").change(function(){
+        var bb = $(this).val();
+        if(bb == 0){
+            $(".premium").hide();
+        }else {
+            $(".premium").show();
+        }
+
+    });
 </script>
 <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>

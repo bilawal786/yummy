@@ -138,6 +138,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('traders', 'CategorieController@tradersindex')->name('traders');
     Route::post('traders/search', 'CategorieController@tradersSearch')->name('traders.search');
     Route::get('sub-category/{id}', 'CategorieController@subcategory')->name('sub-category');
+    Route::get('shop-products/{id}', 'CategorieController@shopProducts')->name('shop-products');
     Route::get('subcategory/products/{id}', 'CategorieController@subcategoryproducts')->name('subcategory.products');
     Route::get('/favourites', 'CategorieController@favourites')->name('favourites')->middleware('auth');
     Route::get('/fav/remove/{id}', 'CategorieController@favouritremove')->name('fav.remove');

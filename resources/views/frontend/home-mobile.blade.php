@@ -81,24 +81,19 @@
                                 <div class="card catagory-card">
                                     <div class="card-body">
                                         <a class="text-danger" href="{{ route('sub-category', $vip->id) }}">
-                                            @if($vip->getFirstMediaUrl('categories'))
+                                            @if($vip->image)
                                                 <img loading="lazy" alt="image"
-                                                     src="{{ asset($vip->getFirstMediaUrl('categories')) }}" width="68"
+                                                     src="{{ asset($vip->image) }}" width="68"
                                                      height="68">
                                             @else
                                                 <img loading="lazy" alt="image"
                                                      src="{{ asset('assets/img/default/category.png') }}" width="28"
                                                      height="28">
                                             @endif
-                                            @php $qty = 0 @endphp
-                                            <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;"
-                                               class="btn btn-dark btn-sm ml-auto rounded-qty">
-                                                <?php
-                                                $sub = \App\SubCategory::where('category_id', $vip->id)->pluck('id');
-                                                $p = \App\Models\Product::whereIn('subcategories', $sub)->pluck('id');
-                                                $ch = \App\Models\ShopProduct::whereIn('product_id', $p)->sum('quantity');
-                                                ?>
-                                                {{$ch}}</a>
+{{--                                            @php $qty = 0 @endphp--}}
+{{--                                            <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;"--}}
+{{--                                               class="btn btn-dark btn-sm ml-auto rounded-qty">--}}
+{{--                                               1</a>--}}
                                             <span style="margin-top: 5px;">{{ $vip->name }}</span>
                                         </a>
                                     </div>

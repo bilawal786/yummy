@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Location;
 use App\SubCategory;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $category = Category::where('is_vip', 'Oui')->get();
-        return  view('admin.subcategory.create', compact('category'));
+        $locations = Location::all();
+        return  view('admin.subcategory.create', compact('locations'));
     }
 
     /**
@@ -41,7 +42,7 @@ class SubCategoryController extends Controller
     {
         $subcat = new SubCategory();
         $subcat->name = $request->name;
-        $subcat->category_id = $request->category_id;
+        $subcat->location_id = $request->location_id;
         if ($request->hasfile('image')) {
             $image1 = $request->file('image');
             $name = time() . 'category' . '.' . $image1->getClientOriginalExtension();
