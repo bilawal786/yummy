@@ -75,8 +75,6 @@
                                                     href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
                                                         class="me-1 lni lni-cart"></i>Plus de panier à
                                                     sauver</a> @endif
-                                                <a href="{{route('fav.remove', ['id' => $proximite->id])}}"><span
-                                                        class="btn btn-danger btn-sm">Supprimer</span></a>
 
                                             </div>
                                         </div>
