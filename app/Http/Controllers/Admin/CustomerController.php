@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Location;
+use App\Refferal;
 use App\User;
 use App\Models\Balance;
 use Illuminate\Support\Facades\Hash;
@@ -133,6 +134,13 @@ class CustomerController extends BackendController
             })
             ->addColumn('name', function ($user) {
                 return $user->name;
+            })
+            ->addColumn('sponsership', function ($user) {
+                $refferal = Refferal::where('refferal_user', $user->id)->count();
+                return $refferal;
+            })
+            ->addColumn('coins', function ($user) {
+                return $user->balance->balance;
             })
             ->editColumn('id', function ($user) {
                 return $user->setID;

@@ -18,6 +18,8 @@ $(function() {
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
             { data: 'phone', name: 'phone' },
+            { data: 'coins', name: 'coins' },
+            { data: 'sponsership', name: 'sponsership' },
             { data: 'action', name: 'action' },
         ],
         "ordering": false

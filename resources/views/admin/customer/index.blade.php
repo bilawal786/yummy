@@ -46,6 +46,8 @@
                                             <th>{{ __('Nom') }}</th>
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('Téléphone') }}</th>
+                                            <th>{{ __('Coins') }}</th>
+                                            <th>{{ __('Parrainage') }}</th>
                                             <th>{{ __('Actions') }}</th>
                                         </tr>
                                     </thead>
