@@ -12,12 +12,14 @@
                         }else{
                             $likes = 0;
                         }
+                        $shops = \App\Models\ShopProduct::where('shop_id', $shop->id)->sum('quantity');
                         ?>
                       <div class="col-12 col-md-6">
                                     <div class="card weekly-product-card"
                                          >
                                         <div class="card-body d-flex align-items-center">
                                             <div class="product-thumbnail-side">
+                                                <span class="badge badge-danger">{{$shops}}</span>
                                                 <a class="product-thumbnail d-block"
                                                    href="{{route('shop-products', ['id' => $shop->id])}}">
                                                     <img
