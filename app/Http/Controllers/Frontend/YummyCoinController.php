@@ -28,7 +28,7 @@ class YummyCoinController extends FrontendController
 
         return view('frontend.yummycoin', $this->data);
     }
-    public function json(Request $request){
+    public function json($price){
 
       // Enter Your Stripe Secret
       \Stripe\Stripe::setApiKey(setting('stripe_secret'));
@@ -47,7 +47,7 @@ class YummyCoinController extends FrontendController
         $customer_id = $customer->id;
       }
       $payment_intent = \Stripe\PaymentIntent::create([
-        'amount' => $request->valeur *100,
+        'amount' => $price *100,
         'currency' => 'EUR',
         'customer' => $customer_id,
         'description' => 'Panier YummyBox'

@@ -159,10 +159,11 @@ $(document).ready(function() {
   document.getElementById("total").innerHTML = document.getElementById('deposit_amount').value+' €';
   document.getElementById("valeur").value =  Valcoin;
   console.log(document.getElementById("valeur").value);
+  var total = document.getElementById('deposit_amount').value;
   $.ajax({
-       type:'POST',
-       url: '/coinjson/',
-       method:"POST",
+       type:'GET',
+       url: '/coinjson/'+total,
+       method:"GET",
        async: false,
        data:{
           valeur: document.getElementById('deposit_amount').value
