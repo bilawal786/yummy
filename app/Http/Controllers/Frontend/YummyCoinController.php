@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\FrontendController;
 use App\Models\YummyCoin;
+use App\User;
 use Illuminate\Http\Request;
 use Stripe;
 use Auth;
