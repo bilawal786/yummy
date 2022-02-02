@@ -94,7 +94,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/notifications', 'WebController@notifications')->name('notifications')->middleware('auth');
     Route::view('/setup', 'frontend.account-setup');
     Route::get('/coin', 'YummyCoinController@index')->name('yummycoin')->middleware('auth');
-    Route::post('/coinjson', 'YummyCoinController@json')->name('coinjson')->middleware('auth');
+    Route::get('/coinjson', 'YummyCoinController@json')->name('coinjson')->middleware('auth');
     Route::post('yummycharge', 'CheckoutController@yummycoin')->name('yummycharge')->middleware('auth');
 
     Route::get('/map', 'WebController@mapshow')->name('map')->middleware('auth');
