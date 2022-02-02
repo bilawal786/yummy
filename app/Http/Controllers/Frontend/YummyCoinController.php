@@ -32,9 +32,6 @@ class YummyCoinController extends FrontendController
 
       // Enter Your Stripe Secret
       \Stripe\Stripe::setApiKey(setting('stripe_secret'));
-      if(Auth::user()->customer_id != NULL){
-        $customer_id = Auth::user()->customer_id;
-      }else{
         $customer = \Stripe\Customer::create([
           'email' => Auth::user()->email,
           'name' => Auth::user()->first_name.' '.Auth::user()->last_name,
@@ -45,7 +42,7 @@ class YummyCoinController extends FrontendController
         $user->customer_id = $customer->id;
         $user->save();
         $customer_id = $customer->id;
-      }
+
       $payment_intent = \Stripe\PaymentIntent::create([
         'amount' => $price *100,
         'currency' => 'EUR',
