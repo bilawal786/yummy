@@ -135,6 +135,7 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/search', 'SearchController@filter')->name('search');
     Route::get('/{shop}/products/search', 'SearchController@filterProduct')->name('search-product');
     Route::get('categorie/{slug}', 'CategorieController@index')->name('categories');
+    Route::get('shop-categories/{cat}/{id}', 'CategorieController@shop_categories')->name('shop-categories');
     Route::get('traders', 'CategorieController@tradersindex')->name('traders');
     Route::post('traders/search', 'CategorieController@tradersSearch')->name('traders.search');
     Route::get('sub-category/{id}', 'CategorieController@subcategory')->name('sub-category');
