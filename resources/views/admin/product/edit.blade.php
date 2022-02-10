@@ -122,18 +122,23 @@
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" value="0.60" name="reduction"
-                                                   id="inlineRadio1">
-                                            <label class="form-check-label" for="inlineRadio1">40%</label>
+                                                   id="inlineRadio2">
+                                            <label class="form-check-label" for="inlineRadio2">40%</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" value="0.50" name="reduction"
+                                                   id="inlineRadio3">
+                                            <label class="form-check-label" for="inlineRadio3">50%</label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" value="0.40" name="reduction"
-                                                   id="inlineRadio2">
-                                            <label class="form-check-label" for="inlineRadio2">60%</label>
+                                                   id="inlineRadio4">
+                                            <label class="form-check-label" for="inlineRadio4">60%</label>
                                         </div>
-                                      <div class="form-check form-check-inline">
+                                        <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" value="0.30" name="reduction"
-                                                   id="inlineRadio3">
-                                            <label class="form-check-label" for="inlineRadio3">70%</label>
+                                                   id="inlineRadio5">
+                                            <label class="form-check-label" for="inlineRadio5">70%</label>
                                         </div>
                                     </div>
                                     <div class="form-group col">
