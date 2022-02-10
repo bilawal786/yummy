@@ -124,20 +124,20 @@
                                                 class="text-danger">*</span>
                                         <br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" value="0.70" name="reduction"
+                                            <input class="form-check-input" type="radio" value="0.60" name="reduction"
                                                    id="inlineRadio1">
-                                            <label class="form-check-label" for="inlineRadio1">30%</label>
+                                            <label class="form-check-label" for="inlineRadio1">40%</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" value="0.50" name="reduction"
+                                            <input class="form-check-input" type="radio" value="0.40" name="reduction"
                                                    id="inlineRadio2">
-                                            <label class="form-check-label" for="inlineRadio2">50%</label>
+                                            <label class="form-check-label" for="inlineRadio2">60%</label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" value="0.30" name="reduction"
-                                                   id="inlineRadio3">
-                                            <label class="form-check-label" for="inlineRadio3">70%</label>
-                                        </div>
+{{--                                        <div class="form-check form-check-inline">--}}
+{{--                                            <input class="form-check-input" type="radio" value="0.30" name="reduction"--}}
+{{--                                                   id="inlineRadio3">--}}
+{{--                                            <label class="form-check-label" for="inlineRadio3">70%</label>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="form-group col">
                                         <label for="unit_price">Prix Yummy</label> <span class="text-danger">*</span>
