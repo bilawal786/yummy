@@ -216,7 +216,13 @@ class OrderController extends BackendController
                     return $order->total.'€';
                 })
                 ->editColumn('status', function ($order) {
-                    return trans('order_status.' . $order->status);
+                    if ($order->status == 20){
+                        return "Vendu";
+                    }elseif ($order->status == 10){
+                        return "Annuler";
+                    }else{
+                        return "Prêt à ramasser";
+                    }
                 })
                 ->editColumn('id', function ($order) {
                     return $order->setID;

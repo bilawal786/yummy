@@ -63,7 +63,7 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>{{ __('Récupéré') }}</h4>
+                            <h4>{{ __('Vendu') }}</h4>
                         </div>
                         <div class="card-body">
                             {{ $completed_order }}
@@ -79,7 +79,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Recovered Revenue') }}</h4>
+                                    <h4>{{ __('Revenu récupéré') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $recover_revenue }} €
@@ -94,7 +94,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Cancelled Revenue') }}</h4>
+                                    <h4>{{ __('Revenu annulé') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $cancel_revenue }} €
@@ -112,7 +112,7 @@
                                 <div class="col-sm-8 offset-sm-2">
                                     <div class="input-group input-daterange" id="date-picker">
                                         <select class="form-control" id="status" name="status" id="">
-                                            <option value="20">Récupéré</option>
+                                            <option value="20">Vendu</option>
                                                 <option value="10">Annulé</option>
                                                 <option value="17">Prêt à ramasser</option>
                                         </select>
