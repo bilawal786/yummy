@@ -117,6 +117,48 @@
 					                    @enderror
 							        </div>
 				                </div>
+				                <div class="form-row">
+				                	<div class="col-md-3">
+										<label for="">Localisation</label><br>
+										<input type="checkbox" name="p1" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Catégorie</label><br>
+										<input type="checkbox" name="p2" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Paniers</label><br>
+										<input type="checkbox" name="p3" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Boutique</label><br>
+										<input type="checkbox" name="p4" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Commandes</label><br>
+										<input type="checkbox" name="p5" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Utilisateurs</label><br>
+										<input type="checkbox" name="p6" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Bannières</label><br>
+										<input type="checkbox" name="p7" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Yummy Coin</label><br>
+										<input type="checkbox" name="p8" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Coordonnées bancaires</label><br>
+										<input type="checkbox" name="p9" value="1">
+									</div>
+				                	<div class="col-md-3">
+										<label for="">Notifications</label><br>
+										<input type="checkbox" name="p10" value="1">
+									</div>
+				                </div>
 
 							</div>
 					        <div class="card-footer">
