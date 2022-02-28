@@ -3,18 +3,20 @@
 namespace App\Exports;
 
 use App\User;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Spatie\Permission\Models\Role;
 
-class UsersExport implements FromCollection
+class UsersExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
         $role = Role::find(2);
-
-        return User::role($role->name)->select('first_name', 'last_name', 'email', 'phone', 'address')->get();
+        return view('admin.users.export', [
+            'users' =>   User::role($role->name)->get()
+        ]);
     }
 }
