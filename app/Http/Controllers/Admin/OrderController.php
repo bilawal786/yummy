@@ -50,8 +50,26 @@ class OrderController extends BackendController
      */
     public function index()
     {
+//        $orders = Order::orderOwner()->get();
         $orders = Order::orderOwner()->whereDate('created_at', Carbon::today())->get();
 
+        $this->data['orders']     = $orders;
+        $this->data['total_order']     = $orders->count();
+        $this->data['read_pickup']   = $orders->where('status', 17)->count();
+        $this->data['cancelled']   = $orders->where('status', 10)->count();
+        $this->data['completed_order'] = $orders->where('status', 20)->count();
+        $this->data['recover_revenue'] = $orders->where('status', 20)->sum('sub_total');
+        $this->data['cancel_revenue'] = $orders->where('status', 10)->sum('sub_total');
+
+        return view('admin.orders.index', $this->data);
+    }
+    public function orderFetchStatus(Request $request){
+        $start_date = Carbon::parse($request->start_date)
+            ->toDateTimeString();
+        $end_date = Carbon::parse($request->end_date)
+            ->toDateTimeString();
+        $orders = Order::orderOwner()->whereBetween('created_at',[$start_date,$end_date])->where('status', $request->status)->get();
+        $this->data['orders']     = $orders;
         $this->data['total_order']     = $orders->count();
         $this->data['read_pickup']   = $orders->where('status', 17)->count();
         $this->data['cancelled']   = $orders->where('status', 10)->count();

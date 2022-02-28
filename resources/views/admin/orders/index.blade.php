@@ -8,6 +8,33 @@
         </div>
 
         <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{route('admin.order.fetch.status')}}" method="POST">
+                        @csrf
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+                            <div class="input-group input-daterange" id="date-picker">
+                                <select class="form-control" id="status" name="status" id="">
+                                    <option value="20">Vendu</option>
+                                    <option value="10">Annulé</option>
+                                    <option value="17">Prêt à récupérer</option>
+                                </select>
+                                <input autocomplete="off" class="form-control" id="start_date" type="date" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+                                <input autocomplete="off" class="form-control" id="end_date" type="date" name="end_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+{{--                                <div class="input-group-append">--}}
+{{--                                    <button class="btn btn-outline-secondary" type="button" id="refresh"> {{ __('Rafraichir') }}</button>--}}
+{{--                                </div>--}}
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit" >{{ __('Rechercher') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
             <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
@@ -108,41 +135,44 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-8 offset-sm-2">
-                                    <div class="input-group input-daterange" id="date-picker">
-                                        <select class="form-control" id="status" name="status" id="">
-                                            <option value="20">Vendu</option>
-                                                <option value="10">Annulé</option>
-                                                <option value="17">Prêt à récupérer</option>
-                                        </select>
-                                        <input autocomplete="off" class="form-control" id="start_date" type="text" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
-                                        <input autocomplete="off" class="form-control" id="end_date" type="text" name="end_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" id="refresh"> {{ __('Rafraichir') }}</button>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" id="date-search">{{ __('Rechercher') }}</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div class="table-responsive">
-                                <table class="table table-striped" id="main-table" data-url="{{ route("admin.orders.get-orders") }}" data-status="{{ \App\Enums\OrderStatus::PENDING }}" data-hidecolumn="{{ auth()->user()->can('orders_show') || auth()->user()->can('orders_edit') || auth()->user()->can('orders_delete') }}">
-                                    <thead>
+                            <table class="table table-striped" id="maintable">
+                                <thead>
+                                <tr>
+                                    <th>{{ __('Numéro') }}</th>
+                                    <th>{{ __('Nom') }}</th>
+                                    <th>{{ __('Date') }}</th>
+                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ __('Total') }}</th>
+                                    <th>{{ __('Actions') }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($orders as $row)
                                     <tr>
-                                        <th>{{ __('Numéro') }}</th>
-                                        <th>{{ __('Nom') }}</th>
-                                        <th>{{ __('Date') }}</th>
-                                        <th>{{ __('Status') }}</th>
-                                        <th>{{ __('Total') }}</th>
-                                        <th>{{ __('Actions') }}</th>
+                                        <td>{{$row->order_code}}</td>
+                                        <td>{{$row->user->first_name}} {{$row->user->last_name}}</td>
+                                        <td>{{\Carbon\Carbon::parse($row->created_at)->format('d M Y, H:i')}}</td>
+                                        <td>
+                                            @if ($row->status == 20)
+                                            Vendu
+                                            @elseif ($row->status == 10)
+                                            Annuler
+                                            @else
+                                            Prêt à récupérer
+                                            @endif
+                                        </td>
+                                        <td>{{$row->total.'€'}}</td>
+                                        <td>
+                                            <a href="{{route('admin.orders.show', $row->id)}}" class="btn btn-sm btn-icon btn-info" data-toggle="tooltip" data-placement="top" title="View"><i class="far fa-eye"></i></a>
+                                            @if ($row->status != 20)
+                                                <a href="{{route('admin.orders.edit', $row->id)}}" class="pl-2 btn btn-sm btn-icon btn-primary" data-toggle="tooltip" data-placement="top" title="Edit"><i class="far fa-edit"></i></a>
+                                            @endif
+                                        </td>
+
                                     </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -152,16 +182,29 @@
 
 @endsection
 
+
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}">
 @endsection
 
 @section('scripts')
     <script src="{{ asset('assets/modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('js/orders/index.js') }}"></script>
+    <script>
+        "use strict";
+
+        $(function() {
+            var table = $('#maintable').DataTable({
+
+            });
+
+        });
+
+        $('#maintable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+
+    </script>
 @endsection
