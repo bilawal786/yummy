@@ -7,6 +7,7 @@
         <th>Email</th>
         <th>Téléphone</th>
         <th>Ville </th>
+        <th>Yummy coin </th>
         <th>Parrainages</th>
     </tr>
     </thead>
@@ -19,6 +20,7 @@
             <td>{{$row->email}}</td>
             <td>{{$row->phone}}</td>
             <td>{{$row->country->name}}</td>
+            <td>{{$row->balance->balance}}</td>
             @php
                 $refferal = \App\Refferal::where('refferal_user', $row->id)->count();
 @endphp
