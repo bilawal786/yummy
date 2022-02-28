@@ -182,11 +182,12 @@ $(document).ready(function() {
 });
 
 function getval(sel){
+  var total = document.getElementById('deposit_amount').value;
   document.getElementById("total").innerHTML = sel.value+' €';
   $.ajax({
        type:'POST',
-       url: '/coinjson/',
-       method:"POST",
+       url: '/coinjson/'+total,
+       method:"GET",
        async: false,
        data:{
           valeur: sel.value
