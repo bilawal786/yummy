@@ -81,7 +81,7 @@
                                 <div class="col-lg-8">
                                     <div class="section-title">{{ __('État') }} : {{ trans('order_status.'.$order->status) }}</div>
                                     <div class="section-title">{{ __('Statut du paiement') }} : Payé</div>
-                                    <div class="section-title">{{ __('Méthode de Paiement') }} : {{ trans('payment_method.'.$order->payment_method) }}</div>
+                                    <div class="section-title">{{ __('Méthode de Paiement') }} : @if($order->payment_method == 20) Yummy Coin @else Paiement en ligne par carte @endif</div>
                                 </div>
                                 <div class="col-lg-4 text-right">
                                     <div class="invoice-detail-item">

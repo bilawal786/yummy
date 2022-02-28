@@ -249,7 +249,6 @@
             opacity: 1;
         }
         .show {
-            display: block;
             animation-name: showhide;
             animation-duration: 0.5s;
             transform: scale(1);

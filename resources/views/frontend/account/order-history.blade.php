@@ -31,7 +31,7 @@
                           <p class="badge @if($order->status == 20) bg-success @elseif($order->status == 10) bg-danger @else bg-warning @endif ms-1">{{trans('order_status.' . $order->status)}}</p></span>
                        @if($order->status == 10)
                         @else
-                      {  @if($time<2)
+                       @if($time<2)
                         <a href="{{route('front.order.cancel', ['id' => $order->id])}}"><span style="color: white!important;" class="badge bg-danger float-right">Annuler la commande</span></a>
                         @endif
                         @endif

@@ -159,8 +159,11 @@
 							<div class="col-md-6">
 								 <div class="card">
 									 <div class="card-body">
-										 <div id="earningGraph"></div>
-									 </div>
+                                         <p><b>Graphique des revenus</b></p>
+
+                                         <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
+
+                                     </div>
 							 </div>
 					 </div>
 				</div>
@@ -170,10 +173,118 @@
 @endsection
 
 @section('scripts')
-	<script src="{{ asset('assets/modules/highcharts/highcharts.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script src="{{ asset('assets/modules/highcharts/highcharts.js') }}"></script>
 	<script src="{{ asset('assets/modules/highcharts/highcharts-more.js') }}"></script>
 	<script src="{{ asset('assets/modules/highcharts/data.js') }}"></script>
 	<script src="{{ asset('assets/modules/highcharts/drilldown.js') }}"></script>
 	<script src="{{ asset('assets/modules/highcharts/exporting.js') }}"></script>
 	@include('vendor.installer.update.OrderIncomeGraph')
+    <?php
+    $year = date("Y");
+
+
+    $cat = App\Models\Order::whereMonth('created_at', '1')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $jan = 0;
+    }else{
+        $jan =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '2')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $feb = 0;
+    }else{
+        $feb =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '3')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $mar = 0;
+    }else{
+        $mar =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '4')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $apr = 0;
+    }else{
+        $apr =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '5')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $may = 0;
+    }else{
+        $may =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '6')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $jun = 0;
+    }else{
+        $jun =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '7')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $jul = 0;
+    }else{
+        $jul =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '8')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $aug = 0;
+    }else{
+        $aug =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '9')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $sep = 0;
+    }else{
+        $sep =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '10')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $oct = 0;
+    }else{
+        $oct =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '11')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $nov = 0;
+    }else{
+        $nov =  $cat->sum('total');
+    }
+
+    $cat = App\Models\Order::whereMonth('created_at', '12')->whereYear('created_at', $year)->first();
+    if ($cat == null){
+        $dec = 0;
+    }else{
+        $dec =  $cat->sum('total');
+    }
+    ?>
+    <script>
+        var xValues = ['jan','feb','mar','avr','mai','jui','juil','août','sep','oct', 'nov', 'déc'];
+
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    data: [{{$jan}}, {{$feb}}, {{$mar}}, {{$apr}}, {{$may}}, {{$jun}}, {{$jul}}, {{$aug}}, {{$sep}}, {{$oct}}, {{$nov}}, {{$dec}}],
+                    borderColor: "red",
+                    fill: false
+                }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+    </script>
 @endsection

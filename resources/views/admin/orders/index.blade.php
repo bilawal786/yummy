@@ -32,10 +32,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>{{ __('En Attente') }}</h4>
+                            <h4>{{ __('Annulé') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $pending_order }}
+                            {{ $cancelled }}
                         </div>
                     </div>
                 </div>
@@ -47,10 +47,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>{{ __('En Cours') }}</h4>
+                            <h4>{{ __('Prêt à ramasser') }}</h4>
                         </div>
                         <div class="card-body">
-                            {{ $process_order }}
+                            {{ $read_pickup }}
                         </div>
                     </div>
                 </div>
@@ -71,6 +71,38 @@
                     </div>
                 </div>
             </div>
+                @if(Auth::user()->hasRole('Admin'))
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>{{ __('Recovered Revenue') }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $recover_revenue }} €
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-secondary">
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>{{ __('Cancelled Revenue') }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ $cancel_revenue }} €
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
         </div>
             <div class="row">
                 <div class="col-12">
@@ -80,9 +112,9 @@
                                 <div class="col-sm-8 offset-sm-2">
                                     <div class="input-group input-daterange" id="date-picker">
                                         <select class="form-control" id="status" name="status" id="">
-                                            @foreach(trans('order_status') as $key => $status)
-                                                <option value="{{ $key }}">{{ $status }}</option>
-                                            @endforeach
+                                            <option value="20">Récupéré</option>
+                                                <option value="10">Annulé</option>
+                                                <option value="17">Prêt à ramasser</option>
                                         </select>
                                         <input autocomplete="off" class="form-control" id="start_date" type="text" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                                         <input autocomplete="off" class="form-control" id="end_date" type="text" name="end_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">

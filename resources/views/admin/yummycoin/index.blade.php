@@ -131,6 +131,7 @@
 
 @section('css')
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
+
 @endsection
 
 @section('scripts')

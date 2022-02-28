@@ -51,7 +51,6 @@ class DashboardController extends BackendController
         }
         $totalOrders  = $orders->get();
         $recentOrders = Order::orderBy('id', 'desc')->whereDate('created_at', date('Y-m-d'))->orderOwner()->get();
-        $yearlyOrders = Order::orderBy('id', 'desc')->where('status', '!=', OrderStatus::CANCEL)->whereYear('created_at', date('Y'))->orderOwner()->get();
         $totalIncome = Order::sum('total');
         /*if ( !blank($totalOrders) ) {
             foreach ( $totalOrders as $totalOrder ) {
@@ -60,36 +59,7 @@ class DashboardController extends BackendController
                 }
             }
         }*/
-        $monthWiseTotalIncome    = [];
-        $monthDayWiseTotalIncome = [];
-        $monthWiseTotalOrder     = [];
-        $monthDayWiseTotalOrder  = [];
-        if ( !blank($yearlyOrders) ) {
-            foreach ( $yearlyOrders as $yearlyOrder ) {
-                $monthNumber = (int)date('m', strtotime($yearlyOrder->created_at));
-                $dayNumber   = (int)date('d', strtotime($yearlyOrder->created_at));
-                if ( !isset($monthDayWiseTotalIncome[ $monthNumber ][ $dayNumber ]) ) {
-                    $monthDayWiseTotalIncome[ $monthNumber ][ $dayNumber ] = 0;
-                }
-                $monthDayWiseTotalIncome[ $monthNumber ][ $dayNumber ] += $yearlyOrder->paid_amount;
-                if ( !isset($monthWiseTotalIncome[ $monthNumber ]) ) {
-                    $monthWiseTotalIncome[ $monthNumber ] = 0;
-                }
-                $monthWiseTotalIncome[ $monthNumber ] += $yearlyOrder->paid_amount;
-                if ( !isset($monthDayWiseTotalOrder[ $monthNumber ][ $dayNumber ]) ) {
-                    $monthDayWiseTotalOrder[ $monthNumber ][ $dayNumber ] = 0;
-                }
-                $monthDayWiseTotalOrder[ $monthNumber ][ $dayNumber ] += 1;
-                if ( !isset($monthWiseTotalOrder[ $monthNumber ]) ) {
-                    $monthWiseTotalOrder[ $monthNumber ] = 0;
-                }
-                $monthWiseTotalOrder[ $monthNumber ] += 1;
-            }
-        }
-        $this->data['monthWiseTotalIncome']    = $monthWiseTotalIncome;
-        $this->data['monthDayWiseTotalIncome'] = $monthDayWiseTotalIncome;
-        $this->data['monthWiseTotalOrder']     = $monthWiseTotalOrder;
-        $this->data['monthDayWiseTotalOrder']  = $monthDayWiseTotalOrder;
+
         $this->data['totalOrders'] = $totalOrders;
         $this->data['totalIncome'] = $totalIncome;
         if ( auth()->user()->myrole == UserRole::ADMIN ) {

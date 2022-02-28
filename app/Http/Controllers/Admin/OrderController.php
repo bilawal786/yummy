@@ -53,9 +53,11 @@ class OrderController extends BackendController
         $orders = Order::orderOwner()->get();
 
         $this->data['total_order']     = $orders->count();
-        $this->data['pending_order']   = $orders->where('status', OrderStatus::PENDING)->count();
-        $this->data['process_order']   = $orders->where('status', OrderStatus::PROCESS)->count();
-        $this->data['completed_order'] = $orders->where('status', OrderStatus::COMPLETED)->count();
+        $this->data['read_pickup']   = $orders->where('status', 17)->count();
+        $this->data['cancelled']   = $orders->where('status', 10)->count();
+        $this->data['completed_order'] = $orders->where('status', 20)->count();
+        $this->data['recover_revenue'] = $orders->where('status', 20)->sum('sub_total');
+        $this->data['cancel_revenue'] = $orders->where('status', 10)->sum('sub_total');
 
         return view('admin.orders.index', $this->data);
     }
