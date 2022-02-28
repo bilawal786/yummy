@@ -47,7 +47,7 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>{{ __('Prêt à ramasser') }}</h4>
+                            <h4>{{ __('Prêt à récupérer') }}</h4>
                         </div>
                         <div class="card-body">
                             {{ $read_pickup }}
@@ -114,7 +114,7 @@
                                         <select class="form-control" id="status" name="status" id="">
                                             <option value="20">Vendu</option>
                                                 <option value="10">Annulé</option>
-                                                <option value="17">Prêt à ramasser</option>
+                                                <option value="17">Prêt à récupérer</option>
                                         </select>
                                         <input autocomplete="off" class="form-control" id="start_date" type="text" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                                         <input autocomplete="off" class="form-control" id="end_date" type="text" name="end_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">

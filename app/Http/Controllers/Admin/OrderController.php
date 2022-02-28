@@ -221,7 +221,7 @@ class OrderController extends BackendController
                     }elseif ($order->status == 10){
                         return "Annuler";
                     }else{
-                        return "Prêt à ramasser";
+                        return "Prêt à récupérer";
                     }
                 })
                 ->editColumn('id', function ($order) {
