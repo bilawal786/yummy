@@ -16,7 +16,8 @@
                         <div class="col-sm-8 offset-sm-2">
                             <div class="input-group input-daterange" id="date-picker">
                                 <select class="form-control" id="status" name="status" id="">
-                                    <option value="20">Vendu</option>
+                                    <option value="0">Tous</option>
+                                    <option value="20">Tout vendu</option>
                                     <option value="10">Annulé</option>
                                     <option value="17">Prêt à récupérer</option>
                                 </select>
@@ -51,7 +52,6 @@
                     </div>
                 </div>
             </div>
-                @if( Auth::user()->hasRole('Admin') )
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-danger">
@@ -82,7 +82,6 @@
                     </div>
                 </div>
             </div>
-                @endif
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-success">
@@ -98,7 +97,6 @@
                     </div>
                 </div>
             </div>
-                @if(Auth::user()->hasRole('Admin'))
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary">
@@ -129,7 +127,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
         </div>
             <div class="row">
                 <div class="col-12">
@@ -140,6 +137,7 @@
                                 <tr>
                                     <th>{{ __('Numéro') }}</th>
                                     <th>{{ __('Nom') }}</th>
+                                    <th>{{ __('Commerçant') }}</th>
                                     <th>{{ __('Date') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Total') }}</th>
@@ -151,6 +149,7 @@
                                     <tr>
                                         <td>{{$row->order_code}}</td>
                                         <td>{{$row->user->first_name}} {{$row->user->last_name}}</td>
+                                        <td>{{$row->shop->user->first_name}} {{$row->shop->user->last_name}}</td>
                                         <td>{{\Carbon\Carbon::parse($row->created_at)->format('d M Y, H:i')}}</td>
                                         <td>
                                             @if ($row->status == 20)

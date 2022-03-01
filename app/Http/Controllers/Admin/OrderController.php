@@ -68,7 +68,12 @@ class OrderController extends BackendController
             ->toDateTimeString();
         $end_date = Carbon::parse($request->end_date)
             ->toDateTimeString();
-        $orders = Order::orderOwner()->whereBetween('created_at',[$start_date,$end_date])->where('status', $request->status)->get();
+        if ($request->status == 0){
+            $orders = Order::orderOwner()->whereBetween('created_at',[$start_date,$end_date])->get();
+        }else{
+            $orders = Order::orderOwner()->whereBetween('created_at',[$start_date,$end_date])->where('status', $request->status)->get();
+        }
+
         $this->data['orders']     = $orders;
         $this->data['total_order']     = $orders->count();
         $this->data['read_pickup']   = $orders->where('status', 17)->count();
