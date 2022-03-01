@@ -300,6 +300,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::resource('orders', 'OrderController');
     Route::get('orders/{order}/delivery', 'OrderController@delivery')->name('orders.delivery');
     Route::get('get-orders', 'OrderController@getOrder')->name('orders.get-orders');
+    Route::post('order-fetch-status', 'OrderController@orderFetchStatus')->name('order.fetch.status');
     Route::get('orders/order-file/{id}', 'OrderController@getDownloadFile')->name('orders.order-file');
 
     Route::resource('updates', 'UpdateController');
