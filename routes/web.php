@@ -302,6 +302,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('get-orders', 'OrderController@getOrder')->name('orders.get-orders');
     Route::post('order-fetch-status', 'OrderController@orderFetchStatus')->name('order.fetch.status');
     Route::get('orders/order-file/{id}', 'OrderController@getDownloadFile')->name('orders.order-file');
+    Route::get('orders/export/by/admin', 'OrderController@exportorders')->name('orders.export');
 
     Route::resource('updates', 'UpdateController');
     Route::get('get-updates', 'UpdateController@getUpdates')->name('updates.get-updates');

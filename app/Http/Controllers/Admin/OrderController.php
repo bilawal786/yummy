@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Enums\ProductReceiveStatus;
+use App\Exports\OrderExport;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\OrderRequest;
 use App\Http\Services\OrderService;
@@ -25,7 +26,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\Models\Media;
 use Yajra\DataTables\DataTables;
-
+use Maatwebsite\Excel\Facades\Excel;
 class OrderController extends BackendController
 {
     /**
@@ -62,6 +63,9 @@ class OrderController extends BackendController
         $this->data['cancel_revenue'] = $orders->where('status', 10)->sum('sub_total');
 
         return view('admin.orders.index', $this->data);
+    }
+    public function exportorders(){
+        return Excel::download(new OrderExport(), 'commandes.xlsx');
     }
     public function orderFetchStatus(Request $request){
         $start_date = Carbon::parse($request->start_date)

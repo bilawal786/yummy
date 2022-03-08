@@ -31,6 +31,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     </form>
                 </div>
@@ -126,6 +127,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <a href="{{route('admin.orders.export')}}"> <button class="btn btn-primary">Commandes d'exportation</button></a>
                     </div>
         </div>
             <div class="row">
