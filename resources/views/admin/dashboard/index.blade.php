@@ -185,84 +185,84 @@
     $year = date("Y");
 
 
-    $cat = App\Models\Order::whereMonth('created_at', '1')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '1')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $jan = 0;
     }else{
         $jan =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '2')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '2')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $feb = 0;
     }else{
         $feb =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '3')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '3')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $mar = 0;
     }else{
         $mar =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '4')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '4')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $apr = 0;
     }else{
         $apr =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '5')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '5')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $may = 0;
     }else{
         $may =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '6')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '6')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $jun = 0;
     }else{
         $jun =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '7')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '7')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $jul = 0;
     }else{
         $jul =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '8')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '8')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $aug = 0;
     }else{
         $aug =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '9')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '9')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $sep = 0;
     }else{
         $sep =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '10')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '10')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $oct = 0;
     }else{
         $oct =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '11')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '11')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $nov = 0;
     }else{
         $nov =  $cat->sum('total');
     }
 
-    $cat = App\Models\Order::whereMonth('created_at', '12')->whereYear('created_at', $year)->first();
+    $cat = App\Models\Order::orderOwner()->whereMonth('created_at', '12')->whereYear('created_at', $year)->first();
     if ($cat == null){
         $dec = 0;
     }else{

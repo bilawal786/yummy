@@ -13,7 +13,10 @@
                     <form action="{{route('admin.order.fetch.status')}}" method="POST">
                         @csrf
                     <div class="row">
-                        <div class="col-sm-8 offset-sm-2">
+                        <div class="col-sm-3">
+                            <p>Ordres de Recherche: </p>
+                        </div>
+                        <div class="col-sm-8">
                             <div class="input-group input-daterange" id="date-picker">
                                 <select class="form-control" id="status" name="status" id="">
                                     <option value="0">Tous</option>
@@ -23,14 +26,42 @@
                                 </select>
                                 <input autocomplete="off" class="form-control" id="start_date" type="date" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                                 <input autocomplete="off" class="form-control" id="end_date" type="date" name="end_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
-{{--                                <div class="input-group-append">--}}
-{{--                                    <button class="btn btn-outline-secondary" type="button" id="refresh"> {{ __('Rafraichir') }}</button>--}}
-{{--                                </div>--}}
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="submit" >{{ __('Rechercher') }}</button>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    </form>
+                    <br>
+                    <form action="{{route('admin.order.fetch.traders')}}" method="POST">
+                        @csrf
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p>Ordres des commerçants à l'exportation</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="input-group input-daterange" id="date-picker">
+                                <select  id="location" name="shop_id"
+                                        class="select2 form-control">
+                                    <option value="">Sélectionnez un commerçant</option>
+                                    <?php
+                                    $shops = \App\Models\Shop::all();
+                                    ?>
+                                    @foreach($shops as $shop)
+                                    <option value="{{ $shop->id }}">{{ $shop->name }}</option>
+                                    @endforeach
+
+                                </select>
+                                <input autocomplete="off" class="form-control" id="start_date" type="date" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+                                <input autocomplete="off" class="form-control" id="end_date" type="date" name="end_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit" >{{ __('Exportation') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
 
                     </div>
                     </form>
@@ -129,7 +160,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                            <a href="{{route('admin.orders.export')}}"> <button class="btn btn-primary">Commandes d'exportation</button></a>
+                            <a href="{{route('admin.orders.export')}}"> <button class="btn btn-primary">Commande Exportation</button></a>
                     </div>
         </div>
             <div class="row">
@@ -187,11 +218,15 @@
 
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+
     <script src="{{ asset('assets/modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>

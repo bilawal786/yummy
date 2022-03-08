@@ -12,6 +12,7 @@ use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Enums\ProductReceiveStatus;
 use App\Exports\OrderExport;
+use App\Exports\TradersExport;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\OrderRequest;
 use App\Http\Services\OrderService;
@@ -329,6 +330,15 @@ class OrderController extends BackendController
         $order->deliverytime = $request->deliverytime;
         $order->update();
         return redirect()->back()->withSuccess('The Data Deleted Successfully');
+    }
+
+    public function fetchTraders(Request $request){
+        $start_date = Carbon::parse($request->start_date)
+            ->toDateTimeString();
+        $end_date = Carbon::parse($request->end_date)
+        ->toDateTimeString();
+        $orders = Order::where('shop_id', $request->shop_id)->whereBetween('created_at',[$start_date,$end_date])->get();
+        return Excel::download(new TradersExport($orders), 'Commandes.xlsx');
     }
 
     private function fileDownloadResponse(Media $mediaItem)

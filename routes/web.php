@@ -304,6 +304,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('orders/order-file/{id}', 'OrderController@getDownloadFile')->name('orders.order-file');
     Route::get('orders/export/by/admin', 'OrderController@exportorders')->name('orders.export');
     Route::post('deliverytime/update', 'OrderController@deliverytime')->name('deliverytime.update');
+    Route::post('order/fetch/traders', 'OrderController@fetchTraders')->name('order.fetch.traders');
 
     Route::resource('updates', 'UpdateController');
     Route::get('get-updates', 'UpdateController@getUpdates')->name('updates.get-updates');
