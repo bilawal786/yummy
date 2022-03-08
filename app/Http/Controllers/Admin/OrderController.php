@@ -324,6 +324,12 @@ class OrderController extends BackendController
             }
         }
     }
+    public function deliverytime(Request $request){
+        $order = Order::find($request->id);
+        $order->deliverytime = $request->deliverytime;
+        $order->update();
+        return redirect()->back()->withSuccess('The Data Deleted Successfully');
+    }
 
     private function fileDownloadResponse(Media $mediaItem)
     {

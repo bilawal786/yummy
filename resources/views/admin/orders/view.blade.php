@@ -3,7 +3,23 @@
 @section('main-content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Commandes') }}</h1>
+                <div class="col-md-4">
+                    <h1>{{ __('Commandes') }}</h1>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4" style="text-align: right">
+                    @if($order->deliverytime)
+                        <b>La commande sera livrée dans:</b> <h1>{{$order->deliverytime}}</h1>
+                    @else
+                    <form action="{{route('admin.deliverytime.update')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$order->id}}">
+                        <b>Mettre à jour le délai de livraison:</b> <input name="deliverytime" type="time"> <input type="submit" value="Mettre à jour">
+                    </form>
+                        @endif
+                </div>
         </div>
 
         <div class="section-body">

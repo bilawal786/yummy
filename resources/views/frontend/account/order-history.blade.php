@@ -7,6 +7,7 @@
       </div>
   @endif
       <div class="container">
+          <small><b>Noter: Vous pouvez annuler la commande dans les 2 heures</b></small>
         <div class="cart-wrapper-area py-3">
           <div class="cart-table card mb-3">
             <div class="table-responsive card-body">
@@ -16,8 +17,6 @@
                      <?php
                      $time = $order->created_at->diffInHours(Carbon\Carbon::now(), false);
                       ?>
-
-
                   <tr>
                     <td>
                       <a href="{{route('account.order.show', $order->id)}}"><img src="{{ $order->shop->images??"" }}"></a>
@@ -31,6 +30,10 @@
                           <p class="badge @if($order->status == 20) bg-success @elseif($order->status == 10) bg-danger @else bg-warning @endif ms-1">{{trans('order_status.' . $order->status)}}</p></span>
                        @if($order->status == 10)
                         @else
+                            <br>
+                        @if($order->deliverytime)
+                           <small>La commande sera livrée dans: <b>{{$order->deliverytime}}</b> </small>
+                            @endif
                        @if($time<2)
                         <a href="{{route('front.order.cancel', ['id' => $order->id])}}"><span style="color: white!important;" class="badge bg-danger float-right">Annuler la commande</span></a>
                         @endif
