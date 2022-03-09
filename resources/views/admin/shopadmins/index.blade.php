@@ -14,7 +14,9 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <a href="{{route('admin.create.shopadmins')}}"><button class="btn btn-primary">Ajouter nouveau</button></a>
+                            <a href="{{route('admin.create.shopadmins')}}">
+                                <button class="btn btn-primary">Ajouter nouveau</button>
+                            </a>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped" id="maintable">
@@ -24,7 +26,7 @@
                                     <th>{{ __('Nom') }}</th>
                                     <th>{{ __('Email') }}</th>
                                     <th>{{ __('Telephone') }}</th>
-{{--                                    <th>{{ __('Actions') }}</th>--}}
+                                    <th>{{ __('Actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -34,7 +36,19 @@
                                         <td>{{$row->first_name}} {{$row->last_name}}</td>
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->phone}}</td>
-{{--                                        <td>{{$row->phone}}</td>--}}
+                                        <td>
+                                            <a href="{{route('admin.administrators.edit', $row->id)}}"
+                                               class="btn btn-sm btn-icon float-left btn-primary ml-2"
+                                               data-toggle="tooltip" data-placement="top" title="Edit"><i
+                                                        class="far fa-edit"></i></a>
+                                            <form class="float-left pl-2"
+                                                  action="{{route('admin.administrators.destroy', $row->id)}}"
+                                                  method="POST"> @method('DELETE') @csrf
+                                                <button class="btn btn-sm btn-icon btn-danger" data-toggle="tooltip"
+                                                        data-placement="top" title="Delete"><i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -65,10 +79,8 @@
     <script>
         "use strict";
 
-        $(function() {
-            var table = $('#maintable').DataTable({
-
-            });
+        $(function () {
+            var table = $('#maintable').DataTable({});
 
         });
 
