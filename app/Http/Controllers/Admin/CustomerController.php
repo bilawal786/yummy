@@ -232,6 +232,56 @@ class CustomerController extends BackendController
                 $user->shopadmins = json_encode($data);
             }
         }
+        if ($request->p1){
+            $user->p1 = $request->p1;
+        }else{
+            $user->p1 = 0;
+        }
+        if ($request->p2){
+            $user->p2 = $request->p2;
+        }else{
+            $user->p2 = 0;
+        }
+        if ($request->p3){
+            $user->p3 = $request->p3;
+        }else{
+            $user->p3 = 0;
+        }
+        if ($request->p4){
+            $user->p4 = $request->p4;
+        }else{
+            $user->p4 = 0;
+        }
+        if ($request->p5){
+            $user->p5 = $request->p5;
+        }else{
+            $user->p5 = 0;
+        }
+        if ($request->p6){
+            $user->p6 = $request->p6;
+        }else{
+            $user->p6 = 0;
+        }
+        if ($request->p7){
+            $user->p7 = $request->p7;
+        }else{
+            $user->p7 = 0;
+        }
+        if ($request->p8){
+            $user->p8 = $request->p8;
+        }else{
+            $user->p8 = 0;
+        }
+        if ($request->p9){
+            $user->p9 = $request->p9;
+        }else{
+            $user->p9 = 0;
+        }
+        if ($request->p10){
+            $user->p10 = $request->p10;
+        }else{
+            $user->p10 = 0;
+        }
         $user->save();
 
         if (request()->file('image')) {
