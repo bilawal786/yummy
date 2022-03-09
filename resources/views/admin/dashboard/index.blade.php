@@ -117,8 +117,12 @@
                     </div>
                 </div>
             </div>
-		@endif
-						<div class="row">
+
+
+        @endif
+
+        @if(auth()->user()->myrole == \App\Enums\UserRole::ADMIN || auth()->user()->myrole == \App\Enums\UserRole::SHOPOWNER)
+		<div class="row">
 							<div class="col-md-6">
 									<div class="card">
 											<div class="card-header">
@@ -167,7 +171,7 @@
 							 </div>
 					 </div>
 				</div>
-
+        @endif
     </section>
 
 @endsection
