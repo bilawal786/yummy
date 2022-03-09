@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Location;
+use App\Models\Product;
+use App\Models\Shop;
+use App\Models\ShopProduct;
 use App\Refferal;
 use App\User;
 use App\Models\Balance;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\Datatables\Datatables;
@@ -200,6 +205,48 @@ class CustomerController extends BackendController
         $this->data['location'] = Location::all();
         $this->data['id'] = $id;
         return view('admin.customer.countryUsers', $this->data);
+    }
+    public function shopAdmins(){
+        $role      = Role::find(5);
+        $users     = User::role($role->name)->latest()->get();
+        return view('admin.shopadmins.index', compact('users'));
+    }
+    public function createShopAdmins(){
+        $shops = Shop::all();
+        return view('admin.shopadmins.create', compact('shops'));
+    }
+    public function storeShopAdmins(Request $request){
+        $user             = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->username   = $request->username ?? $this->username($request->email);
+        $user->password   = Hash::make(request('password'));
+        $user->phone      = $request->phone;
+        $user->address    = $request->address;
+        $user->status     = $request->status;
+        if($request->shops){
+            foreach($request->shops as $shop)
+            {
+                $data[] = $shop;
+                $user->shopadmins = json_encode($data);
+            }
+        }
+        $user->save();
+
+        if (request()->file('image')) {
+            $user->addMedia(request()->file('image'))->toMediaCollection('user');
+        }
+
+        $role = Role::find(5);
+        $user->assignRole($role->name);
+
+        return redirect(route('admin.shop.admins'))->withSuccess('The Data Inserted Successfully');
+    }
+    public function shopAdminProducts(){
+        $shopsids = json_decode(Auth::user()->shopadmins);
+        $products  = ShopProduct::whereIn('shop_id', $shopsids)->get();
+        return view('admin.shopadmins.products', compact('products'));
     }
 
 }
