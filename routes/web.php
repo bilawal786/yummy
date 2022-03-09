@@ -15,34 +15,7 @@ Route::get('/', function (){
         return  redirect('/login');
     }
 });
-Route::get('/testlat', function ()
-{
-    $lat1 = 31.431160;
-    $lon1 = 74.264343;
-    $lat2 = 31.569123;
-    $lon2 = 74.387895;
-    $unit = "K";
-    $theta = $lon1 - $lon2;
-    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-    $dist = acos($dist);
-    $dist = rad2deg($dist);
-    $miles = $dist * 60 * 1.1515;
-    $unit = strtoupper($unit);
-
-    if ($unit == "K")
-    {
-        return ($miles * 1.609344);
-    }
-    else if ($unit == "N")
-    {
-        return ($miles * 0.8684);
-    }
-    else
-    {
-        return $miles;
-    }
-}
-);
+Route::get('/crontest', 'CronController@order_status');
 Route::get('/testnotification', 'HomeController@testnotification');
 Route::get('/change/location/{id}', 'HomeController@changelocation')->name('change.location');
 

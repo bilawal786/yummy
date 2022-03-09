@@ -40,4 +40,14 @@ class CronController extends Controller
         }
       }
     }
+    public function order_status(){
+        $orders = Order::where('status', 17)->get();
+        foreach ($orders as $order){
+            $time = $order->created_at->diffInHours(Carbon::now(), false);
+            if ($time>2){
+                $order->status = 20;
+                $order->update();
+            }
+        }
+    }
 }
