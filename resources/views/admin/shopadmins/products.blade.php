@@ -4,7 +4,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Suggérer un commerce') }}</h1>
+            <h1>{{ __('Paniers') }}</h1>
         </div>
 
         <div class="section-body">
