@@ -45,6 +45,7 @@
                             <div class="input-group input-daterange" id="date-picker">
                                 <select  id="location" name="shop_id"
                                         class="select2 form-control">
+                                    @if( Auth::user()->hasRole('Admin') )
                                     <option value="">Sélectionnez un commerçant</option>
                                     <?php
                                     $shops = \App\Models\Shop::all();
@@ -52,6 +53,9 @@
                                     @foreach($shops as $shop)
                                     <option value="{{ $shop->id }}">{{ $shop->name }}</option>
                                     @endforeach
+                                    @else
+                                        <option value="{{Auth::user()->shop->id}}">{{Auth::user()->shop->name}}</option>
+                                    @endif
 
                                 </select>
                                 <input autocomplete="off" class="form-control" id="start_date" type="date" name="start_date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">

@@ -16,6 +16,7 @@
         <ul class="sidebar-menu">
             <li class="active"><a class="nav-link " href="/admin/dashboard"><i
                             class="fas fa-laptop"></i> <span>Tableau de bord</span></a></li>
+            @if( Auth::user()->hasRole('Admin') )
             @if($user->p1 == 1)
                 <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
                                 class="fas fa-life-ring"></i> <span>Localisation</span></a>
@@ -29,6 +30,7 @@
                 <li class=""><a class="nav-link " href="/admin/category"><i class="fas fa-list-ul"></i>
                         <span>Catégories</span></a></li>
             @endif
+            @endif
             @if($user->p3 == 1)
                 <li class=""><a class="nav-link " href="/admin/products"><i class="fas fa-gift"></i>
                         <span>Paniers</span></a></li>
@@ -41,6 +43,7 @@
                 <li class=""><a class="nav-link " href="/admin/orders"><i class="fas fa-cart-plus"></i>
                         <span>Commandes</span></a></li>
             @endif
+            @if( Auth::user()->hasRole('Admin') )
             @if($user->p6 == 1)
                 <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
                                 class="fas fa-id-card "></i> <span>Utilisateurs</span></a>
@@ -63,7 +66,7 @@
                 <li class=""><a class="nav-link " href="/admin/yummycoin"><i class="fas fa-coins"></i>
                         <span>YummyCoin</span></a></li>
             @endif
-
+            @endif
             <?php
             $role = Spatie\Permission\Models\Role::find(3);
 
