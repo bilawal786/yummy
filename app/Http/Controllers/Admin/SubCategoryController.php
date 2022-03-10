@@ -63,7 +63,6 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -74,7 +73,9 @@ class SubCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategory = SubCategory::find($id);
+        $locations = Location::all();
+        return view('admin.subcategory.edit', compact('subcategory', 'locations'));
     }
 
     /**
@@ -86,7 +87,18 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subcat = SubCategory::find($id);
+        $subcat->name = $request->name;
+        $subcat->location_id = $request->location_id;
+        if ($request->hasfile('image')) {
+            $image1 = $request->file('image');
+            $name = time() . 'category' . '.' . $image1->getClientOriginalExtension();
+            $destinationPath = 'category/';
+            $image1->move($destinationPath, $name);
+            $subcat->image = 'category/' . $name;
+        }
+        $subcat->save();
+        return redirect(route('admin.souscategorie.index'))->withSuccess('The Data Inserted Successfully');
     }
 
     /**

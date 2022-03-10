@@ -36,6 +36,7 @@
                                         <td>{{$cat->name}}</td>
                                         <td>{{$cat->location->name}}</td>
                                     <td>
+                                        <a href="{{route('admin.souscategorie.edit', $cat->id)}}"><button class="btn btn-primary btn-sm">Éditer</button></a>
                                             <form method="POST" action="{{route('admin.souscategorie.destroy', $cat->id)}}">
                                                 @csrf
                                                 @method('DELETE')
