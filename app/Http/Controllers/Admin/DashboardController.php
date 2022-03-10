@@ -41,7 +41,7 @@ class DashboardController extends BackendController
         if(auth()->user()->myrole == 3){
           $orders = Order::orderBy('id', 'desc')->where('shop_id', auth()->user()->shop->id)->orderOwner();
           $income = Order::where('shop_id', auth()->user()->shop->id)->sum('total');
-          $vendor_orders = Order::where('shop_id', auth()->user()->shop->id)->get()->count();
+          $vendor_orders = Order::where('status', 20)->where('shop_id', auth()->user()->shop->id)->get()->count();
           $vendor_orders_complete = Order::where('shop_id', auth()->user()->shop->id)->where('status', 20)->count();
             $this->data['vendorincome']  = $income;
             $this->data['vendororders']  = $vendor_orders;
@@ -51,7 +51,7 @@ class DashboardController extends BackendController
         }
         $totalOrders  = $orders->get();
         $recentOrders = Order::orderBy('id', 'desc')->whereDate('created_at', date('Y-m-d'))->orderOwner()->get();
-        $totalIncome = Order::sum('total');
+        $totalIncome = Order::where('status', 20)->sum('total');
         /*if ( !blank($totalOrders) ) {
             foreach ( $totalOrders as $totalOrder ) {
                 if ( OrderStatus::COMPLETED == $totalOrder->status ) {
