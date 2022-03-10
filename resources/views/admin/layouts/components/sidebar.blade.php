@@ -11,55 +11,58 @@
             </a>
         </div>
         @php
-        $user = Auth::user();
+            $user = Auth::user();
         @endphp
         <ul class="sidebar-menu">
             <li class="active"><a class="nav-link " href="/admin/dashboard"><i
                             class="fas fa-laptop"></i> <span>Tableau de bord</span></a></li>
             @if($user->p1 == 1)
-            <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
-                            class="fas fa-life-ring"></i> <span>Localisation</span></a>
-                <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link " href="/admin/location"><i
-                                    class="fas fa-flag"></i> <span>Région</span></a></li>
-                </ul>
-            </li>
+                <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
+                                class="fas fa-life-ring"></i> <span>Localisation</span></a>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="nav-link " href="/admin/location"><i
+                                        class="fas fa-flag"></i> <span>Région</span></a></li>
+                    </ul>
+                </li>
             @endif
-                @if($user->p2 == 1)
-            <li class=""><a class="nav-link " href="/admin/category"><i class="fas fa-list-ul"></i>
-                    <span>Catégories</span></a></li>
-                @endif
-                @if($user->p3 == 1)
-            <li class=""><a class="nav-link " href="/admin/products"><i class="fas fa-gift"></i>
-                    <span>Paniers</span></a></li>
-                @endif
-                @if($user->p4 == 1)
-            <li class=""><a class="nav-link " href="/admin/shop"><i class="fas fa-university"></i>
-                    <span>Boutique</span></a></li>
-                @endif
-                @if($user->p5 == 1)
-            <li class=""><a class="nav-link " href="/admin/orders"><i class="fas fa-cart-plus"></i>
-                    <span>Commandes</span></a></li>
-                @endif
-                @if($user->p6 == 1)
-            <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
-                            class="fas fa-id-card "></i> <span>Utilisateurs</span></a>
-                <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link " href="/admin/administrators"><i
-                                    class="fas fa-users"></i> <span>Administrateurs</span></a></li>
-                    <li class=""><a class="nav-link " href="/admin/customers"><i
-                                    class="fas fa-user-secret"></i> <span>Clients</span></a></li>
-                </ul>
-            </li>
-                @endif
-                @if($user->p7 == 1)
-            <li class=""><a class="nav-link " href="/admin/banner"><i class="fas fa-film"></i>
-                    <span>Bannières</span></a></li>
-                @endif
-                @if($user->p8 == 1)
-            <li class=""><a class="nav-link " href="/admin/yummycoin"><i class="fas fa-coins"></i>
-                    <span>YummyCoin</span></a></li>
-                @endif
+            @if($user->p2 == 1)
+                <li class=""><a class="nav-link " href="/admin/category"><i class="fas fa-list-ul"></i>
+                        <span>Catégories</span></a></li>
+            @endif
+            @if($user->p3 == 1)
+                <li class=""><a class="nav-link " href="/admin/products"><i class="fas fa-gift"></i>
+                        <span>Paniers</span></a></li>
+            @endif
+            @if($user->p4 == 1)
+                <li class=""><a class="nav-link " href="/admin/shop"><i class="fas fa-university"></i>
+                        <span>Boutique</span></a></li>
+            @endif
+            @if($user->p5 == 1)
+                <li class=""><a class="nav-link " href="/admin/orders"><i class="fas fa-cart-plus"></i>
+                        <span>Commandes</span></a></li>
+            @endif
+            @if($user->p6 == 1)
+                <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
+                                class="fas fa-id-card "></i> <span>Utilisateurs</span></a>
+                    <ul class="dropdown-menu">
+                        <li class=""><a class="nav-link " href="/admin/administrators"><i
+                                        class="fas fa-users"></i> <span>Administrateurs</span></a></li>
+                        <li class=""><a class="nav-link " href="/admin/customers"><i
+                                        class="fas fa-user-secret"></i> <span>Clients</span></a></li>
+                        <li class=""><a class="nav-link " href="{{route('admin.shop.admins')}}"><i
+                                        class="fas fa-university"></i> <span>Administrateurs de la boutique</span></a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+            @if($user->p7 == 1)
+                <li class=""><a class="nav-link " href="/admin/banner"><i class="fas fa-film"></i>
+                        <span>Bannières</span></a></li>
+            @endif
+            @if($user->p8 == 1)
+                <li class=""><a class="nav-link " href="/admin/yummycoin"><i class="fas fa-coins"></i>
+                        <span>YummyCoin</span></a></li>
+            @endif
 
             <?php
             $role = Spatie\Permission\Models\Role::find(3);
@@ -78,8 +81,8 @@ Envoyer des notifications aux clients
             @endif
             @if( Auth::user()->hasRole('Admin') )
                 @if($user->p9 == 1)
-                <li class=""><a class="nav-link " href="{{route('admin.admin.bank')}}"><i class="fas fa-bars"></i>
-                        <span>
+                    <li class=""><a class="nav-link " href="{{route('admin.admin.bank')}}"><i class="fas fa-bars"></i>
+                            <span>
 Coordonnées bancaires
 </span></a></li>
                 @endif
@@ -91,13 +94,17 @@ Catégorie Premium
                                 class="fas fa-balance-scale"></i> <span>
 Suggérer un commerce
 </span></a></li>
-                    @if($user->p10 == 1)
-                <li class=""><a class="nav-link " href="{{route('admin.send.notifications')}}"><i
-                                class="fas fa-address-card"></i> <span>
+                @if($user->p10 == 1)
+                    <li class=""><a class="nav-link " href="{{route('admin.send.notifications')}}"><i
+                                    class="fas fa-address-card"></i> <span>
 Envoyer des notifications aux clients
 </span></a></li>
-                    @endif
+                @endif
             @endif
+            @if( Auth::user()->hasRole('Shop Admin') )
+                <li class=""><a class="nav-link " href="{{route('admin.shopadmin.products')}}"><i class="fas fa-gift"></i> <span>Paniers</span></a>
+                </li>
+                @endif
             <li class=""><a class="nav-link " href="{{route('home')}}"><i class="fas fa-mobile"></i> <span>Retour à l'application</span></a>
             </li>
         </ul>

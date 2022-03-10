@@ -145,8 +145,7 @@ class AdministratorController extends BackendController
      */
     public function edit($id)
     {
-        $role = Role::find(1);
-        $user = User::role($role->name)->findOrFail($id);
+        $user = User::findOrFail($id);
 
         if (($user->id != 1) || (auth()->id() == 1)) {
             $this->data['user'] = $user;
@@ -198,7 +197,7 @@ class AdministratorController extends BackendController
             $role = Role::find(1);
             $user->assignRole($role->name);
 
-            return redirect(route('admin.administrators.index'))->withSuccess('The Data Updated Successfully');
+            return redirect()->back()->withSuccess('The Data Updated Successfully');
         }
         return redirect(route('admin.administrators.index'))->withError('You don\'t have permission to update this data');
     }
@@ -211,11 +210,10 @@ class AdministratorController extends BackendController
      */
     public function destroy($id)
     {
-        $role = Role::find(1);
-        $user = User::role($role->name)->findOrFail($id);
+        $user = User::findOrFail($id);
         if (($user->id != 1) && (auth()->id() == 1)) {
             $user->delete();
-            return redirect(route('admin.administrators.index'))->withSuccess('The Data Deleted Successfully');
+            return redirect()->back()->withSuccess('The Data Deleted Successfully');
         } else {
             return redirect(route('admin.administrators.index'))->withError('You don\'t have permission to delete this data');
         }

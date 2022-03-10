@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Location;
+use App\Models\Product;
+use App\Models\Shop;
+use App\Models\ShopProduct;
 use App\Refferal;
 use App\User;
 use App\Models\Balance;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\Datatables\Datatables;
@@ -200,6 +205,98 @@ class CustomerController extends BackendController
         $this->data['location'] = Location::all();
         $this->data['id'] = $id;
         return view('admin.customer.countryUsers', $this->data);
+    }
+    public function shopAdmins(){
+        $role      = Role::find(5);
+        $users     = User::role($role->name)->latest()->get();
+        return view('admin.shopadmins.index', compact('users'));
+    }
+    public function createShopAdmins(){
+        $shops = Shop::all();
+        return view('admin.shopadmins.create', compact('shops'));
+    }
+    public function storeShopAdmins(Request $request){
+        $user             = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->username   = $request->username ?? $this->username($request->email);
+        $user->password   = Hash::make(request('password'));
+        $user->phone      = $request->phone;
+        $user->address    = $request->address;
+        $user->status     = $request->status;
+        if($request->shops){
+            foreach($request->shops as $shop)
+            {
+                $data[] = $shop;
+                $user->shopadmins = json_encode($data);
+            }
+        }
+        if ($request->p1){
+            $user->p1 = $request->p1;
+        }else{
+            $user->p1 = 0;
+        }
+        if ($request->p2){
+            $user->p2 = $request->p2;
+        }else{
+            $user->p2 = 0;
+        }
+        if ($request->p3){
+            $user->p3 = $request->p3;
+        }else{
+            $user->p3 = 0;
+        }
+        if ($request->p4){
+            $user->p4 = $request->p4;
+        }else{
+            $user->p4 = 0;
+        }
+        if ($request->p5){
+            $user->p5 = $request->p5;
+        }else{
+            $user->p5 = 0;
+        }
+        if ($request->p6){
+            $user->p6 = $request->p6;
+        }else{
+            $user->p6 = 0;
+        }
+        if ($request->p7){
+            $user->p7 = $request->p7;
+        }else{
+            $user->p7 = 0;
+        }
+        if ($request->p8){
+            $user->p8 = $request->p8;
+        }else{
+            $user->p8 = 0;
+        }
+        if ($request->p9){
+            $user->p9 = $request->p9;
+        }else{
+            $user->p9 = 0;
+        }
+        if ($request->p10){
+            $user->p10 = $request->p10;
+        }else{
+            $user->p10 = 0;
+        }
+        $user->save();
+
+        if (request()->file('image')) {
+            $user->addMedia(request()->file('image'))->toMediaCollection('user');
+        }
+
+        $role = Role::find(5);
+        $user->assignRole($role->name);
+
+        return redirect(route('admin.shop.admins'))->withSuccess('The Data Inserted Successfully');
+    }
+    public function shopAdminProducts(){
+        $shopsids = json_decode(Auth::user()->shopadmins);
+        $products  = ShopProduct::whereIn('shop_id', $shopsids)->get();
+        return view('admin.shopadmins.products', compact('products'));
     }
 
 }
