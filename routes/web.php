@@ -18,7 +18,7 @@ Route::get('/', function (){
 Route::get('/ip', function (){
     $json = file_get_contents("https://ipinfo.io/json");
     $details = json_decode($json);
-    dd($details);
+    dd($details->timezone);
 });
 Route::get('/crontest', 'CronController@order_status');
 Route::get('/testnotification', 'HomeController@testnotification');
