@@ -18,7 +18,7 @@ Route::get('/', function (){
 Route::get('/ip', function (){
     $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
     $details = json_decode($json);
-    dd($details);
+    dd($details->geoplugin_timezone);
 });
 Route::get('/crontest', 'CronController@order_status');
 Route::get('/testnotification', 'HomeController@testnotification');

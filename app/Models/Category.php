@@ -30,7 +30,10 @@ class Category extends BaseModel implements HasMedia
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->where('publish', '<', Carbon::today())->orwhere('publish', null)->latest();
+        $json = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . request()->ip());
+        $details = json_decode($json);
+//        dd($details->geoplugin_timezone);
+        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->where('publish', '<', Carbon::today()->timezone($details->geoplugin_timezone))->orwhere('publish', null)->latest();
     }
     public function qty()
     {
