@@ -15,6 +15,11 @@ Route::get('/', function (){
         return  redirect('/login');
     }
 });
+Route::get('/ip', function (){
+    $json = file_get_contents("https://ipinfo.io/json");
+    $details = json_decode($json);
+    dd($details);
+});
 Route::get('/crontest', 'CronController@order_status');
 Route::get('/testnotification', 'HomeController@testnotification');
 Route::get('/change/location/{id}', 'HomeController@changelocation')->name('change.location');
