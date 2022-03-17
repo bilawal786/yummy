@@ -35,7 +35,7 @@ class Category extends BaseModel implements HasMedia
 //        $details = json_decode($json);
 //        dd($details->geoplugin_timezone);
 //        ->timezone($details->geoplugin_timezone)
-        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->where('publish', '<', Timezone::convertToLocal(Carbon::today(), 'Y-m-d'))->orwhere('publish', null)->latest();
+        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->where('publish', '<=', Timezone::convertToLocal(Carbon::today(), 'Y-m-d'))->orwhere('publish', null)->latest();
     }
     public function qty()
     {
