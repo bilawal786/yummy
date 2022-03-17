@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'af6f09d9156f3f4fc00d816c4ce272aaecd1200c',
+    'reference' => 'ed74495615972e5f8d67066cda825071c9e8617c',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -498,6 +498,15 @@
       ),
       'reference' => '2c56729b13ff5b21db8203a6234f661f80614f94',
     ),
+    'jamesmills/laravel-timezone' => 
+    array (
+      'pretty_version' => '1.9.3',
+      'version' => '1.9.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '20ea12b088909c3dfadf6de8ae961c367a77b668',
+    ),
     'jenssegers/date' => 
     array (
       'pretty_version' => 'v4.0.0',
@@ -539,7 +548,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'af6f09d9156f3f4fc00d816c4ce272aaecd1200c',
+      'reference' => 'ed74495615972e5f8d67066cda825071c9e8617c',
     ),
     'laravel/socialite' => 
     array (
@@ -1549,6 +1558,15 @@
       array (
       ),
       'reference' => 'da444caae6aca7a19c0c140f68c6182e337d5b1c',
+    ),
+    'torann/geoip' => 
+    array (
+      'pretty_version' => '1.2.1',
+      'version' => '1.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '15c7cb3d2edcfbfd7e8cd6f435defc2352df40d2',
     ),
     'twilio/sdk' => 
     array (

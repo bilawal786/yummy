@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel;
 use Carbon\Carbon;
+use JamesMills\LaravelTimezone\Facades\Timezone;
 use Shipu\Watchable\Traits\WatchableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -34,7 +35,7 @@ class Category extends BaseModel implements HasMedia
 //        $details = json_decode($json);
 //        dd($details->geoplugin_timezone);
 //        ->timezone($details->geoplugin_timezone)
-        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->where('publish', '<', Carbon::today())->orwhere('publish', null)->latest();
+        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id')->where('publish', '<', Timezone::convertToLocal(Carbon::today(), 'Y-m-d'))->orwhere('publish', null)->latest();
     }
     public function qty()
     {
