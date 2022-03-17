@@ -85,6 +85,7 @@
                                 </div>
                             @endif
                         @endforeach
+                            {{$traders->links()}}
                     @endif
                 </div>
             </div>
