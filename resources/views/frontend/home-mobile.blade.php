@@ -210,6 +210,7 @@
                             @endforeach
                         @endif
                     @endforeach
+                        {{$cat->links()}}
                 </div>
             </div>
         </div>
