@@ -85,7 +85,7 @@
                                 </div>
                             @endif
                         @endforeach
-                            {{$traders->links()}}
+                            {{$cate->links()}}
                     @endif
                 </div>
             </div>
