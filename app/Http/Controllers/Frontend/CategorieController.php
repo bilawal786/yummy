@@ -51,7 +51,7 @@ class CategorieController extends FrontendController
     public function favourites(){
         $fav = Favourite::where('user_id', '=', Auth::user()->id)->get()->unique('product_creator');
         $p_ids = $fav->pluck('product_id');
-        $this->data['cate']      = Product::whereIn('id', $p_ids)->get()->paginate(10);
+        $this->data['cate']      = Product::whereIn('id', $p_ids)->paginate(10);
         $this->data['namepage']  = "Favoris";
         $this->data['user']      = auth()->user();
 
