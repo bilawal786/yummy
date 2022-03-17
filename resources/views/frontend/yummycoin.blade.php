@@ -143,7 +143,7 @@
         </div>
        <div class="card">
            <div class="card-body">
-               <img style="margin-bottom: 10px" src="{{asset('coin.jpeg')}}" alt="">
+               <img style="margin-bottom: 10px" src="{{asset('app/coin.jpg')}}" alt="">
                <p><b>1€ = 1000 YummyCoins
 
                        Le Yummy coin est une monnaie exclusive à Yummy Box, permettant de réserver des produits sur l’application. Chaque utilisateur possède un solde qu’il peut créditer en achetant des coffres de Yummy coins directement sur l’application ou grâce à des actions rémunérées en Yummy coins par YB. La valeur de cette monnaie est directement indexée sur l’Euro et n’est pas soumise à fluctuation d’aucune autre manière que ce soit.</b></p>
