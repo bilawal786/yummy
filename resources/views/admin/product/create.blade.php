@@ -35,7 +35,7 @@
                                     @if(auth()->user()->myrole != 3)
                                         <div class="form-group col">
                                             <label for="shop_id">Magasin</label> <span class="text-danger">*</span>
-                                            <select id="shop_id" name="shop_id"
+                                            <select required id="shop_id" name="shop_id"
                                                     class="form-control @error('shop_id') is-invalid @enderror">
                                                 @foreach($shops_list as $shopss)
                                                     <option value="{{ $shopss->id }}">{{ $shopss->name }}</option>
@@ -51,14 +51,15 @@
                                     <div class="form-group col">
                                         <label for="location">Localisation</label> <span
                                                 class="text-danger">*</span>
-                                        <select onchange="categorychange(this)" name="location_id" id="location"
+                                        <select required onchange="categorychange(this)" name="location_id"
+                                                id="location"
                                                 class="select2 form-control @error('location_id') is-invalid red-border @enderror"
                                                 data-url="{{ route('admin.shop.get-area') }}">
                                             <option value="">{{ __('Choisir une localisation') }}</option>
                                             @if(!blank($locations))
                                                 @foreach($locations as $location)
                                                     <option value="{{ $location->id }}"
-                                                            {{ (old('location_id') == $location->id) ? 'selected' : '' }}>
+                                                    >
                                                         {{ $location->name }}</option>
                                                 @endforeach
                                             @endif
@@ -72,7 +73,7 @@
                                     <div class="form-group col {{ $errors->has('categories') ? " has-error " : '' }}">
                                         <label for="categories">{{ __('levels.categories') }}</label> <span
                                                 class="text-danger">*</span>
-                                        <select  id="categories" name="categories[]"
+                                        <select id="categories" name="categories[]"
                                                 class="category form-control select2 {{ $errors->has('categories') ? " is-invalid " : '' }}"
                                                 required>
 
@@ -83,7 +84,7 @@
                                             </div>
                                         @endif
                                     </div>
-<!--                                    <div class="form-group col">
+                                <!--                                    <div class="form-group col">
                                         <label for="categories">{{ __('Sous-catégorie') }}</label> <span
                                                 class="text-danger"></span>
                                         <select id="categories" name="subcategory"
@@ -110,7 +111,7 @@
                                     <div class="form-group col">
                                         <label for="discount_price">Prix initial</label> <span
                                                 class="text-danger">*</span>
-                                        <input id="discount_price" type="text" name="discount_price"
+                                        <input required id="discount_price" type="text" name="discount_price"
                                                class="form-control {{ $errors->has('discount_price') ? " is-invalid " : '' }}"
                                                value="{{ old('discount_price') }}">
                                         @error('discount_price')
@@ -151,7 +152,7 @@
                                     </div>
                                     <div class="form-group col">
                                         <label for="unit_price">Prix Yummy</label> <span class="text-danger">*</span>
-                                        <input id="unit_price" type="text" name="unit_price"
+                                        <input required id="unit_price" type="text" name="unit_price"
                                                class="form-control {{ $errors->has('unit_price') ? " is-invalid " : '' }}"
                                                value="{{ old('unit_price') }}">
                                         @error('unit_price')
@@ -163,7 +164,7 @@
                                     <div class="form-group col">
                                         <label for="unit_price">Quantité disponible</label> <span
                                                 class="text-danger">*</span>
-                                        <input id="unit_price" type="number" name="quantity"
+                                        <input required id="unit_price" type="number" name="quantity"
                                                class="form-control {{ $errors->has('quantity') ? " is-invalid " : '' }}">
                                     </div>
                                     <div class="form-group col">
@@ -183,19 +184,19 @@
                                 </div>
                                 <div class="form-group col">
                                     <label for="unit_price">Publier sur</label> <span class="text-danger">*</span>
-                                    <input type="date" name="publish"
+                                    <input required type="date" name="publish"
                                            class="form-control"
                                     >
                                 </div>
                                 <div class="form">
                                     <div class="form-group col">
                                         <label for="hdispoa">Heure début</label> <span class="text-danger">*</span>
-                                        <input id="hdispoa" type="time" name="hdispoa"
+                                        <input required id="hdispoa" type="time" name="hdispoa"
                                                class="timepicker form-control {{ $errors->has('hdispoa') ? " is-invalid " : '' }}">
                                     </div>
                                     <div class="form-group col">
                                         <label for="hdispob">Heure fin</label> <span class="text-danger">*</span>
-                                        <input id="hdispob" type="time" name="hdispob"
+                                        <input required id="hdispob" type="time" name="hdispob"
                                                class="timepicker form-control {{ $errors->has('hdispob') ? " is-invalid " : '' }}">
                                     </div>
                                 </div>

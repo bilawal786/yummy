@@ -27,6 +27,8 @@ class ProductRequest extends FormRequest
     {
         return [
             'description'  => 'nullable|string|max:1000',
+            'hdispoa'  => 'required',
+            'hdispob'  => 'required',
             'unit_price'   => ['required', new IniAmount],
         ];
     }
