@@ -253,30 +253,10 @@ class CheckoutController extends FrontendController
       }
     }
     public function yummycoin(Request $request){
-      if($request->coin){
-        if(auth()->check()) {
-            $user          = Auth::id();
-            $user          = User::where('id', $user)->first();
-            $username = $user->username;
-            $depositAmount = $request->valeur;
-            /*if (blank($depositAmount)) {
-                $depositAmount = 0;
-            }
-            $limitAmount = $request->limit_amount;
-            if (blank($limitAmount)) {
-                $limitAmount = 0;
-            }*/
-            //$depositService = app(DepositService::class)->depositAdjust(Auth::id(), $depositAmount, $limitAmount);
-            $blance = Balance::where('name', $username)->increment('balance', $request->valeur);
-            //return $username.''.$request->valeur;
-            //$deposittransac      = app(TransactionService::class)->deposit($this->adminBalanceId, $deposit->user->balance_id, $depositAmount, false);
-            Session::flash('message', 'Succès! Votre recharge a bien été prise en compte');
-
-            return redirect(route('account.profile'))->withSuccess('Votre compte à bien été rechargé');
-        } else {
-            return redirect()->route('login');
-        }
-      }
+        $username = Auth::user()->username;
+        Balance::where('name', $username)->increment('balance', $request->valeur);
+        Session::flash('message', 'Succès! Votre recharge a bien été prise en compte');
+        return redirect(route('account.profile'))->withSuccess('Votre compte à bien été rechargé');
     }
     public function order(Request $request)
     {
