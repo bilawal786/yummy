@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-  <section class="section">
+    <section class="section">
         <div class="section-header">
             <h1>{{ __('Clients') }}</h1>
             {{ Breadcrumbs::render('customers') }}
@@ -15,7 +15,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <a href="{{route('admin.users.export')}}"><button class="btn btn-success btn-sm">Clients d'exportation</button></a>
+                                    <a href="{{route('admin.users.export')}}">
+                                        <button class="btn btn-success btn-sm">Clients d'exportation</button>
+                                    </a>
 
                                 </div>
                                 <div class="col-4">
@@ -40,35 +42,41 @@
                             <div class="table-responsive">
                                 <table class="table table-striped" id="maintable">
                                     <thead>
-                                        <tr>
-                                            <th>{{ __('ID') }}</th>
-                                            <th>{{ __('Image') }}</th>
-                                            <th>{{ __('Nom') }}</th>
-                                            <th>{{ __('Email') }}</th>
-                                            <th>{{ __('Téléphone') }}</th>
-                                            <th>{{ __('Coins') }}</th>
-                                            <th>{{ __('Parrainage') }}</th>
-                                            <th>Pays</th>
-                                            <th>{{ __('Actions') }}</th>
-                                        </tr>
+                                    <tr>
+                                        <th>{{ __('ID') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Nom') }}</th>
+                                        <th>{{ __('Email') }}</th>
+                                        <th>{{ __('Téléphone') }}</th>
+                                        <th>{{ __('Coins') }}</th>
+                                        <th>{{ __('Parrainage') }}</th>
+                                        <th>Pays</th>
+                                        <th>{{ __('Actions') }}</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($users as $user)
-                                    <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td><figure class="avatar mr-2"><img src="{{asset($user->images)}}" alt=""></figure></td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->phone}}</td>
-                                        <td>{{$user->balance->balance}}</td>
-                                        <td>
-                                            @php
-                                                $refferal = \App\Refferal::where('refferal_user', $user->id)->count();
-                                            @endphp
-                                            {{$refferal}}</td>
-                                        <td>{{$user->country->name}}</td>
-                                        <td><a href="{{route('admin.customers.edit', $user)}}" class="btn btn-sm btn-icon float-left btn-primary ml-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="far fa-edit"></i></a></td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{$user->id}}</td>
+                                            <td>
+                                                <figure class="avatar mr-2"><img src="{{asset($user->images)}}" alt="">
+                                                </figure>
+                                            </td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$user->phone}}</td>
+                                            <td>{{$user->balance->balance}}</td>
+                                            <td>
+                                                @php
+                                                    $refferal = \App\Refferal::where('refferal_user', $user->id)->count();
+                                                @endphp
+                                                {{$refferal}}</td>
+                                            <td>{{$user->country->name}}</td>
+                                            <td><a href="{{route('admin.customers.edit', $user)}}"
+                                                   class="btn btn-sm btn-icon float-left btn-primary ml-2"
+                                                   data-toggle="tooltip" data-placement="top" title="Edit"><i
+                                                            class="far fa-edit"></i></a></td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -96,10 +104,8 @@
     <script>
         "use strict";
 
-        $(function() {
-            var table = $('#maintable').DataTable({
-
-            });
+        $(function () {
+            var table = $('#maintable').DataTable({});
 
         });
 
