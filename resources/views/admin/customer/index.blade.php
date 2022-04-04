@@ -38,7 +38,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="maintable" data-url="{{ route('admin.customers.get-customers') }}" data-hidecolumn="{{ auth()->user()->can('customers_show') || auth()->user()->can('customers_edit') || auth()->user()->can('customers_delete') }}">
+                                <table class="table table-striped" id="maintable">
                                     <thead>
                                         <tr>
                                             <th>{{ __('ID') }}</th>
@@ -48,9 +48,29 @@
                                             <th>{{ __('Téléphone') }}</th>
                                             <th>{{ __('Coins') }}</th>
                                             <th>{{ __('Parrainage') }}</th>
+                                            <th>Pays</th>
                                             <th>{{ __('Actions') }}</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                    @foreach($users as $user)
+                                    <tr>
+                                        <td>{{$user->id}}</td>
+                                        <td><figure class="avatar mr-2"><img src="{{asset($user->images)}}" alt=""></figure></td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->phone}}</td>
+                                        <td>{{$user->balance->balance}}</td>
+                                        <td>
+                                            @php
+                                                $refferal = \App\Refferal::where('refferal_user', $user->id)->count();
+                                            @endphp
+                                            {{$refferal}}</td>
+                                        <td>{{$user->country->name}}</td>
+                                        <td><a href="{{route('admin.customers.edit', $user)}}" class="btn btn-sm btn-icon float-left btn-primary ml-2" data-toggle="tooltip" data-placement="top" title="Edit"><i class="far fa-edit"></i></a></td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -73,5 +93,19 @@
     <script src="{{ asset('assets/modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('js/customer/index.js') }}"></script>
+    <script>
+        "use strict";
+
+        $(function() {
+            var table = $('#maintable').DataTable({
+
+            });
+
+        });
+
+        $('#maintable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+
+    </script>
 @endsection

@@ -37,7 +37,10 @@ class CustomerController extends BackendController
      */
     public function index()
     {
+        $role      = Role::find(2);
+        $users     = User::role($role->name)->latest()->get();
         $this->data['location'] = Location::all();
+        $this->data['users'] = $users;
         return view('admin.customer.index', $this->data);
     }
 
