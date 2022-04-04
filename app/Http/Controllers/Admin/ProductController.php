@@ -101,24 +101,20 @@ class ProductController extends BackendController
           $shopProduct->discount_price = $request->get('discount_price') != null ? $request->get('discount_price') : 0;
           $shopProduct->save();
         }
-        $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get()->unique('user_id');
-        $user_ids = $fav->pluck('user_id');
+        $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get();
+        $user_ids = $fav->pluck('user_id')->unique();
         $firebaseTokens = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->whereNotNull('device_token')->get();
 
         $activity = "Nouveau panier";
         $msg = "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋";
-        $users = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->get();
-        foreach ($users as $user){
-            NotificationHelper::addtoNitification($shopProduct->shop->user->id, $user->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
-        }
 
         foreach ($firebaseTokens as $UserToken){
+            NotificationHelper::addtoNitification($shopProduct->shop->user->id, $UserToken->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
+
             $url = 'https://fcm.googleapis.com/fcm/send';
             if ($UserToken->device_type == "android"){
                 $fields = array (
-                    'registration_ids' => array (
-                        $UserToken->device_token
-                    ),
+                    'to' => $UserToken->device_token,
                     'data' => array (
                         "title" => "Yummy Box",
                         "message" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
@@ -127,9 +123,7 @@ class ProductController extends BackendController
                 );
             }else{
                 $fields = array (
-                    'registration_ids' => array (
-                        $UserToken->device_token
-                    ),
+                    'to' => $UserToken->device_token,
                     'notification' => array (
                         "title" => "Yummy Box",
                         "body" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
@@ -208,24 +202,19 @@ class ProductController extends BackendController
         $product->categories()->sync($request->get('categories'));
         $affectedRows = ShopProduct::where("product_id", $product->id)->update(["quantity" => $request->get('quantity'), "hdispoa" => $request->get('hdispoa'), "hdispob"=> $request->get('hdispob'), "discount_price"=> $request->get('discount_price')]);
         $shopProduct = ShopProduct::where("product_id", $product->id)->first();
-        $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get()->unique('user_id');
-        $user_ids = $fav->pluck('user_id');
+        $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get();
+        $user_ids = $fav->pluck('user_id')->unique();
         $firebaseTokens = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->whereNotNull('device_token')->get();
 
         $activity = "Nouveau panier";
         $msg = "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋";
-        $users = User::whereIn('id', $user_ids)->where('address', $shopProduct->shop->user->address)->get();
-        foreach ($users as $user){
-            NotificationHelper::addtoNitification($shopProduct->shop->user->id, $user->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
-        }
 
         foreach ($firebaseTokens as $UserToken){
+            NotificationHelper::addtoNitification($shopProduct->shop->user->id, $UserToken->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
             $url = 'https://fcm.googleapis.com/fcm/send';
             if ($UserToken->device_type == "android"){
                 $fields = array (
-                    'registration_ids' => array (
-                        $UserToken->device_token
-                    ),
+                    'to' => $UserToken->device_token,
                     'data' => array (
                         "title" => "Yummy Box",
                         "message" => $msg,
@@ -234,9 +223,7 @@ class ProductController extends BackendController
                 );
             }else{
                 $fields = array (
-                    'registration_ids' => array (
-                        $UserToken->device_token
-                    ),
+                    'to' => $UserToken->device_token,
                     'notification' => array (
                         "title" => "Yummy Box",
                         "body" => $msg,
