@@ -87,7 +87,6 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::post('cart-quantity', 'CartController@quantity')->name('cart.quantity');
 
     Route::get('checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
-    /*Route::post('checkout', 'CheckoutController@store')->name('checkout.store')->middleware('auth');*/
     Route::post('checkout', 'CheckoutController@store')->name('checkout.store')->middleware('auth');
     Route::post('order_validation', 'CheckoutController@order')->name('checkout.order_validation')->middleware('auth');
 

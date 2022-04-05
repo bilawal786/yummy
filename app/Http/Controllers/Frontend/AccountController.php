@@ -69,7 +69,7 @@ class AccountController extends FrontendController
         $order = Order::where('id', $id)->first();
         $order->status = 10;
         $order->update();
-        $coins = $order->paid_amount * 1000;
+        $coins = $order->total * 1000;
 
         $bal = Balance::where('id', Auth::user()->balance_id)->first();
         $bal->balance = $bal->balance + $coins;
