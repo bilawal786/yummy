@@ -37,7 +37,10 @@ class CustomerController extends BackendController
      */
     public function index()
     {
+        $role      = Role::find(2);
+        $users     = User::role($role->name)->latest()->get();
         $this->data['location'] = Location::all();
+        $this->data['users'] = $users;
         return view('admin.customer.index', $this->data);
     }
 
@@ -202,9 +205,11 @@ class CustomerController extends BackendController
     }
 
     public function countryUsers($id){
+        $role      = Role::find(2);
+        $users     = User::role($role->name)->where('address', $id)->latest()->get();
         $this->data['location'] = Location::all();
-        $this->data['id'] = $id;
-        return view('admin.customer.countryUsers', $this->data);
+        $this->data['users'] = $users;
+        return view('admin.customer.index', $this->data);
     }
     public function shopAdmins(){
         $role      = Role::find(5);

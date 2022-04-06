@@ -38,14 +38,9 @@ class CheckoutController extends FrontendController
 
     public function index(Request $request)
     {
-        /*if (blank(Cart::content())) {
-            return redirect('/');
-        }*/
         $this->data['namepage']  = "Caisse";
         $this->data['user'] = auth()->user();
-        /*$this->data['shop'] = Shop::find(session('session_cart_shop_id'));*/
 
-        // Enter Your Stripe Secret
         \Stripe\Stripe::setApiKey(setting('stripe_secret'));
         $shop_product_id = session('shop_product_id');
         $this->data['shop'] = ShopProduct::findOrfail($shop_product_id);
@@ -153,31 +148,6 @@ class CheckoutController extends FrontendController
                 'mobile'       => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
                 'payment_type' => 'required|numeric',
             ];
-
-
-            /*$validator = Validator::make($request->all(), $validation);
-
-            $validator->after(function ($validator) use ($request, $shop) {
-                if($request->payment_type == PaymentMethod::WALLET) {
-                    if((float) auth()->user()->balance->balance < (float) $this->data['shop']->product->unit_price) {
-                        $validator->errors()->add('payment_type', 'The Credit balance does not enough for this payment.');
-                    }
-                }
-            })->validate();*/
-
-          /*  if ($request->payment_type == PaymentMethod::STRIPE) {
-                $stripeService    = new StripeService();
-                $stripeParameters = [
-                    'amount'      => $this->data['shop']->product->unit_price,
-                    'currency'    => 'EUR',
-                    'token'       => request('stripeToken'),
-                    'description' => 'N/A',
-                    'confirm'     => true,
-                ];
-
-                $payment = $stripeService->payment($stripeParameters);
-            } */
-
             if(auth()->check()) {
                   $items = [
                     'shop_id'                   => $shop_product_id,
