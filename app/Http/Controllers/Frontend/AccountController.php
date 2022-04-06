@@ -10,6 +10,7 @@ use App\Http\Requests\RatingsRequest;
 use App\Http\Services\OrderService;
 use App\Models\Balance;
 use App\Models\Order;
+use App\Models\OrderLineItem;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\ShopProduct;
@@ -75,10 +76,12 @@ class AccountController extends FrontendController
         $bal->balance = $bal->balance + $coins;
         $bal->update();
 
+
         $merchent = Shop::where('id', $order->shop_id)->first();
         $firebaseToken = User::where('id', $merchent->user_id)->first();
 
-        $shop_product = ShopProduct::where('shop_id', $order->shop_id)->first();
+        $order_line_item = OrderLineItem::where('order_id', $id)->first();
+        $shop_product = ShopProduct::where('product_id', $order_line_item->product_id)->first();
         $shop_product->quantity = $shop_product->quantity + 1;
         $shop_product->update();
         
