@@ -160,10 +160,8 @@
                                                     @endif
                                                     <a class="product-thumbnail d-block"
                                                        href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
-                                                        <img class="lazy" loading="lazy" style="width: 100%; height: 100px"
+                                                        <img loading="lazy" style="width: 100%; height: 100px"
                                                              src="{{$shopProducts->shop->images??asset('assets/img/default/product.png')}}"
-                                                             data-src="{{$shopProducts->shop->images??asset('assets/img/default/product.png')}}"
-                                                             data-srcset="{{$shopProducts->shop->images??asset('assets/img/default/product.png')}}"
                                                              alt="">
                                                     </a>
                                                 </div>

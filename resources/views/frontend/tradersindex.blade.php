@@ -9,8 +9,7 @@
                         <div class="top-search-form">
                             <form action="{{route('traders.search')}}" method="POST">
                                 @csrf
-                                <input style="width:100%; max-width: 100%" class="form-control" name="name"
-                                       placeholder="Entrez le nom du commerçant">
+                                <input style="width:100%; max-width: 100%" class="form-control" name="name" placeholder="Entrez le nom du commerçant">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -24,17 +23,14 @@
                                     <div class="product-thumbnail-side">
                                         <a class="product-thumbnail d-block"
                                            href="#">
-                                            <img  class="lazy" style="width: 100%; height: 100px"
-                                                 src="{{$trader->images}}"
-                                                 data-src="{{$trader->images}}"
-                                                 data-srcset="{{$trader->images}}"
-                                                 alt="">
+                                            <img loading="lazy" style="width: 100%; height: 100px"
+                                                 src="{{$trader->images}}" alt="">
                                         </a>
                                     </div>
                                     <?php
                                     if (isset($trader->user)) {
                                         $shop_product = \App\Models\ShopProduct::where('shop_id', $trader->id)->first();
-                                        if ($shop_product) {
+                                        if ($shop_product){
                                             $product = \App\Models\Product::find($shop_product->product_id);
                                             $check = \App\Favourite::where('product_id', $shop_product->product_id)->where('user_id', Auth::user()->id)->first();
                                         }
@@ -61,24 +57,18 @@
                                         <div style="float: right">
                                             @if(isset($trader->user))
                                                 @if(isset($check))
-                                                    <a id="{{$product->id}}" class="dislike"
-                                                       c_id="{{$trader->user->id}}" onClick="addtofav(this)">
-                                                        <img style="height: 30px; margin-bottom: 10px"
-                                                             src="{{asset('Yummy-box-picto.png')}}" alt="">
+                                                    <a id="{{$product->id}}" class="dislike" c_id="{{$trader->user->id}}" onClick="addtofav(this)" >
+                                                        <img style="height: 30px; margin-bottom: 10px" src="{{asset('Yummy-box-picto.png')}}" alt="">
                                                     </a>
                                                 @else
-                                                    <a id="{{$product->id}}" class="like{{$product->id}}"
-                                                       c_id="{{$trader->user->id}}" onClick="addtofavtrader(this)">
-                                                        <img loading="lazy" src="{{asset('like.png')}}"
-                                                             style="height: 30px"
-                                                             alt="">
-                                                    </a>
-                                                    <a id="{{$product->id}}" style="display: none"
-                                                       class="temporary{{$product->id}}" c_id="{{$trader->user->id}}"
-                                                       onClick="addtofavtrader(this)">
-                                                        <img style="height: 30px; margin-bottom: 10px"
-                                                             src="{{asset('Yummy-box-picto.png')}}" alt="">
-                                                    </a>
+                                                <a id="{{$product->id}}" class="like{{$product->id}}" c_id="{{$trader->user->id}}" onClick="addtofavtrader(this)" >
+                                                    <img loading="lazy" src="{{asset('like.png')}}"
+                                                         style="height: 30px"
+                                                         alt="">
+                                                </a>
+                                                <a id="{{$product->id}}" style="display: none" class="temporary{{$product->id}}" c_id="{{$trader->user->id}}" onClick="addtofavtrader(this)" >
+                                                    <img style="height: 30px; margin-bottom: 10px" src="{{asset('Yummy-box-picto.png')}}" alt="">
+                                                </a>
                                                 @endif
                                             @endif
                                         </div>
