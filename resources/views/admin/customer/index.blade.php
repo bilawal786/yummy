@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-    <section class="section">
+  <section class="section">
         <div class="section-header">
             <h1>{{ __('Clients') }}</h1>
             {{ Breadcrumbs::render('customers') }}
@@ -15,9 +15,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <a href="{{route('admin.users.export')}}">
-                                        <button class="btn btn-success btn-sm">Clients d'exportation</button>
-                                    </a>
+                                    <a href="{{route('admin.users.export')}}"><button class="btn btn-success btn-sm">Clients d'exportation</button></a>
 
                                 </div>
                                 <div class="col-4">
@@ -40,45 +38,19 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="maintable">
+                                <table class="table table-striped" id="maintable" data-url="{{ route('admin.customers.get-customers') }}" data-hidecolumn="{{ auth()->user()->can('customers_show') || auth()->user()->can('customers_edit') || auth()->user()->can('customers_delete') }}">
                                     <thead>
-                                    <tr>
-                                        <th>{{ __('ID') }}</th>
-                                        <th>{{ __('Image') }}</th>
-                                        <th>{{ __('Nom') }}</th>
-                                        <th>{{ __('Email') }}</th>
-                                        <th>{{ __('Téléphone') }}</th>
-                                        <th>{{ __('Coins') }}</th>
-                                        <th>{{ __('Parrainage') }}</th>
-                                        <th>Pays</th>
-                                        <th>{{ __('Actions') }}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($users as $user)
                                         <tr>
-                                            <td>{{$user->id}}</td>
-                                            <td>
-                                                <figure class="avatar mr-2"><img src="{{asset($user->images)}}" alt="">
-                                                </figure>
-                                            </td>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->phone}}</td>
-                                            <td>{{$user->balance->balance}}</td>
-                                            <td>
-                                                @php
-                                                    $refferal = \App\Refferal::where('refferal_user', $user->id)->count();
-                                                @endphp
-                                                {{$refferal}}</td>
-                                            <td>{{$user->country->name}}</td>
-                                            <td><a href="{{route('admin.customers.edit', $user)}}"
-                                                   class="btn btn-sm btn-icon float-left btn-primary ml-2"
-                                                   data-toggle="tooltip" data-placement="top" title="Edit"><i
-                                                            class="far fa-edit"></i></a></td>
+                                            <th>{{ __('ID') }}</th>
+                                            <th>{{ __('Image') }}</th>
+                                            <th>{{ __('Nom') }}</th>
+                                            <th>{{ __('Email') }}</th>
+                                            <th>{{ __('Téléphone') }}</th>
+                                            <th>{{ __('Coins') }}</th>
+                                            <th>{{ __('Parrainage') }}</th>
+                                            <th>{{ __('Actions') }}</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
+                                    </thead>
                                 </table>
                             </div>
                         </div>
@@ -101,17 +73,5 @@
     <script src="{{ asset('assets/modules/datatables/media/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
-    <script>
-        "use strict";
-
-        $(function () {
-            var table = $('#maintable').DataTable({});
-
-        });
-
-        $('#maintable').on('draw.dt', function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        })
-
-    </script>
+    <script src="{{ asset('js/customer/index.js') }}"></script>
 @endsection
