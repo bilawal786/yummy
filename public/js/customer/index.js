@@ -9,13 +9,8 @@
 
 $(function() {
     var table = $('#maintable').DataTable({
-        responsive: true,
         processing: true,
-        deferRender: true,
         serverSide: true,
-        bLengthChange: false,
-        searchDelay: 500,
-        pageLength: 10,
         ajax: $('#maintable').attr('data-url'),
         columns: [
             { data: 'id', name: 'id' },

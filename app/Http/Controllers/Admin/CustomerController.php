@@ -117,17 +117,8 @@ class CustomerController extends BackendController
     {
         $role      = Role::find(2);
         $users     = User::role($role->name)->latest()->get();
-        $userArray = [];
 
-        $i = 1;
-        if (!blank($users)) {
-            foreach ($users as $user) {
-                $userArray[$i]          = $user;
-                $userArray[$i]['setID'] = $i;
-                $i++;
-            }
-        }
-        return Datatables::of($userArray)
+        return Datatables::of($users)
             ->addColumn('action', function ($user) {
                 $retAction = '';
 
