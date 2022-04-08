@@ -24,7 +24,7 @@
                                     <div class="product-thumbnail-side">
                                         <a class="product-thumbnail d-block"
                                            href="#">
-                                            <img loading="lazy" style="width: 100%; height: 100px"
+                                            <img  class="lazy" loading="lazy" style="width: 100%; height: 100px"
                                                  src="{{$trader->images}}"
                                                  data-src="{{$trader->images}}"
                                                  data-srcset="{{$trader->images}}"
