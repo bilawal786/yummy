@@ -79,9 +79,9 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-                                    {{$users->links()}}
                                 </table>
                             </div>
+                            {{$users->links()}}
                         </div>
                     </div>
                 </div>
