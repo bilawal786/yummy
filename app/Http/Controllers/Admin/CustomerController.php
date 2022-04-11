@@ -197,7 +197,7 @@ class CustomerController extends BackendController
 
     public function countryUsers($id){
         $role      = Role::find(2);
-        $users     = User::role($role->name)->where('address', $id)->latest()->get();
+        $users     = User::role($role->name)->where('address', $id)->latest()->paginate(100);
         $this->data['location'] = Location::all();
         $this->data['users'] = $users;
         return view('admin.customer.index', $this->data);
