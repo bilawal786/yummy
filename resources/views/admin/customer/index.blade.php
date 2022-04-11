@@ -78,6 +78,7 @@
                                                             class="far fa-edit"></i></a></td>
                                         </tr>
                                     @endforeach
+                                    {{$users->links()}}
                                     </tbody>
                                 </table>
                             </div>
