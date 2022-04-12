@@ -294,5 +294,16 @@ class CustomerController extends BackendController
         $products  = ShopProduct::whereIn('shop_id', $shopsids)->get();
         return view('admin.shopadmins.products', compact('products'));
     }
+    public function search(Request $request){
+        $role      = Role::find(2);
+        $users = User::role($role->name)->where('first_name', 'LIKE', "%$request->search%")
+            ->orWhere('last_name', 'LIKE', "%$request->search%")
+            ->orWhere('email', 'LIKE', "%$request->search%")
+            ->orWhere('phone', 'LIKE', "%$request->search%")
+            ->paginate(100);
+        $this->data['location'] = Location::all();
+        $this->data['users'] = $users;
+        return view('admin.customer.index', $this->data);
+    }
 
 }

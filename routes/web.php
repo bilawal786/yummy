@@ -221,6 +221,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('get-customers', 'CustomerController@getCustomers')->name('customers.get-customers');
     Route::get('get-customers/country/{id}', 'CustomerController@getCustomersCountry')->name('customers.get-customers.country');
     Route::get('users/export/', 'CustomerController@export')->name('users.export');
+    Route::post('client/search/', 'CustomerController@search')->name('client.search');
     Route::get('get-country-users/{id}', 'CustomerController@countryUsers')->name('get-country-users');
 
     Route::get('shop/admins', 'CustomerController@shopAdmins')->name('shop.admins');

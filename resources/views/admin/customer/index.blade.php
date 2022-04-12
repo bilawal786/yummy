@@ -14,13 +14,13 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-md-2">
                                     <a href="{{route('admin.users.export')}}">
                                         <button class="btn btn-success btn-sm">Clients d'exportation</button>
                                     </a>
 
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <select onchange="location = this.value;" name="" class="form-control" id="">
                                         <option value="">Choisissez le pays</option>
                                         @foreach($location as $loc)
@@ -28,6 +28,20 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <form style="width: 100%" action="{{route('admin.client.search')}}" method="POST">
+                                        @csrf
+                                        <input type="text" required name="search"
+                                               placeholder="Rechercher un client par nom, e-mail ou téléphone"
+                                               class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Recherche</button>
+                                </div>
+                                </form>
+
+
                             </div>
 
 
