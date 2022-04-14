@@ -65,7 +65,8 @@ Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' 
 });
 
 Route::get('/stripe', function (){
-    $stripe = new \Stripe\StripeClient('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+//    $stripe = new \Stripe\StripeClient('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+    $stripe = new \Stripe\StripeClient('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');
 
     $data = $stripe->accounts->create(
         [
@@ -91,7 +92,8 @@ Route::get('/stripe', function (){
     return redirect($data2->url);
 });
 Route::get('/payout', function (){
-    \Stripe\Stripe::setApiKey('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+//    \Stripe\Stripe::setApiKey('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+    \Stripe\Stripe::setApiKey('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');
 
     $transfer = \Stripe\Transfer::create([
         "amount" => 100,
