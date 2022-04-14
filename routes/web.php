@@ -90,6 +90,16 @@ Route::get('/stripe', function (){
     );
     return redirect($data2->url);
 });
+Route::get('/payout', function (){
+    \Stripe\Stripe::setApiKey('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+
+    $transfer = \Stripe\Transfer::create([
+        "amount" => 100,
+        "currency" => "eur",
+        "destination" => Auth::user()->connect_id,
+    ]);
+    dd($transfer);
+});
 
 Route::post('/fetchmaincategory', 'Admin\CategoryController@fetchmaincategory')->name('fetchmaincategory');
 Route::post('/fetchsubcategory', 'Admin\CategoryController@fetchsubcategory')->name('fetchsubcategory');
