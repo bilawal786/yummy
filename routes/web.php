@@ -63,6 +63,34 @@ Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' 
         'uses' => 'PurchaseCodeController@action',
     ]);
 });
+
+Route::get('/stripe', function (){
+    $stripe = new \Stripe\StripeClient('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+
+    $data = $stripe->accounts->create(
+        [
+            'country' => 'US',
+            'type' => 'express',
+            'capabilities' => [
+                'card_payments' => ['requested' => true],
+                'transfers' => ['requested' => true],
+            ],
+            'business_type' => 'individual',
+            'business_profile' => ['url' => 'https://app.yummybox.fr/'],
+        ]
+    );
+    Auth::user()->update(['connect_id' => $data->id]);
+    $data2 = $stripe->accountLinks->create(
+        [
+            'account' => $data->id,
+            'refresh_url' => 'https://app.yummybox.fr/',
+            'return_url' => route('home'),
+            'type' => 'account_onboarding',
+        ]
+    );
+    return redirect($data2->url);
+});
+
 Route::post('/fetchmaincategory', 'Admin\CategoryController@fetchmaincategory')->name('fetchmaincategory');
 Route::post('/fetchsubcategory', 'Admin\CategoryController@fetchsubcategory')->name('fetchsubcategory');
 
