@@ -116,6 +116,11 @@
                                                 class="text-danger">*</span>
                                         <br>
                                         <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" value="0.80" name="reduction"
+                                                   id="inlineRadio1">
+                                            <label class="form-check-label" for="inlineRadio1">20%</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" value="0.70" name="reduction"
                                                    id="inlineRadio1">
                                             <label class="form-check-label" for="inlineRadio1">30%</label>
