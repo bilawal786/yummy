@@ -110,41 +110,31 @@ class ProductController extends BackendController
 
         foreach ($firebaseTokens as $UserToken){
             NotificationHelper::addtoNitification($shopProduct->shop->user->id, $UserToken->id, $msg, $product->id, $activity, $shopProduct->shop->user->address);
-
-            $url = 'https://fcm.googleapis.com/fcm/send';
-            if ($UserToken->device_type == "android"){
-                $fields = array (
-                    'to' => $UserToken->device_token,
-                    'data' => array (
-                        "title" => "Yummy Box",
-                        "message" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
-                        "click_action" => "NotificationLunchScreen",
-                    )
-                );
-            }else{
-                $fields = array (
-                    'to' => $UserToken->device_token,
-                    'notification' => array (
-                        "title" => "Yummy Box",
-                        "body" => "Fais vite, ".$shopProduct->shop->name." vient de rajouter des paniers à sauver 😋",
-                        "click_action" => "NotificationLunchScreen",
-                    )
-                );
-            }
-            $fields = json_encode ( $fields );
-            $headers = array (
-                'Authorization: key=' . "AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm",
-                'Content-Type: application/json'
-            );
-            $ch = curl_init ();
-            curl_setopt ( $ch, CURLOPT_URL, $url );
-            curl_setopt ( $ch, CURLOPT_POST, true );
-            curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
-            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
-            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
-            $result = curl_exec ( $ch );
-            curl_close ( $ch );
         }
+
+        $SERVER_API_KEY = 'AAAAAjqrxA4:APA91bH2gSA-MK-gvM4ASC7-xfx7Fg--FMCzg1KdZ5wkwQb1fCOkWdDKvLWSHW4dJAwvX9SVjYWVQwHeYxElsi7fuwu3fuidKJzyWI0YlCipcGK5DnTStSmwvDNdCAfMxrYyDcqSRtEm';
+        $data = [
+            "registration_ids" => $firebaseTokens->pluck('device_token')->all(),
+            "notification" => [
+                "title" => "Yummy Box",
+                "body" => $msg,
+                "click_action" => "NotificationLunchScreen",
+            ]
+        ];
+        $dataString = json_encode($data);
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
         return redirect()->route('admin.products.index')->withSuccess('Panier ajouté avec succès !');
     }
 
