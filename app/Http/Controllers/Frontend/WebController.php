@@ -30,14 +30,14 @@ class WebController extends FrontendController
 
     public function index()
     {
-        $this->data['banners']   = Banner::where(['status' => Status::ACTIVE])->orderBy('sort', 'asc')->where('country_id', Auth::user()->address)->get();
+        $this->data['banners']   = Banner::where(['status' => Status::ACTIVE])->orderBy('sort', 'asc')->where('country_id', Auth::user()->address??1)->get();
         $this->data['locations'] = Location::orderBy('name', 'desc')->get();
         $this->data['products']     = Product::with('categories')->inRandomOrder()->get();
         $this->data['proxim']    = Shop::where('vip', '=', '1')->inRandomOrder()->limit(3)->get();
         $this->data['bestSellingShops']      = ShopProduct::with('shop')->selectRaw('shop_products.*, SUM(counter) as qty')->groupBy('shop_id')->orderBy('qty', 'desc')->get()->take(3);
         $this->data['categories']            = Category::pluck('name', 'id');
-        $this->data['cat']                   = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', Auth::user()->address)->paginate(10);
-        $this->data['vipcats']               = SubCategory::where('location_id', Auth::user()->address)->get();
+        $this->data['cat']                   = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', Auth::user()->address??1)->paginate(10);
+        $this->data['vipcats']               = SubCategory::where('location_id', Auth::user()->address??1)->get();
         $this->data['shopProducts']          = ShopProduct::orderBy('id', 'desc')->limit(3)->with('product')->get();
         $mytime = Carbon::now();
         $this->data['heure'] = $mytime->format('H:i:s');

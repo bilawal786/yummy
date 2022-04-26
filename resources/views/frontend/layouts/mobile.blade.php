@@ -158,7 +158,6 @@ $user = Auth::user();
          <div class="suha-navbar-toggler d-flex flex-wrap" id="suhaNavbarToggler"><i class="lni lni-user"></i></div>
        </div>
      </div>
-     @auth
      <!-- Sidenav Black Overlay-->
      <div class="sidenav-black-overlay"></div>
      <!-- Side Nav Wrapper-->
@@ -166,22 +165,21 @@ $user = Auth::user();
        <!-- Sidenav Profile-->
        <div class="sidenav-profile">
          <div class="user-info">
-           <div class="user-profile"><img width="100px" height="100px" src="{{ $user->images }}"></div>
-           <h6 class="user-name mb-0">{{ $user->name}}</h6>
-           <p class="available-balance"><span><span class="counter"> {{ $user->balance->balance }}</span> {{ __('YummyCoin') }}</span></p>
+           <div class="user-profile"><img width="100px" height="100px" src="{{ $user->images??'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' }}"></div>
+           <h6 class="user-name mb-0">{{ $user->name??'Guest User'}}</h6>
+           <p class="available-balance"><span><span class="counter"> {{ $user->balance->balance??'0' }}</span> {{ __('YummyCoin') }}</span></p>
          </div>
        </div>
        <!-- Sidenav Nav-->
        <ul class="sidenav-nav ps-0">
+           @auth
         @if($user->myrole == 1 || $user->myrole == 3 || $user->myrole == 5) <li><a href="{{ route('admin') }}"><i class="lni lni-briefcase"></i>Accès boutique </a></li> @endif
-{{--         <li><a href="{{ route('home') }}"><i class="lni lni-home"></i>Découvrir</a></li>--}}
-         <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>Mon Profil</a></li>
+           @endauth
+            <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>Mon Profil</a></li>
          <li><a href="{{ route('notifications') }}"><i class="lni lni-bullhorn"></i>Notifications</a></li>
          <li><a href="{{ route('traders') }}"><i class="lni lni-surf-board"></i>Nos commerçants</a></li>
-{{--         <li><a href="{{ route('account.order') }}"><i class="lni lni-package"></i>Réservations</a></li>--}}
          <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>Recharger mon compte</a></li>
          <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>Centre d'assistance</a></li>
-{{--         <li><a href=""><i class="lni lni-alarm lni-tada-effect"></i>Comment ça marche</a></li>--}}
          <li><a href="{{ route('suggest.business') }}"><i class="lni lni-bar-chart lni-tada-effect"></i>
                  Suggérer un commerce
              </a></li>
@@ -189,7 +187,7 @@ $user = Auth::user();
             <li>
                 <select onchange="location = this.value;" style="height: 30px" class="form-control" name="" id="">
                     @foreach($location as $loc)
-                    <option {{$user->address == $loc->id ? 'selected' : ''}} value="{{route('change.location', ['id' => $loc->id])}}">{{$loc->name}}</option>
+                    <option {{$user->address??1 == $loc->id ? 'selected' : ''}} value="{{route('change.location', ['id' => $loc->id])}}">{{$loc->name}}</option>
                     @endforeach
                 </select>
             </li>
@@ -202,7 +200,7 @@ $user = Auth::user();
        <!-- Go Back Button-->
        <div class="go-home-btn" id="goHomeBtn"><i class="lni lni-arrow-left"></i></div>
      </div>
-     @endauth
+
      @include('frontend.layouts.partials.flash')
       <!-- home page -->
       @yield('main-content')

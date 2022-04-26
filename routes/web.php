@@ -106,20 +106,22 @@ Route::get('/payout', function (){
 Route::post('/fetchmaincategory', 'Admin\CategoryController@fetchmaincategory')->name('fetchmaincategory');
 Route::post('/fetchsubcategory', 'Admin\CategoryController@fetchsubcategory')->name('fetchsubcategory');
 
+Route::get('partenaire/{shop}/panier/{product}', 'Frontend\ShopProductController')->name('shop.product.details');
+Route::get('/home', 'Frontend\WebController@index')->name('home');
+Route::get('/map', 'Frontend\WebController@mapshow')->name('map');
+Route::get('categorie/{slug}', 'Frontend\CategorieController@index')->name('categories');
+
 Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], function () {
     Route::post('/addtowishlist', 'WebController@addtowishlist')->name('addtowishlist');
-    Route::get('/home', 'WebController@index')->name('home')->middleware('auth');
     Route::get('/notifications', 'WebController@notifications')->name('notifications')->middleware('auth');
     Route::view('/setup', 'frontend.account-setup');
     Route::get('/coin', 'YummyCoinController@index')->name('yummycoin')->middleware('auth');
     Route::get('/coinjson/{price}', 'YummyCoinController@json')->name('coinjson')->middleware('auth');
     Route::post('yummycharge', 'CheckoutController@yummycoin')->name('yummycharge')->middleware('auth');
 
-    Route::get('/map', 'WebController@mapshow')->name('map')->middleware('auth');
     Route::get('/shop/map/{lat}/{lan}', 'WebController@shopMap')->name('shop.map')->middleware('auth');
     Route::get('map-data', 'WebController@map')->name('map.data');
     Route::get('partenaire/{shop}', 'ShopController')->name('shop.show')->middleware('auth');
-    Route::get('partenaire/{shop}/panier/{product}', 'ShopProductController')->name('shop.product.details')->middleware('auth');
 
     Route::get('cart', 'CartController@index')->name('cart.index')->middleware('auth');
     Route::post('cart', 'CartController@store')->name('cart.store')->middleware('auth');
@@ -151,7 +153,6 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
 
     Route::get('/search', 'SearchController@filter')->name('search');
     Route::get('/{shop}/products/search', 'SearchController@filterProduct')->name('search-product');
-    Route::get('categorie/{slug}', 'CategorieController@index')->name('categories');
     Route::get('shop-categories/{cat}/{id}', 'CategorieController@shop_categories')->name('shop-categories');
     Route::get('traders', 'CategorieController@tradersindex')->name('traders');
     Route::post('traders/search', 'CategorieController@tradersSearch')->name('traders.search');
@@ -164,8 +165,8 @@ Route::group(['middleware' => ['installed'], 'namespace' => 'Frontend'], functio
     Route::get('/terms', 'TermController')->name('terms');
     Route::get('/faq', 'ContactController@faq')->name('faq');
     Route::get('/how-it-works', 'ContactController@how_it_works')->name('how-it-works');
-    Route::get('/sponsership', 'ContactController@sponsership')->name('sponsership');
-    Route::get('/suggest/business', 'ContactController@suggest')->name('suggest.business');
+    Route::get('/sponsership', 'ContactController@sponsership')->name('sponsership')->middleware('auth');
+    Route::get('/suggest/business', 'ContactController@suggest')->name('suggest.business')->middleware('auth');
     Route::post('/suggest/store', 'ContactController@suggeststore')->name('suggest.store');
     Route::get('/contact', 'ContactController')->name('contact');
     Route::post('/contact', 'ContactController@store')->name('contact.store');

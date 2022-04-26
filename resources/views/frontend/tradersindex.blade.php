@@ -32,13 +32,16 @@
                                         $shop_product = \App\Models\ShopProduct::where('shop_id', $trader->id)->first();
                                         if ($shop_product){
                                             $product = \App\Models\Product::find($shop_product->product_id);
-                                            $check = \App\Favourite::where('product_id', $shop_product->product_id)->where('user_id', Auth::user()->id)->first();
+                                            if (Auth::user()){
+                                                $check = \App\Favourite::where('product_id', $shop_product->product_id)->where('user_id', Auth::user()->id)->first();
+                                            }
                                         }
                                         $likes = \App\Favourite::where('product_creator', $trader->user->id)->get()->unique('user_id')->count();
                                     } else {
                                         $likes = 0;
                                     }
                                     ?>
+
                                     <div class="product-description">
                                         <a class="product-title d-block"
                                            href="#"><font
@@ -56,6 +59,7 @@
                                         </a>
                                         <div style="float: right">
                                             @if(isset($trader->user))
+                                                @auth
                                                 @if(isset($check))
                                                     <a id="{{$product->id}}" class="dislike" c_id="{{$trader->user->id}}" onClick="addtofav(this)" >
                                                         <img style="height: 30px; margin-bottom: 10px" src="{{asset('Yummy-box-picto.png')}}" alt="">
@@ -70,6 +74,7 @@
                                                     <img style="height: 30px; margin-bottom: 10px" src="{{asset('Yummy-box-picto.png')}}" alt="">
                                                 </a>
                                                 @endif
+                                                @endauth
                                             @endif
                                         </div>
 

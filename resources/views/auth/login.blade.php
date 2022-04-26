@@ -96,6 +96,9 @@
             <a href="{{ route('register') }}" class="btn btn-success btn-lg rounded btn-block">
             Créer un compte
             </a>
+            <a href="{{ route('home') }}" class="btn btn-success btn-lg rounded btn-block">
+                Naviguer en tant qu'invité
+            </a>
          </div>
       </div>
       <!-- footer fixed -->

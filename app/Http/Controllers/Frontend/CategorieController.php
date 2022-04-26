@@ -37,7 +37,7 @@ class CategorieController extends FrontendController
     }
     public function tradersindex()
     {
-        $this->data['traders']      = Shop::where('location_id', Auth::user()->address)->paginate(10);
+        $this->data['traders']      = Shop::where('location_id', Auth::user()->address??1)->paginate(10);
         $this->data['namepage']  = "Nos commerçants";
         $this->data['user']      = auth()->user();
         return view('frontend.tradersindex', $this->data);

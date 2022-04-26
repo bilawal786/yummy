@@ -40,7 +40,9 @@ class ShopProductController extends FrontendController
             }
             $this->data['namepage']  = $product->name;
             $this->data['favourites']  = Favourite::where('product_id', $product->id)->get();
-            $this->data['check_fav']  = Favourite::where('product_id', $product->id)->where('user_id', Auth::user()->id)->first();
+            if (Auth::user()){
+                $this->data['check_fav']  = Favourite::where('product_id', $product->id)->where('user_id', Auth::user()->id)->first();
+            }
             return view('frontend.shop_product-mobile', $this->data);
         }
 

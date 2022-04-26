@@ -147,6 +147,7 @@
                                                     @else
                                                         <span class="badge badge-info">Rien à sauver</span>
                                                     @endif
+                                                    @auth
                                                     <?php
                                                     $check_fav = \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
                                                     ?>
@@ -158,6 +159,7 @@
                                                                  src="{{asset('Yummy-box-picto.png')}}" alt="">
                                                         </a>
                                                     @endif
+                                                    @endauth
                                                     <a class="product-thumbnail d-block"
                                                        href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
                                                         <img loading="lazy" style="width: 100%; height: 100px"
