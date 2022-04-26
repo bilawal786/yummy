@@ -64,44 +64,44 @@ Route::group(['prefix' => 'install', 'as' => 'LaravelInstaller::', 'middleware' 
     ]);
 });
 
-Route::get('/stripe', function (){
-//    $stripe = new \Stripe\StripeClient('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
-    $stripe = new \Stripe\StripeClient('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');
-
-    $data = $stripe->accounts->create(
-        [
-            'country' => 'US',
-            'type' => 'express',
-            'capabilities' => [
-                'card_payments' => ['requested' => true],
-                'transfers' => ['requested' => true],
-            ],
-            'business_type' => 'individual',
-            'business_profile' => ['url' => 'https://app.yummybox.fr/'],
-        ]
-    );
-    Auth::user()->update(['connect_id' => $data->id]);
-    $data2 = $stripe->accountLinks->create(
-        [
-            'account' => $data->id,
-            'refresh_url' => 'https://app.yummybox.fr/',
-            'return_url' => route('home'),
-            'type' => 'account_onboarding',
-        ]
-    );
-    return redirect($data2->url);
-});
-Route::get('/payout', function (){
-//    \Stripe\Stripe::setApiKey('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
-    \Stripe\Stripe::setApiKey('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');
-
-    $transfer = \Stripe\Transfer::create([
-        "amount" => 100,
-        "currency" => "eur",
-        "destination" => Auth::user()->connect_id,
-    ]);
-    dd($transfer);
-});
+//Route::get('/stripe', function (){
+////    $stripe = new \Stripe\StripeClient('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+//    $stripe = new \Stripe\StripeClient('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');
+//
+//    $data = $stripe->accounts->create(
+//        [
+//            'country' => 'US',
+//            'type' => 'express',
+//            'capabilities' => [
+//                'card_payments' => ['requested' => true],
+//                'transfers' => ['requested' => true],
+//            ],
+//            'business_type' => 'individual',
+//            'business_profile' => ['url' => 'https://app.yummybox.fr/'],
+//        ]
+//    );
+//    Auth::user()->update(['connect_id' => $data->id]);
+//    $data2 = $stripe->accountLinks->create(
+//        [
+//            'account' => $data->id,
+//            'refresh_url' => 'https://app.yummybox.fr/',
+//            'return_url' => route('home'),
+//            'type' => 'account_onboarding',
+//        ]
+//    );
+//    return redirect($data2->url);
+//});
+//Route::get('/payout', function (){
+////    \Stripe\Stripe::setApiKey('sk_test_51Ia9JLGGZGzjCRwlo1pfllMTHuOT1sacxSijeBVjgkyxFXbQvrxy2YdrFkZSFxEecdgS1cK9s1Ptgp6iRsgtvAaI00rAoXzlbI');
+//    \Stripe\Stripe::setApiKey('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');
+//
+//    $transfer = \Stripe\Transfer::create([
+//        "amount" => 100,
+//        "currency" => "eur",
+//        "destination" => Auth::user()->connect_id,
+//    ]);
+//    dd($transfer);
+//});
 
 Route::post('/fetchmaincategory', 'Admin\CategoryController@fetchmaincategory')->name('fetchmaincategory');
 Route::post('/fetchsubcategory', 'Admin\CategoryController@fetchsubcategory')->name('fetchsubcategory');
