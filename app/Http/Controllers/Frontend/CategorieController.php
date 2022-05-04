@@ -66,7 +66,7 @@ class CategorieController extends FrontendController
         $this->data['namepage']  = "Sous-catégories";
         $this->data['user']      = auth()->user();
         $this->data['id']      = $id;
-        $this->data['cat']       = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', Auth::user()->address)->get();
+        $this->data['cat']       = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', Auth::user()->address??1)->get();
         $this->data['shops']      = Shop::where('subcategory', '=', $id)->get();
         return view('frontend.shops', $this->data);
 //        return view('frontend.shopcategories', $this->data);
