@@ -216,12 +216,10 @@
                                         @enderror
                                     </div>
                                     <div class="form-group col {{ $errors->has('document') ? 'has-error' : '' }}">
-                                        <label for="document">{{ __('Image') }}
+                                        <label for="document"> {{ __('Image') }} (525 * 329)
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <div class="needsclick dropzone {{ $errors->has('document') ? ' is-invalid' : '' }}"
-                                             id="document-dropzone"></div>
-                                        @error('document')
+                                        <input type="file" name="image" class="form-control"> @error('document')
                                         <span class="text-danger">
                                             {{ $message }}
                                         </span>

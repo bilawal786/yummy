@@ -188,6 +188,9 @@ class ProductController extends BackendController
         $product->unit_price  = $request->get('unit_price');
         $product->subcategories  = $request->subcategory;
         $product->publish  = $request->publish;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $product->addMediaFromRequest('image')->toMediaCollection('products');
+        }
         $product->save();
         $product->categories()->sync($request->get('categories'));
         $affectedRows = ShopProduct::where("product_id", $product->id)->update(["quantity" => $request->get('quantity'), "hdispoa" => $request->get('hdispoa'), "hdispob"=> $request->get('hdispob'), "discount_price"=> $request->get('discount_price')]);
