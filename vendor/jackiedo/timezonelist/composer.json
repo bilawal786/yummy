@@ -15,11 +15,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Jackiedo\\Timezonelist\\": "src/Jackiedo/Timezonelist"
+            "Jackiedo\\Timezonelist\\": "src/"
         }
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "5.x-dev"
+        },
         "laravel": {
+            "aliases": {
+                "Timezonelist": "Jackiedo\\Timezonelist\\Facades\\Timezonelist"
+            },
             "providers": [
                 "Jackiedo\\Timezonelist\\TimezonelistServiceProvider"
             ]

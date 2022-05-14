@@ -25,6 +25,7 @@ use App\SubCategory;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
@@ -98,6 +99,16 @@ class ShopController extends BackendController
         $user->address    = $request->get('address');
         $user->status     = $request->get('userstatus');
         $user->password   = bcrypt($request->get('password'));
+        $user->p1 = 1;
+        $user->p2 = 1;
+        $user->p3 = 1;
+        $user->p4 = 1;
+        $user->p5 = 1;
+        $user->p6 = 1;
+        $user->p7 = 1;
+        $user->p8 = 1;
+        $user->p9 = 1;
+        $user->p10 = 1;
         $user->save();
         $role = Role::find(3);
         $user->assignRole($role->name);
@@ -121,6 +132,7 @@ class ShopController extends BackendController
             $shop->status = $request->status;
         }
         $shop->applied = false;
+        $shop->salesperson = Auth::user()->id;
         $shop->save();
         $shop->categories()->sync($request->get('categories'));
 
@@ -161,9 +173,9 @@ class ShopController extends BackendController
         }
         $depositService = app(DepositService::class)->depositAdjust($user->id, $depositAmount, $limitAmount);
         if ($depositService->status) {
-            return redirect(route('admin.shop.index'))->withSuccess('The Data Inserted Successfully');
+            return redirect()->back()->withSuccess('The Data Inserted Successfully');
         } else {
-            return redirect(route('admin.shop.index'))->withError($depositService->message);
+            return redirect()->back()->withError($depositService->message);
         }
     }
 

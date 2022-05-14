@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\UserStatus;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\AdministratorRequest;
+use App\Models\Location;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -282,5 +283,39 @@ class AdministratorController extends BackendController
     {
         $emails = explode('@', $email);
         return $emails[0] . mt_rand();
+    }
+    public function salesPerson(){
+        $role      = Role::find(6);
+        $users     = User::role($role->name)->latest()->paginate(100);
+        $this->data['users'] = $users;
+        return view('admin.salesperson.index', $this->data);
+    }
+    public function salesPersonCreate(){
+        return view('admin.salesperson.create', $this->data);
+    }
+    public function salesPersonStore(Request $request){
+        $user             = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->username   = $request->username ?? $this->username($request->email);
+        $user->password   = Hash::make(request('password'));
+        $user->phone      = $request->phone;
+        $user->address    = $request->address;
+        $user->status     = $request->status;
+
+        $user->p4 = 1;
+
+        $user->save();
+
+        if (request()->file('image')) {
+            $user->addMedia(request()->file('image'))->toMediaCollection('user');
+        }
+
+        $role = Role::find(6);
+        $user->assignRole($role->name);
+
+        return redirect(route('admin.sales.person'))->withSuccess('The Data Inserted Successfully');
+
     }
 }

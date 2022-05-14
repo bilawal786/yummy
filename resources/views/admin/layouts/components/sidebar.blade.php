@@ -52,9 +52,15 @@
                                             class="fas fa-users"></i> <span>Administrateurs</span></a></li>
                             <li class=""><a class="nav-link " href="/admin/customers"><i
                                             class="fas fa-user-secret"></i> <span>Clients</span></a></li>
+                            <br>
                             <li class=""><a class="nav-link " href="{{route('admin.shop.admins')}}"><i
                                             class="fas fa-university"></i>
                                     <span>Administrateurs de la boutique</span></a>
+                            </li>
+                            <br>
+                            <li class=""><a class="nav-link " href="{{route('admin.sales.person')}}"><i
+                                            class="fas fa-university"></i>
+                                    <span>Vendeurs</span></a>
                             </li>
                         </ul>
                     </li>
@@ -76,44 +82,52 @@
             @if( Auth::user()->hasRole('Shop Owner') )
                 <li class=""><a class="nav-link " href="{{route('admin.vendor.bank')}}"><i class="fas fa-bars"></i>
                         <span>
-Coordonnées bancaires
-</span></a></li>
+                    Coordonnées bancaires
+                    </span></a></li>
                 <li class=""><a class="nav-link " href="{{url('/stripe')}}"><i class="fas fa-bars"></i>
                         <span>
-Connecter Stripe
-</span></a></li>
+                    Connecter Stripe
+                    </span></a></li>
                 <li class=""><a class="nav-link " href="{{route('admin.vendor.send.notifications')}}"><i
                                 class="fas fa-address-card"></i> <span>
-Envoyer des notifications aux clients
-</span></a></li>
+                    Envoyer des notifications aux clients
+                    </span></a></li>
             @endif
             @if( Auth::user()->hasRole('Admin') )
                 @if($user->p9 == 1)
                     <li class=""><a class="nav-link " href="{{route('admin.admin.bank')}}"><i class="fas fa-bars"></i>
                             <span>
-Coordonnées bancaires
-</span></a></li>
+                    Coordonnées bancaires
+                    </span></a></li>
                 @endif
                 <li class=""><a class="nav-link " href="{{route('admin.souscategorie.index')}}"><i
                                 class="fas fa-calendar"></i> <span>
-Catégorie Premium
-</span></a></li>
+                    Catégorie Premium
+                    </span></a></li>
                 <li class=""><a class="nav-link " href="{{route('admin.suggestions')}}"><i
                                 class="fas fa-balance-scale"></i> <span>
-Suggérer un commerce
-</span></a></li>
+                    Suggérer un commerce
+                    </span></a></li>
                 @if($user->p10 == 1)
                     <li class=""><a class="nav-link " href="{{route('admin.send.notifications')}}"><i
                                     class="fas fa-address-card"></i> <span>
-Envoyer des notifications aux clients
-</span></a></li>
+                    Envoyer des notifications aux clients
+                    </span></a></li>
                 @endif
             @endif
+
             @if( Auth::user()->hasRole('Shop Admin') )
                 <li class=""><a class="nav-link " href="{{route('admin.shopadmin.products')}}"><i
                                 class="fas fa-gift"></i> <span>Paniers</span></a>
                 </li>
             @endif
+
+            @if( Auth::user()->hasRole('Sales Person') )
+                <li class=""><a class="nav-link " href="{{route('admin.salesperson.vendors')}}"><i
+                                class="fas fa-gift"></i> <span>Mes commerçants</span></a>
+                </li>
+            @endif
+
             <li class=""><a class="nav-link " href="{{route('home')}}"><i class="fas fa-mobile"></i> <span>Retour à l'application</span></a>
             </li>
         </ul>
