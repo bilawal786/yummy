@@ -31,6 +31,7 @@ class AreaController extends BackendController
     public function index()
     {
         return view('admin.area.index', $this->data);
+
     }
 
     /**
