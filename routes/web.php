@@ -279,6 +279,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::post('sales/person/store', 'AdministratorController@salesPersonStore')->name('salesPerson.store');
 
     Route::get('salesperson/vendors', 'SalesPersonController@salesPersonVendors')->name('salesperson.vendors');
+    Route::get('salesperson/details/{id}', 'SalesPersonController@details')->name('salesperson.details');
 
     Route::resource('delivery-boys', 'DeliveryBoyController');
     Route::get('get-delivery-boys', 'DeliveryBoyController@getDeliveryBoy')->name('delivery-boys.get-delivery-boys');

@@ -133,6 +133,11 @@ class ShopController extends BackendController
         }
         $shop->applied = false;
         $shop->salesperson = Auth::user()->id;
+        $shop->q1 =$request->q1;
+        $shop->q2 =$request->q2;
+        $shop->q3 =$request->q3;
+        $shop->q4 =$request->q4;
+        $shop->q5 =$request->q5;
         $shop->save();
         $shop->categories()->sync($request->get('categories'));
 
@@ -161,6 +166,7 @@ class ShopController extends BackendController
           $shopProduct->hdispoa        = $request->get('hdispoa') ? $request->get('hdispoa') : '00:00';
           $shopProduct->hdispob        = $request->get('hdispob') ? $request->get('hdispob') : '00:00';
           $shopProduct->discount_price = $request->get('discount_price') != null ? $request->get('discount_price') : 0;
+          $shopProduct->salesperson = Auth::user()->id;
           $shopProduct->save();
 
         $depositAmount = $request->deposit_amount;

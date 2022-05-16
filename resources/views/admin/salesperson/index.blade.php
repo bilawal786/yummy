@@ -25,7 +25,7 @@
                                         <th>{{ __('Nom') }}</th>
                                         <th>{{ __('Email') }}</th>
                                         <th>{{ __('Téléphone') }}</th>
-                                        <th>{{ __('Actions') }}</th>
+                                        <th>{{ __('Détails de l\'activité') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,10 +39,10 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>
-                                            <td><a href="{{route('admin.customers.edit', $user)}}"
+                                            <td><a href="{{route('admin.salesperson.details', ['id' => $user->id])}}"
                                                    class="btn btn-sm btn-icon float-left btn-primary ml-2"
                                                    data-toggle="tooltip" data-placement="top" title="Edit"><i
-                                                            class="far fa-edit"></i></a></td>
+                                                            class="far fa-eye"></i></a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

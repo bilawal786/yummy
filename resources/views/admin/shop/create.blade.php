@@ -48,6 +48,37 @@
     <div class="section-body">
         <form action="{{ route('admin.shop.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @if(Auth::user()->hasRole('Sales Person'))
+            <div class="card">
+                <div class="card-body">
+                    <div class="article-header">
+                        <h5>{{ __('General Questions') }}</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Comment avez vous contacté ce commerçant ? (Reseaux, phoning, porte à porte, sur recommandation)</label>
+                            <input name="q1" required type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Avez-vous rencontré le décisionnaire?</label>
+                            <input  name="q2" required type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Est-il intéressé? Si non pourquoi?</label>
+                            <input name="q3" required type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Si oui, quand sera t-il pret pour commencer?</label>
+                            <input name="q4" required type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">Avez-vous besoin d’aide?</label>
+                            <input name="q5" required type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-body">
                     <div class="row">

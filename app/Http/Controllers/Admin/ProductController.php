@@ -57,6 +57,8 @@ class ProductController extends BackendController
     {
         if (auth()->user()->myrole == 1) {
           $this->data['shops_list'] = Shop::all();
+        }elseif (auth()->user()->myrole == 6) {
+          $this->data['shops_list'] = Shop::where('salesperson', Auth::user()->id)->get();
         }
         $this->data['locations'] = Location::where(['status' => Status::ACTIVE])->get();
 
@@ -99,6 +101,7 @@ class ProductController extends BackendController
           $shopProduct->hdispoa        = $request->get('hdispoa');
           $shopProduct->hdispob        = $request->get('hdispob');
           $shopProduct->discount_price = $request->get('discount_price') != null ? $request->get('discount_price') : 0;
+          $shopProduct->salesperson = Auth::user()->id;
           $shopProduct->save();
         }
         $fav = Favourite::where('product_creator', $shopProduct->shop->user->id)->get();
@@ -263,6 +266,9 @@ class ProductController extends BackendController
                 $products = ShopProduct::where($queryArray)->latest()->get();
               }elseif(auth()->user()->myrole == 3){
                 $products = ShopProduct::with('product')->where('shop_id', auth()->user()->shop->id)->latest()->get();
+              }elseif(auth()->user()->myrole == 6){
+                $shop_ids = Shop::where('salesperson', Auth::user()->id)->pluck('id');
+                $products = ShopProduct::with('product')->whereIn('shop_id', $shop_ids)->latest()->get();
               }else{
                 $products = ShopProduct::latest()->get();
               }

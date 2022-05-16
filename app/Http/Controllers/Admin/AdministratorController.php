@@ -305,6 +305,7 @@ class AdministratorController extends BackendController
         $user->status     = $request->status;
 
         $user->p4 = 1;
+        $user->p3 = 1;
 
         $user->save();
 
