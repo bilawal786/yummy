@@ -85,7 +85,7 @@
                                                     $refferal = \App\Refferal::where('refferal_user', $user->id)->count();
                                                 @endphp
                                                 {{$refferal}}</td>
-                                            <td>{{$user->country->name}}</td>
+                                            <td>{{$user->country->name??''}}</td>
                                             <td><a href="{{route('admin.customers.edit', $user)}}"
                                                    class="btn btn-sm btn-icon float-left btn-primary ml-2"
                                                    data-toggle="tooltip" data-placement="top" title="Edit"><i
