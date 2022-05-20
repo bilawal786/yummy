@@ -304,8 +304,20 @@ class AdministratorController extends BackendController
         $user->address    = $request->address;
         $user->status     = $request->status;
 
-        $user->p4 = 1;
         $user->p3 = 1;
+
+        $user->p1 = 0;
+        $user->p2 = 0;
+        $user->p4 = 0;
+        $user->p5 = 0;
+        $user->p6 = 0;
+        $user->p7 = 0;
+        $user->p8 = 0;
+        $user->p9  = 0;
+        $user->p10  = 0;
+        $user->p11  = 0;
+        $user->p12  = 0;
+
 
         $user->save();
 
