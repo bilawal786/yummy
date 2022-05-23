@@ -3,7 +3,7 @@
        background-color: green!important;
     }
 </style>
-
+{{dd(url()->current())}}
     <div class="navbar-bg {{ url()->current() ? 'active':'' }}" ></div>
 
 <nav class="navbar navbar-expand-lg main-navbar">
