@@ -3,8 +3,8 @@
        background-color: green!important;
     }
 </style>
-{{dd(env('APP_URL'))}}
-    <div class="navbar-bg {{ url('https://demo.yummybox.fr/') ? 'active':'' }}" ></div>
+
+    <div class="navbar-bg {{ env('APP_URL') ? 'active':'' }}" ></div>
 
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
