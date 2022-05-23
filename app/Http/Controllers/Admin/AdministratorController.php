@@ -294,6 +294,7 @@ class AdministratorController extends BackendController
         return view('admin.salesperson.create', $this->data);
     }
     public function salesPersonStore(Request $request){
+        dd($request);
         $user             = new User;
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;

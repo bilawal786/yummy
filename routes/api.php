@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::group(['prefix' => 'v2'], function () {
+Route::post('sales/person/store', 'Api\v2\RegisterController@salesPersonStore')->name('salesPerson.store');
+});
+
+
 Route::group(['prefix' => 'v1'], function () {
 
     Route::post('login', 'Api\v1\Auth\LoginController@action'); //done
