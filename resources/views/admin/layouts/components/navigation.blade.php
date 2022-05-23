@@ -4,7 +4,7 @@
     }
 </style>
 {{dd(url()->current())}}
-    <div class="navbar-bg {{ url()->current() ? 'active':'' }}" ></div>
+    <div class="navbar-bg {{ url('https://demo.yummybox.fr/') ? 'active':'' }}" ></div>
 
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
