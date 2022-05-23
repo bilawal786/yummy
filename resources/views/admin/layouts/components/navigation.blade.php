@@ -1,9 +1,11 @@
+<style>
+    .active{
+       background-color: green!important;
+    }
+</style>
 
-@if (request()->is('/admin/sales/person/demo'))
-<div class="navbar-bg" style="background-color: green!important;"></div>
-@else
-    <div class="navbar-bg" ></div>
-@endif
+    <div class="navbar-bg {{  request()->is('https://demo.yummybox.fr') ? 'active':'' }}" ></div>
+
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
