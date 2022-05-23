@@ -4,7 +4,7 @@
     }
 </style>
 
-    <div class="navbar-bg {{ env('APP_URL') ? 'active':'' }}" ></div>
+    <div class="navbar-bg {{ env('APP_URL') == 'https://demo.yummybox.fr/'? 'active':'' }}" ></div>
 
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
