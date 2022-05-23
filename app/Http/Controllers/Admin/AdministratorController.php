@@ -294,6 +294,9 @@ class AdministratorController extends BackendController
     public function salesPersonCreate(){
         return view('admin.salesperson.create', $this->data);
     }
+    public function salesPersonDemo(){
+        return view('admin.iframe.index', $this->data);
+    }
     public function salesPersonStore(Request $request){
 
         $user             = new User;

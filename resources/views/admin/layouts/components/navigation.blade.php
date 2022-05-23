@@ -1,4 +1,9 @@
-<div class="navbar-bg"></div>
+
+@if (request()->is('/admin/sales/person/demo'))
+<div class="navbar-bg" style="background-color: green!important;"></div>
+@else
+    <div class="navbar-bg" ></div>
+@endif
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
