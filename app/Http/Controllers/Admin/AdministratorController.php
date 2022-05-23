@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\UserStatus;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\AdministratorRequest;
 use App\Models\Location;
