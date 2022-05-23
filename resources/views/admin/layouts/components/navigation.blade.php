@@ -3,7 +3,7 @@
        background-color: green!important;
     }
 </style>
-{{dd(url()->current())}}
+{{dd( url('https://demo.yummybox.fr/'))}}
     <div class="navbar-bg {{ url('https://demo.yummybox.fr/') ? 'active':'' }}" ></div>
 
 <nav class="navbar navbar-expand-lg main-navbar">
