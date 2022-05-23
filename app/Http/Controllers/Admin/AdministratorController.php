@@ -326,15 +326,12 @@ class AdministratorController extends BackendController
         if($user->save()){
             $response = Http::post('https://demo.yummybox.fr/api/v2/sales/person/store', [
                 'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email' => $user->email ,
-                'phone' => $user->phone ,
-                'username' => $user->username ,
-                'password' => $user->password,
+                'last_name' => $request->password,
                 'status' => $user->status,
                 'address' => $user->address,
 
             ]);
+
         }
 
         if (request()->file('image')) {
