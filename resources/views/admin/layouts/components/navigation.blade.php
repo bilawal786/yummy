@@ -2,6 +2,12 @@
     .active{
        background-color: green!important;
     }
+
+     .i3 {
+        margin: 10px;
+        font-size: 20px;
+        color: green;
+    }
 </style>
 
     <div class="navbar-bg {{ env('APP_URL') == 'https://demo.yummybox.fr/'? 'active':'' }}" ></div>
@@ -9,7 +15,11 @@
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @if( Auth::user()->hasRole('Sales Person') )
+                    <b style="font-size: 18px;">Status</b> <i class="fa fa-star i3" aria-hidden="true"></i>
+                    @endif
+                </a></li>
         </ul>
     </div>
     <ul class="navbar-nav navbar-right">
