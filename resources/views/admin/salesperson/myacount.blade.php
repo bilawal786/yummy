@@ -39,12 +39,6 @@
                 <div class="col-12">
                     <div class="card">
 
-                        @can('shop_create')
-                            <div class="card-header">
-                                <a href="{{ route('admin.shop.create') }}" class="btn btn-icon icon-left btn-primary"><i
-                                            class="fas fa-plus"></i> {{ __('Ajouter un Marchand') }}</a>
-                            </div>
-                        @endcan
 
                         <div class="card-body">
                             <div class="table-responsive">
@@ -58,10 +52,25 @@
                                         <th>{{ __('levels.location') }}</th>
                                         <th>{{ __('Date debute et fin') }}</th>
                                         <th>{{ __('Paniers') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    @foreach($shops as $key=>$shop)
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$shop->name}}</td>
+                                        <td>{{$shop->address}}</td>
+                                        <td>{{$shop->location->name}}</td>
+                                        <td>{{$shop->location->name}}</td>
+                                        <?php $total_basket = \App\Models\ShopProduct::where('shop_id','=',$shop->id)->count();?>
+                                        <th style="color: red">{{$total_basket}}</th>
+                                        <td><a href="{{route('admin.salesperson.basket', ['shop_id' => $shop->id])}}"
+                                               class="btn btn-sm btn-icon float-left btn-primary ml-2"
+                                               data-toggle="tooltip" data-placement="top" title="View"><i
+                                                        class="far fa-eye"></i></a></td>
+                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

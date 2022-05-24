@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\UserStatus;
+use App\Models\Order;
+use App\Models\OrderLineItem;
+use App\Models\Shop;
+use App\Models\ShopProduct;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\BackendController;
 use App\Http\Requests\AdministratorRequest;
@@ -298,7 +303,13 @@ class AdministratorController extends BackendController
         return view('admin.iframe.index', $this->data);
     }
     public function salesPersonMyAccount(){
-        return view('admin.salesperson.myacount', $this->data);
+        $shops = Shop::where('salesperson', Auth::user()->id)->get();
+        return view('admin.salesperson.myacount', compact('shops'));
+    }
+    public function salesPersonBasket($shop_id){
+        $products = OrderLineItem::where('shop_id', '=',$shop_id)->get();
+//         $order = Order::whereIn('id', $order_id)->get();
+         return view('admin.salesperson.viewbasket', compact('products'));
     }
     public function salesPersonStore(Request $request){
 
