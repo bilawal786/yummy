@@ -126,12 +126,14 @@
                 <li class=""><a class="nav-link " href="{{route('admin.salesperson.vendors')}}"><i
                                 class="fas fa-gift"></i> <span>Mes commerçants</span></a>
                 </li>
-            @endif
-            @if( Auth::user()->hasRole('Sales Person') )
                 <li class=""><a class="nav-link " href="{{route('admin.salesPerson.demo')}}"><i
                                 class="fas fa-gift"></i> <span>Demo</span></a>
                 </li>
+                <li class=""><a class="nav-link " href="{{route('admin.salesPerson.account')}}"><i
+                                class="fas fa-gift"></i> <span>Mon compte</span></a>
+                </li>
             @endif
+
 
             <li class=""><a class="nav-link " href="{{route('home')}}"><i class="fas fa-mobile"></i> <span>Retour à l'application</span></a>
             </li>

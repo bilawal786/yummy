@@ -278,6 +278,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('sales/person/create', 'AdministratorController@salesPersonCreate')->name('sales.person.create');
     Route::post('sales/person/store', 'AdministratorController@salesPersonStore')->name('salesPerson.store');
     Route::get('sales/person/demo', 'AdministratorController@salesPersonDemo')->name('salesPerson.demo');
+    Route::get('sales/person/account', 'AdministratorController@salesPersonMyAccount')->name('salesPerson.account');
     Route::get('salesperson/vendors', 'SalesPersonController@salesPersonVendors')->name('salesperson.vendors');
     Route::get('salesperson/details/{id}', 'SalesPersonController@details')->name('salesperson.details');
 

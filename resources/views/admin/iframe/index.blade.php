@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 <style>
     .iframe{
-        height: 600px;
+        height: 100vh;
         margin-top: 50px;
         width: 100%;
         border: 0px
