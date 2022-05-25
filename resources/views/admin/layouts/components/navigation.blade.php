@@ -17,7 +17,10 @@
         <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     @if( Auth::user()->hasRole('Sales Person') )
-                    <b style="font-size: 18px;">Statue</b> <i class="fa fa-star i3" aria-hidden="true"></i>
+                        <?php  $user = Auth::user();
+                               $rank = \App\Rank::where('id','=',$user->rank_id)->first();
+                        ?>
+                    <b style="font-size: 18px;">Statue</b> <i class="fa fa-star " style="color: {{$rank->color}}" aria-hidden="true"></i>
                     @endif
                 </a></li>
         </ul>

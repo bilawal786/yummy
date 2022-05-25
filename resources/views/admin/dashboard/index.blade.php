@@ -5,6 +5,13 @@
         <div class="section-header">
             <h1>{{ __('Tableau de bord') }}</h1>
         </div>
+        @if( Auth::user()->hasRole('Sales Person') )
+            <?php $settings = \App\Mysettings::find(1) ?>
+        <p>
+            {!! $settings->description !!}
+
+        </p>
+        @endif
 
         @if(auth()->user()->myrole == \App\Enums\UserRole::ADMIN)
             <div class="row">

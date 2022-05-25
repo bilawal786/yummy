@@ -5,6 +5,44 @@
     <section class="section">
         <div class="section-header">
             <h1>{{ __('Détails de l\'activité') }}</h1>
+             <button type="button" style="margin-left: 560px" class="btn btn-icon icon-left btn-primary " data-target="#rank" data-toggle="modal">{{ __('Mettre à jour le classement') }}</button>
+            <div class="modal" id="rank">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Attribuer un rang</h5>
+                        </div>
+                        <form action="{{ route('admin.sales.person.update.rank') }}" method="POST">
+                            @csrf
+                        <div class="modal-body">
+
+                            <input type="hidden" name="user_id" value="{{$id}}">
+                            <div class="form-group">
+                                <label>{{ __('Statut') }}</label> <span class="text-danger">*</span>
+                                <select name="rank_id" class="form-control select2">
+                                    <option >Sélectionnez le statut</option>
+                                    @foreach($rank as $key => $row)
+                                        <option value="{{$row->id}}">{{ $row->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('status')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" >Submit</button>
+                        </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="section-body">

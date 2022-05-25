@@ -7,6 +7,9 @@ use App\Models\Order;
 use App\Models\OrderLineItem;
 use App\Models\Shop;
 use App\Models\ShopProduct;
+use App\Mysettings;
+use App\Rank;
+use App\Scale;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\BackendController;
@@ -304,7 +307,9 @@ class AdministratorController extends BackendController
     }
     public function salesPersonMyAccount(){
         $shops = Shop::where('salesperson', Auth::user()->id)->get();
-        return view('admin.salesperson.myacount', compact('shops'));
+        $rank = Rank::all();
+        $scale = Scale::all();
+        return view('admin.salesperson.myacount', compact('shops','rank','scale'));
     }
     public function salesPersonBasket($shop_id){
         $products = OrderLineItem::where('shop_id', '=',$shop_id)->get();
@@ -361,5 +366,73 @@ class AdministratorController extends BackendController
 
         return redirect(route('admin.sales.person'))->withSuccess('The Data Inserted Successfully');
 
+    }
+    public function salesPersonDashboard(){
+        $mysettings =  Mysettings::find(1);
+        return view('admin.mysettings.index', compact('mysettings'));
+    }
+    public function salesPersonDashboardStore(Request $request){
+        $mysettings =  Mysettings::find(1);
+        $mysettings->description = $request->description;
+        $mysettings->update();
+        return redirect()->back()->withSuccess('The Data Updates Successfully');
+    }
+    public function salesPersonStatus(){
+        $rank =  Rank::paginate(10);
+        return view('admin.mysettings.rank', compact('rank'));
+    }
+    public function salesPersonStatusCreate(){
+        return view('admin.mysettings.rankcreate');
+    }
+    public function salesPersonStatusStore(Request $request){
+        $rank = new Rank();
+        $rank->name = $request->name;
+        $rank->color = $request->color;
+        $rank->save();
+        return redirect()->back()->withSuccess('The Data Inserted Successfully');
+    }
+    public function salesPersonStatusEdit($id){
+        $rank= Rank::find($id);
+        return view('admin.mysettings.rankupdate',compact('rank'));
+    }
+    public function salesPersonStatusUpdate(Request $request,$id){
+        $rank= Rank::find($id);
+        $rank->name = $request->name;
+        $rank->color = $request->color;
+        $rank->update();
+        return redirect()->back()->withSuccess('The Data Updates Successfully');
+    }
+    public function salesPersonScaleStatus($id){
+        $scale =  Scale::where('rank_id','=',$id)->paginate(10);
+        return view('admin.mysettings.scale.index', compact('scale'));
+    }
+    public function salesPersonScale(){
+        $scale =  Scale::paginate(10);
+        return view('admin.mysettings.scale.index', compact('scale'));
+    }
+    public function salesPersonScaleCreate(){
+        $rank = Rank::all();
+        return view('admin.mysettings.scale.create',compact('rank'));
+    }
+    public function salesPersonScaleStore(Request $request){
+        $scale = new Scale();
+        $scale->title = $request->title;
+        $scale->rank_id = $request->rank_id;
+        $scale->save();
+        return redirect()->back()->withSuccess('The Data Inserted Successfully');
+    }
+    public function salesPersonScaleEdit($id){
+        $scale= Scale::find($id);
+        $rank = Rank::all();
+        return view('admin.mysettings.scale.edit',compact('scale','rank'));
+    }
+    public function salesPersonScaleUpdate(Request $request,$id){
+
+        $scale= Scale::find($id);
+        $scale->title = $request->title;
+        $scale->rank_id = $request->rank_id;
+
+        $scale->update();
+        return redirect()->back()->withSuccess('The Data Updates Successfully');
     }
 }

@@ -280,9 +280,30 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('sales/person/demo', 'AdministratorController@salesPersonDemo')->name('salesPerson.demo');
     Route::get('sales/person/basket/{shop_id}', 'AdministratorController@salesPersonBasket')->name('salesperson.basket');
 
+
+    Route::get('sales/person/dashboard', 'AdministratorController@salesPersonDashboard')->name('salesPerson.dashboard');
+    Route::post('sales/person/dashboard/store', 'AdministratorController@salesPersonDashboardStore')->name('salesPerson.dashboard.store');
+//sale persone status
+    Route::get('sales/person/status', 'AdministratorController@salesPersonStatus')->name('salesPerson.status');
+    Route::get('sales/person/status/create', 'AdministratorController@salesPersonStatusCreate')->name('salesPerson.status.create');
+    Route::post('sales/person/status/store', 'AdministratorController@salesPersonStatusStore')->name('sales.person.status.store');
+    Route::get('sales/person/status/edit/{id}', 'AdministratorController@salesPersonStatusEdit')->name('salesperson.status.edit');
+    Route::post('sales/person/status/update/{id}', 'AdministratorController@salesPersonStatusUpdate')->name('sales.person.status.update');
+    Route::get('sales/person/scale/status/{id}', 'AdministratorController@salesPersonScaleStatus')->name('salesperson.scale.status');
+
+    //Scale
+    Route::get('sales/person/scale', 'AdministratorController@salesPersonScale')->name('salesPerson.scale');
+    Route::get('sales/person/scale/create', 'AdministratorController@salesPersonScaleCreate')->name('salesPerson.scale.create');
+    Route::post('sales/person/scale/store', 'AdministratorController@salesPersonScaleStore')->name('sales.person.scale.store');
+    Route::get('sales/person/scale/edit/{id}', 'AdministratorController@salesPersonScaleEdit')->name('salesperson.scale.edit');
+    Route::post('sales/person/scale/update/{id}', 'AdministratorController@salesPersonScaleUpdate')->name('sales.person.scale.update');
+
+
     Route::get('sales/person/account', 'AdministratorController@salesPersonMyAccount')->name('salesPerson.account');
     Route::get('salesperson/vendors', 'SalesPersonController@salesPersonVendors')->name('salesperson.vendors');
     Route::get('salesperson/details/{id}', 'SalesPersonController@details')->name('salesperson.details');
+    Route::post('salesperson/update/rank', 'SalesPersonController@updateRank')->name('sales.person.update.rank');
+
 
     Route::resource('delivery-boys', 'DeliveryBoyController');
     Route::get('get-delivery-boys', 'DeliveryBoyController@getDeliveryBoy')->name('delivery-boys.get-delivery-boys');
