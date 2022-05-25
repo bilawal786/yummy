@@ -20,7 +20,7 @@
                         <?php  $user = Auth::user();
                                $rank = \App\Rank::where('id','=',$user->rank_id)->first();
                         ?>
-                    <b style="font-size: 18px;">Statue</b> <i class="fa fa-star " style="color: {{$rank->color}}" aria-hidden="true"></i>
+                    <b style="font-size: 18px;">Statue</b> <i class="fa fa-star " style="color: {{$rank->color ?? red}}" aria-hidden="true"></i>
                     @endif
                 </a></li>
         </ul>
