@@ -4,7 +4,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Localisation') }}</h1>
+            <h1>{{ __('Échelle') }}</h1>
         </div>
 
         <div class="section-body">
