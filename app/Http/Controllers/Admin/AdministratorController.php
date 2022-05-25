@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Documents;
 use App\Enums\UserStatus;
 use App\Models\Order;
 use App\Models\OrderLineItem;
@@ -434,5 +435,23 @@ class AdministratorController extends BackendController
 
         $scale->update();
         return redirect()->back()->withSuccess('The Data Updates Successfully');
+    }
+    public function documentIndex(){
+        $role      = Role::find(6);
+        $users     = User::role($role->name)->latest()->get();
+        $doc = Documents::latest()->paginate(10);
+        return view('admin.doc.index',compact('doc','users'));
+    }
+    public function documentStore(Request $request){
+
+         $doc = new Documents();
+
+         $doc->user_id = $request->user_id;
+        if (request()->file('file')) {
+            $doc->addMedia(request()->file('file'))->toMediaCollection('file');
+        }
+        dd($doc);
+        $doc->save();
+        return redirect()->back()->withSuccess('Your Document Send Successfully');
     }
 }

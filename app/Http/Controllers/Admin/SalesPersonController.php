@@ -28,4 +28,5 @@ class SalesPersonController extends Controller
         $user->update();
         return redirect()->back()->withSuccess('The User Rank Updates Successfully');
     }
+
 }

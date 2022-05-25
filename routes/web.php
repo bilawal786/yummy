@@ -280,6 +280,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'installed', 'backen
     Route::get('sales/person/demo', 'AdministratorController@salesPersonDemo')->name('salesPerson.demo');
     Route::get('sales/person/basket/{shop_id}', 'AdministratorController@salesPersonBasket')->name('salesperson.basket');
 
+    //document
+    Route::get('document/index', 'AdministratorController@documentIndex')->name('document.index');
+    Route::post('document/store', 'AdministratorController@documentStore')->name('document.store');
 
     Route::get('sales/person/dashboard', 'AdministratorController@salesPersonDashboard')->name('salesPerson.dashboard');
     Route::post('sales/person/dashboard/store', 'AdministratorController@salesPersonDashboardStore')->name('salesPerson.dashboard.store');

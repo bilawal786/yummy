@@ -24,10 +24,13 @@
                                         class="fas fa-flag"></i> <span>Texte ajouter</span></a></li>
                         <li class=""><a class="nav-link " href="{{route('admin.salesPerson.status')}}"><i
                                         class="fas fa-flag"></i> <span>Ajouter un statut</span></a></li>
+
+
 {{--                        <li class=""><a class="nav-link " href="{{route('admin.salesPerson.scale')}}"><i--}}
 {{--                                        class="fas fa-flag"></i> <span>Ajouter un Bareme</span></a></li>--}}
                     </ul>
                 </li>
+
                 @if($user->p1 == 1)
                     <li class="nav-item dropdown "><a class="nav-link has-dropdown" href="/admin/#"><i
                                     class="fas fa-life-ring"></i> <span>Localisation</span></a>
@@ -38,6 +41,8 @@
                     </li>
 
                 @endif
+                <li class=""><a class="nav-link " href="{{route('admin.document.index')}}"><i class="fas fa-list-ul"></i>
+                        <span>Document</span></a></li>
                 @if($user->p2 == 1)
                     <li class=""><a class="nav-link " href="/admin/category"><i class="fas fa-list-ul"></i>
                             <span>Catégories</span></a></li>
