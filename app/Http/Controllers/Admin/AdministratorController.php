@@ -447,8 +447,8 @@ class AdministratorController extends BackendController
          $doc = new Documents();
 
          $doc->user_id = $request->user_id;
-        if (request()->file('file')) {
-            $doc->addMedia(request()->file('file'))->toMediaCollection('user');
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+            $doc->addMediaFromRequest('file')->toMediaCollection('documents');
         }
 
         $doc->save();
