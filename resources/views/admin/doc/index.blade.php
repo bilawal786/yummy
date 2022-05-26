@@ -18,7 +18,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Attribuer un rang</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Documents</h5>
                                         </div>
                                         <form action="{{ route('admin.document.store') }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                             @csrf
