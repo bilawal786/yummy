@@ -39,10 +39,11 @@
                                             class="fas fa-flag"></i> <span>Région</span></a></li>
                         </ul>
                     </li>
-
                 @endif
-                <li class=""><a class="nav-link " href="{{route('admin.document.index')}}"><i class="fas fa-list-ul"></i>
+
+                <li class=""><a class="nav-link " href="{{route('admin.document.index.admin')}}"><i class="fas fa-list-ul"></i>
                         <span>Document</span></a></li>
+
                 @if($user->p2 == 1)
                     <li class=""><a class="nav-link " href="/admin/category"><i class="fas fa-list-ul"></i>
                             <span>Catégories</span></a></li>
@@ -140,6 +141,8 @@
             @endif
 
             @if( Auth::user()->hasRole('Sales Person') )
+                <li class=""><a class="nav-link " href="{{route('admin.document.index')}}"><i class="fas fa-list-ul"></i>
+                        <span>Document</span></a></li>
                 <li class=""><a class="nav-link " href="{{route('admin.salesperson.vendors')}}"><i
                                 class="fas fa-gift"></i> <span>Mes commerçants</span></a>
                 </li>

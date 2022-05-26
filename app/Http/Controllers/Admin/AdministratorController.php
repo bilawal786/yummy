@@ -436,22 +436,50 @@ class AdministratorController extends BackendController
         $scale->update();
         return redirect()->back()->withSuccess('The Data Updates Successfully');
     }
-    public function documentIndex(){
+    public function documentIndexSalePerson(){
         $role      = Role::find(6);
         $users     = User::role($role->name)->latest()->get();
-        $doc = Documents::latest()->paginate(10);
+        $doc = Documents::where('user_id','=','all')->orwhere('user_id','=',Auth::user()->id)->latest()->paginate(10);
+
+        return view('admin.doc.index',compact('doc','users'));
+    }
+    public function documentIndexAdmin(){
+        $role      = Role::find(6);
+        $users     = User::role($role->name)->latest()->get();
+        $doc = Documents::Where('user_id','=','admin')->latest()->paginate(10);
+
         return view('admin.doc.index',compact('doc','users'));
     }
     public function documentStore(Request $request){
 
          $doc = new Documents();
+        $doc->sender_id = Auth::user()->id();
+         if($request->admin){
+             $doc->user_id = "admin";
+         }
+         else{
+             $doc->user_id = $request->user_id;
+         }
 
-         $doc->user_id = $request->user_id;
-        if ($request->hasFile('file') && $request->file('file')->isValid()) {
-            $doc->addMediaFromRequest('file')->toMediaCollection('documents');
+
+        if ($request->hasfile('file')) {
+            $image1 = $request->file('file');
+            $name = time() . 'file' . '.' . $image1->getClientOriginalExtension();
+            $destinationPath = 'file/';
+            $image1->move($destinationPath, $name);
+            $doc->file = 'file/' . $name;
+
         }
 
         $doc->save();
         return redirect()->back()->withSuccess('Your Document Send Successfully');
+    }
+    public function documentDelete($id){
+
+        $doc = Documents::Where('id','=',$id)->first();
+
+        $doc->delete();
+
+        return redirect()->back()->withError('Your Document Deleted Successfully');
     }
 }

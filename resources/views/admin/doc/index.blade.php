@@ -4,7 +4,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Vendeurs Statut') }}</h1>
+            <h1>{{ __('Documents') }}</h1>
             {{ Breadcrumbs::render('customers') }}
         </div>
 
@@ -20,11 +20,12 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Attribuer un rang</h5>
                                         </div>
-                                        <form action="{{ route('admin.document.store') }}" method="POST">
+                                        <form action="{{ route('admin.document.store') }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
+                                                <?php ?>
 
-
+                                                @if( Auth::user()->hasRole('Admin') )
                                                 <div class="form-group">
                                                     <label>{{ __('Statut') }}</label> <span class="text-danger">*</span>
                                                     <select name="user_id" class="form-control select2">
@@ -40,6 +41,10 @@
                                                     </div>
                                                     @enderror
                                                 </div>
+                                                @endif
+                                                    @if( Auth::user()->hasRole('Sales Person') )
+                                                <input type="hidden" name="admin" value="admin">
+                                                    @endif
                                                 <div class="form-group">
                                                     <label>{{ __('Document') }}</label> <span class="text-danger">*</span>
                                                    <input type="file"  class="form-control " name="file" >
@@ -68,14 +73,31 @@
                                     <thead>
                                     <tr>
                                         <th>{{ __('ID') }}</th>
-                                        <th>{{ __('Statut') }}</th>
-                                        <th>{{ __('Titre') }}</th>
+                                        <th>Identifiant de l'expéditeur</th>
+                                        <th>{{ __('Document') }}</th>
+                                        <th>{{ __('Créé à') }}</th>
                                         <th>{{ __('Action') }}</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
+                                     @foreach($doc as $key => $row)
+                                         <tr>
+                                             <td>{{$key+1}}</td>
+                                             <td>{{$row->sender->first_name .' ' . $row->sender->last_name  }}</td>
+                                             <th><a href="{{ asset($row->file ?? ' ')  }}" class="btn btn-primary">Document</a></th>
+                                             <?php
+                                             \Carbon\Carbon::setLocale('fr');
+                                             $date = \Carbon\Carbon::parse($row->created_at);
+                                             ?>
 
+                                             <td>{{$date->diffForHumans()}}</td>
+                                             <td>      <a href="{{route('admin.delete.document', ['id' => $row->id])}}"
+                                                          class="btn btn-sm btn-icon float-left btn-danger ml-2"
+                                                          data-toggle="tooltip" data-placement="top" title="Delete"><i
+                                                             class="fa fa-trash"></i></a></td>
+                                         </tr>
+                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>

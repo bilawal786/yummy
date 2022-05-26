@@ -13,7 +13,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('admin.salesPerson.status.create')}}"><button class="btn btn-primary">Ajouter un nouveau statut</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+{{--                            <a href="{{route('admin.salesPerson.status.create')}}"><button class="btn btn-primary">Ajouter un nouveau statut</button></a>&nbsp;&nbsp;&nbsp;&nbsp;--}}
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
