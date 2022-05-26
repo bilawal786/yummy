@@ -453,7 +453,9 @@ class AdministratorController extends BackendController
     public function documentStore(Request $request){
 
          $doc = new Documents();
-        $doc->sender_id = Auth::user()->id();
+
+        $doc->sender_id = Auth::user()->id;
+
          if($request->admin){
              $doc->user_id = "admin";
          }
