@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
-
+<style>
+    .active {
+        background-color: white!important;
+    }
+</style>
 @section('main-content')
 
     <section class="section">

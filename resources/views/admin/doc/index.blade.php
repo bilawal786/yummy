@@ -3,7 +3,7 @@
 @section('main-content')
 
     <section class="section">
-        <div class="section-header">
+        <div class="section-header" style="">
             <h1>{{ __('Documents') }}</h1>
             {{ Breadcrumbs::render('customers') }}
         </div>
@@ -17,10 +17,10 @@
                             <div class="modal" id="rank">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Documents</h5>
-                                        </div>
-                                        <form action="{{ route('admin.document.store') }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+                                        <div class="
+
+
+                                        art/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 <?php ?>

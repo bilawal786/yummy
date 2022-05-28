@@ -1,16 +1,19 @@
 <style>
-    .active{
-       background-color: green!important;
+
+
+    .activegreen{
+        background-color: green!important;
     }
 
-     .i3 {
+
+    .i3 {
         margin: 10px;
         font-size: 20px;
         color: green;
     }
 </style>
 
-    <div class="navbar-bg {{ env('APP_URL') == 'https://demo.yummybox.fr/'? 'active':'' }}" ></div>
+    <div class="navbar-bg {{ env('APP_URL') == 'https://demo.yummybox.fr/'? 'activegreen':'' }}" ></div>
 
 <nav class="navbar navbar-expand-lg main-navbar">
     <div class="form-inline mr-auto">
