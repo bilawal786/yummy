@@ -12,10 +12,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+{{--                        <div class="card-header">--}}
 {{--                            <a href="{{route('admin.salesPerson.scale.create')}}"><button class="btn btn-primary">Ajouter un nouveau Bareme</button></a>&nbsp;&nbsp;&nbsp;&nbsp;--}}
-                            {{--                            <a href="{{route('admin.salesPerson.scale.create')}}"><button class="btn btn-primary">Ajouter un nouveau Bareme</button></a>--}}
-                        </div>
+{{--                            --}}{{--                            <a href="{{route('admin.salesPerson.scale.create')}}"><button class="btn btn-primary">Ajouter un nouveau Bareme</button></a>--}}
+{{--                        </div>--}}
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped" id="maintable">
