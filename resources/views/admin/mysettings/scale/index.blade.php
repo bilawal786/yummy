@@ -13,7 +13,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('admin.salesPerson.scale.create')}}"><button class="btn btn-primary">Ajouter un nouveau Bareme</button></a>&nbsp;&nbsp;&nbsp;&nbsp;
+{{--                            <a href="{{route('admin.salesPerson.scale.create')}}"><button class="btn btn-primary">Ajouter un nouveau Bareme</button></a>&nbsp;&nbsp;&nbsp;&nbsp;--}}
                             {{--                            <a href="{{route('admin.salesPerson.scale.create')}}"><button class="btn btn-primary">Ajouter un nouveau Bareme</button></a>--}}
                         </div>
                         <div class="card-body">
