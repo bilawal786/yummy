@@ -89,6 +89,7 @@ class Order extends Model implements HasMedia
         return $this->belongsTo(Shop::class, 'shop_id');
     }
 
+
     public function transactions()
     {
         return $this->hasManyThrough(Transaction::class, Invoice::class);

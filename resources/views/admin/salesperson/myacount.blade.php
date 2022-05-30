@@ -52,6 +52,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($shops as $key=>$shop)
+
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{$shop->name}}</td>

@@ -18,6 +18,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
+
                                             <table class="table table-striped" id="maintable">
                                                 <thead>
                                                 <tr>
@@ -30,18 +31,18 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($products as $product)
-                                                    @php
-                                                        $pro = \App\Models\Product::where('id','=',$product->product_id)->first();
-                                                        $order = \App\Models\Order::where('id', $product->order_id)->first();
+                                                @foreach($orders as $key=>$row)
 
-                                                    @endphp
                                                     <tr>
-                                                        <td>{{$pro->id}}</td>
-                                                        <td>{{$pro->name}}</td>
-                                                        <td>{{$product->unit_price}}</td>
-                                                        <td>{{$product->quantity}}</td>
-
+                                                        <td>{{$row->order_id}}</td>
+                                                        <td>{{$row->product->name}}</td>
+                                                        <td>{{$row->unit_price}}</td>
+                                                        <td>{{$row->quantity}}</td>
+                                                        @php
+                                                            if ($row){
+                                                             $order = \App\Models\Order::where('id', $row->order_id)->first();
+                                                            }
+                                                        @endphp
                                                         <td>
                                                             @if(isset($order))
                                                                 @if ($order->status == 20)
@@ -55,7 +56,7 @@
                                                                 Pas disponible
                                                             @endif
                                                         </td>
-                                                        <td>{{$pro->created_at}}</td>
+                                                        <td>{{$order->created_at}}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

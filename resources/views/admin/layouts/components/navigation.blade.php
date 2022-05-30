@@ -5,7 +5,6 @@
         background-color: green!important;
     }
 
-
     .i3 {
         margin: 10px;
         font-size: 20px;
@@ -22,8 +21,13 @@
                     @if( Auth::user()->hasRole('Sales Person') )
                         <?php  $user = Auth::user();
                                $rank = \App\Rank::where('id','=',$user->rank_id)->first();
+                               $shop_id = \App\Models\ShopProduct::where('creator_id','=',$user->id)->pluck('shop_id')->unique();
+                               if($shop_id){
+                                   $orders = \App\Models\Order::whereIn('shop_id',$shop_id)->where('status','=',20)->count('id');
+                               }
+
                         ?>
-                    <b style="font-size: 18px;">Statue</b> <i class="fa fa-star " style="color: {{$rank->color ?? red}}" aria-hidden="true"></i>
+                    <b style="font-size: 18px;">Statue ({{$orders ?? '0'}}p)</b> <i class="fa fa-star " style="color: {{$rank->color ?? red}}" aria-hidden="true"></i>
                     @endif
                 </a></li>
         </ul>

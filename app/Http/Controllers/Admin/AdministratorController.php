@@ -313,9 +313,10 @@ class AdministratorController extends BackendController
         return view('admin.salesperson.myacount', compact('shops','rank','scale'));
     }
     public function salesPersonBasket($shop_id){
-        $products = OrderLineItem::where('shop_id', '=',$shop_id)->get();
-//         $order = Order::whereIn('id', $order_id)->get();
-         return view('admin.salesperson.viewbasket', compact('products'));
+
+        $order_id = Order::where('shop_id', '=',$shop_id)->pluck('id');
+        $orders = OrderLineItem::whereIn('order_id',$order_id)->get();
+        return view('admin.salesperson.viewbasket', compact('orders'));
     }
     public function salesPersonStore(Request $request){
 
