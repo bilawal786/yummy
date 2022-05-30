@@ -307,10 +307,11 @@ class AdministratorController extends BackendController
         return view('admin.iframe.index', $this->data);
     }
     public function salesPersonMyAccount(){
-        $shops = Shop::where('salesperson', Auth::user()->id)->get();
+        $user =  Auth::user();
+        $shops = Shop::where('salesperson', $user->id)->get();
         $rank = Rank::all();
         $scale = Scale::all();
-        return view('admin.salesperson.myacount', compact('shops','rank','scale'));
+        return view('admin.salesperson.myacount', compact('shops','rank','scale','user'));
     }
     public function salesPersonBasket($shop_id){
 

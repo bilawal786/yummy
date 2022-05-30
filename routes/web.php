@@ -21,6 +21,8 @@ Route::get('/ip', function (){
     dd($details->geoplugin_timezone);
 });
 Route::get('/crontest', 'CronController@order_status');
+Route::get('salesperson/status/update/rank', 'CronController@statusRankUpdate')->name('salesperson.status.update.rank');
+
 Route::get('/testnotification', 'HomeController@testnotification');
 Route::get('/change/location/{id}', 'HomeController@changelocation')->name('change.location');
 

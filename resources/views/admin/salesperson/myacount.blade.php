@@ -23,7 +23,7 @@
         <div class="section-header">
             <h5>{{ __('Bareme:') }}</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             @foreach($scale as $row)
-                @if($row->rank_id===Auth::user()->rank_id)
+                @if($row->rank_id===$user->rank_id)
             <h3 class="btn btn-primary">{{$row->title}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 @endif
                     @endforeach

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Shop;
 use App\Models\ShopProduct;
 use App\Rank;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class SalesPersonController extends Controller
 {
@@ -28,5 +30,6 @@ class SalesPersonController extends Controller
         $user->update();
         return redirect()->back()->withSuccess('The User Rank Updates Successfully');
     }
+
 
 }

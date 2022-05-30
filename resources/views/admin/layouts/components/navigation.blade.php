@@ -23,10 +23,10 @@
                                $rank = \App\Rank::where('id','=',$user->rank_id)->first();
                                $shop_id = \App\Models\ShopProduct::where('creator_id','=',$user->id)->pluck('shop_id')->unique();
                                if($shop_id){
-                                   $orders = \App\Models\Order::whereIn('shop_id',$shop_id)->where('status','=',20)->count('id');
+                                   $orders = \App\Models\Order::whereIn('shop_id',$shop_id)->where('status','=',20)->count();
                                }
-
                         ?>
+
                     <b style="font-size: 18px;">Statue ({{$orders ?? '0'}}p)</b> <i class="fa fa-star " style="color: {{$rank->color ?? red}}" aria-hidden="true"></i>
                     @endif
                 </a></li>
