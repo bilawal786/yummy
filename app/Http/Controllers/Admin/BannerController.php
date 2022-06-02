@@ -66,10 +66,11 @@ class BannerController extends BackendController
 
         //Store Image Media Libraty Spati
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $banner->addMediaFromRequest('image')->toMediaCollection('banners');
+            $check = $banner->addMediaFromRequest('image')->toMediaCollection('banners');
         }
 
         $banner->sort = $banner->id;
+//        dd( $banner->sort,$banner->id,$check);
         $banner->save();
 
         return redirect(route('admin.banner.index'))->withSuccess('Bannière ajouté avec succèss');
