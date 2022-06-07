@@ -31,11 +31,10 @@ class AppServiceProvider extends ServiceProvider
         //Check for 'lang' cookie
         $cookie = Cookie::get('lang');
         //Get visitors IP
-        $ip = '104.250.27.0';
+        $ip = \Request::ip();
 
         //Get visitors Geo info based on his IP
         $geo = GeoIP::getLocation($ip);
-
         //Get visitors country name
         $country = $geo['country'];
 
@@ -49,8 +48,8 @@ class AppServiceProvider extends ServiceProvider
             'Croatia' => 'ba',
             'Serbia' => 'ba',
             'Austria' => 'de',
-            'Luxembourg' => 'gp',
-            'Guadeloupe' => 'de',
+            'Luxembourg' => 'de',
+            'Guadeloupe' => 'gp',
         ];
 
         if(!isset($cookie) && !empty($cookie)) {
