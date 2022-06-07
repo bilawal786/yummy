@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $geo = GeoIP::getLocation($ip);
         //Get visitors country name
         $country = $geo['country'];
-dd($geo);
+
         //Prepared language based on country name
         //Add as many as you want
         $languages = [
@@ -50,6 +50,7 @@ dd($geo);
             'Austria' => 'de',
             'Luxembourg' => 'de',
             'Guadeloupe' => 'gp',
+            'Pakistan' => 'pk',
         ];
 
         if(!isset($cookie) && !empty($cookie)) {
