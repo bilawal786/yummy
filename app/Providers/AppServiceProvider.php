@@ -64,6 +64,7 @@ class AppServiceProvider extends ServiceProvider
                 //Get country value(language) from array
                 $lang = $languages[$country];
                 //Set language based on value
+                dd($lang);
                 App::setLocale($lang);
 
             }
