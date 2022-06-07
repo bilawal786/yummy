@@ -92,7 +92,7 @@
                                              ?>
 
                                              <td>{{$date->diffForHumans()}}</td>
-                                             <td>      <a href="{{route('admin.delete.document', ['id' => $row->id])}}"
+                                             <td><a href="{{route('admin.delete.document', ['id' => $row->id])}}"
                                                           class="btn btn-sm btn-icon float-left btn-danger ml-2"
                                                           data-toggle="tooltip" data-placement="top" title="Delete"><i
                                                              class="fa fa-trash"></i></a></td>
