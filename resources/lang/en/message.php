@@ -1,4 +1,4 @@
 <?php
 return [
-    'welcome' => 'Welcome to our application'
+    'Our Categories' => 'Our Categories'
 ];
