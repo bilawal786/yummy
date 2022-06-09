@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'welcome' => 'Bienvenue sur notre application!',
+    'Our' => 'Notre',
     'bye' => 'Nous espérons vous revoir bientôt!'
 ];

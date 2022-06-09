@@ -28,7 +28,7 @@
         <div class="product-catagories-wrapper py-3">
             <div class="container">
                 <div class="section-heading">
-                    <h6>{{ __('Nos Catégories') }}</h6>
+                    <h6>{{ __('Our') }}</h6>
                 </div>
                 <div class="product-catagory-wrap">
                     <div class="row g-3">
