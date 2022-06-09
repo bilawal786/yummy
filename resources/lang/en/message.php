@@ -1,4 +1,4 @@
 <?php
 return [
-    'our' => 'Our'
+    'our' => 'Our Categories'
 ];
