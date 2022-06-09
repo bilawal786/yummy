@@ -2,5 +2,9 @@
 
 return [
     'category' => 'Nos Catégories',
-    '' => 'Nous espérons vous revoir bientôt!'
+    'premium' => 'Premium',
+    'yummycoin' => 'YummyCoin',
+    'réserver' =>'Réserver',
+    'plus' => 'Plus de panier à sauve',
+
 ];

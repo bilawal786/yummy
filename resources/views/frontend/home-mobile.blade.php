@@ -71,7 +71,7 @@
         <div class="product-catagories-wrapper py-3">
             <div class="container">
                 <div class="section-heading">
-                    <h6>Premium</h6>
+                    <h6>{{ __('message.premium') }}</h6>
                 </div>
                 <div class="product-catagory-wrap">
                     <div class="row g-3">
@@ -183,7 +183,7 @@
                                                     @if($qty != 0)
                                                         <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small
                                                                     style="display:none;">
-                                                                ({{ $proximite->unit_price*1000 }} YummyCoin)</small>
+                                                                ({{ $proximite->unit_price*1000 }} {{ __('message.yummycoin') }})</small>
                                                         </p>@endif
                                                     @if($qty != 0)<p class="sale-price">
                                                         <small style="color: grey;">Disponible
@@ -199,11 +199,10 @@
                                                     </div>
                                                     @if($qty != 0)<a class="btn btn-danger btn-sm"
                                                                      href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
-                                                                class="me-1 lni lni-cart"></i>Réserver</a> @else <a
+                                                                class="me-1 lni lni-cart"></i>{{ __('message.réserver') }}</a> @else <a
                                                             class="btn btn-dark btn-sm"
                                                             href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
-                                                                class="me-1 lni lni-cart"></i>Plus de panier à
-                                                        sauver</a> @endif
+                                                                class="me-1 lni lni-cart"></i>{{ __('message.plus') }}r</a> @endif
                                                 </div>
                                             </div>
                                         </div>
