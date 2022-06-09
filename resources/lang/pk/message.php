@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'welcome' => 'ہماری ایپ میں خوش آمدید!',
+    'Our Categories' => 'ہمارے زمرے',
 
 ];
