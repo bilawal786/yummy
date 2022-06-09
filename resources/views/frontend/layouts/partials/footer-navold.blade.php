@@ -4,23 +4,23 @@
    <div class="row m-0">
       <a href="{{ route('home') }}" class="small col text-decoration-none p-2 {{ (request()->is('/')) ? 'selected text-dark' : 'text-muted' }}">
          <p class="h5 m-0"><i class="{{ (request()->is('/')) ? 'text-success' : '' }} icofont-compass"></i></p>
-         Découvrir
+         {{ __('message.découvrir') }}
       </a>
       <a href="{{ route('map') }}" class="small col text-decoration-none p-2 {{ (request()->routeIs('map')) ? 'selected text-dark' : 'text-muted' }}">
          <p class="h5 m-0"><i class="{{ (request()->routeIs('map')) ? 'text-success' : '' }} icofont-map"></i></p>
-         Carte
+         {{ __('message.carte') }}
       </a>
       <a href="{{ route('cart.index') }}" class="col small text-decoration-none p-2 {{ (request()->routeIs('cart.index')) ? 'selected text-dark' : 'text-muted' }}">
          <p class="h5 m-0"><i class="{{ (request()->routeIs('cart.index')) ? 'text-success' : '' }} icofont-cart"></i></p>
-         Panier
+         {{ __('message.panier') }}
       </a>
       <a href="{{ route('account.order') }}" class="col small text-decoration-none p-2 {{ (request()->routeIs('account.order')) ? 'selected text-dark' : 'text-muted' }}">
          <p class="h5 m-0"><i class="{{ (request()->routeIs('account.order')) ? 'text-success' : '' }} icofont-papers"></i></p>
-         Commande
+         {{ __('message.commande') }}
       </a>
       <a href="{{ route('account.profile') }}" class="small col text-decoration-none p-2 {{ (request()->routeIs('account.profile')) ? 'selected text-dark' : 'text-muted' }}">
          <p class="h5 m-0"><i class="{{ (request()->routeIs('account.profile')) ? 'text-success' : '' }} icofont-user"></i></p>
-         Profil
+         {{ __('message.profil') }}
       </a>
    </div>
 </div>

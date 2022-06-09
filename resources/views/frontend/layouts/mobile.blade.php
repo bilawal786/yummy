@@ -140,7 +140,7 @@ $user = Auth::user();
          <!-- Search Form-->
          <div class="top-search-form">
            <form action="{{route('search')}}" method="GET">
-             <input class="form-control" type="search" name="name" value="{{request()->query('name')}}" placeholder="Entrer le nom du commerce...">
+             <input class="form-control" type="search" name="name" value="{{request()->query('name')}}" placeholder="{{ __('message.enterserch') }}">
              <button type="submit" ><i class="fa fa-search"></i></button>
            </form>
          </div>
@@ -167,7 +167,7 @@ $user = Auth::user();
          <div class="user-info">
            <div class="user-profile"><img width="100px" height="100px" src="{{ $user->images??'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' }}"></div>
            <h6 class="user-name mb-0">{{ $user->name??'Guest User'}}</h6>
-           <p class="available-balance"><span><span class="counter"> {{ $user->balance->balance??'0' }}</span> {{ __('YummyCoin') }}</span></p>
+           <p class="available-balance"><span><span class="counter"> {{ $user->balance->balance??'0' }}</span> {{ __('message.yummycoin') }}</span></p>
          </div>
        </div>
        <!-- Sidenav Nav-->
@@ -175,15 +175,15 @@ $user = Auth::user();
            @auth
         @if($user->myrole == 1 || $user->myrole == 3 || $user->myrole == 5|| $user->myrole == 6) <li><a href="{{ route('admin') }}"><i class="lni lni-briefcase"></i>Accès boutique </a></li> @endif
            @endauth
-            <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>Mon Profil</a></li>
-         <li><a href="{{ route('notifications') }}"><i class="lni lni-bullhorn"></i>Notifications</a></li>
-         <li><a href="{{ route('traders') }}"><i class="lni lni-surf-board"></i>Nos commerçants</a></li>
-         <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>Recharger mon compte</a></li>
-         <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>Centre d'assistance</a></li>
+            <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>{{ __('message.myprofile') }}</a></li>
+         <li><a href="{{ route('notifications') }}"><i class="lni lni-bullhorn"></i>{{ __('message.notfi') }}</a></li>
+         <li><a href="{{ route('traders') }}"><i class="lni lni-surf-board"></i>{{ __('message.order') }}</a></li>
+         <li><a href="{{ route('yummycoin') }}"><i class="lni lni-wallet lni-tada-effect"></i>{{ __('message.recharge') }}</a></li>
+         <li><a href="{{ route('faq') }}"><i class="lni lni-book lni-tada-effect"></i>{{ __('message.center') }}</a></li>
          <li><a href="{{ route('suggest.business') }}"><i class="lni lni-bar-chart lni-tada-effect"></i>
-                 Suggérer un commerce
+                 {{ __('message.sug') }}
              </a></li>
-         <li><a href="{{ route('sponsership') }}"><i class="lni lni-calendar lni-tada-effect"></i>Parrainage</a></li>
+         <li><a href="{{ route('sponsership') }}"><i class="lni lni-calendar lni-tada-effect"></i>{{ __('message.pari') }}</a></li>
             <li>
                 <select onchange="location = this.value;" style="height: 30px" class="form-control" name="" id="">
                     @foreach($location as $loc)
@@ -192,7 +192,7 @@ $user = Auth::user();
                 </select>
             </li>
          <li><a href="{{ route('logout') }}"
-              onclick="event.preventDefault();document.getElementById('logout-form-sidebar').submit();"><i class="lni lni-power-switch"></i>Déconnexion</a>
+              onclick="event.preventDefault();document.getElementById('logout-form-sidebar').submit();"><i class="lni lni-power-switch"></i>{{ __('message.logout') }}</a>
            <form class="d-none" id="logout-form-sidebar" action="{{ route('logout') }}" method="POST">
                {{ csrf_field() }}
            </form></li>
