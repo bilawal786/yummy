@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'our' => 'Nos Catégories',
-    'bye' => 'Nous espérons vous revoir bientôt!'
+    'category' => 'Nos Catégories',
+    '' => 'Nous espérons vous revoir bientôt!'
 ];
