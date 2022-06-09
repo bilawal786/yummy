@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'Our Categories' => 'ہمارے زمرے',
+    'Nos Catégories' => 'ہمارے زمرے',
 
 ];
