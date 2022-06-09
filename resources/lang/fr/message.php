@@ -19,6 +19,9 @@ return [
     'panier' => 'Panier',
     'carte' => 'Carte',
     'découvrir' => 'Découvrir',
+    'accès' => 'Accès boutique',
+    'logout' => '',
+
 
 
 

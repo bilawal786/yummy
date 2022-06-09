@@ -164,22 +164,24 @@
                                                class="form-control {{ $errors->has('unit_price') ? " is-invalid " : '' }}"
                                                value="{{ old('quantity', $shopproduct->quantity) }}">
                                     </div>
-                                    <div class="form-group col" style="display:none">
-                                        <label for="status">{{ __('levels.status') }}</label> <span class="text-danger">*</span>
-                                        <select id="status" name="status"
-                                                class="form-control @error('status') is-invalid @enderror">
-                                            @foreach(trans('statuses') as $key => $status)
-                                                <option value="{{ $key }}"
-                                                        {{ (old('status', $product->status) == $key) ? 'selected' : '' }}>
-                                                    {{ $status }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('status')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
+{{--                                    <div class="form-group col" style="display:none">--}}
+{{--                                        <label for="status">{{ __('levels.status') }}</label> <span class="text-danger">*</span>--}}
+{{--                                        <select id="status" name="status"--}}
+{{--                                                class="form-control @error('status') is-invalid @enderror">--}}
+
+{{--                                            @foreach(trans('statuses') as $key => $status)--}}
+{{--                                                {{dd($key)}}--}}
+{{--                                                <option value="{{ $key }}"--}}
+{{--                                                        {{ (old('status', $product->status) == $key) ? 'selected' : '' }}>--}}
+{{--                                                    {{ $status }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('status')--}}
+{{--                                        <div class="invalid-feedback">--}}
+{{--                                            {{ $message }}--}}
+{{--                                        </div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
                                 </div>
                                 <div class="form-group col">
                                     <label for="unit_price">Publier sur</label> <span class="text-danger">*</span>
