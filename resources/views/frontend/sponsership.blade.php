@@ -11,7 +11,7 @@
                    <b> <h5 style="background-color: white; border-radius: 10px" id="copycontent" class="text-center">{{$user->refferal}} </h5></b>
                    <p class="text-center">
                        <a onclick="mycopyFunction()" style="background-color: #fab332" class="btn btn-sm">
-                           Copie
+                           {{ __('message.copie') }}
                     </a></p>
                 </div>
             </div>

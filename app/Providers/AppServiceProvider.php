@@ -44,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
             'United States' => 'en',
             'Canada' => 'en',
             'Germany' => 'de',
+            'Spain' => 'es',
             'Bosnia and Herzegovina' => 'ba',
             'Croatia' => 'ba',
             'Serbia' => 'ba',

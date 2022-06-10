@@ -9,7 +9,7 @@
                         <div class="top-search-form">
                             <form action="{{route('traders.search')}}" method="POST">
                                 @csrf
-                                <input style="width:100%; max-width: 100%" class="form-control" name="name" placeholder="Entrez le nom du commerçant">
+                                <input style="width:100%; max-width: 100%" class="form-control" name="name" placeholder="{{ __('message.nom') }}">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
@@ -81,8 +81,7 @@
                                         <br>
                                         <p class="sale-price"><small style="color: grey;"><font
                                                         style="vertical-align: inherit;"><font
-                                                            style="vertical-align: inherit;">Disponible
-                                                        depuis {{\Carbon\Carbon::createFromFormat('H:i:s',$trader->opening_time)->format('H:i')}}
+                                                            style="vertical-align: inherit;">{{ __('message.depui') }} {{\Carbon\Carbon::createFromFormat('H:i:s',$trader->opening_time)->format('H:i')}}
                                                         à {{\Carbon\Carbon::createFromFormat('H:i:s',$trader->closing_time)->format('H:i')}} </font></font></small>
                                         </p>
                                     </div>

@@ -44,112 +44,105 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Comment fonctionne Yummy Box?</button>
+                    <button class="accordion">{{ __('message.q1') }}</button>
                     <div class="panel">
-                        <p>Sur Yummy Box, vous pouvez sauver la nourriture des boulangeries, des primeurs, des supermarchés et de tous nos commerçants partenaires. Au lieu de jeter leurs invendus, nos commerçants composent et proposent des paniers surprise à un prix réduit. C’est simple : trouvez un panier près de chez vous, réservez-le sur l’application et présentez-vous dans le commerce le jour et pendant le créneau horaire indiqué. Une fois sur place, montrez votre reçu pour récupérer votre panier. Félicitations, vous venez de faire un geste anti-gaspi, tout en profitant d’un bon plan !</p>
+                        <p> {{ __('message.a1') }}</p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Pourquoi ne pouvez-vous pas me dire ce qu’il y a dans un panier anti-gaspi ?</button>
+                    <button class="accordion">{{ __('message.q2') }}</button>
                     <div class="panel">
-                        <p>Les commerçants ne peuvent pas prédire exactement ce qui leur restera à la fin de la journée. Au lieu de jeter de bons produits, ces commerces offrent ce qu’il leur reste sous forme de panier surprise. S’il y en a plus ou moins que prévu, le nombre de paniers proposés sur l’application peut être ajusté. C’est donc toujours une surprise !</p>
+                        <p> {{ __('message.a2') }} </p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Pourquoi il n’y a pas de commerce près de chez moi ?</button>
+                    <button class="accordion">{{ __('message.q3') }}</button>
                     <div class="panel">
-                        <p>Nous travaillons pour convaincre le maximum de commerçants ! La lutte contre le gaspillage alimentaire n’a pas de limite, n’hésitez pas à revenir sur l’application dans quelque temps. Par ailleurs, vous pouvez nous aider en suggérant des commerces près de chez vous.
-                            (<a href="{{route('suggest.business')}}">Suggérer un commerce</a>)
-                            Suivez-nous sur les réseaux sociaux pour être au courant des nouveaux commerçants et des nouvelles villes partenaires.
-                            (<a href="https://www.facebook.com/YummyBox.fr/">Facebook</a> et <a href="https://instagram.com/yummybox.fr?utm_medium=copy_link">Instagram</a>)</p>
+                        <p> {{ __('message.a3') }}
+                            (<a href="{{route('suggest.business')}}">{{ __('message.a31') }}</a>)
+                            {{ __('message.a32') }}
+                            (<a href="https://www.facebook.com/YummyBox.fr/">{{ __('message.a33') }}</a> {{ __('message.a34') }} <a href="https://instagram.com/yummybox.fr?utm_medium=copy_link">{{ __('message.a35') }}</a>)</p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Dois-je avoir mon téléphone pour récupérer mon panier?</button>
+                    <button class="accordion">{{ __('message.q4') }}</button>
                     <div class="panel">
-                        <p>Oui, il est nécessaire d’avoir votre téléphone pour récupérer votre commande. Arrivé au magasin, vous devrez montrer votre commande au personnel qui la validera directement sur votre téléphone et vous remettra ensuite votre panier surprise.</p>
+                        <p> {{ __('message.a4') }} </p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Est-ce que quelqu’un d’autre peut venir récupérer mon panier ?</button>
+                    <button class="accordion">{{ __('message.q5') }}</button>
                     <div class="panel">
-                        <p>Pour récupérer votre panier, assurer-vous d’être connecté sur le compte Yummy Box sur lequel la réservation a été effectué. Car, il n’est pas possible d’envoyer votre reçu à quelqu’un d’autre.</p>
+                        <p> {{ __('message.a5') }} </p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Est-ce que je peux payer en espèce chez le commerçant ?</button>
+                    <button class="accordion">{{ __('message.q6') }}</button>
                     <div class="panel">
-                        <p>Non, tout paiement se fait sur l’application. Ainsi, la collecte est plus facile et plus rapide !
-                            Par ailleurs, vous pouvez gagner du temps et de l’argent en rechargeant vos YummyCoin !
-                            (<a href="{{route('yummycoin')}}">Recharger mon compte YC</a>)</p>
+                        <p> {{ __('message.a6') }}
+                            (<a href="{{route('yummycoin')}}">{{ __('message.a61') }}</a>)</p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">C’est quoi le YummyCoin ?</button>
+                    <button class="accordion">{{ __('message.q7') }}</button>
                     <div class="panel">
-                        <p>C’est la monnaie interne de l’application. Soit 1€ = 1000 YC
-                            Bénéficiez de nos offres, plus vous rechargez votre compte YummyCoin et moins ils vous coûtent.
-                            Exemple : si vous rechargez votre compte de 50€, vous recevrez 56000YC soit 6€ gagnés !
-                            Aussi, vous avez la possibilité de gagner des YummyCoin en participant aux actions anti-gaspi menées par nos équipes, en parrainant un ami, en suggérant un commerce ou en suivant notre actualité sur les réseaux sociaux.</p>
+                        <p> {{ __('message.a7') }} </p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Comment gagner des YummyCoin avec le parrainage ?</button>
+                    <button class="accordion">{{ __('message.q8') }}</button>
                     <div class="panel">
-                        <p>Grâce à votre code de parrainage, vos proches pourront bénéficier de 2000 YC à leur inscription. Pour cela, copiez le code disponible dans le menu « Parrainage » et transférez-le à qui vous le souhaitez.
-                            De plus, pour chacun de vos parrainages, vous recevrez également 2000 YC quand votre filleul aura utilisé ses YC gagnés ! </p>
+                        <p> {{ __('message.a8') }} </p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Comment gagner des YummyCoin avec la recommandation de commerçants près de chez moi ?</button>
+                    <button class="accordion">{{ __('message.q9') }}</button>
                     <div class="panel">
                         <p>
-                            La recommandation de commerçant est simple et vous rapporte 10000 YC !
-                            Pour cela, cliquez sur le menu « suggérer un commerce » et entrez les informations du commerçant. Notre service commercial rentrera en contact avec ce commerçant pour présenter l’application et dès qu’il devient Partenaire Affilié Yummy Box, vous recevez 10000 YC.
-                            Par ailleurs, si vous êtes plusieurs à recommander le même commerçant, c’est le premier à avoir envoyé la recommandation qui gagne la mise.</p>
+                            {{ __('message.a9') }} </p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Comment annuler ma réservation ?</button>
+                    <button class="accordion">{{ __('message.q10') }}</button>
                     <div class="panel">
-                        <p>Vous pouvez annuler une réservation jusqu’à 2 heures après la commande en cliquant sur « Annuler la réservation » dans la rubrique Réservation. Le cas échéant, le remboursement se fera en YummyCoin. Après ce délai, votre commande sera validée et non modifiable.</p>
+                        <p>{{ __('message.a10') }}</p>
                     </div>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <button class="accordion">Qui contacter en cas de problème ?</button>
+                    <button class="accordion">{{ __('message.q11') }}</button>
                     <div class="panel">
-                        <p>Vous pouvez nous contacter à l’adresse suivante : contact@yummybox.fr
-                            Nous faisons le nécessaire pour répondre aux demandes le plus rapidement possible. Veuillez vérifier vos spam car notre réponse peut s’y retrouver.</p>
+                        <p>{{ __('message.a11') }}
+                        </p>
                     </div>
                 </div>
             </div>
