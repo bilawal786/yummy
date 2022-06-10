@@ -20,7 +20,9 @@ return [
     'carte' => 'Carte',
     'découvrir' => 'Découvrir',
     'accès' => 'Accès boutique',
-    'logout' => '',
+    'logout' => 'Déconnecter',
+    'réservations'=>'Réservations',
+    'accès'=>'Accès boutique',
 
 
 

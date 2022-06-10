@@ -173,7 +173,7 @@ $user = Auth::user();
        <!-- Sidenav Nav-->
        <ul class="sidenav-nav ps-0">
            @auth
-        @if($user->myrole == 1 || $user->myrole == 3 || $user->myrole == 5|| $user->myrole == 6) <li><a href="{{ route('admin') }}"><i class="lni lni-briefcase"></i>{{ __('message.accès') }}Accès boutique </a></li> @endif
+        @if($user->myrole == 1 || $user->myrole == 3 || $user->myrole == 5|| $user->myrole == 6) <li><a href="{{ route('admin') }}"><i class="lni lni-briefcase"></i>{{ __('message.accès') }} </a></li> @endif
            @endauth
             <li><a href="{{ route('account.profile') }}"><i class="lni lni-user"></i>{{ __('message.myprofile') }}</a></li>
          <li><a href="{{ route('notifications') }}"><i class="lni lni-bullhorn"></i>{{ __('message.notfi') }}</a></li>
