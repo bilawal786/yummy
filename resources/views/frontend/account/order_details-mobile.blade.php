@@ -9,7 +9,7 @@
   <div class="product-slides">
       @if(Session::has('message'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <strong>Succès! </strong> {{ Session::get('message') }}
+              <strong>{{ __('message.succès!') }} </strong> {{ Session::get('message') }}
           </div>
   @endif
     <!-- Single Hero Slide-->
@@ -35,14 +35,14 @@
     <!-- Flash Sale Slide-->
     <div class="p-specification bg-white mb-3 py-3">
       <div class="container">
-        <h6>Votre commande</h6>
+        <h6>{{ __('message.votre') }}</h6>
         <p>@foreach($order->items as $item) {{ $item->quantity }} x {{ $item->product->name }}<br>@endforeach</p>
       </div>
     </div>
 
     <div class="p-specification bg-white mb-3 py-3">
       <div class="container">
-        <h6>Total : {{ currencyFormat($order->total) }}</h6>
+        <h6>{{ __('message.total') }} : {{ currencyFormat($order->total) }}</h6>
       </div>
     </div>
     <!-- Add To Cart-->
@@ -53,7 +53,7 @@
         <form class="cart-form" action="{{ route('checkout.order_validation') }}" method="POST">
           @csrf
           <input type="hidden" value="{{ $order->id }}" name="order_id">
-          <button type="submit" class="btn btn-lg btn-warning cartProtect btn-block mr-1"> <span class="text">J'ai récupéré ma commande</span> <i class="lni lni-package"></i> </button>
+          <button type="submit" class="btn btn-lg btn-warning cartProtect btn-block mr-1"> <span class="text">{{ __('message.récupéré') }}</span> <i class="lni lni-package"></i> </button>
         </form>
         @elseif($order->status == '20')
         <button class="btn btn-lg btn-success cartProtect btn-block mr-1" disabled> <span class="text">{{trans('order_status.' . $order->status)}}</span></button>

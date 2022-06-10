@@ -3,26 +3,26 @@
 
 <div id="invoice-print">
 <article class="card">
-    <header class="card-header"> {{__('My Orders / Tracking')}} </header>
+    <header class="card-header"> {{ __('message.tracking') }} </header>
     <div class="card-body">
-        <h6>{{ __('Order') }} #{{ $order->order_code }}  <span class="float-right"><strong > {{ __('Order Date : ') }} </strong>{{ $order->created_at->format('d M Y, h:i A') }}</span></h6>
+        <h6>{{ __('message.orderr') }}  #{{ $order->order_code }}  <span class="float-right"><strong > {{ __('message.date') }} </strong>{{ $order->created_at->format('d M Y, h:i A') }}</span></h6>
         <article class="card">
             <div class="card-body row no-gutters">
                 <div class="col">
-                    <strong>{{ __('Billing To') }}:</strong>
-                    <br> {{__('Name')}}:  {{ $order->user->name ?? '' }}
-                    <br> {{__('Phone')}}:  {{ $order->user->phone ?? '' }}
-                    <br> {{__('Address')}}:  {{ $order->user->address ?? '' }}<br>
+                    <strong>{{ __('message.billing') }}:</strong>
+                    <br> {{ __('message.name') }}:  {{ $order->user->name ?? '' }}
+                    <br>{{ __('message.phone') }} :  {{ $order->user->phone ?? '' }}
+                    <br>{{ __('message.address') }}   {{ $order->user->address ?? '' }}<br>
                 </div>
                 <div class="col">
-                    <strong>{{__('Shipping To:')}}</strong>
-                    <br> {{__('Phone')}}:  {{ $order->mobile ?? '' }}
-                    <br> {{__('Address')}}:  {{ $order->address ?? '' }}
+                    <strong>{{ __('message.shipping') }}</strong>
+                    <br> {{ __('message.phone') }}  :{{ $order->mobile ?? '' }}
+                    <br>{{ __('message.address') }}  {{ $order->address ?? '' }}
                 </div>
                 <div class="col">
-                    <strong>{{__('Status:')}}</strong>
-                    <br> {{__('Payment Status')}}:  {{ trans('payment_status.' . $order->payment_status) ?? null }}
-                    <br> {{__('Payment Method')}}:  {{  trans('payment_method.' . $order->payment_method) ?? null }}<br>
+                    <strong>{{ __('message.status') }}</strong>
+                    <br>{{ __('message.save') }} {{__('Payment Status')}}:  {{ trans('payment_status.' . $order->payment_status) ?? null }}
+                    <br> {{ __('message.save') }}{{__('Payment Method')}}:  {{  trans('payment_method.' . $order->payment_method) ?? null }}<br>
                 </div>
             </div>
         </article>
@@ -31,39 +31,39 @@
             @if($order->status == \App\Enums\OrderStatus::CANCEL)
                 <div class="step active">
                     <span class="icon"> <i class="fa fa-times"></i> </span>
-                    <span class="text">{{__('Order Cancel')}}</span>
+                    <span class="text">{{ __('message.cancel') }}</span>
                 </div>
             @else
                 <div class="step {{ $order->status >= \App\Enums\OrderStatus::PENDING ? 'active' : ''}}">
                     <span class="icon"> <i class="fa fa-circle-notch"></i> </span>
-                    <span class="text">{{__('Order Pending')}}</span>
+                    <span class="text">{{ __('message.pending') }}</span>
                 </div>
             @endif
 
             @if($order->status == \App\Enums\OrderStatus::REJECT)
                 <div class="step active">
                     <span class="icon"> <i class="fa fa-times"></i> </span>
-                    <span class="text">{{__('Order Reject')}}</span>
+                    <span class="text">{{ __('message.reject') }}</span>
                 </div>
             @else
                 <div class="step {{ $order->status >= \App\Enums\OrderStatus::ACCEPT ? 'active' : ''}}">
                     <span class="icon"> <i class="fa fa-check"></i> </span>
-                    <span class="text">{{__('Order Accept')}}</span>
+                    <span class="text">{{ __('message.accept') }}</span>
                 </div>
             @endif
 
 
             <div class="step {{  $order->status >= \App\Enums\OrderStatus::PROCESS ? 'active' : ''}}">
                 <span class="icon"> <i class="fa fa-shopping-bag"></i> </span>
-                <span class="text">{{__('Order Process')}}</span>
+                <span class="text">{{ __('message.process') }}</span>
             </div> <!-- step.// -->
             <div class="step {{  $order->status >= \App\Enums\OrderStatus::ON_THE_WAY ? 'active' : ''}}">
                 <span class="icon"> <i class="fa fa-truck"></i> </span>
-                <span class="text"> {{__('On The Way')}} </span>
+                <span class="text"> {{ __('message.on') }}</span>
             </div> <!-- step.// -->
             <div class="step {{  $order->status == \App\Enums\OrderStatus::COMPLETED ? 'active' : ''}}">
                 <span class="icon"> <i class="fa fa-box"></i> </span>
-                <span class="text">{{__('Order Completed')}}</span>
+                <span class="text">{{ __('message.complete') }} </span>
             </div> <!-- step.// -->
         </div>
 
@@ -95,10 +95,10 @@
                 <table class="table">
                     <thead style="background-color:#3167eb">
                     <tr style="color:white">
-                        <th>{{ __('Item') }}</th>
-                        <th class="text-center">{{ __('Price') }}</th>
-                        <th class="text-center">{{ __('Quantity') }}</th>
-                        <th class="text-right">{{ __('Totals') }}</th>
+                        <th>{{ __('message.item') }}</th>
+                        <th class="text-center">{{ __('message.price') }}</th>
+                        <th class="text-center">{{ __('message.quantity') }}</th>
+                        <th class="text-right">{{ __('message.totals') }}</th>
                     </tr>
                     </thead>
                     @foreach($order->items as $item)
@@ -119,10 +119,10 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th class="text-right"></th>
-                        <th class="text-right">{{ __('Subtotal') }}</th>
+                        <th class="text-right">{{ __('message.subtotal') }}</th>
                     </tr>
                     <tr>
-                        <th scope="col"> {{ __('Order Status') }} : {{ trans('order_status.'.$order->status) }}</th>
+                        <th scope="col">{{ __('message.order_status') }}  : {{ trans('order_status.'.$order->status) }}</th>
                         <th scope="col"></th>
                         <th class="text-right"></th>
                         <td class="text-right">{{ currencyFormat($order->sub_total) }}</td>
@@ -131,7 +131,7 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th class="text-right"></th>
-                        <th class="text-right">{{ __('Delivery Charge') }}</th>
+                        <th class="text-right">{{ __('message.delivery') }}</th>
                     </tr>
                     <tr>
                         <th scope="col"></th>
@@ -143,7 +143,7 @@
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th class="text-right"></th>
-                        <th class="text-right">{{ __('Total') }}</th>
+                        <th class="text-right">{{ __('message.total') }}</th>
                     </tr>
                     <tr>
                         <th scope="col"></th>
@@ -163,20 +163,20 @@
         @if($order->status == \App\Enums\OrderStatus::PENDING)
             <div class="col">
                 <a href="{{ route('account.order.cancel', $order) }}" class="btn btn-danger m-2"
-                   onclick="return confirm('You are about to cancel the order. This cannot be undo. are you sure?')"><i
-                        class="fa fa-times"></i> {{ __('Cancel Order') }}</a>
+                   onclick="return confirm({{ __('message.sure') }})"><i
+                        class="fa fa-times"></i> {{ __('message.cancel') }}</a>
             </div>
         @endif
 
         @if($order->attachment)
             <div class="text-right">
                 <a class="btn btn-info m-2" href="{{ route('account.order.file', $order->id) }}"><i
-                        class="fa fa-arrow-circle-down"></i> {{ __('Download') }}</a>
+                        class="fa fa-arrow-circle-down"></i> {{ __('message.download') }}</a>
             </div>
         @endif
         <div class="@if(!$order->attachment) col @endif text-right">
             <button onclick="printDiv('invoice-print')" class="btn btn-warning m-2"><i
-                    class="fa fa-print"></i> {{ __('Print') }}</button>
+                    class="fa fa-print"></i>{{ __('message.print') }}</button>
         </div>
     </div>
 </div>

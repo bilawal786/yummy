@@ -35,7 +35,7 @@
                                                         <span class="badge badge-danger">{{ $qty }}</span>
                                                     @endif
                                                 @else
-                                                    <span class="badge badge-info">Rien à sauver</span>
+                                                    <span class="badge badge-info">{{ __('message.rien') }}</span>
                                                 @endif
                                                 {{--                                            <a class="wishlist-btn" href="#"><i class="lni lni-heart"></i></a>--}}
                                                 <a class="product-thumbnail d-block"
@@ -55,7 +55,7 @@
                                                     <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}
                                                         €<span>{{$shopProducts->discount_price}}€</span><small
                                                                 style="display:none;">
-                                                            ({{ $proximite->unit_price*1000 }} YummyCoin)</small>
+                                                            ({{ $proximite->unit_price*1000 }} {{ __('message.yummycoin') }})</small>
                                                     </p>@endif
                                                 @if($qty != 0)
                                                     <p class="sale-price">
@@ -71,13 +71,12 @@
                                                 </div>
                                                 @if($qty != 0)<a class="btn btn-danger btn-sm"
                                                                  href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
-                                                            class="me-1 lni lni-cart"></i>Réserver</a> @else <a
+                                                            class="me-1 lni lni-cart"></i>{{ __('message.réserver') }}</a> @else <a
                                                         class="btn btn-dark btn-sm"
                                                         href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
-                                                            class="me-1 lni lni-cart"></i>Plus de panier à
-                                                    sauver</a> @endif
+                                                            class="me-1 lni lni-cart"></i>{{ __('message.plus') }}</a> @endif
                                                 <a href="{{route('fav.remove', ['id' => $proximite->id])}}"><span
-                                                            class="btn btn-danger btn-sm">Supprimer</span></a>
+                                                            class="btn btn-danger btn-sm">{{ __('message.supprimer') }}</span></a>
 
                                             </div>
                                         </div>

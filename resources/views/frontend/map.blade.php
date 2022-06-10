@@ -13,7 +13,7 @@
 @section('main-content')
 <div class="page-content-wrapper">
   <div class="geo-location-wrapper">
-    <span class="btn geo-location"><i class="fa fa-map-marker"></i><span class="text"> Trouver mon emplacement</span></span>
+    <span class="btn geo-location"><i class="fa fa-map-marker"></i><span class="text"> {{ __('message.trouver') }} </span></span>
   </div>
   <div id="map"></div>
 </div>

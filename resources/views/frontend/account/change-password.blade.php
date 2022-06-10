@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-12 col-12">
-                                    <label for="old_password">{{ __('Old Password') }}</label> <span
+                                    <label for="old_password">{{ __('message.old') }}</label> <span
                                         class="text-danger">*</span>
                                     <input id="old_password" name="old_password" type="password"
                                            class="form-control @error('old_password') is-invalid @enderror">
@@ -28,7 +28,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-12 col-12">
-                                    <label for="password">{{ __('Password') }}</label> <span
+                                    <label for="password">{{ __('message.password') }}</label> <span
                                         class="text-danger">*</span>
                                     <input id="password" name="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror" />
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group col-md-12 col-12">
                                     <label
-                                        for="password_confirmation">{{ __('Password Confirmation') }}</label>
+                                        for="password_confirmation">{{ __('message.confirm') }}</label>
                                     <span class="text-danger">*</span>
                                     <input id="password_confirmation" name="password_confirmation"
                                            type="password"
@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="form-group col-md-12 col-12">
-                                        <button class="btn btn-primary">{{ __('Save Password') }}</button>
+                                        <button class="btn btn-primary">{{ __('message.save') }}</button>
                                 </div>
                             </div>
                         </div>

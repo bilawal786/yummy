@@ -7,7 +7,7 @@
       </div>
   @endif
       <div class="container">
-          <small><b>Noter: Vous pouvez annuler la commande dans les 2 heures</b></small>
+          <small><b>{{ __('message.noter') }} </b></small>
         <div class="cart-wrapper-area py-3">
           <div class="cart-table card mb-3">
             <div class="table-responsive card-body">
@@ -32,10 +32,10 @@
                         @else
                             <br>
                         @if($order->deliverytime)
-                           <small>La commande sera livrée dans: <b>{{$order->deliverytime}}</b> </small>
+                           <small>{{ __('message.sera') }}  <b>{{$order->deliverytime}}</b> </small>
                             @endif
                        @if($time<2)
-                        <a href="{{route('front.order.cancel', ['id' => $order->id])}}"><span style="color: white!important;" class="badge bg-danger float-right">Annuler la commande</span></a>
+                        <a href="{{route('front.order.cancel', ['id' => $order->id])}}"><span style="color: white!important;" class="badge bg-danger float-right">{{ __('message.annuler') }}</span></a>
                         @endif
                         @endif
                     </td>
