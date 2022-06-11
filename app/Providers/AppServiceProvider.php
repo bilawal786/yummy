@@ -34,17 +34,42 @@ class AppServiceProvider extends ServiceProvider
         $ip = \Request::ip();
 
         //Get visitors Geo info based on his IP
-        $geo = GeoIP::getLocation($ip);
+        $geo = GeoIP::getLocation('131.100.163.255');
+        dd($geo);
         //Get visitors country name
         $country = $geo['country'];
 
         //Prepared language based on country name
         //Add as many as you want
         $languages = [
+
+            'Spain' => 'es',
+            'Cuba' => 'es',
+            'Dominican Republic' => 'es',
+            'United States' => 'es',
+            'Trinidad and Tobago' => 'es',
+
             'United States' => 'en',
+            'U.S. Virgin Islands' => 'en',
+            'British Virgin Islands' => 'en',
+            'Netherlands' => 'en',
+            'Cambodia' => 'en',
+            'Barbados' => 'en',
+            'Dominicas' => 'en',
+            'Trinidad and Tobago' => 'en',
+            'Antigua and Barbuda' => 'en',
+            'Dominica' => 'en',
+            'St Kitts and Nevis' => 'en',
+            'St Vincent and Grenadines' => 'en',
+            'Saint Lucia' => 'en',
+            'Jamaica' => 'en',
+            'Cayman Islands' => 'en',
+
+
+
             'Canada' => 'en',
             'Germany' => 'de',
-            'Spain' => 'es',
+
             'Bosnia and Herzegovina' => 'ba',
             'Croatia' => 'ba',
             'Serbia' => 'ba',
