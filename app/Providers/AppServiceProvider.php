@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
         $ip = \Request::ip();
 
         //Get visitors Geo info based on his IP
-        $geo = GeoIP::getLocation('131.100.163.255');
-        dd($geo);
+        $geo = GeoIP::getLocation($ip);
+
         //Get visitors country name
         $country = $geo['country'];
 
