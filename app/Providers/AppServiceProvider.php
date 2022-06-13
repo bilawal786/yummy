@@ -74,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
             'Austria' => 'de',
             'Luxembourg' => 'de',
             'Guadeloupe' => 'gp',
-            'Pakistan' => 'pk',
+            'Pakistan' => 'en',
         ];
 
         if(!isset($cookie) && !empty($cookie)) {
