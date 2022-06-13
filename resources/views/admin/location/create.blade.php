@@ -26,11 +26,11 @@
 
 						        <div class="form-group">
 						            <label>{{ __('levels.status') }}</label> <span class="text-danger">*</span>
-{{--						            <select name="status" class="form-control @error('status') is-invalid @enderror">--}}
-{{--						            	@foreach(trans('statuses') as $key => $status)--}}
-{{--						                	<option value="{{ $key }}" {{ (old('status') == $key) ? 'selected' : '' }}>{{ $status }}</option>--}}
-{{--						                @endforeach--}}
-{{--						            </select>--}}
+						            <select name="status" class="form-control @error('status') is-invalid @enderror">
+						            	@foreach(trans('statuses') as $key => $status)
+						                	<option value="{{ $key }}" {{ (old('status') == $key) ? 'selected' : '' }}>{{ $status }}</option>
+						                @endforeach
+						            </select>
 						            @error('status')
 				                        <div class="invalid-feedback">
 				                          	{{ $message }}
