@@ -45,8 +45,6 @@ class AppServiceProvider extends ServiceProvider
             'Cuba' => 'es',
             'Dominican Republic' => 'es',
             'Colombia' => 'es',
-            'Trinidad and Tobago' => 'es',
-
             'United States' => 'en',
             'U.S. Virgin Islands' => 'en',
             'British Virgin Islands' => 'en',
@@ -62,12 +60,8 @@ class AppServiceProvider extends ServiceProvider
             'Saint Lucia' => 'en',
             'Jamaica' => 'en',
             'Cayman Islands' => 'en',
-
-
-
             'Canada' => 'en',
             'Germany' => 'de',
-
             'Bosnia and Herzegovina' => 'ba',
             'Croatia' => 'ba',
             'Serbia' => 'ba',
@@ -78,22 +72,13 @@ class AppServiceProvider extends ServiceProvider
         ];
 
         if(!isset($cookie) && !empty($cookie)) {
-            //If cookie exist change application language
-            //We use this for good measure
             App::setLocale($cookie);
         }else {
-            //If cookie doesnt exist
-            //Check country name in languages array
             if (array_key_exists($country, $languages)) {
-                //Get country value(language) from array
                 $lang = $languages[$country];
-                //Set language based on value
-
                  App::setLocale($lang);
-
             }
             else {
-                //Set language for good measure
                 App::setLocale(App::getLocale());
             }
         }
