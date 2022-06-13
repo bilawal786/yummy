@@ -40,7 +40,7 @@ class LocationController extends BackendController
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {  dd($this->data);
         return view('admin.location.create', $this->data);
     }
 
