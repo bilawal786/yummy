@@ -136,6 +136,32 @@ return [
     'représentant'=>'Un représentant du commerce',
     'copie'=>'Copie',
 
+    'bienvenue'=>'Bienvenue',
+    'connectez'=>'Connectez-vous pour continuer.',
+    'passe'=>'Mot de passe',
+    'les'=>"J\'accepte les",
+    'générales'=>'Conditions générales',
+    'ainsi'=>'ainsi que la',
+    'confidentialité'=>'Politique de confidentialité',
+    'connexion'=>'Connexion',
+    'mot'=>'Mot de passe oublié?',
+    'ou'=>'ou',
+    'compte'=>'Créer un compte',
+    'naviguer'=>'Naviguer en tant qu\'invité',
+    'deparrainage'=>'Code de parrainage (facultatif)',
+    'confirmation'=>'Confirmation du mot de passe',
+    'région'=>'Région',
+    'téléphone'=>'Numéro de téléphone',
+    'never'=>"We\'ll never share your email with anyone else.",
+    'name'=>'Nom',
+    'prénom'=>'Prénom',
+    'unclient'=>'Je suis un Client',
+    'compte'=>'Créez un compte !',
+    'vendeur'=>'Je suis un Vendeur',
+    'réinitialiser'=>'Réinitialiser mon mot de passe',
+    'continuez'=>'Continuez',
+
+
 
 
 

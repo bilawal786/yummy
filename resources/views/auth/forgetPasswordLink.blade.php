@@ -31,7 +31,7 @@
 @php $check=0; @endphp
 <div class="osahan-signup">
   <div class="border-head p-5 d-flex align-items-center">
-    <h2 class="my-head">Réinitialiser mon mot de passe (2/2)</h2>
+    <h2 class="my-head">{{ __('message.réinitialiser') }}(2/2)</h2>
   </div>
    <div class="p-5" style="padding-top: 20px !important;padding-bottom: 20px !important;">
      @if (session('status'))
@@ -43,7 +43,7 @@
          @csrf
          <input type="hidden" name="token" value="{{ $token }}">
          <div class="form-group">
-            <label>{{ __('Email') }}</label><span class="text-danger">*</span>
+            <label>{{ __('message.email') }}{{ __('Email') }}</label><span class="text-danger">*</span>
             <input type="text" id="email_address" class="form-control" name="email" required autofocus>
              @if($errors->has('email'))
                  <span class="invalid-feedback" role="alert">
@@ -52,7 +52,7 @@
              @endif
          </div>
          <div class="form-group">
-            <label>{{ __('Mot de Passe') }}</label><span class="text-danger">*</span>
+            <label>{{ __('message.mot') }}</label><span class="text-danger">*</span>
              <input type="password" id="password" class="form-control" name="password" required autofocus>
              @if($errors->has('password'))
                  <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
              @endif
          </div>
          <div class="form-group">
-            <label>{{ __('Confirmation du mot de passe') }}</label><span class="text-danger">*</span>
+            <label>{{ __('message.confirmation') }}</label><span class="text-danger">*</span>
               <input type="password" id="password-confirm" class="form-control" name="password_confirmation" required autofocus>
              @if($errors->has('password_confirmation'))
                  <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
          </div>
          <div class="form-group">
              <button type="submit" class="btn btn-success rounded btn-lg btn-block">
-                 {{ __('Réinitialiser mon mot de passe') }}
+                 {{ __('message.réinitialiser') }}
              </button>
          </div>
      </form>

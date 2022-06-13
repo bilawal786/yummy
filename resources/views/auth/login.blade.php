@@ -31,15 +31,15 @@
       <!-- sign in -->
       <div class="osahan-signin">
          <div class="border-head p-5 d-flex align-items-center">
-           <h2 class="my-head">Bienvenue</h2>
+           <h2 class="my-head">{{ __('message.bienvenue') }}</h2>
          </div>
          <div class="p-5" style="padding-top: 20px !important;padding-bottom: 20px !important;">
-            <p class="small">Connectez-vous pour continuer.</p>
+            <p class="small">{{ __('message.connectez') }}</p>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                <div class="form-group">
-                  <label for="demoemail">Email</label>
-                  <input type="email" class="form-control" id="demoemail" type="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="Email" aria-describedby="emailHelp">
+                  <label for="demoemail">{{ __('message.email') }}</label>
+                  <input type="email" class="form-control" id="demoemail" type="email" name="email" value="{{ old('email') }}" autocomplete="email" autofocus placeholder="{{ __('message.email') }}" aria-describedby="emailHelp">
                   @if($errors->has('email'))
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('email') }}</strong>
@@ -51,7 +51,7 @@
                   @endif
                </div>
                <div class="form-group">
-                  <label for="demopassword">Mot de passe</label>
+                  <label for="demopassword">{{ __('message.passe') }}</label>
                   <input placeholder="********" id="demopassword" type="password" class="form-control @if($errors->has('password')) is-invalid @endif"
                          name="password" autocomplete="current-password">
                          @if($errors->has('password'))
@@ -64,9 +64,9 @@
                     <label  class="custom-control custom-checkbox">
                         <input name="terms_and_conditions" required class="custom-control-input @if($errors->has('terms_and_conditions')) is-invalid @endif" type="checkbox" {{  (old('terms_and_conditions') == 1 ? ' checked' : '') }} value="1">
                         <span class="custom-control-label" id="terms_and_condition_color">
-                            {{ __('J\'accepte les') }}</span>
-                        <a target="_blank" href="{{ route('page', 'conditions-generales-dutilisation') }}">{{ __('Conditions générales') }}</a> ainsi que la
-                        <a target="_blank" href="{{ route('page', 'politique-de-confidentialite') }}">{{ __('Politique de confidentialité') }}</a>
+                         {{ __('message.les') }} </span>
+                        <a target="_blank" href="{{ route('page', 'conditions-generales-dutilisation') }}">{{ __('message.générales') }}</a> {{ __('message.ainsi') }}
+                        <a target="_blank" href="{{ route('page', 'politique-de-confidentialite') }}">{{ __('message.confidentialité') }}</a>
                         <span class="text-danger">*</span>
                         @if($errors->has('terms_and_conditions'))
                             <span class="invalid-feedback" role="alert">
@@ -76,10 +76,10 @@
 
                     </label>
                 </div>
-               <button type="submit" class="btn btn-success btn-lg rounded btn-block">Connexion</button>
+               <button type="submit" class="btn btn-success btn-lg rounded btn-block">{{ __('message.connexion') }}</button>
                <br>                    @if (Route::has('password.request'))
                                           <a class="text-gray" href="{{ route('forget.password.get') }}">
-                                             Mot de passe oublié?
+                                              {{ __('message.mot') }}
                                           </a>
                                        @endif
             </form>
@@ -92,12 +92,12 @@
             <a href="#" class="btn btn-dark btn-block rounded btn-lg btn-apple">
             <i class="fab fa-apple mr-2"></i> Continuer avec Apple
           </a>-->
-            <p class="text-muted text-center small m-0 py-3">ou</p>
+            <p class="text-muted text-center small m-0 py-3">{{ __('message.ou') }}</p>
             <a href="{{ route('register') }}" class="btn btn-success btn-lg rounded btn-block">
-            Créer un compte
+                {{ __('message.compte') }}
             </a>
             <a href="{{ route('home') }}" class="btn btn-success btn-lg rounded btn-block">
-                Naviguer en tant qu'invité
+                {{ __('message.naviguer') }}
             </a>
          </div>
       </div>

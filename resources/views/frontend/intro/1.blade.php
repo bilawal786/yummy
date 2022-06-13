@@ -35,12 +35,12 @@
     <img id="4slide4" style="width: 100%; height: 100%; display: none" src="{{asset('intro/04.png')}}" alt="">
     <img id="5slide5" style="width: 100%; height: 100%; display: none" src="{{asset('intro/05.png')}}" alt="">
     <img id="6slide6" style="width: 100%; height: 100%; display: none" src="{{asset('intro/06.png')}}" alt="">
-        <button id="1slide" class="button">Continuez</button>
-        <button id="2slide" class="button" style="display: none">Continuez</button>
-        <button id="3slide" class="button" style="display: none">Continuez</button>
-        <button id="4slide" class="button" style="display: none">Continuez</button>
-        <button id="5slide" class="button" style="display: none">Continuez</button>
-    <a href="{{route('login')}}"><button id="6slide" class="button" style="display: none">Continuez</button></a>
+        <button id="1slide" class="button">{{ __('message.continuez') }}</button>
+        <button id="2slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
+        <button id="3slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
+        <button id="4slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
+        <button id="5slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
+    <a href="{{route('login')}}"><button id="6slide" class="button" style="display: none">{{ __('message.continuez') }}</button></a>
 </div>
 <script>
     $(document).ready(function() {

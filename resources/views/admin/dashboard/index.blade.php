@@ -154,7 +154,8 @@
 																				@endif
 																			<tr>
 																					<td>{{ $order->user->name }}</td>
-																					<td>{{ trans('order_status.' . $order->status) }}</td>
+																					<td>{{ trans('order_status' . $order->status) }}
+                                                                                    </td>
 																					<td>{{ number_format($order->total, 2) }}</td>
 																					<td>
 																							<a href="{{ route('admin.orders.show', $order) }}" class="btn btn-sm btn-icon btn-primary"><i class="far fa-eye"></i></a>

@@ -39,14 +39,12 @@ class AppServiceProvider extends ServiceProvider
         //Get visitors country name
         $country = $geo['country'];
 
-        //Prepared language based on country name
-        //Add as many as you want
         $languages = [
 
             'Spain' => 'es',
             'Cuba' => 'es',
             'Dominican Republic' => 'es',
-            'United States' => 'es',
+            'Colombia' => 'es',
             'Trinidad and Tobago' => 'es',
 
             'United States' => 'en',

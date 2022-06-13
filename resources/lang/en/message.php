@@ -139,6 +139,31 @@ return [
     'représentant'=>'A trade representative',
     'copie'=>'Copy',
 
+    'bienvenue'=>'Welcome',
+    'connectez'=>'Log in to continue.',
+    'passe'=>'Password',
+    'les'=>"I accept the",
+    'générales'=>'Terms and conditions',
+    'ainsi'=>'as well as',
+    'confidentialité'=>'Privacy Policy',
+    'connexion'=>'Login',
+    'mot'=>'Forgot your password?',
+    'ou'=>'Where',
+    'compte'=>'Create an account',
+    'naviguer'=>'Browse as a guest',
+    'deparrainage'=>'Referral code (optional)',
+    'confirmation'=>'Password Confirmation',
+    'région'=>'Region',
+    'téléphone'=>'Phone number',
+    'never'=>"We\'ll never share your email with anyone else.",
+    'name'=>'Last name',
+    'prénom'=>'First name',
+    'unclient'=>'I am a Customer',
+    'compte'=>'Create an account !',
+    'vendeur'=>'I am a salesperson',
+    'réinitialiser'=>'Reset my password',
+    'continuez'=>'Continue',
+
 
 
 

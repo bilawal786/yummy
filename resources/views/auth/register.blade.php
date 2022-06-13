@@ -31,7 +31,7 @@
 @php $check=0; @endphp
 <div class="osahan-signup">
   <div class="border-head p-5 d-flex align-items-center">
-    <h2 class="my-head">Créez un compte !</h2>
+    <h2 class="my-head">{{ __('message.compte') }}</h2>
   </div>
    <div class="p-5" style="padding-top: 20px !important;padding-bottom: 20px !important;">
       <form method="POST" action="{{ route('register') }}">
@@ -40,18 +40,18 @@
             <div class="col form-group">
                 <label class="js-check box {{ old('roles', 2)== 2 ? 'active' : ''}}">
                     <input type="radio" name="roles" value="2" {{ old('roles', 2)== 2 ? 'checked' : ''}}>
-                    <h7 class="title">Je suis un Client</h7>
+                    <h7 class="title">{{ __('message.unclient') }}</h7>
                 </label>
             </div>
             <div class="col form-group">
                 <label class="js-check box {{ old('roles')== 3 ? 'active' : ''}}">
                     <input type="radio" name="roles" value="3" {{ old('roles')== 3 ? 'checked' : ''}}>
-                    <h7 class="title">Je suis un Vendeur</h7>
+                    <h7 class="title">{{ __('message.vendeur') }}</h7>
                 </label>
             </div>
         </div> <!-- row.// -->
          <div class="form-group">
-           <label>{{ __('Prénom') }}</label><span class="text-danger">*</span>
+           <label>{{ __('message.prénom') }}</label><span class="text-danger">*</span>
            <input name="first_name" value="{{ old('first_name') }}" type="text"
                class="form-control @if($errors->has('first_name')) is-invalid @endif" placeholder="John">
            @if($errors->has('first_name'))
@@ -61,7 +61,7 @@
            @endif
          </div>
          <div class="form-group">
-           <label>{{ __('Nom') }}</label><span class="text-danger">*</span>
+           <label>{{ __('message.name') }}</label><span class="text-danger">*</span>
            <input name="last_name" value="{{ old('last_name') }}" type="text"
                class="form-control @if($errors->has('last_name')) is-invalid @endif" placeholder="Doe">
            @if($errors->has('last_name'))
@@ -71,11 +71,11 @@
            @endif
          </div>
          <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">{{ __('message.email') }}</label>
             <input name="email" value="{{ old('email') }}" type="email"
                 class="form-control @if($errors->has('email')) is-invalid @endif"
                 placeholder="johndoe@example.com">
-            <!--<small class="form-text text-muted">{{ __('We\'ll never share your email with anyone else.') }}</small>-->
+            <!--<small class="form-text text-muted">{{ __('message.never') }}</small>-->
             @if($errors->has('email'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -83,7 +83,7 @@
             @endif
         </div>
          <div class="form-group">
-            <label for="phone">Numéro de téléphone</label>
+            <label for="phone">{{ __('message.téléphone') }}</label>
             <input name="phone" value="{{ old('phone') }}" type="text" class="form-control @if($errors->has('phone')) is-invalid @endif"
                 placeholder="06 90 12 34 56">
 
@@ -94,7 +94,7 @@
             @endif
          </div>
          <div class="form-group">
-           <label>{{ __('Région') }}</label>
+           <label>{{ __('message.région') }}</label>
            <select class="form-control" name="address" class="form-control @if($errors->has('address')) is-invalid @endif">
              @php use App\Models\Location; $regions = Location::all(); @endphp
              @foreach($regions as $region)
@@ -108,9 +108,9 @@
            @endif
          </div>
          <div class="form-group">
-           <label for="password">{{ __('Mot de passe') }}</label><span class="text-danger">*</span>
+           <label for="password">{{ __('message.mot') }}</label><span class="text-danger">*</span>
            <input name="password" class="form-control @if($errors->has('password')) is-invalid @endif"
-               type="password" placeholder="Mot de passe">
+               type="password" placeholder="{{ __('message.mot') }}">
            @if($errors->has('password'))
            <span class="invalid-feedback" role="alert">
                <strong>{{ $errors->first('password') }}</strong>
@@ -118,10 +118,10 @@
            @endif
          </div>
          <div class="form-group">
-            <label>{{ __('Confirmation du mot de passe') }}</label><span class="text-danger">*</span>
+            <label>{{ __('message.confirmation') }}</label><span class="text-danger">*</span>
             <input name="password_confirmation"
                 class="form-control @if($errors->has('password_confirmation')) is-invalid @endif"
-                type="password" placeholder="Confirmation du mot de passe">
+                type="password" placeholder="{{ __('message.confirmation') }}">
             @if($errors->has('password_confirmation'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -129,18 +129,18 @@
             @endif
          </div>
          <div class="form-group">
-            <label>{{ __('Code de parrainage (facultatif)') }}</label>
+            <label>{{ __('message.deparrainage') }}</label>
             <input name="refferal"
                 class="form-control @if($errors->has('refferal')) is-invalid @endif"
-                type="text" placeholder="Code de parrainage (facultatif)">
+                type="text" placeholder="{{ __('message.deparrainage') }}">
          </div>
           <div class="form-group">
               <label  class="custom-control custom-checkbox">
                   <input name="terms_and_conditions" required class="custom-control-input @if($errors->has('terms_and_conditions')) is-invalid @endif" type="checkbox" {{  (old('terms_and_conditions') == 1 ? ' checked' : '') }} value="1">
                   <span class="custom-control-label" id="terms_and_condition_color">
-                            {{ __('J\'accepte les') }}</span>
-                  <a target="_blank" href="{{ route('page', 'conditions-generales-dutilisation') }}">{{ __('Conditions générales') }}</a> ainsi que la
-                  <a target="_blank" href="{{ route('page', 'politique-de-confidentialite') }}">{{ __('Politique de confidentialité') }}</a>
+                            {{ __('message.les') }}</span>
+                  <a target="_blank" href="{{ route('page', 'conditions-generales-dutilisation') }}">{{ __('message.générales') }}</a> {{ __('message.ainsi') }}
+                  <a target="_blank" href="{{ route('page', 'politique-de-confidentialite') }}">{{ __('message.confidentialité') }}</a>
                   <span class="text-danger">*</span>
                   @if($errors->has('terms_and_conditions'))
                       <span class="invalid-feedback" role="alert">
@@ -150,7 +150,7 @@
 
               </label>
           </div>
-         <button type="submit" class="btn btn-success rounded btn-lg btn-block">Créer un compte</button>
+         <button type="submit" class="btn btn-success rounded btn-lg btn-block">{{ __('message.compte') }}</button>
       </form>
       <!--
       <p class="text-muted text-center small py-2 m-0">ou</p>

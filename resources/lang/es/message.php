@@ -136,6 +136,31 @@ return [
     'représentant'=>'Un representante comercial',
     'copie'=>'Copiar',
 
+    'bienvenue'=>'Bienvenidos',
+    'connectez'=>'Inicia sesión para continuar.',
+    'passe'=>'Contraseña',
+    'les'=>"Acepto el",
+    'générales'=>'Condiciones generales',
+    'ainsi'=>'Tanto como',
+    'confidentialité'=>'Política de confidencialidad',
+    'connexion'=>'Acceso',
+    'mot'=>'¿Contraseña olvidada?',
+    'ou'=>'Dónde',
+    'compte'=>'Crear una cuenta',
+    'naviguer'=>'Navegar como invitado',
+    'deparrainage'=>'Código de Referencia (Opcional)',
+    'confirmation'=>'Confirmación de contraseña',
+    'région'=>'Región',
+    'téléphone'=>'Número de teléfono',
+    'never'=>"Nunca compartiremos su correo electrónico con nadie más.",
+    'name'=>'Apellido',
+    'prénom'=>'Nombre de pila',
+    'unclient'=>'Soy un cliente',
+    'compte'=>'Crea una cuenta !',
+    'vendeur'=>'Soy un vendedor',
+    'réinitialiser'=>'Restablecer mi contraseña',
+    'continuez'=>'Continuar',
+
 
 
 
