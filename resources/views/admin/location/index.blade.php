@@ -22,11 +22,11 @@
                             <div class="row" style="display:none">
                                 <div class="col-sm-6 offset-sm-3">
                                     <div class="input-group input-daterange" id="date-picker">
-{{--                                        <select class="form-control" id="status" name="status" id="">--}}
-{{--                                            @foreach(trans('statuses') as $key => $status)--}}
-{{--                                                <option value="{{ $key }}">{{ $status }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
+                                        <select class="form-control" id="status" name="status" id="">
+                                            @foreach(trans('statuses') as $key => $status)
+                                                <option value="{{ $key }}">{{ $status }}</option>
+                                            @endforeach
+                                        </select>
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary" type="button" id="refresh"> {{ __('Refresh') }}</button>
                                         </div>
