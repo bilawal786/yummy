@@ -77,6 +77,7 @@ class AppServiceProvider extends ServiceProvider
             "Djibouti" => 'fr',
             "Equatorial Guinea" => 'fr',
             "France" => 'fr',
+
             "Guinea" => 'fr',
             "Haiti" => 'fr',
             'Luxembourg' => 'fr',
