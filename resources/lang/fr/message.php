@@ -162,6 +162,22 @@ return [
     'continuez'=>'Continuez',
 
 
+    'sur'=>'Bienvenue sur Yummy box',
+    'qui'=>'Application qui te permet de sauver la planète et faire des économies. Active ta géo-localisation et découvre les commerçants autour de toi.',
+    'diner'=>"Le déjeuner d'aujourd'hui pour le diner?",
+    'sont'=>'Nos produits sont généralement disponibles dans la journée ou le soir..',
+    'produits'=>'De délicieux produits invendus',
+    'majorité'=>'La majorité des produits proposés chez Yummy box sont du jour. Donne leur une seconde chance! Ils sont toujours aussi bons!',
+    'invendus'=>'Récupère ton panier d\'invendus',
+    'paiement'=>'Notre paiement sécurisé te permet de commander directement sur l\'application et de récupérer ton panier sur place, en montrant ta commande au personnel de l\'établissement.',
+    'tes'=>'Suis tes commerçants favoris',
+    'ton'=>'Clique sur ton partenaire préféré puis sur << s\'abonner», tu recevras automatiquement une notification dès qu\'il aura des produits disponibles.',
+    'amis'=>'Invite tes amis à rejoindre la communauté anti-gaspi !',
+
+
+
+
+
 
 
 

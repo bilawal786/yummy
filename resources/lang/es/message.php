@@ -161,6 +161,17 @@ return [
     'réinitialiser'=>'Restablecer mi contraseña',
     'continuez'=>'Continuar',
 
+    'sur'=>'Bienvenido a Yummy Box',
+    'qui'=>'Aplicación que te permite salvar el planeta y ahorrar dinero. Activa tu geolocalización y descubre los comercios que te rodean.',
+    'diner'=>"¿El almuerzo de hoy para la cena?",
+    'sont'=>'Nuestros productos están generalmente disponibles durante el día o la noche.',
+    'produits'=>'Deliciosos productos sin vender',
+    'majorité'=>'La mayoría de los productos que se ofrecen en Yummy box son del día. ¡Dales una segunda oportunidad! ¡Todavía son tan buenos!',
+    'invendus'=>'Recoge tu cesta no vendida',
+    'paiement'=>'Nuestro pago seguro le permite ordenar directamente en la aplicación y recoger su cesta en el sitio, mostrando su pedido al personal del establecimiento..',
+    'tes'=>'Sigue a tus comerciantes favoritos',
+    'ton'=>'Haga clic en su socio favorito y luego en <<suscribirse», automáticamente recibirá una notificación tan pronto como tenga productos disponibles.',
+    'amis'=>'¡Invita a tus amigos a unirse a la comunidad anti-residuos!',
 
 
 

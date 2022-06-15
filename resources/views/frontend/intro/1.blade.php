@@ -24,24 +24,63 @@
             left: 0;
             bottom: 0;
         }
+        .h{
+            position: absolute;
+            top: 57%;
+            left: 9%;
+            color: white;
+        }
+        .p{
+            position: absolute;
+            top: 68%;
+            left: 0%;
+            font-size: 17px;
+            color: white;
+        }
     </style>
 </head>
 <body>
 
-<div style="height: 100vh;">
-    <img id="1slide1" style="width: 100%; height: 100%" src="{{asset('intro/01.png')}}" alt="">
-    <img id="2slide2" style="width: 100%; height: 100%; display: none" src="{{asset('intro/02.png')}}" alt="">
-    <img id="3slide3" style="width: 100%; height: 100%; display: none" src="{{asset('intro/03.png')}}" alt="">
-    <img id="4slide4" style="width: 100%; height: 100%; display: none" src="{{asset('intro/04.png')}}" alt="">
-    <img id="5slide5" style="width: 100%; height: 100%; display: none" src="{{asset('intro/05.png')}}" alt="">
-    <img id="6slide6" style="width: 100%; height: 100%; display: none" src="{{asset('intro/06.png')}}" alt="">
+
+
+             <div id="1slide1" style="background-image: url({{asset('intro/F1.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
+                 <h2 class="h">{{ __('message.sur') }}</h2>
+                 <p class="p"><b>{{ __('message.qui') }}</b></p>
+             </div>
+            <div id="2slide2" style=" display: none;background-image: url({{asset('intro/F2.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
+            <h2 class="h">{{ __('message.diner') }}</h2>
+            <p class="p"><b>{{ __('message.sont') }}</b></p>
+            </div>
+            <div id="3slide3" style="display: none;background-image: url({{asset('intro/F3.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
+            <h2 class="h">{{ __('message.produits') }}</h2>
+            <p class="p"><b>{{ __('message.majorité') }}</b></p>
+            </div>
+            <div id="4slide4" style=" display: none;background-image: url({{asset('intro/F4.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
+            <h2 class="h">{{ __('message.invendus') }}</h2>
+            <p class="p"><b>{{ __('message.paiement') }}</b></p>
+            </div>
+            <div id="5slide5" style=" display: none;background-image: url({{asset('intro/F5.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
+            <h2 class="h">{{ __('message.tes') }}</h2>
+            <p class="p"><b>{{ __('message.ton') }}</b></p>
+            </div>
+            <div id="6slide6"  style=" display: none; background-image: url({{asset('intro/F6.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
+
+            <p class="p"><b>{{ __('message.amis') }}</b></p>
+            </div>
+{{--         <img id="1slide1" style="width: 100%; height: 100%" src="{{asset('intro/01.png')}}" alt="">--}}
+{{--         <img id="2slide2" style="width: 100%; height: 100%; display: none" src="{{asset('intro/02.png')}}" alt="">--}}
+{{--         <img id="3slide3" style="width: 100%; height: 100%; display: none" src="{{asset('intro/03.png')}}" alt="">--}}
+{{--         <img id="4slide4" style="width: 100%; height: 100%; display: none" src="{{asset('intro/04.png')}}" alt="">--}}
+{{--         <img id="5slide5" style="width: 100%; height: 100%; display: none" src="{{asset('intro/05.png')}}" alt="">--}}
+{{--         <img id="6slide6" style="width: 100%; height: 100%; display: none" src="{{asset('intro/06.png')}}" alt="">--}}
+
         <button id="1slide" class="button">{{ __('message.continuez') }}</button>
         <button id="2slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
         <button id="3slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
         <button id="4slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
         <button id="5slide" class="button" style="display: none">{{ __('message.continuez') }}</button>
     <a href="{{route('login')}}"><button id="6slide" class="button" style="display: none">{{ __('message.continuez') }}</button></a>
-</div>
+
 <script>
     $(document).ready(function() {
         $("#1slide").click(function() {

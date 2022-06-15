@@ -165,6 +165,18 @@ return [
     'continuez'=>'Continue',
 
 
+    'sur'=>'Welcome to Yummybox',
+    'qui'=>'Application that allows you to save the planet and save money. Activate your geo-location and discover the merchants around you.',
+    'diner'=>"Today's lunch for dinner?",
+    'sont'=>'Our products are generally available during the day or evening..',
+    'produits'=>'Delicious unsold products',
+    'majorité'=>'Most of the products offered at Yummy box are of the day. Give them a second chance! They are still so good!',
+    'invendus'=>'Collect your unsold basket',
+    'paiement'=>'Our secure payment allows you to order directly on the application and collect your basket on site, by showing your order to the staff of the establishment.',
+    'tes'=>'Follow your favorite merchants',
+    'ton'=>'Click on your favorite partner then on << subscribe », you will automatically receive a notification as soon as he has products available.',
+    'amis'=>'Invite your friends to join the anti-waste community!',
+
 
 
 ];
