@@ -33,7 +33,7 @@
         .h2{
             position: absolute;
             top: 57%;
-            left: 12%;
+            left: 15%;
             color: white;
         }
         .p{
