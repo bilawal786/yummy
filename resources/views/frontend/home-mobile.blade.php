@@ -11,8 +11,8 @@
             <div class="pt-3">
                 <!-- Hero Slides-->
                 <div class="hero-slides owl-carousel">
-                @foreach($banners as $banner)
-                    <!-- Single Hero Slide-->
+                    @foreach($banners as $banner)
+                        <!-- Single Hero Slide-->
                         <a href="{{$banner->link}}">
                             <div class="single-hero-slide" style="background-image: url('{{ $banner->images }}');  background-repeat: no-repeat;
                                     background-size: 100% 100%;">
@@ -32,8 +32,8 @@
                 </div>
                 <div class="product-catagory-wrap">
                     <div class="row g-3">
-                    @foreach($cat as $value)
-                        <!-- Single Catagory Card-->
+                        @foreach($cat as $value)
+                            <!-- Single Catagory Card-->
                             <div class="col-4">
                                 <div class="card catagory-card">
                                     <div class="card-body">
@@ -75,8 +75,8 @@
                 </div>
                 <div class="product-catagory-wrap">
                     <div class="row g-3">
-                    @foreach($vipcats as $vip)
-                        <!-- Single Catagory Card-->
+                        @foreach($vipcats as $vip)
+                            <!-- Single Catagory Card-->
                             <div class="col-4">
                                 <div class="card catagory-card">
                                     <div class="card-body">
@@ -91,12 +91,12 @@
                                                      height="28">
                                             @endif
                                             <?php
-                                                $sh = \App\Models\Shop::where('subcategory', $vip->id)->pluck('id');
-                                                $quantity = \App\Models\ShopProduct::whereIn('shop_id', $sh)->sum('quantity');
+                                            $sh = \App\Models\Shop::where('subcategory', $vip->id)->pluck('id');
+                                            $quantity = \App\Models\ShopProduct::whereIn('shop_id', $sh)->sum('quantity');
                                             ?>
                                             <a href="#" style="font-size: 10px;position: absolute;top: 20px;left: 75px;"
                                                class="btn btn-dark btn-sm ml-auto rounded-qty">
-                                               {{$quantity}}</a>
+                                                {{$quantity}}</a>
                                             <span style="margin-top: 5px;">{{ $vip->name }}</span>
                                         </a>
                                     </div>
@@ -130,7 +130,8 @@
                                          $likes = 0;
                                      }
                                 @endphp
-                                @foreach($shopProduct as $shops) @php $qty = $shops->quantity; @endphp
+                                @foreach($shopProduct as $shops)
+                                    @php $qty = $shops->quantity; @endphp
                                 @endforeach
                                 @if($shopProducts)
                                     <div class="col-12 col-md-6">
@@ -148,17 +149,17 @@
                                                         <span class="badge badge-info">Rien à sauver</span>
                                                     @endif
                                                     @auth
-                                                    <?php
-                                                    $check_fav = \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
-                                                    ?>
-                                                    @if($check_fav)
-                                                        <a style="left: 0.5rem" id="{{$proximite->id}}"
-                                                           c_id="{{$shopProducts->shop->user->id}}"
-                                                           onClick="addtofav(this)" class="wishlist-btn">
-                                                            <img loading="lazy" style="height: 25px;"
-                                                                 src="{{asset('Yummy-box-picto.png')}}" alt="">
-                                                        </a>
-                                                    @endif
+                                                        <?php
+                                                        $check_fav = \App\Favourite::where('product_id', $proximite->id)->where('user_id', Auth::user()->id)->first();
+                                                        ?>
+                                                        @if($check_fav)
+                                                            <a style="left: 0.5rem" id="{{$proximite->id}}"
+                                                               c_id="{{$shopProducts->shop->user->id}}"
+                                                               onClick="addtofav(this)" class="wishlist-btn">
+                                                                <img loading="lazy" style="height: 25px;"
+                                                                     src="{{asset('Yummy-box-picto.png')}}" alt="">
+                                                            </a>
+                                                        @endif
                                                     @endauth
                                                     <a class="product-thumbnail d-block"
                                                        href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">
@@ -170,7 +171,9 @@
                                                 <div class="product-description">
                                                     <a class="product-title d-block"
                                                        href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}">{{$shopProducts->shop->name}}
-                                                        <br> <i style="color: #ea4c62; font-size: 10px;">{{ $proximite->name }}</i> </a>
+                                                        <br>
+                                                        <i style="color: #ea4c62; font-size: 10px;">{{ $proximite->name }}</i>
+                                                    </a>
                                                     <a style="right: 1.5rem;" class="wishlist-btn1">
                                                         <img loading="lazy"
                                                              style="height: 25px; border-radius: 50px; margin-bottom: 0.5rem"
@@ -183,26 +186,38 @@
                                                     @if($qty != 0)
                                                         <p class="sale-price">Panier à {{$proximite->unit_price ?? ''}}€<span>{{$shopProducts->discount_price}}€</span><small
                                                                     style="display:none;">
-                                                                ({{ $proximite->unit_price*1000 }} {{ __('message.yummycoin') }})</small>
-                                                        </p>@endif
-                                                    @if($qty != 0)<p class="sale-price">
-                                                        <small style="color: grey;">Disponible
-                                                            de @foreach($proximite->shopproduct as $heure) {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}}
-                                                            à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}} @endforeach
-                                                            <br>
-                                                            {{$shopProducts->shop->user->country->name}}
-                                                        </small>
-                                                    </p>@endif
+                                                                ({{ $proximite->unit_price*1000 }} {{ __('message.yummycoin') }}
+                                                                )</small>
+                                                        </p>
+                                                    @endif
+                                                    @if($qty != 0)
+                                                        <p class="sale-price">
+                                                            <small style="color: grey;">Disponible
+                                                                de @foreach($proximite->shopproduct as $heure)
+                                                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispoa)->format('H:i')}}
+                                                                    à {{\Carbon\Carbon::createFromFormat('H:i:s',$heure->hdispob)->format('H:i')}}
+                                                                @endforeach
+                                                                <br>
+                                                                {{$shopProducts->shop->user->country->name}}
+                                                            </small>
+                                                        </p>
+                                                    @endif
 
                                                     <div class="product-rating" style="display:none;"><i
                                                                 class="lni lni-star-filled"></i>4.88 (39)
                                                     </div>
-                                                    @if($qty != 0)<a class="btn btn-danger btn-sm"
-                                                                     href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
-                                                                class="me-1 lni lni-cart"></i>{{ __('message.réserver') }}</a> @else <a
-                                                            class="btn btn-dark btn-sm"
-                                                            href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
-                                                                class="me-1 lni lni-cart"></i>{{ __('message.plus') }}r</a> @endif
+                                                    @if($qty != 0)
+                                                        <a class="btn btn-danger btn-sm"
+                                                           href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
+                                                                    class="me-1 lni lni-cart"></i>{{ __('message.réserver') }}
+                                                        </a>
+                                                    @else
+                                                        <a
+                                                                class="btn btn-dark btn-sm"
+                                                                href="{{ route('shop.product.details', ['shop'=>$shopProducts->shop->slug,'product'=>$proximite->slug]) }}"><i
+                                                                    class="me-1 lni lni-cart"></i>{{ __('message.plus') }}
+                                                            r</a>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -211,12 +226,12 @@
                             @endforeach
                         @endif
                     @endforeach
-                        {{$cat->links()}}
+                    {{$cat->links()}}
                 </div>
             </div>
         </div>
     </div>
-{{--    <button onclick="getLocation()">Try It</button>--}}
+    {{--    <button onclick="getLocation()">Try It</button>--}}
     <p id="demo"></p>
 @endsection
 
@@ -239,6 +254,7 @@
             x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
         }
+
         // getLocation();
     </script>
 
