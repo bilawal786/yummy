@@ -30,10 +30,23 @@
             left: 9%;
             color: white;
         }
+        .h2{
+            position: absolute;
+            top: 57%;
+            left: 6%;
+            color: white;
+        }
         .p{
             position: absolute;
             top: 68%;
             left: 0%;
+            font-size: 17px;
+            color: white;
+        }
+        .p2{
+            position: absolute;
+            top: 68%;
+            left: 6%;
             font-size: 17px;
             color: white;
         }
@@ -44,7 +57,7 @@
 
 
              <div id="1slide1" style="background-image: url({{asset('intro/F1.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
-                 <h2 class="h">{{ __('message.sur') }}</h2>
+                 <h2 class="h2">{{ __('message.sur') }}</h2>
                  <p class="p"><b>{{ __('message.qui') }}</b></p>
              </div>
             <div id="2slide2" style=" display: none;background-image: url({{asset('intro/F2.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
@@ -65,7 +78,7 @@
             </div>
             <div id="6slide6"  style=" display: none; background-image: url({{asset('intro/F6.png')}}); background-repeat: no-repeat; background-size: 100% 100%; position: relative; height: 100vh; text-align: center;  ">
 
-            <p class="p"><b>{{ __('message.amis') }}</b></p>
+            <p class="p2"><b>{{ __('message.amis') }}</b></p>
             </div>
 {{--         <img id="1slide1" style="width: 100%; height: 100%" src="{{asset('intro/01.png')}}" alt="">--}}
 {{--         <img id="2slide2" style="width: 100%; height: 100%; display: none" src="{{asset('intro/02.png')}}" alt="">--}}
