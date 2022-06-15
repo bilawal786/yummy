@@ -27,13 +27,13 @@
         .h{
             position: absolute;
             top: 57%;
-            left: 9%;
+            left: 12%;
             color: white;
         }
         .h2{
             position: absolute;
             top: 57%;
-            left: 15%;
+            left: 17%;
             color: white;
         }
         .p{
@@ -46,7 +46,7 @@
         .p2{
             position: absolute;
             top: 68%;
-            left: 6%;
+            left: 9%;
             font-size: 17px;
             color: white;
         }
