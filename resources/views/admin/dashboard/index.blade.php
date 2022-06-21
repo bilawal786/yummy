@@ -154,7 +154,15 @@
 																				@endif
 																			<tr>
 																					<td>{{ $order->user->name }}</td>
-																					<td>{{ trans('order_status' . $order->status) }}
+
+																					<td>
+                                                                                        @if($order->status==17)
+                                                                                            Prêt à être récupéré
+                                                                                        @elseif($order->status==20)
+                                                                                            Récupéré
+                                                                                        @elseif($order->status==10)
+                                                                                            Panier non disponible
+                                                                                        @endif
                                                                                     </td>
 																					<td>{{ number_format($order->total, 2) }}</td>
 																					<td>
