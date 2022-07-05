@@ -11,6 +11,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('setting/{id}', 'Api\v3\Front\FrontController@webSetting');
     Route::get('location', 'Api\v3\Front\FrontController@location');
 
+
 });
 
 
