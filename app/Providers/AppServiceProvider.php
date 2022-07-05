@@ -7,7 +7,12 @@ use Cookie;
 use Torann\GeoIP\Facades\GeoIP;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
+
+
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
+
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    protected $policies = [
+        'App\Model' => 'App\Policies\ModelPolicy',
+    ];
+
     public function register()
     {
         //
@@ -30,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->registerPolicies();
         //Check for 'lang' cookie
         $cookie = Cookie::get('lang');
         //Get visitors IP
@@ -320,6 +330,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('admin.layouts.components.sidebar', 'App\Http\Composers\BackendMenuComposer');
         View::composer('partials._footer', 'App\Http\Composers\FrontendFooterComposer');
+
     }
 
 }

@@ -187,7 +187,7 @@ $user = Auth::user();
             <li>
                 <select onchange="location = this.value;" style="height: 30px" class="form-control" name="" id="">
                     @foreach($location as $loc)
-                    <option {{$user->address??1 == $loc->id ? 'selected' : ''}} value="{{route('change.location', ['id' => $loc->id])}}">{{$loc->name}}</option>
+                        <option {{$user->address??1 == $loc->id ? 'selected' : ''}} value="{{route('change.location', ['id' => $loc->id])}}">{{$loc->name}}</option>
                     @endforeach
                 </select>
             </li>

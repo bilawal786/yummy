@@ -18,9 +18,15 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject, HasMedia
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Passport\HasApiTokens;
+
+
+class User extends Authenticatable implements MustVerifyEmail, JWTSubject, HasMedia
 {
     use Notifiable, HasMediaTrait, HasModelEvents, HasRoles;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -28,8 +34,9 @@ class User extends Authenticatable implements JWTSubject, HasMedia
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name','device_type', 'email', 'username', 'password', 'phone', 'address', 'roles', 'device_token', 'status', 'applied','fb_id','refferal','connect_id'
+        'first_name', 'last_name','device_type', 'email', 'username', 'password', 'phone', 'address',  'device_token', 'status', 'applied','fb_id','refferal','connect_id'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.

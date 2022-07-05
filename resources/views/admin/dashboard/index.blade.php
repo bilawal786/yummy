@@ -163,6 +163,7 @@
                                                                                         @elseif($order->status==10)
                                                                                             Panier non disponible
                                                                                         @endif
+
                                                                                     </td>
 																					<td>{{ number_format($order->total, 2) }}</td>
 																					<td>
