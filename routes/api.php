@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('register', 'API\v3\Auth\RegisterController@register');
-Route::post('login', 'API\v3\Auth\RegisterController@login');
+Route::post('register', 'Api\v3\Auth\RegisterController@register');
+Route::post('login', 'Api\v3\Auth\RegisterController@login');
 
 Route::middleware('auth:api')->group( function () {
-    Route::get('user', 'API\v3\RegisterController@user');
+
     Route::get('category/{id}', 'Api\v3\Front\FrontController@productCategory');
     Route::get('setting/{id}', 'Api\v3\Front\FrontController@webSetting');
     Route::get('location', 'Api\v3\Front\FrontController@location');
