@@ -16,7 +16,7 @@ class CategoryCollection extends JsonResource
     {
         return [
             "id"          => $this->id ?? "",
-            "title"       => $this->title?? "",
+            "title"       => $this->name?? "",
             "slug"        => $this->slug ?? "",
             "description" => strip_tags($this->description) ??"",
             "image"       => $this->getFirstMediaUrl('categories')?? "http://lorempixel.com/640/480/city"
