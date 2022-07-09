@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\v2\CategoryCollection;
 use App\Http\Resources\v2\CountryCollection;
 use App\Http\Resources\v2\SettingCollection;
+use App\Http\Resources\v2\VipCategoryColection;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Location;
@@ -24,7 +25,7 @@ class FrontController extends Controller
     public function vipProductCategory($id){
 
         $category= SubCategory::where('location_id', $id??1)->get();
-        $data = CategoryCollection::collection($category);
+        $data = VipCategoryColection::collection($category);
         return response()->json($data,200);
     }
     public function webSetting($id){
