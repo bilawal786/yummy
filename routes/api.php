@@ -6,6 +6,7 @@ Route::post('register', 'Api\v3\Auth\RegisterController@register');
 Route::post('login', 'Api\v3\Auth\RegisterController@login');
 
 Route::get('category/{id}', 'Api\v3\Front\FrontController@productCategory');
+Route::get('/vip/category/{id}', 'Api\v3\Front\FrontController@vipProductCategory');
 Route::get('setting/{id}', 'Api\v3\Front\FrontController@webSetting');
 Route::get('location', 'Api\v3\Front\FrontController@location');
 

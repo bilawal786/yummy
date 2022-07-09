@@ -10,6 +10,7 @@ use App\Http\Resources\v2\SettingCollection;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Location;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,12 @@ class FrontController extends Controller
 {
     public function productCategory($id){
         $category = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', $id??1)->get();
+        $data = CategoryCollection::collection($category);
+        return response()->json($data,200);
+    }
+    public function vipProductCategory($id){
+
+        $category= SubCategory::where('location_id', $id??1)->get();
         $data = CategoryCollection::collection($category);
         return response()->json($data,200);
     }
