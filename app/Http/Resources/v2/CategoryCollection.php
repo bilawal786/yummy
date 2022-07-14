@@ -15,11 +15,12 @@ class CategoryCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"          => $this->id ?? "",
+            "id"          => $this->id,
             "title"       => $this->name?? "",
             "slug"        => $this->slug ?? "",
             "description" => strip_tags($this->description) ??"",
-            "image"       => $this->getFirstMediaUrl('categories')?? "http://lorempixel.com/640/480/city"
+            "image"       => $this->getFirstMediaUrl('categories')?? "http://lorempixel.com/640/480/city",
+            "quantity"    => $this->id
         ];
     }
 }
