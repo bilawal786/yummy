@@ -15,7 +15,7 @@ class VipCategoryColection extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"          => $this->id ?? "",
+            "id"          => $this->id,
             "title"       => $this->name?? "",
             "image"       => $this->image ?? "http://lorempixel.com/640/480/city"
         ];

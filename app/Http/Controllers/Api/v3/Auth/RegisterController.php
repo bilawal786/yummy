@@ -36,7 +36,6 @@ class RegisterController extends Controller
             'email'                => ['required', 'string', Rule::unique("users", "email"), 'email', 'max:100'],
             'username'             => request('username')?['required', 'string', Rule::unique("users", "username"), 'max:60']:['nullable'],
             'password'             => ['required'],
-            'c_password' => ['required','same:password'],
         ]);
 
         if($validator->fails()){
