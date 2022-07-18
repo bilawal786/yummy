@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Api\v3\Front;
 
 use App\Enums\Status;
+use App\Favourite;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v2\CategoryCollection;
 use App\Http\Resources\v2\CountryCollection;
+use App\Http\Resources\v2\ProductCollection;
 use App\Http\Resources\v2\SettingCollection;
 use App\Http\Resources\v2\VipCategoryColection;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\ShopProduct;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,7 @@ class FrontController extends Controller
     }
     public function vipProductCategory($id){
 
-        $category= SubCategory::where('location_id', $id??1)->get();
+        $category = SubCategory::where('location_id', $id??1)->get();
         $data = VipCategoryColection::collection($category);
         return response()->json($data,200);
     }
@@ -36,6 +39,11 @@ class FrontController extends Controller
     public function location(){
         $location = Location::all();
         $data = CountryCollection::collection($location);
+        return response()->json($data,200);
+    }
+    public function allProduct(){
+        $shopProduct = ShopProduct::where('quantity', '>', 0)->with('product')->with('shop')->get();
+        $data = ProductCollection::collection($shopProduct);
         return response()->json($data,200);
     }
 }
