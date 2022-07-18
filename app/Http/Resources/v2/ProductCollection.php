@@ -17,7 +17,6 @@ class ProductCollection extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             "product_id" => $this->product->id,
             "shop_id" => $this->shop_id ,

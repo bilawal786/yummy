@@ -41,9 +41,15 @@ class FrontController extends Controller
         $data = CountryCollection::collection($location);
         return response()->json($data,200);
     }
-    public function allProduct(){
-        $shopProduct = ShopProduct::where('quantity', '>', 0)->with('product')->with('shop')->get();
-        $data = ProductCollection::collection($shopProduct);
+    public function allProduct($id){
+
+        $category = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', $id??1)->get();
+        foreach ($category as $cat) {
+            foreach ($cat->products as $pro) {
+                $shopProduct = ShopProduct::where('quantity', '>', 0)->where('product_id', '=', $pro->id)->with('product')->with('shop')->get();
+            }
+            }
+          $data = ProductCollection::collection($shopProduct);
         return response()->json($data,200);
     }
 }
