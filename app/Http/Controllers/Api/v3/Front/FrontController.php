@@ -12,11 +12,14 @@ use App\Http\Resources\v2\SettingCollection;
 use App\Http\Resources\v2\VipCategoryColection;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\CategoryProduct;
 use App\Models\Location;
 use App\Models\ShopProduct;
 use App\SubCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use JamesMills\LaravelTimezone\Facades\Timezone;
 
 class FrontController extends Controller
 {
@@ -26,7 +29,6 @@ class FrontController extends Controller
         return response()->json($data,200);
     }
     public function vipProductCategory($id){
-
         $category = SubCategory::where('location_id', $id??1)->get();
         $data = VipCategoryColection::collection($category);
         return response()->json($data,200);
@@ -42,14 +44,12 @@ class FrontController extends Controller
         return response()->json($data,200);
     }
     public function allProduct($id){
-
-        $category = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', $id??1)->get();
-        foreach ($category as $cat) {
-            foreach ($cat->products as $pro) {
-                $shopProduct = ShopProduct::where('quantity', '>', 0)->where('product_id', '=', $pro->id)->with('product')->with('shop')->get();
-            }
-            }
-          $data = ProductCollection::collection($shopProduct);
+        $category = Category::latest()->where('status', '!=', 10)->where('is_vip', 'Non')->where('country_id', $id??1)->pluck('id');
+        $productIds = CategoryProduct::whereIn('category_id', $category)->pluck('product_id');
+        $shopProduct = ShopProduct::whereIn('product_id', $productIds)->where('quantity', '>', 0)->whereHas('product', function($q) {
+            $q->where('publish', '<=', Timezone::convertToLocal(Carbon::today(), 'Y-m-d'));
+        })->get();
+        $data = ProductCollection::collection($shopProduct);
         return response()->json($data,200);
     }
 }

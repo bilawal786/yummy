@@ -19,7 +19,7 @@ Route::middleware('auth:api')->group( function () {
 
 
 
-
+/*
 Route::group(['prefix' => 'v2'], function () {
 Route::post('sales/person/store', 'Api\v2\RegisterController@salesPersonStore')->name('salesPerson.store');
 });
@@ -109,4 +109,4 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('shop-owner-sales-report', 'Api\v1\ShopOwnerSalesReportController@index')->name('shop-owner-sales-report.index'); //done
     Route::get('transactions', 'Api\v1\TransactionController@index'); //done
 
-});
+});*/

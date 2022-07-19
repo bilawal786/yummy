@@ -23,9 +23,6 @@ class UserResource extends JsonResource
             'password' => $this->password??"",
             'refferal' => $this->refferal ?? "",
             'roles' => $this->roles ??"",
-
         ];
-
-
     }
 }
