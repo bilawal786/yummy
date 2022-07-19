@@ -17,7 +17,8 @@ class VipCategoryColection extends JsonResource
         return [
             "id"          => $this->id,
             "title"       => $this->name?? "",
-            "image"       => $this->image ?? "http://lorempixel.com/640/480/city"
+            "image"       => $this->image ?? "http://lorempixel.com/640/480/city",
+            "quantity"    => $this->id
         ];
     }
 }
