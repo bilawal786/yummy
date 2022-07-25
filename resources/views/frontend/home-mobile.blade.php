@@ -115,7 +115,7 @@
             <div class="container">
                 <div class="row g-3">
                     @foreach($cat as $cate)
-                        {{dd($cate)}}
+
                         @if(!blank($cate->products))
                             @foreach($cate->products as $proximite)
                                 @php
