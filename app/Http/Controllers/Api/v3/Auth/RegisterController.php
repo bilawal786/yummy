@@ -69,7 +69,7 @@ class RegisterController extends Controller
         );
 //        Mail::to($input['email'])->send(new  UserRegister($dataa));
 
-       $success['user'] =  new UserResource($input);
+       $success['user'] =  new UserResource($user);
         return response()->json($success,200);
     }
 
@@ -78,9 +78,7 @@ class RegisterController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            $success['name'] =  $user->name;
-            $success['name'] = 'User login successfully.';
-
+            $success['user'] =  new UserResource($user);
             return response()->json($success,200);
         }
         else{
