@@ -22,11 +22,10 @@ class UserResource extends JsonResource
             'roles' => $this->getrole->id ??"",
             'phone' => $this->phone??"",
             'address' => $this->address??"",
-            'password' => $this->password??"",
             'timezone' => $this->timezone??"",
             'balance_id' => $this->balance_id ?? "",
             'refferal' => $this->refferal ?? "",
-            'img' =>  "",
+            'img' =>  $this->images ?? "",
 
 
         ];
